@@ -1,0 +1,4 @@
+PGM  = gebtaero
+OBJSc = 
+OBJS90= CPUtime.o GlobalDataFun.o TimeFunction.o PrescribedCondition.o InternalData.o\
+       Preprocess.o Element.o Member.o System.o SolveMumps.o EigenSolveMumps.o Analysis.o IOaero.o mainAero.o        
