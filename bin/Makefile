@@ -19,6 +19,11 @@ $(OBJS90): %.o: $(SRCDIR)%.f90
 $(OBJSF): %.o: $(SRCDIR)%.f 
 	$(COMPILE) $(cFLAGS) $<
 
-.PHONY: clean
+.PHONY: clean,unical
 clean :
-	rm -rf *.o *.c *.mod gebtaero
+	rm -rf *.o *.c *.mod gebtaero unical
+	
+unical :
+	gcc -o unical.o -c ../src/unical/unical1_b.c 
+	gcc -o unical unical.o
+	rm unical.o
