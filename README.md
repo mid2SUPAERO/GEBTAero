@@ -13,13 +13,17 @@ Two options are available:
 
 ### Debian package
 For Ubuntu 18.04 and Debian 10, download the .deb file and launch it.
+
 It will automatically install all the dependancies.
+
 For other linux distributions, you can ask for a .deb or .rpm package creation.
 
 ### Compilation
 Clone the repository 
-use the MakeFile in the bin folder and adapt it to your system
+use the MakeFile in the bin folder and adapt it to your system.
+
 You need to install ccx (calculix solver), cgx (calculix pre/postprocessor) and paraview.
+
 Compile gebtaero (you need arpack and mumps librairies) and unical (mesh format translator from unv to inp)
 
 
