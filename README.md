@@ -9,14 +9,17 @@ The pre/postprocessor uses several open source programs available in most linux 
 * Arpack : a sparse eigenvalue solver (https://www.caam.rice.edu/software/ARPACK/)
 
 ## Installation
-Two options are available
-### Debian package
+Two options are available:
+* Debian package
+
 For Ubuntu 18.04 and Debian 10, download the .deb file and launch it.
 It will automatically install all the dependancies.
+* Compilation
 
-### Compilation
-clone the repository 
-use the MakeFile in the bin folder
+Clone the repository 
+use the MakeFile in the bin folder and adapt it to your system
+You need to install ccx (calculix solver), cgx (calculix pre/postprocessor) and paraview.
+Compile gebtaero (you need arpack and mumps librairies) and unical (mesh format translator from unv to inp)
 
 
 ## Testing
@@ -27,9 +30,11 @@ in a terminal launch:
 python3 tests.py
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Usage
+Besides cas_test folder, examples folder contains a set of detailled script designed to help you to set your own problems.
 
-Please make sure to update tests as appropriate.
+## Licence
+Open source
 
-## License
+
+
