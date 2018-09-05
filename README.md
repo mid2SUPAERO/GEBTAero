@@ -13,17 +13,13 @@ Two options are available:
 
 ### Debian package
 For Ubuntu 18.04 and Debian 10, download the .deb file and launch it.
-
 It will automatically install all the dependancies.
-
 For other linux distributions, you can ask for a .deb or .rpm package creation.
 
 ### Compilation
 Clone the repository 
-use the MakeFile in the bin folder and adapt it to your system.
-
+use the MakeFile in the bin folder and adapt it to your system
 You need to install ccx (calculix solver), cgx (calculix pre/postprocessor) and paraview.
-
 Compile gebtaero (you need arpack and mumps librairies) and unical (mesh format translator from unv to inp)
 
 
@@ -37,6 +33,12 @@ python3 tests.py
 
 ## Usage
 Besides cas_test folder, examples folder contains a set of detailled script designed to help you to set your own problems.
+The pre/postprocessor script must be launch with python3 (not python2).
+
+You can also directly use the computation code with .dat file (show examples):
+```bash
+gebtaero example.dat
+```
 
 ## Licence
 Open source
