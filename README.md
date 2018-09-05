@@ -10,12 +10,13 @@ The pre/postprocessor uses several open source programs available in most linux 
 
 ## Installation
 Two options are available:
-* Debian package
 
+### Debian package
 For Ubuntu 18.04 and Debian 10, download the .deb file and launch it.
 It will automatically install all the dependancies.
-* Compilation
+For other linux distributions, you can ask for a .deb or .rpm package creation.
 
+### Compilation
 Clone the repository 
 use the MakeFile in the bin folder and adapt it to your system
 You need to install ccx (calculix solver), cgx (calculix pre/postprocessor) and paraview.
