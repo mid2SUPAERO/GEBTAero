@@ -1,4 +1,4 @@
-# GEBTAero ![CI status](https://img.shields.io/badge/build-passing-brightgreen.svg)
+# GEBTAero 
 
 GEBTAero is an aeroelasticity simulation toolbox with a computation code coded in Fortran and a pre/postprocessor coded in Python.
 The computation code is derived from GEBT developped by Prof. Yu (https://cdmhub.org/resources/gebt).
