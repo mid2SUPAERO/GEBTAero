@@ -47,7 +47,7 @@ gebtaero example.dat
 ```
 
 ## Licence
-Open source
+GNU General Public License v3.0
 
 
 
