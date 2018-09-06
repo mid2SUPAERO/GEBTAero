@@ -1,7 +1,7 @@
 # GEBTAero 
 
 GEBTAero is an aeroelasticity simulation toolbox with a computation code coded in Fortran and a pre/postprocessor coded in Python.
-The computation code is derived from GEBT developped by Prof. Yu (https://cdmhub.org/resources/gebt).
+The computation code is derived from GEBT program developped by Prof. Yu (https://cdmhub.org/resources/gebt).
 The pre/postprocessor uses several open source programs available in most linux distros repositories:
 * calculix : a Finite Element Method solver (http://www.calculix.de/)
 * paraview : a  data analysis and visualization application (https://www.paraview.org/)
@@ -18,9 +18,13 @@ For other linux distributions, you can ask for a .deb or .rpm package creation.
 
 ### Compilation
 Clone the repository 
-use the MakeFile in the bin folder and adapt it to your system
-You need to install ccx (calculix solver), cgx (calculix pre/postprocessor) and paraview.
-Compile gebtaero (you need arpack and mumps librairies) and unical (mesh format translator from unv to inp)
+use the MakeFile in the bin folder and adapt it to your system.
+
+Install the dependancies. On Ubuntu:
+```bash
+sudo apt install paraview calculix-ccx calculix-cgx libmumps-seq-dev libarpack2-dev python3 python3-numpy python3-matplotlib
+```
+Compile gebtaero and unical (mesh format translator from unv to inp)
 
 
 ## Testing
@@ -34,7 +38,9 @@ python3 tests.py
 ## Usage
 Besides cas_test folder, examples folder contains a set of detailled script designed to help you to set your own problems.
 The pre/postprocessor script must be launch with python3 (not python2).
-
+```bash
+python3 myscript.py
+```
 You can also directly use the computation code with .dat file (show examples):
 ```bash
 gebtaero example.dat
