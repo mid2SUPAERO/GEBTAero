@@ -7,7 +7,7 @@ LINK     = gfortran -static-libgfortran
 cFLAGS   = -O3 -fbounds-check -c 
 lFLAGS   = -O3 -fbounds-check
 LIBS     = -llapack -larpack -lmpiseq_seq -ldmumps_seq
-SRCDIR   =../src/
+SRCDIR   =../src/fortran/
 
 $(PGM):  $(OBJS)   
 	$(LINK) $(lFLAGS) -o $(PGM)   $(OBJS) $(LIBS)
