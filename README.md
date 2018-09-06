@@ -12,7 +12,7 @@ The pre/postprocessor uses several open source programs available in most linux 
 Two options are available:
 
 ### Debian package
-For Ubuntu 18.04 and Debian 10, download the .deb file and launch it.
+For Ubuntu 18.04 and Debian 10, download the .deb file available in the package folder and launch it.
 It will automatically install all the dependancies.
 For other linux distributions, you can ask for a .deb or .rpm package creation.
 
