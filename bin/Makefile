@@ -21,7 +21,7 @@ $(OBJSF): %.o: $(SRCDIR)%.f
 
 .PHONY: clean,unical
 clean :
-	rm -rf *.o *.c *.mod gebtaero unical
+	rm -rf *.o *.c *.mod gebtaero unical	
 	
 unical :
 	gcc -o unical.o -c ../src/unical/unical1_b.c 
