@@ -8,11 +8,11 @@
 
 !***************************************************************
 !*                                                             *
-!* This module contains information and calculation for an     *
+! This module contains information and calculation for an     *
 !* element within a member 
 !* Outputs: ElemEqn,ElemJacobian                               *
 !***************************************************************
-
+!>This module contains information and calculation for an element within a member 
 MODULE Element
 
 USE InternalData
@@ -28,22 +28,22 @@ PUBLIC load,exist_load,follower_load
 
 ! private data needed inside this module
 !--------------------------------------------
-REAL(DBL)::dL              ! length of the element
-REAL(DBL)::Le              ! the ending arc length of the current element
-REAL(DBL)::eCab(NDIM,NDIM) ! direction cosine matrix of the undeformed element
-REAL(DBL)::eFlex(NSTRN,NSTRN) !flexibility matrix of the elment
-REAL(DBL)::eMass(NSTRN,NSTRN) ! inverse of the mass matrix of the element
-TYPE(DistriLoad)::load        ! distributed load
-LOGICAL::exist_load,follower_load ! flags to indicate whether distributed load exist and whether they are follower forces
+REAL(DBL)::dL              !< length of the element
+REAL(DBL)::Le              !< the ending arc length of the current element
+REAL(DBL)::eCab(NDIM,NDIM) !< direction cosine matrix of the undeformed element
+REAL(DBL)::eFlex(NSTRN,NSTRN) !<flexibility matrix of the elment
+REAL(DBL)::eMass(NSTRN,NSTRN) !< inverse of the mass matrix of the element
+TYPE(DistriLoad)::load        !< distributed load
+LOGICAL::exist_load,follower_load !< flags to indicate whether distributed load exist and whether they are follower forces
 
 REAL(DBL)::Ui(NDIM),theta(NDIM),Fi(NDIM),Mi(NDIM),e1GammaD(NDIM),kappa(NDIM),ePi(NDIM),Hi(NDIM),Vi(NDIM),OMEGAi(NDIM) ! e1GammaD=e1+GammaD
-REAL(DBL)::ev_i(NDIM)    ! initial velocity of the mid point of the element
-REAL(DBL)::eOmega_a(NDIM) ! initial angular velocity of the element
+REAL(DBL)::ev_i(NDIM)    !< initial velocity of the mid point of the element
+REAL(DBL)::eOmega_a(NDIM) !< initial angular velocity of the element
 
-REAL(DBL)::eCT(NDIM,NDIM)         ! the transpose of the direction cosine matrix corresponding to elastic rotation
-REAL(DBL)::eCTCAB(NDIM,NDIM)      ! eCT.Cab
-REAL(DBL)::eCabhalfL(NDIM,NDIM)   ! eCab*dL/2
-REAL(DBL)::eCTCabhalfL(NDIM,NDIM) ! eCTCab*dL/2
+REAL(DBL)::eCT(NDIM,NDIM)         !< the transpose of the direction cosine matrix corresponding to elastic rotation
+REAL(DBL)::eCTCAB(NDIM,NDIM)      !< eCT.Cab
+REAL(DBL)::eCabhalfL(NDIM,NDIM)   !< eCab*dL/2
+REAL(DBL)::eCTCabhalfL(NDIM,NDIM) !< eCTCab*dL/2
 
 REAL(DBL)::UiDot(NDIM),ThetaDot(NDIM),CTCabPdot(NDIM),CTCabHdot(NDIM)
 
@@ -74,11 +74,12 @@ CONTAINS
 !* distributed load. Note, it is put in the right hand side *
 !*															*
 !************************************************************ 
+!> Compute the value of the Right Hand Side for a finite element
 FUNCTION ElemEqn(ndof_el)
 
 IMPLICIT NONE
 
-INTEGER,INTENT(IN)  :: ndof_el
+INTEGER,INTENT(IN)  :: ndof_el !<#ioaero::ndof_el
 
 REAL(DBL)::ElemEqn(ndof_el+NDOF_ND) ! the functional value for each element
 REAL(DBL):: tmpR(NDIM),tmp,tmpN(NSTATES)
@@ -200,7 +201,7 @@ END FUNCTION ElemEqn
 
 !************************************************************
 !*                                                          *
-!*  Caculate the Jacobian matrix for each element           *
+!>  Caculate the Jacobian matrix for each element
 !*                                                          *
 !*															*
 !************************************************************ 
@@ -208,9 +209,10 @@ SUBROUTINE ElemJacobian(ndof_el,niter,elemJac)
 
 IMPLICIT NONE
 
-INTEGER,INTENT(IN)  :: ndof_el,niter
+INTEGER,INTENT(IN)  :: ndof_el !< #ioaero::ndof_el
+INTEGER,INTENT(IN)  :: niter !< #ioaero::niter
 
-REAL(DBL),INTENT(OUT)::ElemJac(:,:) ! the coefficient matrix for each element
+REAL(DBL),INTENT(OUT)::ElemJac(:,:) !< the coefficient matrix for each element
 
 REAL(DBL)::ekttek(NDIM,NDIM,NDIM)   ! e_k.\theta^T+ \theta.e_k^T
 REAL(DBL)::eCTtheta(NDIM,NDIM,NDIM),eCTtheta2(NDIM,NDIM,NDIM)  !derivatives of C^T w.r.t theta, eCTtheta(k,:,:)= d_C^T/d_thetak
@@ -477,7 +479,7 @@ END SUBROUTINE ElemJacobian
 
 !************************************************************
 !*                                                          *
-!*  Caculate the mass matrix for each element               *
+!> Caculate the mass matrix for each element         
 !*                                                          *
 !*															*
 !************************************************************ 
@@ -485,9 +487,9 @@ SUBROUTINE ElemMass(ndof_el,elemM)
 
 IMPLICIT NONE
 
-INTEGER,INTENT(IN)  :: ndof_el
+INTEGER,INTENT(IN)  :: ndof_el !< #ioaero::ndof_el
 
-REAL(DBL),INTENT(OUT)::ElemM(:,:) ! the mass matrix for each element
+REAL(DBL),INTENT(OUT)::ElemM(:,:) !< the mass matrix for each element
 REAL(DBL) tmp31(NDIM),tmp36(NDIM,NDIM+NDIM),tmp6(NDIM+NDIM)
 REAL(DBL) tmpN6(NSTATES,6),tmpN3(NSTATES,3),tmpNN(NSTATES,NSTATES)
 
@@ -608,20 +610,21 @@ END SUBROUTINE ElemMass
 
 !************************************************************
 !*                                                          *                                      
-!*  Extract element properties needed for element assembly  *
+!>  Extract element properties needed for element assembly 
 !************************************************************
 SUBROUTINE  ExtractElementProperties(elem_no,memb_info_i,x_elem,v_root_a,omega_a,ndof_el,init_elem,aero_flag,grav_flag)  
 
-INTEGER,INTENT(IN)::elem_no
-TYPE (MemberInf),INTENT(IN)::memb_info_i
+INTEGER,INTENT(IN)::elem_no !<Element index
+TYPE (MemberInf),INTENT(IN)::memb_info_i !< the paramater of the members (see memberinf Type)
 
-REAL(DBL),INTENT(IN)::x_elem(:) ! the 12 variables of the element u_i, \theta_i, F_i, M_i, for dynamic analysis, 6 more Pi, Hi
-                                ! for initial step, x_elem contains, CTCabPdot, CTCabHdot, F_i, M_i, P_i, H_i
-REAL(DBL),INTENT(IN)::v_root_a(:),omega_a(:)
+REAL(DBL),INTENT(IN)::x_elem(:) !< the 12 variables of the element u_i, \theta_i, F_i, M_i, for dynamic analysis, 6 more Pi, Hi. for initial step, x_elem contains, CTCabPdot, CTCabHdot, F_i, M_i, P_i, H_i. Finally for Peters aero the Ns induced flow states
+REAL(DBL),INTENT(IN)::v_root_a(:) !< linear velocity of the root point in inertial frame
+REAL(DBL),INTENT(IN)::omega_a(:) !< angular velocity of the root point in inertial frame
 
-REAL(DBL),INTENT(INOUT)::init_elem(:,:) ! initial step: the 12 initial values of the element u_i, \theta_i, \dot{u}_i, \dot{theta}_i 
-                                   ! time marching: 2/dt ui+\dot{u}_i, 2/dt thetai+\dot{theta}_i, 2/dt CTCabP+\dot, 2/dt CTCabP+dot
-INTEGER,INTENT(IN)::ndof_el,aero_flag,grav_flag
+REAL(DBL),INTENT(INOUT)::init_elem(:,:) !< initial step: the 12 initial values of the element u_i,\f$ \theta_i, \dot{u}_i, \dot{theta}_i.\f$ Time marching: \f$2/dt ui+\dot{u}_i, 2/dt thetai+\dot{theta}_i, 2/dt CTCabP+\dot, 2/dt CTCabP+dot \f$
+INTEGER,INTENT(IN)::ndof_el !<#ioaero::nedof_el
+INTEGER,INTENT(IN)::aero_flag !< #ioaero::aero_flag
+INTEGER,INTENT(IN)::grav_flag !< #ioaero::grav_flag
 
 ! coordinate system parameter
 REAL(DBL)            :: xflow(NDIM),xB(NDIM),yB(NDIM),zB(NDIM)
@@ -746,8 +749,8 @@ IF (a_flag /= 0) THEN
 !~     alphadot = OMEGAi(1)
     hdot = -DOT_PRODUCT(MATMUL(eCTCAB,Vi),dir_lift)
 
-    beta = ASIN(DOT_PRODUCT(xB,xflow))
-    write(*,*) alpha
+!~     beta = ASIN(DOT_PRODUCT(xB,xflow))
+
 	! flow velocity correction with beta :
 !~ 	U = U*COS(beta)
     ! coefficient theta of Jacobian

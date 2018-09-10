@@ -22,7 +22,7 @@ use the MakeFile in the bin folder and adapt it to your system.
 
 Install the dependancies. On Ubuntu:
 ```bash
-sudo apt install paraview calculix-ccx calculix-cgx libmumps-seq-dev libarpack2-dev python3 python3-numpy python3-matplotlib
+sudo apt install paraview calculix-ccx calculix-cgx libmumps-seq-dev libarpack2-dev python3 python3-numpy python3-matplotlib gfortran make
 ```
 Compile gebtaero and unical (mesh format translator from unv to inp)
 
@@ -46,8 +46,8 @@ You can also directly use the computation code with .dat file (show examples):
 gebtaero example.dat
 ```
 
-## Licence
-GNU General Public License v3.0
+## Acknowledgement
+This research work was funded by the French Air Force Academy Research Center in collaboration with ISAE-Supaero
 
 
 

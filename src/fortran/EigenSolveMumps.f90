@@ -11,6 +11,7 @@
 ! analysis  
 !
 !=========================================================
+!>This module contains the main routines needed for eigen value analysis and allow to call Arpack and MUMPS library
 MODULE EigenMumps
 
 USE InternalData
@@ -22,8 +23,8 @@ IMPLICIT NONE
 
 INCLUDE 'mpif.h'
 INCLUDE 'dmumps_struc.h'
-TYPE (DMUMPS_STRUC) mumps_par
-INTEGER IERR
+TYPE (DMUMPS_STRUC) mumps_par   !< an array containing the configuration parameters of MUMPS solver
+INTEGER IERR    !< error code of the MUMPS solver
 
 
 PRIVATE       ! So everything is private, except declared by PUBLIC
@@ -38,32 +39,40 @@ CONTAINS
 !*  Assemble the linear matrices                              *
 !*															  *
 !**************************************************************
+!> this routine solve the eigenproblem by linearising about a steady state x
 SUBROUTINE EigenSolveMumps(ndof_el,memb_info,v_root_a,omega_a,member,pt_condition,niter,error,&
            & ncond_mb,mb_condition,distr_fun,dof_con,x,nev,eigen_val,eigen_vec,aero_flag,grav_flag)
 
 
-INTEGER,INTENT(IN)::ndof_el,aero_flag,grav_flag
-TYPE (MemberInf),INTENT(IN)::memb_info(:)
+INTEGER,INTENT(IN)::ndof_el !< #ioaero::ndof_el
+INTEGER,INTENT(IN)::aero_flag !< #ioaero::aero_flag
+INTEGER,INTENT(IN)::grav_flag !< #ioaero::grav_flag
+TYPE (MemberInf),INTENT(IN)::memb_info(:) !< array containing the characteristics of the beam members
 
-REAL(DBL),INTENT(IN)::v_root_a(:),omega_a(:)
+REAL(DBL),INTENT(IN)::v_root_a(:)   !< linear velocity of frame a
+REAL(DBL),INTENT(IN)::omega_a(:)    !< angular velocity of frame a
 
-REAL(DBL),INTENT(IN) ::distr_fun(:,:)
-INTEGER,INTENT(IN)   ::member(:,:),niter,ncond_mb
-TYPE(PrescriInf),INTENT(IN)::pt_condition(:), mb_condition(:) 
-INTEGER                 ::dof_con(:) ! this array is passed by value
-CHARACTER(*),INTENT(OUT)::error
+REAL(DBL),INTENT(IN) ::distr_fun(:,:)   !< #ioaero::distr_fun
+INTEGER,INTENT(IN)   ::member(:,:)  !<#ioaero::member
+INTEGER,INTENT(IN)   ::niter    !<#ioaero::niter
+INTEGER,INTENT(IN)   ::ncond_mb !<#ioaero::ncond_mb
+TYPE(PrescriInf),INTENT(IN)::pt_condition(:)    !<#ioaero::pt_condition
+TYPE(PrescriInf),INTENT(IN)::mb_condition(:)    !<#ioaero::mb_condition
+INTEGER                 ::dof_con(:) !< the connecting condition for key point.
+CHARACTER(*),INTENT(OUT)::error !<#ioaero::error
 
-REAL(DBL),INTENT(IN) ::x(:)
+REAL(DBL),INTENT(IN) ::x(:) !< the solution vector of the linear system (steady-state)
 
-INTEGER,INTENT(INOUT)::nev
-REAL(DBL),INTENT(OUT)::eigen_val(:,:) !eigen_val(1,:): real parts; and eigen_val(2,:): imaginary parts of eigenvalue
-REAL(DBL),INTENT(OUT)::eigen_vec(:,:) ! the first nev (or nev+1) columns are the eigenvectors
+INTEGER,INTENT(INOUT)::nev  !<#ioaero::nev
+REAL(DBL),INTENT(OUT)::eigen_val(:,:) !< #ioaero::eigen_val
+REAL(DBL),INTENT(OUT)::eigen_vec(:,:) !< array containing the solution eigenvectors
 
 ! Lapack DGEEV parameters
 INTEGER,PARAMETER :: LWMAX = 1000
 REAL(DBL) :: A(NSTATES,NSTATES),EigAR(NSTATES),EigAI(NSTATES),VL(NSTATES),VR(NSTATES),WORK(LWMAX),U,Chord
 INTEGER :: INFO,LWORK
 REAL(DBL) :: IFmodes(SIZE(member,1),NSTATES,2) ! Peters induced flow modes ; not to output
+
 
 ! variables needed for ARPACK
 !----------------------------------------------------------
@@ -234,14 +243,17 @@ CALL MPI_FINALIZE(IERR)
 END SUBROUTINE EigenSolveMUMPS
 
 !*************************************************************
+!> this subroutine make the interface with the arpack sparse eigensolver library
 SUBROUTINE ARPACK(nev,ncv,er,ei,vector,error)
 
 IMPLICIT NONE
 
-INTEGER,INTENT(INOUT)::nev
-INTEGER,INTENT(IN)::ncv
-CHARACTER(*),INTENT(OUT)::error         ! a character variable holding  error message
-REAL(DBL),INTENT(OUT)::er(:),ei(:),vector(:,:)
+INTEGER,INTENT(INOUT)::nev  !<#ioaero::nev
+INTEGER,INTENT(IN)::ncv !< size of the subdomain used bye the IRAM algorithm (doc Arpack)
+CHARACTER(*),INTENT(OUT)::error         !< #ioaero::error
+REAL(DBL),INTENT(OUT)::er(:)    !< Real part of the eigenvalue (before problem inversion)
+REAL(DBL),INTENT(OUT)::ei(:)    !< Imaginary part of the eigenvalue (before problem inversion)
+REAL(DBL),INTENT(OUT)::vector(:,:)  !< eigenvector computed by arpack 
 INTEGER::ido,iparam(11),ipntr(14),lworkl,info
 REAL(DBL)::resid(nsize),v(nsize,ncv),workd(3*nsize),workl(3*ncv**2 + 6*ncv)
 CHARACTER(2) :: WichA,WichE
@@ -340,12 +352,16 @@ END SUBROUTINE  ARPACK
 !           Stiffness_Matrix*U=rhs
 ! note, Mass_Matrix and Stiffness_Matrix remains the same during eigen solution
 !********************************************************
+!> Solve the linear system K*V = Z to avoid matrix inversion with solver MUMPS
 SUBROUTINE AW(u,nzM,irnM,jcnM,coef_mass,w)
 IMPLICIT NONE
 
-INTEGER,INTENT(IN)::nzM,irnM(:),jcnM(:)
-REAL(DBL),INTENT(IN) ::coef_mass(:),w(nsize)
-REAL(DBL),INTENT(OUT) ::u(nsize)
+INTEGER,INTENT(IN)::nzM !< number of nonzero coefficient
+INTEGER,INTENT(IN)::irnM(:) !< line index of nonzero values
+INTEGER,INTENT(IN)::jcnM(:) !< column index of nonzero values
+REAL(DBL),INTENT(IN) ::coef_mass(:) !< mass matrix sparse coefficient
+REAL(DBL),INTENT(IN) ::w(nsize) !< RHS vector
+REAL(DBL),INTENT(OUT) ::u(nsize)    !< solution vector V
 
 INTEGER i,j,k
 

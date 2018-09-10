@@ -87,6 +87,8 @@
 ! FUNCTION Tilde(vect)
 !---------------------------------------------------------------
 
+!> This module contains general-purpose global constants,I/O functions/subroutines and math functions/subroutines
+
 MODULE GlobalDataFun
 
 IMPLICIT NONE
@@ -95,7 +97,7 @@ PRIVATE ! everything is private except declared by PUBLIC
 
 PUBLIC DBL,PI,DEG_2_RAD,RAD_2_DEG,TOLERANCE,I3,FMT_INT,FMT_REAL,NDIM,NDOF_ND,NSTRN,e1
 PUBLIC in_stat, allo_stat,MEMB_CONST,GRAV,NSTATES,Peters,RUNMOD,SOLVER,flutter_flag,MatA,ARPACK_MOD
-PUBLIC EIGEN_OUTPUT
+PUBLIC EIGEN_OUTPUT,FLUTTER_LIMIT
 
 PUBLIC FileOpen,IOError,MemoryError,TitlePrint,WriteError,WriteVec
 PUBLIC CT_THETA,CT_THETA_T,DirCosineTRodrigues,Invert,MATMUL3,Norm,OuterProduct,Tilde,CrossProduct
@@ -110,37 +112,40 @@ END INTERFACE
 ! Global constants/variables
 !
 !=============================================================================
-INTEGER,PARAMETER:: NDIM=3         ! All the beams could behavior in the 3D space 
-INTEGER,PARAMETER:: NDOF_ND=12     ! degrees of freedom per node/element is 12.
-INTEGER,PARAMETER:: NSTRN=6        ! Number of strain measures/dofs in Timoshenko model 
-INTEGER,PARAMETER:: MEMB_CONST=7   ! Number of labels needed for member properties
-INTEGER,PARAMETER:: NSTATES= 6 ! Number of induces-flow states in Peters theory
+INTEGER,PARAMETER:: NDIM=3         !< All the beams could behavior in the 3D space 
+INTEGER,PARAMETER:: NDOF_ND=12     !< degrees of freedom per node/element is 12.
+INTEGER,PARAMETER:: NSTRN=6        !< Number of strain measures/dofs in Timoshenko model 
+INTEGER,PARAMETER:: MEMB_CONST=7   !< Number of labels needed for member properties
+INTEGER,PARAMETER:: NSTATES= 6 !< Number of induces-flow states in Peters theory
 
 INTEGER, PARAMETER:: DBL=SELECTED_REAL_KIND(15,307)
 
 REAL(DBL),PARAMETER:: PI        =    3.1415926535897932D0    
-REAL(DBL),PARAMETER:: DEG_2_RAD =    1.7453292519943296D-2 ! the ratio between radians and degrees
-REAL(DBL),PARAMETER:: RAD_2_DEG =    5.7295779513082321D1  ! convert radian to degree
-REAL(DBL),PARAMETER:: TOLERANCE = EPSILON(1.0_DBL)         ! a smart number of the double precision real number
-REAL(DBL),PARAMETER:: GRAV      =    9.81                  ! gravity acceleration
+REAL(DBL),PARAMETER:: DEG_2_RAD =    1.7453292519943296D-2 !< the ratio between radians and degrees
+REAL(DBL),PARAMETER:: RAD_2_DEG =    5.7295779513082321D1  !< convert radian to degree
+REAL(DBL),PARAMETER:: TOLERANCE = EPSILON(1.0_DBL)         !< a smart number of the double precision real number
+REAL(DBL),PARAMETER:: GRAV      =    9.81                  !< gravity acceleration
 
 REAL(DBL),PARAMETER::I3(3,3) = RESHAPE((/1.D0, 0.D0, 0.D0,& 
                                        & 0.D0, 1.D0, 0.D0,&
-									   & 0.D0, 0.D0, 1.D0/),(/3,3/))  ! The 3x3 identity matrix
-REAL(DBL),PARAMETER::e1(3)=(/1._DBL,0._DBL,0._DBL/)  ! The e1 unit vector
+									   & 0.D0, 0.D0, 1.D0/),(/3,3/))  !< The 3x3 identity matrix
+REAL(DBL),PARAMETER::e1(3)=(/1._DBL,0._DBL,0._DBL/)  !< The e1 unit vector
 
-INTEGER:: in_stat      ! flag to indicate if the I/O process is successful: if positive, an error occured;
-                       ! if negative, an end-of-file or end-of-record condition occurred; 
-					   ! zero, no error, end-of-file, or end-of-record condition occurred.  
-INTEGER:: allo_stat    ! flag to indicate status of allocating memory 
+INTEGER:: in_stat      !< flag to indicate if the I/O process is successful: if positive, an error occured;
+                       !< if negative, an end-of-file or end-of-record condition occurred; 
+					   !< zero, no error, end-of-file, or end-of-record condition occurred.  
+INTEGER:: allo_stat    !< flag to indicate status of allocating memory 
 
 
-CHARACTER(*),PARAMETER :: FMT_REAL='ES15.7' ! format for output real numbers
-CHARACTER(*),PARAMETER :: FMT_INT='I8'       ! format for output integer numbers
+CHARACTER(*),PARAMETER :: FMT_REAL='ES15.7' !< format for output real numbers
+CHARACTER(*),PARAMETER :: FMT_INT='I8'       !< format for output integer numbers
 
-INTEGER:: RUNMOD=0,ARPACK_MOD=0,EIGEN_OUTPUT=0
-CHARACTER(10) :: SOLVER='MUMPS'       ! linear solver use (HSL : ddep.f, mc19.f + ma28 or MUMPS : linux library)
-INTEGER:: flutter_flag=0
+INTEGER:: RUNMOD=0  !< Define the output behavior of the program; 0: legacy mode of the computation code with output of a .out text file; 1: mode compatible with the python pre/postrpocessor (argument -p in the terminal), 2: silent mode (argument -s in the terminal)
+INTEGER:: ARPACK_MOD=0  !< parameter WHICH of arpack solver (1:LI, 2:LM, 3:LR, 4:SR, default : LM in dnaupd and LI in dneupd) =>cf Arpack doc
+INTEGER:: EIGEN_OUTPUT=0    !< define wich eigenvalue data to output (0: eigenvalues and eigenvectors, 1: eigenvalues only)
+CHARACTER(10) :: SOLVER='MUMPS'       !< linear solver used (HSL : ddep.f, mc19.f + ma28 or MUMPS : linux library)
+INTEGER:: flutter_flag=0        !< used in temporal simulation : 0= deformation are under a "flutter" state; 1= deformation are over a "flutter" state
+REAL(DBL):: FLUTTER_LIMIT       !< the value of maximale angular deformaton use to trigger the flutter flag
 
 
 !=========================================================================================
@@ -155,17 +160,17 @@ CONTAINS
 
 !************************************************************
 !*                                                          *
-!*    To open an old or new file for reading or writing     *
+!>    To open an old or new file for reading or writing     *
 !*															*
 !************************************************************
 FUNCTION 	FileOpen (file_unit,file_name,sta_type,rw_type,error)
 
 LOGICAL                   ::FileOpen
-INTEGER,INTENT(IN)        ::file_unit 
+INTEGER,INTENT(IN)        ::file_unit !<File Unit (see fortran IO doc)
 CHARACTER(*),INTENT(IN)   ::file_name
-CHARACTER(*),INTENT(IN)   ::sta_type
-CHARACTER(*),INTENT(IN)   ::rw_type
-CHARACTER(*),INTENT(OUT)  ::error
+CHARACTER(*),INTENT(IN)   ::sta_type    !< status type
+CHARACTER(*),INTENT(IN)   ::rw_type     !<rewrite configuration
+CHARACTER(*),INTENT(OUT)  ::error   !<#ioaero::error
 
 error=''
 FileOpen=.FALSE.
@@ -186,14 +191,14 @@ END FUNCTION FileOpen
 
 !************************************************************
 !*                                                          *
-!*        Check the error of I/O processing                 *
+!>        Check the error of I/O processing                 *
 !*															*
 !************************************************************
 FUNCTION  IOError(message,error)
 
 LOGICAL                 ::IOError
-CHARACTER(*),INTENT(IN) ::message        ! a character variable to hold error message
-CHARACTER(*),INTENT(OUT)::error
+CHARACTER(*),INTENT(IN) ::message        !< a character variable to hold error message
+CHARACTER(*),INTENT(OUT)::error !<#ioaero::error
 
 error=''
 IOError=.FALSE.
@@ -210,7 +215,7 @@ END FUNCTION IOError
 
 !************************************************************
 !*                                                          *
-!*         Convert an integer to character                  *
+!>         Convert an integer to character                  *
 !*                                                          *
 !************************************************************
 FUNCTION ItoChar(n) RESULT(char)
@@ -255,14 +260,14 @@ END FUNCTION ItoChar
 
 !************************************************************
 !*                                                          *
-!*        Check the error of memory allocation              *
+!>        Check the error of memory allocation              *
 !*															*
 !************************************************************
 FUNCTION  MemoryError(vari_name,error)
 
 LOGICAL                 ::MemoryError
-CHARACTER(*),INTENT(IN) ::vari_name         ! a character variable to hold variable name
-CHARACTER(*),INTENT(OUT)  ::error
+CHARACTER(*),INTENT(IN) ::vari_name         !< a character variable to hold variable name
+CHARACTER(*),INTENT(OUT)  ::error   !<#ioaero::error
 
 error=''
 MemoryError=.FALSE.
@@ -280,7 +285,7 @@ END FUNCTION MemoryError
 
 !************************************************************
 !*                                                          *
-!*        To print a title for a block of data              *
+!>        To print a title for a block of data              *
 !*															*
 !************************************************************
 SUBROUTINE TitlePrint(file_unit, title)
@@ -328,12 +333,12 @@ END SUBROUTINE TitlePrint
 
 !************************************************************
 !*                                                          *
-!*    Write error to the echo file                          *
+!>    Write error to the echo file                          *
 !*															*
 !************************************************************
 SUBROUTINE WriteError(EIN,error)
 
-INTEGER,INTENT(IN)::EIN ! file unit to write the error message
+INTEGER,INTENT(IN)::EIN !< file unit to write the error message
 CHARACTER(*),INTENT(IN)  ::error
 
 LOGICAL file_opened
@@ -363,12 +368,12 @@ END SUBROUTINE WriteError
 
 !************************************************************
 !*                                                          *
-!*  Write an integer vector to the file_unit                *
+!>  Write an integer vector to the file_unit                *
 !*															*
 !************************************************************
 SUBROUTINE WriteIntVector(file_unit,vec)
 
-INTEGER,INTENT(IN)::file_unit
+INTEGER,INTENT(IN)::file_unit   !<File unit to write the vector
 INTEGER,INTENT(IN)::vec(:)
 
 WRITE(file_unit,'(1x,'//TRIM(ItoChar(SIZE(vec)))//FMT_INT//')')vec
@@ -380,12 +385,12 @@ END SUBROUTINE WriteIntVector
 
 !************************************************************
 !*                                                          *
-!*    Write a real vector to the file_unit                  *
+!>    Write a real vector to the file_unit                  *
 !*															*
 !************************************************************
 SUBROUTINE WriteRealVector(file_unit,vec)
 
-INTEGER,INTENT(IN)::file_unit
+INTEGER,INTENT(IN)::file_unit   !<File unit to write the vector
 REAL(DBL),INTENT(IN)::vec(:)
 !REAL(DBL)::tmp(SIZE(vec)),vec_norm
 
@@ -413,14 +418,16 @@ END SUBROUTINE WriteRealVector
 
 !*************************************************************
 !*                                                           *   
-!*  Calculate eC^T derivative w.r.t theta                     *
-!*  return derivative and ekttek                             *
+!>  Calculate eC^T derivative w.r.t theta                     *
+!!  return derivative and ekttek                             *
 !*                                                           *   
 !*************************************************************
 SUBROUTINE CT_THETA(theta,eCT,ekttek,eCTtheta)
 
-REAL(DBL),INTENT(IN):: theta(:),eCT(:,:)
-REAL(DBL),INTENT(OUT)::ekttek(:,:,:),eCTtheta(:,:,:) 
+REAL(DBL),INTENT(IN):: theta(:) !<Rodrigues rotation parameters
+REAL(DBL),INTENT(IN):: eCT(:,:) !< Direction Cosine matrix between frame b and B
+REAL(DBL),INTENT(OUT)::ekttek(:,:,:) !< =OuterProduct(ek,theta)+OuterProduct(theta,ek)
+REAL(DBL),INTENT(OUT)::eCTtheta(:,:,:) !< Derivatives of eCT relative to theta
 
 INTEGER:: k
 REAL(DBL)::temp,ek(3)
@@ -439,12 +446,14 @@ END SUBROUTINE CT_Theta
 
 !*************************************************************
 !*                                                           *   
-!*  Calculate \dot{eC^T}.x derivative w.r.t \dot{theta}      *
+!>  Calculate \f$ \dot{eC^T}.x \f$ derivative w.r.t \f$ \dot{theta}  \f$    *
 !*                                                           *   
 !*************************************************************
 FUNCTION CT_THETA_T(theta,eCT,x) RESULT(res)
 
-REAL(DBL),INTENT(IN):: theta(:),eCT(:,:),x(:)
+REAL(DBL),INTENT(IN):: theta(:) !<Rodrigues rotation parameters
+REAL(DBL),INTENT(IN):: eCT(:,:) !< Direction Cosine matrix between frame b and B
+REAL(DBL),INTENT(IN):: x(:) !<  vector
 REAL(DBL)            ::res(3,3)
 
 res=( (DOT_PRODUCT(theta,x)*I3+OuterProduct(theta,x)-OuterProduct(MATMUL(I3+eCT,x),theta) )*.5d0 &
@@ -456,8 +465,8 @@ END FUNCTION CT_Theta_T
 
 !*************************************************************
 !*                                                           *   
-!*  Calculate the transpose of the direction cosine in       *
-!*  terms of rodrigues parameters                            *
+!>  Calculate the transpose of the direction cosine in       *
+!!  terms of rodrigues parameters                            *
 !*                                                           *
 !*===========================================================*
 !* Input:                                                    *
@@ -482,15 +491,15 @@ END FUNCTION DirCosineTRodrigues
 
 !***********************************************
 !*                                             *
-!*       Invert a small square matrix          *
+!>       Invert a small square matrix          *
 !*                                             * 
 !***********************************************
 SUBROUTINE Invert(matrix_in,matrix,vari_name,error)
  
-REAL(DBL),INTENT(IN)::matrix_in(:,:) ! the matrix to be inverted
+REAL(DBL),INTENT(IN)::matrix_in(:,:) !< the matrix to be inverted
 CHARACTER(*),INTENT(IN)::vari_name
 
-REAL(DBL),INTENT(OUT)::matrix(:,:)    ! the inverse of the matrix
+REAL(DBL),INTENT(OUT)::matrix(:,:)    !< the inverse of the matrix
 
 CHARACTER(*),INTENT(OUT)::error
 
@@ -537,8 +546,8 @@ END SUBROUTINE
 
 !*************************************************************
 !*                                                           *   
-!*  Multiply a rank 3 matrix with a vector with every colum  *
-!* of the resulting matrix is equal to the multiplication    *
+!>  Multiply a rank 3 matrix with a vector with every colum  *
+!! of the resulting matrix is equal to the multiplication    *
 !*                                                           *
 !*************************************************************
 FUNCTION MATMUL3(mat,vec)
@@ -562,7 +571,7 @@ END FUNCTION MATMUL3
 
 !*************************************************************
 !*                                                           *   
-!*  Calculate the L2 norm of a real vector                   *
+!>  Calculate the L2 norm of a real vector                   *
 !*                                                           *
 !*************************************************************
 FUNCTION Norm(vector)
@@ -579,7 +588,7 @@ END FUNCTION Norm
 
 !*************************************************************
 !*                                                           *   
-!*  Calculate the outer product of two vectors               *
+!>  Calculate the outer product of two vectors               *
 !*                                                           *
 !*************************************************************
 FUNCTION OuterProduct(vec1, vec2)
@@ -604,7 +613,7 @@ END FUNCTION OuterProduct
 
 !*************************************************************
 !*                                                           *   
-!*  Carry out the tilde operation for a real vector          *
+!>  Carry out the tilde operation for a real vector          *
 !*                                                           *
 !*===========================================================*
 !* Input:                                                    *
@@ -632,7 +641,7 @@ END FUNCTION
 
 !*************************************************************
 !*                                                           *   
-!*  Carry out cross product of two real vectors              *
+!>  Carry out cross product of two real vectors              *
 !*                                                           *
 !*===========================================================*
 !* Input:                                                    *
@@ -656,7 +665,7 @@ END FUNCTION
 
 
 !*******************************************************************
-! Insert a real matrix into the 1D coefficient matrix
+!> Insert a real matrix into the 1D coefficient matrix
 !*******************************************************************
 SUBROUTINE Insert1DElement(nz,tmpR,irn,jcn,elemCoef1D,str_r1,str_c1,str_r2,str_c2,str_r3,str_c3,str_r4,str_c4)
    
@@ -710,7 +719,7 @@ END SUBROUTINE Insert1DElement
 
 
 !*******************************************************************
-! Back a 2D array from the 1D coefficient matrix
+!> Back a 2D array from the 1D coefficient matrix
 !*******************************************************************
 SUBROUTINE Extract2DElement(nz,irn,jcn,elemCoef1D,tmpR,str_r1,str_c1)
 
@@ -742,8 +751,8 @@ END SUBROUTINE Extract2DElement
 !****************************************
 
 !**************************************************
-! Matmul(vector, matrix)
-!with matrix stored in a spare format
+!> Matmul(vector, matrix)
+!! with matrix stored in a spare format
 !*****************************************************
 FUNCTION MATMUL_sparse(vector,nsize,ne,irn,jcn,matrix1D) RESULT (res)
 
@@ -765,11 +774,11 @@ ENDDO
 END FUNCTION MATMUL_sparse
 !*****************************************************************
 
-! Functions used for the Finite State Unsteady Thin Airfoil Theory of Peters
-! see Introduction to Structural Dynamics and Aeroelasticity by Hodges p 139
+!> Functions used for the Finite State Unsteady Thin Airfoil Theory of Peters
+!! see Introduction to Structural Dynamics and Aeroelasticity by Hodges p 139
 FUNCTION Peters(n) RESULT(res)
-INTEGER, INTENT(IN) ::n
-REAL(DBL) :: res(n,2*n+2)
+INTEGER, INTENT(IN) ::n !<Number of induced flow states (Ns)
+REAL(DBL) :: res(n,2*n+2)   !< Matrix containing ordered in line : the A matrix, the B vector the C vector, the Identity matrix
 INTEGER   :: i
 res =0.D0
 res(:,1:n) = MatA(n)
@@ -782,6 +791,7 @@ ENDDO
 
 END FUNCTION Peters
 
+!> Compute the Peters A matrix
 FUNCTION MatA(n) RESULT(res)
 IMPLICIT NONE
 
@@ -792,6 +802,7 @@ res = 0.D0
 res = MatD(n)+Prod(VecD(n),VecB(n),n)+Prod(VecC(n),VecD(n),n)+0.5D0*Prod(VecC(n),VecB(n),n)
 END FUNCTION MatA
 
+!> Compute the Peters D matrix
 FUNCTION MatD(n) RESULT(res)
 IMPLICIT NONE
 
@@ -809,6 +820,7 @@ ENDDO
 
 END FUNCTION MatD
 
+!> Compute the Peters B vector
 FUNCTION VecB(n) RESULT(res)
 IMPLICIT NONE
 
@@ -817,11 +829,6 @@ INTEGER             :: i,j
 REAL(DBL) :: res(n)
 
 res = 0.D0
-!~ DO i=1,n-1
-!~ 	res(i) = (-1.0)**(i-1)*Factoriel(n+i-1)/(Factoriel(n-i-1)*Factoriel(i)**2)
-!~ ENDDO
-!~ res(n) = (-1.0)**(i-1)
-
 DO i=1,n-1
 	res(i) = (-1.0)**(i-1)
 	DO j=n-i,n+i-1
@@ -836,6 +843,7 @@ res(n) = (-1.0)**(i-1)
 
 END FUNCTION VecB
 
+!> Compute Peters C vector
 FUNCTION VecC(n) RESULT(res)
 IMPLICIT NONE
 
@@ -850,6 +858,7 @@ ENDDO
 
 END FUNCTION VecC
 
+!> Compute Peters D vector
 FUNCTION VecD(n) RESULT(res)
 IMPLICIT NONE
 
@@ -861,6 +870,7 @@ res(1) = 0.5
 
 END FUNCTION VecD
 
+!> Compute the product of two square matrix
 FUNCTION Prod(Vec1,Vec2,n) RESULT(res)
 INTEGER,INTENT(IN)  :: n
 REAL(DBL),INTENT(IN):: Vec1(n),Vec2(n)
@@ -876,6 +886,7 @@ ENDDO
 
 END FUNCTION Prod
 
+!> Compute the value of factoriel(n)
 FUNCTION Factoriel(n) RESULT(res)
 INTEGER,INTENT(IN)  :: n
 INTEGER             :: i
@@ -888,15 +899,6 @@ ENDDO
 
 
 END FUNCTION Factoriel
-
-!~ FUNCTION MATVECMUL(Mat,Vec,n) RESULT(res)
-!~ INTEGER,INTENT(IN)   :: n
-!~ REAL(DBL),INTENT(IN) :: Mat(n,n),Vec(n)
-!~ REAL(DBL)            :: res(n)
-
-
-!~ END FUNCTION MATVECMUL
-
 
 END MODULE GlobalDataFun
 !=============================================================================

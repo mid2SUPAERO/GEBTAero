@@ -8,9 +8,8 @@
 
 !***************************************************************
 !*                                                             *
-!* This module assemles within a member without considering    *
-!* the particular conditions of the end points
-!* Outputs:MemberEqn, MemberJacobian                           *
+!> This module assemles within a member without considering the particular conditions of the end points 
+!Outputs:MemberEqn, MemberJacobian                           *
 !***************************************************************
 
 MODULE Member
@@ -24,31 +23,34 @@ PRIVATE       ! So everything is private, except declared by PUBLIC
 PUBLIC AssembleMemberRHS,AssembleMemberJacobian,ExtractMemberProperties,ndiv,ncol_memb 
 
 
-INTEGER::ndiv      ! number of divisions
-INTEGER::ncol_memb             ! the total number of columns of the member
+INTEGER::ndiv      !< number of divisions
+INTEGER::ncol_memb             !< the total number of columns of the member
 !=============================================
 
 CONTAINS
 
 !************************************************************
 !*                                                          *                                      
-!*  Assemble the equations for each member                  *
+!>  Assemble the equations for each member                  *
 !*															*
 !************************************************************ 
 SUBROUTINE  AssembleMemberRHS(ndof_el,memb_info_i,v_root_a,omega_a,x_memb,rhs_memb,aero_flag,grav_flag,init_cond)
 
-INTEGER,INTENT(IN)::ndof_el,aero_flag,grav_flag
-TYPE (MemberInf),INTENT(IN)::memb_info_i
+INTEGER,INTENT(IN)::ndof_el !<#ioaero::ndof_el
+INTEGER,INTENT(IN)::aero_flag   !<#ioaero::aero_flag
+INTEGER,INTENT(IN)::grav_flag   !<#ioaero::grav_flag
+TYPE (MemberInf),INTENT(IN)::memb_info_i    !< array containing the characteristics of a beam member
 
-REAL(DBL),INTENT(IN)::v_root_a(:),omega_a(:)
-REAL(DBL),INTENT(IN)::x_memb(:)
+REAL(DBL),INTENT(IN)::v_root_a(:)   !< linear velocity of frame a
+REAL(DBL),INTENT(IN)::omega_a(:)     !< angular velocity of frame a
+REAL(DBL),INTENT(IN)::x_memb(:) !< solution vector of a beam member
 
-REAL(DBL),INTENT(OUT)::rhs_memb(:)
+REAL(DBL),INTENT(OUT)::rhs_memb(:)  !<RHS vector of a beam member
 
-REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)
+REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)   !<#ioaero::init_cond
 
 INTEGER:: i
-INTEGER:: nrl ! the starting row/col for elemental rhs to fill in 
+INTEGER:: nrl !< the starting row/col for elemental rhs to fill in 
  
 rhs_memb=0.0D0
 
@@ -72,21 +74,26 @@ END SUBROUTINE AssembleMemberRHS
 
 !************************************************************
 !*                                                          *                                      
-!*  Assemble the Jacobian for each member                   *
+!>  Assemble the Jacobian for each member                   *
 !*															*
 !************************************************************ 
 SUBROUTINE  AssembleMemberJacobian(ndof_el,niter,memb_info_i,v_root_a,omega_a,x_memb,&
                                  & nz_memb,irn_memb,jcn_memb,coef_memb,aero_flag,grav_flag)
 
-INTEGER,INTENT(IN)::ndof_el,niter,aero_flag,grav_flag
-TYPE (MemberInf),INTENT(IN)::memb_info_i
+INTEGER,INTENT(IN)::ndof_el !<#ioaero::ndof_el
+INTEGER,INTENT(IN)::niter   !<#ioaero::niter
+INTEGER,INTENT(IN)::aero_flag   !<#ioaero::aero_flag
+INTEGER,INTENT(IN)::grav_flag  !<#ioaero::grav_flag
+TYPE (MemberInf),INTENT(IN)::memb_info_i    !< array containing the characteristics of a beam member
 
-REAL(DBL),INTENT(IN)::v_root_a(:),omega_a(:)
-REAL(DBL),INTENT(IN)::x_memb(:)
+REAL(DBL),INTENT(IN)::v_root_a(:)    !< linear velocity of frame a
+REAL(DBL),INTENT(IN)::omega_a(:)    !< angular velocity of frame a
+REAL(DBL),INTENT(IN)::x_memb(:) !< solution vector of a beam member
 
-INTEGER,INTENT(OUT)::nz_memb
-INTEGER,INTENT(OUT)::irn_memb(:),jcn_memb(:)
-REAL(DBL),INTENT(OUT)::coef_memb(:)
+INTEGER,INTENT(OUT)::nz_memb    !<Number of nonzero value of the member Jacobian
+INTEGER,INTENT(OUT)::irn_memb(:)    !< line index of the nonzero coefficient
+INTEGER,INTENT(OUT)::jcn_memb(:)    !< column index of the nonzero coefficient
+REAL(DBL),INTENT(OUT)::coef_memb(:) !< value of the nonzero coefficient
 
 
 INTEGER:: i,j
@@ -135,17 +142,19 @@ END SUBROUTINE  AssembleMemberJacobian
 
 !************************************************************
 !*                                                          *                                      
-!*  Extract member properties                               *
+!>  Extract member properties                               *
 !*															*
 !************************************************************ 
 SUBROUTINE  ExtractMemberProperties(memb_no,memb_info_i,member,ncond_mb,mb_condition,distr_fun,error,init_cond)      
 
-INTEGER,INTENT(IN)   ::memb_no,ncond_mb,member(:,:) 
-TYPE (MemberInf),INTENT(IN)::memb_info_i
-REAL(DBL),INTENT(IN) ::distr_fun(:,:)
-TYPE(PrescriInf),INTENT(IN)::mb_condition(:) ! distributed load information
-CHARACTER(*),INTENT(OUT)::error
-REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)
+INTEGER,INTENT(IN)   ::memb_no  !<Number of the current member
+INTEGER,INTENT(IN)   ::ncond_mb !<#ioaero::ncond_mb
+INTEGER,INTENT(IN)   ::member(:,:)  !<#ioaero::member
+TYPE (MemberInf),INTENT(IN)::memb_info_i    !< array containing the characteristics of a beam member
+REAL(DBL),INTENT(IN) ::distr_fun(:,:)   !<#ioaero::distr_fun
+TYPE(PrescriInf),INTENT(IN)::mb_condition(:) !<#ioaero::mb_condition
+CHARACTER(*),INTENT(OUT)::error !<#ioaero::error
+REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)   !<#ioaero::init_cond
 
 INTEGER:: ninit
 

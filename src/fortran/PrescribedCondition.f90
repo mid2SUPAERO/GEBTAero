@@ -7,10 +7,11 @@
 !***********************************************************
 !=============================================================
 !
-! A module for defining prescribed conditions including both
-! concentrated information and distributed information 
+!> A module for defining prescribed conditions including both
+!! concentrated information and distributed information 
 !
 !=============================================================
+
 MODULE PrescribedCondition
 
 USE GlobalDataFun
@@ -22,26 +23,26 @@ PUBLIC DistriLoad,PrescriInf
 PUBLIC ExistPI,InitPI,InputEchoPrescribedConditions,GetPrescribedDOF,GetPrescribedVal,UpdatePI,UpdateFollower,&
    & GetDistributedLoad,GetLoad,GetLoadJ,FollowerJ,InitPIAero
 
-! Define the prescribed condition
+!> Define the prescribed condition
 !-----------------------------------
 TYPE PrescriInf
      PRIVATE
-	 INTEGER   ::id                 ! where it is applied, could be a node number or member number
-	 INTEGER   ::dof(NSTRN)         ! maximum 6 degrees of freedom can be prescribed, 	                         
-	                                ! for distributed loads, it is used to denote the distribution function no
-     REAL(DBL) ::value(NSTRN)       ! the magnitude of the prescribed values
-	 INTEGER   ::time_fun_no(NSTRN) ! which time function is used
-	 INTEGER   ::follower(NSTRN)    ! whether the prescribed quantity is a follower or not: 1 is a follower; 0 is not
-	 REAL(DBL) ::value_current(NSTRN) ! indicate the current functional value updated by time steps, calculated internally
+	 INTEGER   ::id                 !< where it is applied, could be a node number or member number
+	 INTEGER   ::dof(NSTRN)         !< maximum 6 degrees of freedom can be prescribed, 	                         
+	                                !< for distributed loads, it is used to denote the distribution function no
+     REAL(DBL) ::value(NSTRN)       !< the magnitude of the prescribed values
+	 INTEGER   ::time_fun_no(NSTRN) !< which time function is used
+	 INTEGER   ::follower(NSTRN)    !< whether the prescribed quantity is a follower or not: 1 is a follower; 0 is not
+	 REAL(DBL) ::value_current(NSTRN) !< indicate the current functional value updated by time steps, calculated internally
 END TYPE PrescriInf
 
-! Define the distributed load condition 
+!> Define the distributed load condition 
 !-------------------------------------------
 TYPE DistriLoad
      PRIVATE
-     REAL(DBL) ::value(NSTRN)           ! the current functional value of the load
-	 REAL(DBL) ::distr_fun(NSTRN,NSTRN) ! the distribution function for each load
-	 INTEGER   ::follower(NSTRN)        ! whether the force vector/moment vector are follower quantities
+     REAL(DBL) ::value(NSTRN)           !< the current functional value of the load
+	 REAL(DBL) ::distr_fun(NSTRN,NSTRN) !< the distribution function for each load
+	 INTEGER   ::follower(NSTRN)        !< whether the force vector/moment vector are follower quantities
 END TYPE DistriLoad
 
 CONTAINS
@@ -50,8 +51,8 @@ CONTAINS
 
 !*****************************************************************
 !*                                                               *
-!*  Determine whether prescribed condition exist, and whether    *
-!*  any of such conditions is a follower condition               *
+!>  Determine whether prescribed condition exist, and whether
+!!  any of such conditions is a follower condition
 !*                                                               *
 !*****************************************************************
 SUBROUTINE ExistPI(location,prescri_inf,exist_pi,follower_pi)
@@ -75,14 +76,14 @@ END SUBROUTINE ExistPI
 
 !************************************************************
 !*                                                          *
-!*  Obtain the distributed load condition                   *
+!>  Obtain the distributed load condition
 !*                                       					*
 !************************************************************
 FUNCTION GetDistributedLoad(memb_no,mb_condition,distr_fun) RESULT(res)
 
-INTEGER,INTENT(IN)   ::memb_no
-REAL(DBL),INTENT(IN) ::distr_fun(:,:)
-TYPE(PrescriInf),INTENT(IN)::mb_condition(:) ! distributed load information
+INTEGER,INTENT(IN)   ::memb_no  !<index of the beam member
+REAL(DBL),INTENT(IN) ::distr_fun(:,:)   !<#ioaero::distr_fun
+TYPE(PrescriInf),INTENT(IN)::mb_condition(:) !< distributed load information
 
 TYPE(DistriLoad)::res
 
@@ -109,11 +110,11 @@ END FUNCTION GetDistributedLoad
 
 
 !********************************************************
-! Obtain the distributed load, transform if follower
+!> Obtain the distributed load, transform if follower
 !********************************************************
 FUNCTION GetLoad(flag,dL,Le,eCT,load,follower_load) RESULT(res)
 
-INTEGER,INTENT(IN)::flag ! if flag=-1, the starting portion, if flag=1, the ending portion
+INTEGER,INTENT(IN)::flag !< if flag=-1, the starting portion, if flag=1, the ending portion
 REAL(DBL),INTENT(IN)::dL,Le,eCT(:,:)
 TYPE (DistriLoad),INTENT(IN)::load
 LOGICAL,INTENT(IN)::follower_load
@@ -141,12 +142,12 @@ END FUNCTION GetLoad
 
 !************************************************************
 !*                                                          *
-!*    Obtain the jacobian due to follower distributed load  *
+!>    Obtain the jacobian due to follower distributed load  *
 !*															*
 !************************************************************
 FUNCTION GetLoadJ(flag,dL,Le,eCTtheta,load) RESULT(res)
 
-INTEGER,INTENT(IN)::flag ! if flag=-1, the starting portion, if flag=1, the ending portion
+INTEGER,INTENT(IN)::flag !> if flag=-1, the starting portion, if flag=1, the ending portion
 REAL(DBL),INTENT(IN)::dL,Le,eCTtheta(:,:,:)
 TYPE (DistriLoad),INTENT(IN)::load
 
@@ -175,12 +176,12 @@ END FUNCTION GetLoadJ
 
 !*****************************************************************
 !*                                                               *
-!*  Obtain Prescribed dof and follower condition                 *
+!>  Obtain Prescribed dof and follower condition                 *
 !*															     *
 !*****************************************************************
 SUBROUTINE GetPrescribedDOF(nkp,pt_condition,kp_dof,kp_follower)
 
-INTEGER,INTENT(IN)::nkp
+INTEGER,INTENT(IN)::nkp !<#ioaero::nkp
 TYPE(PrescriInf),INTENT(IN)::pt_condition(:) ! point condition
 
 INTEGER,INTENT(OUT)::kp_dof(:,:)
@@ -204,13 +205,13 @@ END SUBROUTINE GetPrescribedDOF
 
 !*****************************************************************
 !*                                                               *
-!*  Obtain Prescribed value                                      *
+!>  Obtain Prescribed value                                      *
 !*															     *
 !*****************************************************************
 SUBROUTINE GetPrescribedVal(nkp,pt_condition,kp_cond)
 
-INTEGER,INTENT(IN)::nkp
-TYPE(PrescriInf),INTENT(IN)::pt_condition(:) ! point condition
+INTEGER,INTENT(IN)::nkp !<#ioaero::nkp
+TYPE(PrescriInf),INTENT(IN)::pt_condition(:) !<#ioaero::pt_condition
 
 REAL(DBL),INTENT(OUT)::kp_cond(:,:)
 
@@ -229,7 +230,7 @@ END SUBROUTINE GetPrescribedVal
 
 !************************************************************
 !*                                                          *
-!*  Initialize Prescribed Conditions                        *
+!>  Initialize Prescribed Conditions                        *
 !*															*
 !************************************************************
 ELEMENTAL FUNCTION InitPI() RESULT(res)
@@ -250,7 +251,7 @@ END FUNCTION InitPI
 
 !************************************************************
 !*                                                          *
-!*  Input and echo Prescribed Conditions                    *
+!>  Input and echo Prescribed Conditions                    *
 !*															*
 !************************************************************
 FUNCTION InputEchoPrescribedConditions(IN,EIN,error) RESULT(res)
@@ -295,13 +296,13 @@ END FUNCTION InputEchoPrescribedConditions
 
 !************************************************************
 !*                                                          *
-!*  Obtain Prescribed DOF and value needed for rhs          *
-!*  assume only follower force/moments, and no displacements*
-!*  or rotations can be prescribed for follower quantities. *
-!*  And the first three prescribed dofs for the point with a* 
-!*  follower component should be either 7 8 9 or 10 11 12.  *
-!*  This assumption is made for the easiness to locate the  *
-!*  rotation parameters                                     *
+!>  Obtain Prescribed DOF and value needed for rhs
+!!  assume only follower force/moments, and no displacements
+!!  or rotations can be prescribed for follower quantities.
+!!  And the first three prescribed dofs for the point with a
+!!  follower component should be either 7 8 9 or 10 11 12.
+!!  This assumption is made for the easiness to locate the
+!!  rotation parameters
 !*															*
 !************************************************************
 FUNCTION UpdateFollower(kp_dof,kp_follower,kp_cond,x_pt) RESULT(res)
@@ -332,8 +333,8 @@ END FUNCTION UpdateFollower
 
 !************************************************************
 !*                                                          *
-!*  Update the prescribed information based on the current  *
-!*  time the value is stored in: value_current              *
+!>  Update the prescribed information based on the current
+!!  time the value is stored in: value_current
 !*															*
 !************************************************************
 SUBROUTINE UpdatePI(prescri_inf,time_fun,t) 
@@ -374,10 +375,10 @@ END SUBROUTINE UpdatePI
 
 !************************************************************
 !*                                                          *
-!* Calculating the Jacobian due to follower conditions      *
-!* J=\diff{C^T.vec}/\diff\theta, return a 3x3 matrix        *
-!* with ith column corresponding to the derivative          *
-!* withe respect to \theta_i                                *
+!> Calculating the Jacobian due to follower conditions
+!! \f$ J=\diff{C^T.vec}/\diff\theta \f$, return a 3x3 matrix
+!! with ith column corresponding to the derivative
+!!withe respect to \f$ \theta_i \f$
 !*                                                          *
 !************************************************************
 FUNCTION FollowerJ(follower,vec,eCTtheta) RESULT(res)
@@ -404,23 +405,23 @@ END FUNCTION FollowerJ
 
 !************************************************************
 !*                                                          *
-!*  Caculate the load using Chebychev polynomials           *
+!>  Caculate the load using Chebychev polynomials           *
 !*                                                          *
 !*															*
 !************************************************************ 
 FUNCTION LoadIntegration(flag,dL,Le,func) 
 
-INTEGER,  INTENT(IN):: flag ! if flag=-1, it is for the starting point, if flag=1, it is for the ending point
-REAL(DBL),INTENT(IN)::dL ! length of the element
-REAL(DBL),INTENT(IN)::Le ! the ending point of the element at the arc length of the member
-REAL(DBL),INTENT(IN)::func(NSTRN) ! distributed load function for this element
+INTEGER,  INTENT(IN):: flag !< if flag=-1, it is for the starting point, if flag=1, it is for the ending point
+REAL(DBL),INTENT(IN)::dL !< length of the element
+REAL(DBL),INTENT(IN)::Le !< the ending point of the element at the arc length of the member
+REAL(DBL),INTENT(IN)::func(NSTRN) !< distributed load function for this element
 
-REAL(DBL)::LoadIntegration ! the load for each element
+REAL(DBL)::LoadIntegration !< the load for each element
 
-REAL(DBL)::dL2, dL3, dL4, dL5,dL6 ! the powers of dL
-REAL(DBL)::Le2, Le3, Le4, Le5,Le6 ! the powers of Le
+REAL(DBL)::dL2, dL3, dL4, dL5,dL6 !< the powers of dL
+REAL(DBL)::Le2, Le3, Le4, Le5,Le6 !< the powers of Le
 
-REAL(DBL)::fun_coef(6)  ! coefficient of Chebychev polynomials after integration
+REAL(DBL)::fun_coef(6)  !< coefficient of Chebychev polynomials after integration
 
 dL2=dL*dL; dL3=dL*dL2;dL4=dL2*dL2;dL5=dL2*dL3; dL6=dL3*dL3
 Le2=Le*Le; Le3=Le*Le2;Le4=Le2*Le2;Le5=Le2*Le3; Le6=Le3*Le3
@@ -463,9 +464,9 @@ END FUNCTION LoadIntegration
 
 !************************************************************
 !*                                                          *
-!* Transfer follower according to C^T.vec                   *
-!* note vec is a 3x1 vector, and whether a component        *
-!* is a follower or not is determined by follower           *
+!> Transfer follower according to C^T.vec
+!! note vec is a 3x1 vector, and whether a component
+!! is a follower or not is determined by follower
 !************************************************************
 FUNCTION TransferFollower(follower,vec,CT) RESULT(res)
 

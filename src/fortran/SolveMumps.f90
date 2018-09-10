@@ -8,7 +8,7 @@
 
 !=========================================================
 !
-!  This module contains the linear & nonlinear solver   
+!>  This module contains the linear & nonlinear solver interfaced with MUMPS direct solver library
 !
 !=========================================================
 MODULE SolveMumps
@@ -21,8 +21,8 @@ IMPLICIT NONE
 
 INCLUDE 'mpif.h'
 INCLUDE 'dmumps_struc.h'
-TYPE (DMUMPS_STRUC) mumps_par
-INTEGER IERR
+TYPE (DMUMPS_STRUC) mumps_par   !< an array containing the configuration parameters of MUMPS solver
+INTEGER IERR    !< error code of the MUMPS solver
 
 PRIVATE       ! So everything is private, except declared by PUBLIC
 PUBLIC LinearSolutionMumps,NewtonRaphsonMumps,CTCabPH,InsertElementValues,ExtractElementValues,ExtractSolution
@@ -33,29 +33,33 @@ CONTAINS
 
 !**************************************************************
 !*                                                            *                                      
-!*  The linear solver is basically the Newton-Raphson with    *
-!*  initial guess equal to zero and only uses one iterations  *
+!>  The linear solver is basically the Newton-Raphson with    *
+!!  initial guess equal to zero and only uses one iterations  *
 !*															  *
 !**************************************************************
 SUBROUTINE LinearSolutionMumps(ndof_el,memb_info,v_root_a,omega_a,member,error,&
 	& ncond_mb,mb_condition,distr_fun,dof_con,x,aero_flag,grav_flag,init_cond)
 
-INTEGER,INTENT(IN)::ndof_el,aero_flag,grav_flag
-TYPE (MemberInf),INTENT(IN)::memb_info(:)
+INTEGER,INTENT(IN)::ndof_el !<#ioaero::ndof_el
+INTEGER,INTENT(IN)::aero_flag   !<#ioaero::aero_flag
+INTEGER,INTENT(IN)::grav_flag   !<#ioaero::grav_flag
+TYPE (MemberInf),INTENT(IN)::memb_info(:)   ! contains the member parameters of the whole structure
 
-REAL(DBL),INTENT(IN)::v_root_a(:),omega_a(:)
+REAL(DBL),INTENT(IN)::v_root_a(:) !< linear velocity of frame a
+REAL(DBL),INTENT(IN)::omega_a(:)    !< angular velocity of frame a
 
-REAL(DBL),INTENT(IN) ::distr_fun(:,:)
-INTEGER,INTENT(IN)   ::member(:,:),ncond_mb
-TYPE(PrescriInf),INTENT(IN)::mb_condition(:) 
+REAL(DBL),INTENT(IN) ::distr_fun(:,:)   !<#ioaero::distr_fun
+INTEGER,INTENT(IN)   ::member(:,:)  !<#ioaero::member
+INTEGER,INTENT(IN)   ::ncond_mb !<#ioaero::ncond_mb
+TYPE(PrescriInf),INTENT(IN)::mb_condition(:)    !<#ioaero::mb_condition
 
-INTEGER                 ::dof_con(:) ! this array is passed by value
-CHARACTER(*),INTENT(OUT)::error
+INTEGER                 ::dof_con(:) !< this array is passed by value
+CHARACTER(*),INTENT(OUT)::error !<#ioaero::error
 
-REAL(DBL),INTENT(OUT) ::x(:)
+REAL(DBL),INTENT(OUT) ::x(:)    !<The solution vector
 
-REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)
-REAL(DBL)  ::rhs(nsize)
+REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)   !<#ioaero::init_cond
+REAL(DBL)  ::rhs(nsize) !<RHS vector
 
 x=0.D0
 
@@ -129,37 +133,42 @@ END SUBROUTINE LinearSolutionMumps
 
 !************************************************************
 !*                                                          *                                      
-!*  Use Newton-Raphson method to solve the nonlinear system *
+!>  Use Newton-Raphson method to solve the nonlinear system *
 !*															*
 !************************************************************ 
 SUBROUTINE NewtonRaphsonMumps(ndof_el,memb_info,v_root_a,omega_a,member,niter,error,&
 	 & ncond_mb,mb_condition,distr_fun,dof_con,x,aero_flag,grav_flag,init_cond)
 
-INTEGER,INTENT(IN)::ndof_el,aero_flag,grav_flag
-TYPE (MemberInf),INTENT(IN)::memb_info(:)
+INTEGER,INTENT(IN)::ndof_el !<#ioaero::ndof_el
+INTEGER,INTENT(IN)::aero_flag   !<#ioaero::aero_flag
+INTEGER,INTENT(IN)::grav_flag   !<#ioaero::grav_flag
+TYPE (MemberInf),INTENT(IN)::memb_info(:)   !< contains the member parameters of the whole structure
 
-REAL(DBL),INTENT(IN)::v_root_a(:),omega_a(:)
+REAL(DBL),INTENT(IN)::v_root_a(:) !< linear velocity of frame a
+REAL(DBL),INTENT(IN)::omega_a(:)    !< angular velocity of frame a
 
-REAL(DBL),INTENT(IN) ::distr_fun(:,:)
-INTEGER,INTENT(IN)   ::member(:,:),niter,ncond_mb
-TYPE(PrescriInf),INTENT(IN):: mb_condition(:) 
-REAL(DBL),INTENT(INOUT) ::x(:)
+REAL(DBL),INTENT(IN) ::distr_fun(:,:)  !<#ioaero::distr_fun
+INTEGER,INTENT(IN)   ::member(:,:)  !<#ioaero::member
+INTEGER,INTENT(IN)   ::niter    !<#ioaero::niter
+INTEGER,INTENT(IN)   ::ncond_mb !<#ioaero::ncond_mb
+TYPE(PrescriInf),INTENT(IN):: mb_condition(:)   !<#ioaero::mb_condition
+REAL(DBL),INTENT(INOUT) ::x(:)  !<The solution vector
 
 INTEGER                 ::dof_con(:) ! this array is passed by value
-CHARACTER(*),INTENT(OUT)::error
-REAL(DBL)::rhs(nsize)
-REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)
+CHARACTER(*),INTENT(OUT)::error !<#ioaero::error
+REAL(DBL)::rhs(nsize)   !<RHS vector
+REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)   !<#ioaero::init_cond
 
 
 LOGICAL:: check
-REAL(DBL):: fmin,fold ! 0.5*rhs.rhs
-REAL(DBL),PARAMETER::STPMX=1000.D0 ! scaled maximum step length allowed in line searches
+REAL(DBL):: fmin,fold !< 0.5*rhs.rhs
+REAL(DBL),PARAMETER::STPMX=1000.D0 !< scaled maximum step length allowed in line searches
 REAL(DBL)::stpmax
-REAL(DBL)::gradient(SIZE(x)) !-rhs.coef
-REAL(DBL)::xold(SIZE(x)) !holding x from previous iteration
-REAL(DBL)::dx(SIZE(x)) !xnew-xold, the increment calculated by N-R method
+REAL(DBL)::gradient(SIZE(x)) !<-rhs.coef
+REAL(DBL)::xold(SIZE(x)) !<holding x from previous iteration
+REAL(DBL)::dx(SIZE(x)) !<xnew-xold, the increment calculated by N-R method
 
-REAL(DBL),PARAMETER::TOLF=1.0D-8 ! convergence criterion for the function values
+REAL(DBL),PARAMETER::TOLF=1.0D-8 !< convergence criterion for the function values
 
 INTEGER::i
 
@@ -286,14 +295,14 @@ CONTAINS ! The line search subroutine
 
 !*************************************************************
 !*                                                           *                                      
-!*  Use line search to improve the convergence of Newton     *
-!*  Raphson method, modified from the book: Numerical Recipes*
+!>  Use line search to improve the convergence of Newton
+!! Raphson method, modified from the book: Numerical Recipes*
 !*															 *
 !************************************************************* 
 SUBROUTINE LineSearch
 
-REAL(DBL),PARAMETER:: ALF=1.0D-4 ! A small number to indicate sufficient decrease of the function
-REAL(DBL),PARAMETER:: TOLY=1.0D-12 ! a small number to calculate the minimum step size
+REAL(DBL),PARAMETER:: ALF=1.0D-4 !< A small number to indicate sufficient decrease of the function
+REAL(DBL),PARAMETER:: TOLY=1.0D-12 !< a small number to calculate the minimum step size
 REAL(DBL):: tmp, slope,alamin, alam,tmplam,rhs1,rhs2,f2,alam2,a,b,disc
 
 check=.FALSE.
@@ -366,27 +375,27 @@ END SUBROUTINE NewtonRaphsonMumps
 !***************************************************************
 !***************************************************************
 !*                                                             *
-!* The subroutine extracts the solution for each key point     *
-!* and each member from the solution vector                    *
+!> The subroutine extracts the solution for each key point 
+!! and each member from the solution vector                    *
 !*                                                             *
 !***************************************************************
 SUBROUTINE ExtractSolution(ndof_el,member,coord,memb_info,x,dof_con,sol_pt_i,sol_mb_i)
 
-INTEGER,INTENT(IN)::ndof_el
-INTEGER,INTENT(IN)::member(:,:) 
-REAL(DBL),INTENT(IN)::coord(:,:)
-TYPE (MemberInf),INTENT(IN)::memb_info(:)
-REAL(DBL),INTENT(IN)::x(:) ! the solution vector
-INTEGER,INTENT(IN)::dof_con(:) 
+INTEGER,INTENT(IN)::ndof_el !<#ioaero::ndof_el
+INTEGER,INTENT(IN)::member(:,:) !<#ioaero::member
+REAL(DBL),INTENT(IN)::coord(:,:)    !<#ioaero::coord
+TYPE (MemberInf),INTENT(IN)::memb_info(:)   !< contains the member parameters of the whole structure
+REAL(DBL),INTENT(IN)::x(:) !< the solution vector
+INTEGER,INTENT(IN)::dof_con(:) !< the connecting condition for key point.
 
-REAL(DBL),INTENT(OUT)      ::sol_pt_i(:,:)     ! solutions for points for ith step
-REAL(DBL),INTENT(OUT)      ::sol_mb_i(:,:)     ! solutions for members for ith step
+REAL(DBL),INTENT(OUT)      ::sol_pt_i(:,:)     !< solutions for points for ith step
+REAL(DBL),INTENT(OUT)      ::sol_mb_i(:,:)     !< solutions for members for ith step
 
 
 INTEGER::i,j,ncol,pre_dof,free_dof
 
-INTEGER::ndiv ! divisions of the member
-INTEGER::val_no ! the position for a value in the member solution vector
+INTEGER::ndiv !< divisions of the member
+INTEGER::val_no !< the position for a value in the member solution vector
 
 
 ! Extract values for the point
@@ -446,21 +455,21 @@ END SUBROUTINE ExtractSolution
 
 !***************************************************************
 !*                                                             *
-!* The subroutine extracts elemental values from               *
-!* the solution vector						                   *
+!> The subroutine extracts elemental values from               *
+!! the solution vector						                   *
 !*                                                             *
 !***************************************************************
 SUBROUTINE ExtractElementValues(ndof_el,member,x,sol_mb_i)
 
-INTEGER,INTENT(IN)::ndof_el
-INTEGER,INTENT(IN)::member(:,:) 
-REAL(DBL),INTENT(IN)::x(:) ! the solution vector
-REAL(DBL),INTENT(OUT)      ::sol_mb_i(:,:)     ! solutions for all the elements for ith step
+INTEGER,INTENT(IN)::ndof_el !<#ioaero::ndof_el
+INTEGER,INTENT(IN)::member(:,:) !<#ioaero::member
+REAL(DBL),INTENT(IN)::x(:) !< the solution vector
+REAL(DBL),INTENT(OUT)      ::sol_mb_i(:,:)     !< solutions for all the elements for ith step
 
 
 INTEGER::i,j,ncol
 
-INTEGER::val_no ! the position for a value in the member solution vector
+INTEGER::val_no !< the position for a value in the member solution vector
 
 val_no=0
 
@@ -482,22 +491,22 @@ END SUBROUTINE ExtractElementValues
 
 !***************************************************************
 !*                                                             *
-!* The subroutine insert the elemental values into the solution* 
-!* vector: needed for initial guess for starting               *
-!* time marching: replace the first six valumes for            *
-!* each element with given initial conditions                  *
+!> The subroutine insert the elemental values into the solution
+!! vector: needed for initial guess for starting
+!! time marching: replace the first six valumes for 
+!! each element with given initial conditions *
 !***************************************************************
 SUBROUTINE InsertElementValues(ndof_el,member,x,init_cond)
 
-INTEGER,INTENT(IN)::ndof_el
-INTEGER,INTENT(IN)::member(:,:)
-REAL(DBL),INTENT(INOUT)::x(:) ! the solution vector
+INTEGER,INTENT(IN)::ndof_el !<#ioaero::ndof_el
+INTEGER,INTENT(IN)::member(:,:) !<#ioaero::memeber
+REAL(DBL),INTENT(INOUT)::x(:) !< the solution vector
 
-REAL(DBL),INTENT(IN)::init_cond(:,:)
+REAL(DBL),INTENT(IN)::init_cond(:,:)    !<#ioaero::init_cond
 
 INTEGER::i,j,ncol
 
-INTEGER::val_no ! the position for a value in the member solution vector
+INTEGER::val_no !< the position for a value in the member solution vector
 
 
 ncol=0
@@ -520,13 +529,13 @@ END SUBROUTINE InsertElementValues
 !************************************************************
 
 
-
+!> Transfer the vector PH (linear and angular momenta) form frame B to frame a
 FUNCTION CTCabPH(niter,member,memb_info ,sol_mb_i)
 
-INTEGER,INTENT(IN)::niter
-INTEGER,INTENT(IN)::member(:,:) 
-TYPE (MemberInf),INTENT(IN)::memb_info(:)
-REAL(DBL),INTENT(IN) ::sol_mb_i(:,:)     ! solutions for members for ith step
+INTEGER,INTENT(IN)::niter   !<#ioaero::niter
+INTEGER,INTENT(IN)::member(:,:)     !<#ioaero::member
+TYPE (MemberInf),INTENT(IN)::memb_info(:)   
+REAL(DBL),INTENT(IN) ::sol_mb_i(:,:)     !< solutions for members for ith step
 REAL(DBL)            ::CTCabPH(SIZE(sol_mb_i,1),6)
 
 INTEGER::i,j,val_no

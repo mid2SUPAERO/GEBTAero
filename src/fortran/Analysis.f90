@@ -1,94 +1,83 @@
-
-!***************************************************************
-!*                                                             *
-!* The file contains the analysis subroutine called by         *
-!* the main program. This subroutine can be called directly by *
-!* an outside environment where the arguments are defined and  *
-!* passed to and from this subroutine                          *
-!*                                                             *
-!*                   Copyright (c) Wenbin Yu                   *
-!*                  All rights reserved                        *
-!*              Mechanical and Aerospace Engineering           *
-!*                                                             *
-!*                    Utah State University                    *
-!*                                                             *
-!***************************************************************
+!> The file contains the analysis subroutine called by  the main program
 SUBROUTINE  Analysis(nkp,nelem,ndof_el,nmemb,ncond_pt,nmate, nframe,ndistrfun,ncurv,coord, &
                  &  member,pt_condition,material,aerodyn_coef,niter,nstep,sol_pt,sol_mb,error,ncond_mb, &
                  &  ntimefun,frame,mb_condition,distr_fun,curvature,omega_a0,omega_a_tf, &
                  &  v_root_a0,v_root_a_tf,simu_time,time_function,analysis_flag,init_cond, &
                  &  nev,eigen_val,eigen_vec_pt,eigen_vec_mb,aero_flag,grav_flag)
 
-   	
 USE InternalData
 USE PreproModule
 USE PrescribedCondition
-USE TimeFunctionModule
-!~ USE Solve	
+USE TimeFunctionModule	
 USE SolveMumps
-!~ USE Eigen
 USE EigenMumps
 USE GlobalDataFun
 	
 IMPLICIT NONE
 
-INTEGER,INTENT(IN)         ::nkp ! number of key points
-INTEGER,INTENT(IN)         ::nelem ! number of elements
-INTEGER,INTENT(IN)         ::ndof_el            ! number of unknowns for each element
-INTEGER,INTENT(IN)         ::nmemb ! number of beam members
-INTEGER,INTENT(IN)         ::ncond_pt ! number of point conditions
-INTEGER,INTENT(IN)         ::nmate ! number of different cross-sections
-INTEGER,INTENT(IN)         ::nframe ! number of different cross-sectional frames
-INTEGER,INTENT(IN)         ::ndistrfun ! number of distribution functions
-INTEGER,INTENT(IN)         ::ncurv     ! number of sets of initial curvature/twists
-REAL(DBL),INTENT(IN)       ::coord(nkp,NDIM)         ! coordinates for key points
-INTEGER,INTENT(IN)         ::member(nmemb,MEMB_CONST)        ! member desriptions
-TYPE(PrescriInf),INTENT(INOUT)::pt_condition(ncond_pt) ! prescribed concentrated infromation at points
-REAL(DBL),INTENT(INOUT)       ::material(nmate,NSTRN+NSTRN,NSTRN)    ! cross-sectional properties
-REAL(DBL),INTENT(IN)       ::aerodyn_coef(nmate,8)   ! 2D aerodynamic coefficients 
-INTEGER,INTENT(IN)         ::niter              ! maximum number of iterations
-INTEGER,INTENT(IN)         ::nstep              ! number of time steps
-REAL(DBL),INTENT(OUT)      ::sol_pt(nstep,nkp,NDIM+NDOF_ND)      ! solutions for points
-REAL(DBL),INTENT(OUT)      ::sol_mb(nstep,nelem,NDIM+ndof_el)      ! solutions for members
-CHARACTER(*),INTENT(OUT)   ::error              ! error message
+INTEGER,INTENT(IN)         ::nkp !< #ioaero::nkp
+INTEGER,INTENT(IN)         ::nelem !< #ioaero::nelem
+INTEGER,INTENT(IN)         ::ndof_el !< #ioaero::ndof_el
+INTEGER,INTENT(IN)         ::nmemb !< #ioaero::nmemb
+INTEGER,INTENT(IN)         ::ncond_pt !< #ioaero::ncond_pt
+INTEGER,INTENT(IN)         ::nmate !< #ioaero::nmate
+INTEGER,INTENT(IN)         ::nframe !< #ioaero::nframe
+INTEGER,INTENT(IN)         ::ndistrfun !< #ioaero::ndistrfun
+INTEGER,INTENT(IN)         ::ncurv     !< #ioaero::ncurv
+REAL(DBL),INTENT(IN)       ::coord(nkp,NDIM)         !< #ioaero::coord
+INTEGER,INTENT(IN)         ::member(nmemb,MEMB_CONST)        !< #ioaero::member
+TYPE(PrescriInf),INTENT(INOUT)::pt_condition(ncond_pt) !< #ioaero::pt_condition
+REAL(DBL),INTENT(INOUT)       ::material(nmate,NSTRN+NSTRN,NSTRN)    !< #ioaero::material
+REAL(DBL),INTENT(IN)       ::aerodyn_coef(nmate,8)   !< #ioaero::aerodyn_coef
+INTEGER,INTENT(IN)         ::niter              !< #ioaero::niter
+INTEGER,INTENT(IN)         ::nstep              !< #ioaero::nstep
+REAL(DBL),INTENT(OUT)      ::sol_pt(nstep,nkp,NDIM+NDOF_ND)      !< #ioaero::sol_pt
+REAL(DBL),INTENT(OUT)      ::sol_mb(nstep,nelem,NDIM+ndof_el)      !< #ioaero::sol_mb
+CHARACTER(*),INTENT(OUT)   ::error              !< #ioaero::error
 	
-INTEGER,INTENT(IN)::ncond_mb,ntimefun	        ! number of prescribed distribution, number of time function                			                		
-REAL(DBL),INTENT(IN)::frame(nframe,NDIM,NDIM)              ! the direction cosine matrix for each frame. The default frame is the global frame 
-TYPE(PrescriInf),INTENT(INOUT)::mb_condition(ncond_mb) ! distributed load information
-REAL(DBL),INTENT(IN)::distr_fun(ndistrfun,NSTRN)            ! distributed functions 
-REAL(DBL),INTENT(IN)::curvature(ncurv,NDIM)            ! curvature information
-REAL(DBL),INTENT(IN)::omega_a0(NDIM)                ! angular velocity of frame a
-REAL(DBL),INTENT(IN)::v_root_a0(NDIM)               ! linear velocity of starting point of the first member
-INTEGER,  INTENT(IN)::omega_a_tf(NDIM)             ! time function for angular velocity of frame a
-INTEGER,  INTENT(IN)::v_root_a_tf(NDIM)            ! time function for linear velocity of starting point of the first member
+INTEGER,INTENT(IN)::ncond_mb       !< #ioaero::ncond_mb      			                		
+INTEGER,INTENT(IN)::ntimefun	        !< #ioaero::ntimefun
+REAL(DBL),INTENT(IN)::frame(nframe,NDIM,NDIM)              !< #ioaero::frame
+TYPE(PrescriInf),INTENT(INOUT)::mb_condition(ncond_mb) !< #ioaero::mb_condition
+REAL(DBL),INTENT(IN)::distr_fun(ndistrfun,NSTRN)            !< #ioaero::distr_fun
+REAL(DBL),INTENT(IN)::curvature(ncurv,NDIM)            !< #ioaero::curvature
+REAL(DBL),INTENT(IN)::omega_a0(NDIM)                !< #ioaero::omega_a0
+REAL(DBL),INTENT(IN)::v_root_a0(NDIM)               !< #ioaero::v_root_a0
+INTEGER,  INTENT(IN)::omega_a_tf(NDIM)             !< #ioaero::omega_a_tf
+INTEGER,  INTENT(IN)::v_root_a_tf(NDIM)            !< #ioaero::v_root_a_tf
 
-REAL(DBL),INTENT(IN)::simu_time(2)              ! start and end time
-TYPE(TimeFunction),INTENT(IN)::time_function(ntimefun) ! time functions
-REAL(DBL),INTENT(INOUT)::init_cond(nelem,12+NSTATES)
-INTEGER,INTENT(IN)     :: analysis_flag
-INTEGER,INTENT(INOUT):: nev  ! upon return, nev is the number of converged eigen values might be the original nev given by the user in the inputs or nev+1 due to complex conjugate pairs
-REAL(DBL),INTENT(OUT)::eigen_val(2,nev+1),eigen_vec_pt(nev+1,nkp,NDIM+NDOF_ND),eigen_vec_mb(nev+1,nelem,NDIM+ndof_el)  
-INTEGER,INTENT(IN) :: aero_flag,grav_flag
+REAL(DBL),INTENT(IN)::simu_time(2)              !< #ioaero::simu_time
+TYPE(TimeFunction),INTENT(IN)::time_function(ntimefun) !< #ioaero::time_function
+REAL(DBL),INTENT(INOUT)::init_cond(nelem,12+NSTATES) !< #ioaero::init_cond
+INTEGER,INTENT(IN)     :: analysis_flag !<#ioaero::analysis_flag
+INTEGER,INTENT(INOUT):: nev  !< #ioaero::nev
+REAL(DBL),INTENT(OUT)::eigen_val(2,nev+1)   !< #ioaero::eigen_val
+REAL(DBL),INTENT(OUT)::eigen_vec_pt(nev+1,nkp,NDIM+NDOF_ND) !< #ioaero::eigen_vec_pt
+REAL(DBL),INTENT(OUT)::eigen_vec_mb(nev+1,nelem,NDIM+ndof_el)  !< #ioaero::eigen_vec_mb
+INTEGER,INTENT(IN) :: aero_flag !< #ioaero::aero_flag
+INTEGER,INTENT(IN) :: grav_flag !< #ioaero::grav_flag
 
 ! Variables used in this subroutine
 !---------------------------------------------------------------------------------------	
-INTEGER:: dof_con(nkp)                          ! the connecting condition for key point.
-                                                ! 0, a boundary point; 1, a connection point.
-REAL(DBL),ALLOCATABLE:: x(:)                    ! the solution vector of the linear system
+INTEGER:: dof_con(nkp)                          !< the connecting condition for key point.
+                                                !! 0, a boundary point; 1, a connection point.
+REAL(DBL),ALLOCATABLE:: x(:)                    !< the solution vector of the linear system
 
-REAL(DBL)            ::PHDot(nelem,6)
+REAL(DBL)            ::PHDot(nelem,6)   !< vector(6) with the derivative of linear (P) and angular (H) velocity of a node
 
-REAL(DBL),ALLOCATABLE :: eigen_vec(:,:)
-!~ REAL(DBL)             :: Rbeam(nelem,NSTRN)
+REAL(DBL),ALLOCATABLE :: eigen_vec(:,:) !< eigenvector of a node
+
     
 INTEGER::i,j
-REAL(DBL)::time_incr,time_current
+REAL(DBL)::time_incr !< DeltaT
+REAL(DBL)::time_current !< current time t
 
 
-REAL(DBL):: omega_a(NDIM),v_root_a(NDIM)
+REAL(DBL):: omega_a(NDIM)   !< angular velocity of frame a
+REAL(DBL):: v_root_a(NDIM)  !< linear velocity of frame a
 
-TYPE (MemberInf)::memb_info(SIZE(member,1))
-REAL(DBL)::t0
+TYPE (MemberInf)::memb_info(SIZE(member,1)) !< contains the member parameters of the whole structure
+REAL(DBL)::t0   !< start time t0
 
 ! Create a file name for debugging data
 !------------------------------------------
@@ -261,7 +250,7 @@ DO i=1,nstep
 !    2/dt A(t+dt)+dot{A(t+dt)}= 2/dt A(t+dt)+2/dt*[A(t+dt)-A(t)]-\dot{A(t)}=4/dt*A(t+dt)-[2/dt*A(t)+\dot{A(t)}]
 !------------------------------------------------
     IF(analysis_flag==2) THEN
-    	IF(MAXVAL(ABS(sol_mb(i,:,7:9)))>0.25D0*PI) flutter_flag = 1
+    	IF(MAXVAL(ABS(sol_mb(i,:,7:9)))>FLUTTER_LIMIT) flutter_flag = 1
 		init_cond(:,1:6)=2.d0*two_divide_dt*sol_mb(i,:,4:9)-init_cond(:,1:6) 
 		init_cond(:,7:12)=2.d0*two_divide_dt*CTCabPH(niter, member,memb_info ,sol_mb(i,:,4:))-init_cond(:,7:12)
 		IF (aero_flag==3) init_cond(:,13:12+NSTATES) = 2.d0*two_divide_dt*sol_mb(i,:,22:21+NSTATES)-init_cond(:,13:12+NSTATES) 
@@ -270,7 +259,7 @@ DO i=1,nstep
     ! flutter condition assessment
     IF (flutter_flag == 1)  THEN
 		IF (RUNMOD == 0) WRITE(*,*) "flutter condition detected"
-		IF (RUNMOD == 2) WRITE(*,*) i,"flutter condition detected"
+		IF (RUNMOD == 2) WRITE(*,*) "#",i,"flutter condition detected"
  		RETURN
     ENDIF
 ENDDO
@@ -314,5 +303,6 @@ IF(analysis_flag==3) DEALLOCATE(eigen_vec)
 ENDIF
 
 
-END SUBROUTINE Analysis
+END SUBROUTINE Analysis 
 !************************************************************
+

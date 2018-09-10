@@ -19,6 +19,8 @@
 ! computing_time=TOC() ! ending. 
 !===========================================================
 
+
+!>A module use to calculate the computation time
 MODULE CPUTime
 
 IMPLICIT NONE
@@ -37,6 +39,7 @@ CONTAINS
 !*    Starting the system clock        *
 !*                                     *
 !***************************************
+!> Start the timer
 SUBROUTINE TIC
 
 CALL SYSTEM_CLOCK(start,rate)
@@ -50,9 +53,10 @@ END SUBROUTINE TIC
 !*   Ending the system clock and calculate time     *
 !*                                                  *
 !****************************************************
+!> Stop the timer
 FUNCTION TOC() RESULT(sec)
 
-REAL::sec !default precision will be sufficient    
+REAL::sec !<computation time (seconds)
 
 CALL SYSTEM_CLOCK(finish)
 IF(finish>start) THEN 

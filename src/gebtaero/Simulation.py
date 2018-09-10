@@ -49,6 +49,7 @@ class Simulation:
         # ~ RemoveFiles()
         if verbosity == 1:
             print('The static loads in frame a is Fxa=',str(round(Output[0,0],4)),'N ; Fya=',str(round(Output[0,1],4)),'N ; Fza=',str(round(Output[0,2],4)),'N ; Mxa=',str(round(Output[1,0],4)),'N.m ; Mya=',str(round(Output[1,1],4)),'N.m ; Mza=',str(round(Output[1,2],4)),'N.m')
+        self.Input.RemoveInputFile()
         return Output
 
 
@@ -148,8 +149,8 @@ class Simulation:
             Command = ["gebtaero","-p",self.Input.GetFileName(),v,m,a,e]
             EigenValues = ReadModesFromPipe(Command,output="eigenvalues")
             EigenVal = np.array(EigenValues,dtype=float)
-            if verbosity ==1:
-                print(EigenVal)
+            # ~ if verbosity ==1:
+                # ~ print(EigenVal)
             n = len(EigenVal)
             if (mode ==1): # looking for the first flutter mode
                 # suppression of zero frequency mode
@@ -833,7 +834,7 @@ class Simulation:
         self.Input.RemoveInputFile()     
         return(Vinf)
 
-    def FlutterVtk(self,Rho,Vmin,Vmax,DeltaV,AeroFlag,ModesToPlot,AlphaAC,BetaAC,Ksitol,NbPeriod,StepByPeriod,CoefPerturb,CoefVinf,Nvtk,GravFlag=0,verbosity=0):  
+    def FlutterVtk(self,Rho,Vmin,Vmax,DeltaV,AeroFlag,AlphaAC,BetaAC,NbPeriod,StepByPeriod,CoefPerturb,CoefVinf,Nvtk,FlutterLimit=0.4,GravFlag=0,verbosity=0):  
         # Computation of vtk files corresponding to a temporal flutter
         import shutil
         Vstep = 0.1*(Vmax-Vmin)
@@ -875,15 +876,20 @@ class Simulation:
             if verbosity == 1:
                 print("simu_time =",Time," s, nstep= ",Nstep)
             # call of gebtaero, the velocity of the input file is override by v= of the command
-            Command = "gebtaero -s "+self.Input.GetFileName()+" v="+str(Vinf)+" aero="+str(AeroFlag)+" time="+str(Time)+" vz="+str(Vz)+" nstep="+str(Nstep)+" tfe="+str(PeriodFlutter)+" tfper="+str(PeriodFlutter)
+            Command = "gebtaero -s "+self.Input.GetFileName()+" v="+str(Vinf)+" aero="+str(AeroFlag)+" time="+str(Time)+" vz="+str(Vz)+" nstep="+str(Nstep)+" tfe="+str(PeriodFlutter)+" tfper="+str(PeriodFlutter)+" flutter_limit="+str(FlutterLimit)
             Output = sp.getoutput(Command)
             Output = Output.split()
-            if (Output[0] == "no"):
-                flutter_flag = 0
-            else:
-                # ~ print(Output)
-                step_flutter = float(Output[0])
+            if (Output[0] == "#"):
+                step_flutter = float(Output[1])
                 Time = 0.95*Time*step_flutter/Nstep
+            else:
+                flutter_flag = 0
+            # ~ if (Output[0] == "no"):
+                # ~ flutter_flag = 0
+            # ~ else:
+                # ~ print(Output)
+                # ~ step_flutter = float(Output[0])
+                # ~ Time = 0.95*Time*step_flutter/Nstep
         self.Input.RemoveInputFile()  
         
         

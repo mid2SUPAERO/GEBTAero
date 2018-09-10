@@ -1,0 +1,6 @@
+*.vtk
+*_vtk
+*.ech
+*.out
+*.odt
+doc/html/

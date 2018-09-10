@@ -110,7 +110,7 @@ if test1:
 if test2:
     #test 2 : temporal divergence speed
     print("test 2 : temporal divergence speed")  
-    DeltaV = 0.1
+    DeltaV = 0.01
     Vmin = 5
     Vmax = 300
     VStep = 1.
@@ -134,7 +134,7 @@ if test3:
     Rho = 1.225
     ModesToPlot = 5
     AeroFlag = 2
-    DivSpeed = Simu.ModalDivergenceSpeedSorted(Rho,Vmax,DeltaV,AeroFlag,ModesToPlot,ModesToPlot,AlphaAC,BetaAC,CorrCoef=0.9,GravFlag=1,verbosity=verbosity)[0]
+    DivSpeed = Simu.ModalDivergenceSpeedSorted(Rho,Vmax,DeltaV,AeroFlag,ModesToPlot,ModesToPlot,AlphaAC,BetaAC,CorrCoef=0.9,GravFlag=0,verbosity=verbosity)[0]
     assert(math.isclose(DivSpeed,253,abs_tol=1)),"Error modal divergence speed"
     DivSpeed = Simu.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=0,verbosity=verbosity,mode=2)
     assert(math.isclose(DivSpeed[0],253,abs_tol=1)),"Error modal divergence speed"

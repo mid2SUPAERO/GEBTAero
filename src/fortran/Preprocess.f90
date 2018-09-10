@@ -12,6 +12,9 @@
 !* connectivity and member information. This information are   *
 !* time step indepedent                                        *
 !***************************************************************
+
+!> This module preprocess the finite element model including connectivity and member information. This information are time step indepedent 
+
 MODULE PreproModule
 USE InternalData
 
@@ -21,17 +24,18 @@ PRIVATE       ! So everything is private, except declared by PUBLIC
 PUBLIC Preprocess 
 
 
-INTEGER::ndiv,ncol_memb
+INTEGER::ndiv   !<#member::ndiv
+INTEGER::ncol_memb  !<#member::ncol_memb
 !=============================================
 CONTAINS
 
 
 !***********************************************************
 !*                                                         *
-!* Obtaining the connection condition for each key point   *
-!* if a point is connected to more than one member, it is  *
-!* a connection point, otherwise it is a boundary point.   *
-!* It also calculates the size of the problem              *
+!> Obtaining the connection condition for each key point   *
+!! if a point is connected to more than one member, it is  *
+!! a connection point, otherwise it is a boundary point.   *
+!! It also calculates the size of the problem              *
 !*                                                         *
 !***********************************************************
 SUBROUTINE Preprocess(nkp,nelem,ndof_el,member,material,frame,coord,curvature,&
@@ -39,15 +43,20 @@ SUBROUTINE Preprocess(nkp,nelem,ndof_el,member,material,frame,coord,curvature,&
 
 IMPLICIT NONE
 
-INTEGER,INTENT(IN)   ::nkp,nelem,aero_flag,grav_flag
-INTEGER,INTENT(IN)   ::ndof_el
-INTEGER,INTENT(IN)   ::member(:,:)
-REAL(DBL),INTENT(INOUT)::material(:,:,:)
-REAL(DBL),INTENT(IN)   ::frame(:,:,:),coord(:,:),curvature(:,:)
-REAL(DBL),INTENT(IN),OPTIONAL :: aerodyn_coef(:,:)
+INTEGER,INTENT(IN)   ::nkp  !<#ioaero::nkp
+INTEGER,INTENT(IN)   ::nelem    !<#ioaero::nelem
+INTEGER,INTENT(IN)   ::aero_flag    !<#ioaero::aero_flag
+INTEGER,INTENT(IN)   ::grav_flag    !<#ioaero::grav_flag
+INTEGER,INTENT(IN)   ::ndof_el  !<#ioaero::ndof_el
+INTEGER,INTENT(IN)   ::member(:,:)  !<#ioaero::member
+REAL(DBL),INTENT(INOUT)::material(:,:,:)    !<#ioaero::material
+REAL(DBL),INTENT(IN)   ::frame(:,:,:)   !<#ioaero::frame
+REAL(DBL),INTENT(IN)   ::coord(:,:) !<#ioaero::coord
+REAL(DBL),INTENT(IN)   ::curvature(:,:) !<#ioaero::curvature
+REAL(DBL),INTENT(IN),OPTIONAL :: aerodyn_coef(:,:)  !<#ioaero::aerodyn_coef
 
-INTEGER,INTENT(OUT)  ::dof_con(:)
-TYPE (MemberInf),INTENT(OUT)::memb_info(:)
+INTEGER,INTENT(OUT)  ::dof_con(:)   !<  the connecting condition for key point.
+TYPE (MemberInf),INTENT(OUT)::memb_info(:)  !< the member parameters of the whole structure
 
 CHARACTER(*),INTENT(OUT)::error
 
@@ -168,7 +177,7 @@ END SUBROUTINE Preprocess
 
 !*************************************************************
 !*                                                           *   
-!* Extract member properties for each division               *
+!> Extract member properties for each division               *
 !*                                                           *
 !*===========================================================*
 !* Inputs:                                                   *
@@ -179,12 +188,19 @@ END SUBROUTINE Preprocess
 
 IMPLICIT NONE
 
-INTEGER,INTENT(IN)  ::memb_no,ndof_el,member(:,:),aero_flag,grav_flag
-REAL(DBL),INTENT(IN)::material(:,:,:),frame(:,:,:),coord(:,:),curvature(:,:)
-REAL(DBL),INTENT(IN),OPTIONAL :: aerodyn_coef(:,:)
+INTEGER,INTENT(IN)  ::memb_no   !< member index
+INTEGER,INTENT(IN)  ::ndof_el   !<#ioaero::ndof_el
+INTEGER,INTENT(IN)  ::member(:,:)   !<#ioaero::member
+INTEGER,INTENT(IN)  ::aero_flag !<#ioaero::aero_flag
+INTEGER,INTENT(IN)  ::grav_flag !<#ioaero::grav_flag
+REAL(DBL),INTENT(IN)::material(:,:,:)   !<#ioaero::material
+REAL(DBL),INTENT(IN)::frame(:,:,:)  !<#ioaero::frame
+REAL(DBL),INTENT(IN)::coord(:,:)    !<#ioaero::coord
+REAL(DBL),INTENT(IN)::curvature(:,:)    !<#ioaero::curvature
+REAL(DBL),INTENT(IN),OPTIONAL :: aerodyn_coef(:,:)  !<#ioaero::aerodyn_coef
 
-TYPE (MemberInf),INTENT(OUT)::memb_info_i
-CHARACTER(*),INTENT(OUT)::error
+TYPE (MemberInf),INTENT(OUT)::memb_info_i   !< the characteristics of the ith beam member
+CHARACTER(*),INTENT(OUT)::error !<#ioaero::error
 
 INTEGER:: j,tmpN,mat1,mat2,frame_no,curve_no
 REAL(DBL)::mCab(3,3),mCoord(2,3),mL,dL
@@ -315,7 +331,7 @@ END SUBROUTINE MemberProperties
 
 
 !************************************************************
-! Function for evaluating arc length of initially curved and twisted beams
+!> Function for evaluating arc length of initially curved and twisted beams
 !****************************************************************
 FUNCTION  CurveBeamFun(kn,mL,kn2,k12,kn4,xvar)
 IMPLICIT NONE
@@ -336,8 +352,8 @@ END FUNCTION  CurveBeamFun
 
 !*************************************************************
 !*                                                           *   
-!*  Use biosection to find root of a function                *
-!* from the book of Numerical Recipes                        *
+!>  Use biosection to find root of a function                *
+!! from the book of Numerical Recipes                        *
 !*                                                           *
 !*===========================================================*
 !* Inputs:                                                   *

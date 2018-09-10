@@ -82,6 +82,8 @@
 !*                                                         *
 !***********************************************************
 
+!> This program launch the aeroelastic simulation by reading the .dat file (and possibly the .ini file), execute the analysis subroutine and output the result in .out test file or/and vtk files (readable in paraview)
+
 PROGRAM GEBT
 
 !-----------------------------------------------------------------

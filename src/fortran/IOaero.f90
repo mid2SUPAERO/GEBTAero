@@ -14,6 +14,8 @@
 !*           Utah State University                    *
 !******************************************************
 
+!>This module handle I/O of the computation code. Allow to read a .dat command file possibly with a .ini file and output a .out text output file or/and a folder with .vtk file intended to be used with paraview.
+
 MODULE IOaero
 
 USE GlobalDataFun 
@@ -42,13 +44,13 @@ INTEGER,PARAMETER,PRIVATE:: CHAR_LEN=256
 INTEGER,PARAMETER:: IN  =10     ! input file: inp_name
 CHARACTER(CHAR_LEN)    :: inp_name 
 
-INTEGER,PARAMETER:: EIN =20     ! file for echoing the inputs: inp_name.ech
+INTEGER,PARAMETER:: EIN =20     !< file for echoing the inputs: inp_name.ech
 CHARACTER(CHAR_LEN+3)    :: ech_name 
 
-INTEGER,PARAMETER:: OUT =40     ! file for output: inp_name.out
+INTEGER,PARAMETER:: OUT =40     !< file for output: inp_name.out
 CHARACTER(CHAR_LEN+3)    :: out_name 
 !--------------------------------------------------------------------------------
-INTEGER,PARAMETER:: INIT =50     ! file for initial conditions: inp_name.ini
+INTEGER,PARAMETER:: INIT =50     !< file for initial conditions: inp_name.ini
 CHARACTER(CHAR_LEN+3)    :: init_name 
 !--------------------------------------------------------------------------------
 
@@ -58,61 +60,66 @@ CHARACTER(CHAR_LEN+3)    :: init_name
 
 
 ! Private variables
+!> @param nkp number of key points
+
 !---------------------------------------------------------------------------
-INTEGER::nkp           ! number of key points
-INTEGER::nelem         ! total number of elements
-INTEGER::nmemb         ! number of members
-INTEGER::nmate         ! number of cross-sectional properties sets
-INTEGER::nframe        ! number of frames 
-INTEGER::ncond_pt      ! number of point conditions for concentrated loads and boundary conditions
-INTEGER::ndistrfun     ! number of distributed functions 
-INTEGER::ncurv         ! number of initial curvatures/twists
-INTEGER::analysis_flag ! 0: static analysis; 1: steady state response; 2: transient analysis; 3: eigenvalue analysis 
-INTEGER::nev           ! number of frequencies and modeshapes.
-INTEGER::aero_flag     ! 0: no aero analasys; 1: stationary aerodynamic, 2: unsteady aerodynamic
-INTEGER::grav_flag     ! 0: without gravity; 1: with gravity
+INTEGER::nkp           !< number of key points
+INTEGER::nelem         !< total number of elements
+INTEGER::nmemb         !< number of members
+INTEGER::nmate         !< number of cross-sectional properties sets
+INTEGER::nframe        !< number of frames 
+INTEGER::ncond_pt      !< number of point conditions for concentrated loads and boundary conditions
+INTEGER::ndistrfun     !< number of distributed functions 
+INTEGER::ncurv         !< number of initial curvatures/twists
+INTEGER::analysis_flag !< 0: static analysis; 1: steady state response; 2: transient analysis; 3: eigenvalue analysis 
+INTEGER::nev           !< number of frequencies and modeshapes.
+INTEGER::aero_flag     !< 0: no aero analasys; 1: stationary aerodynamic, 2: unsteady aerodynamic
+INTEGER::grav_flag     !< @param grav_flag 0: without gravity; 1: with gravity
 
 
 !Public integer variables
 !---------------------------------------
-INTEGER::ncond_mb      ! number of member conditions for distributed loads
-INTEGER::ntimefun      ! number of time functions 
-INTEGER::niter         ! number of maximum iterations
-INTEGER::nstep         ! number of time steps/load steps
-INTEGER::nvtk         ! number of the aerodynamic cycle
-INTEGER,ALLOCATABLE::member(:,:)   ! member property array: member(nmemb,MEMB_CONST)
-INTEGER::ndof_el       ! dofs per element: 12 for static analysis, 18 for dynamic analysis
-INTEGER::omega_a_tf(NDIM)    ! time function numbers for the angular velocity of frame a 
-INTEGER::v_root_a_tf(NDIM)   ! time function numbers for the velocity of the starting point of the first member
+INTEGER::ncond_mb      !< number of member conditions for distributed loads
+INTEGER::ntimefun      !< number of time functions 
+INTEGER::niter         !< number of maximum iterations
+INTEGER::nstep         !< number of time steps/load steps
+INTEGER::nvtk         !< number of the aerodynamic cycle
+INTEGER,ALLOCATABLE::member(:,:)   !< member property array: member(nmemb,MEMB_CONST)
+INTEGER::ndof_el       !< dofs per element: 12 for static analysis, 18 for dynamic analysis, +Ns if aero_flag = 3
+INTEGER::omega_a_tf(NDIM)    !< time function numbers for the angular velocity of frame a 
+INTEGER::v_root_a_tf(NDIM)   !< time function numbers for the velocity of the starting point of the first member
 
 
 !Public real variables
 !--------------------------------------------------------------------------------
-REAL(DBL),ALLOCATABLE:: coord(:,:)       ! nodal coordinates: coord(nkp,NDIM)
-REAL(DBL),ALLOCATABLE:: material(:,:,:)  ! flexibility matrix: (nmate,12,6)
-REAL(DBL),ALLOCATABLE:: aerodyn_coef(:,:)! 2D aerodynamic coefficient : (nmate,:)
-REAL(DBL),ALLOCATABLE:: frame(:,:,:)     ! member frames: (nframe,3,3)
-REAL(DBL),ALLOCATABLE:: distr_fun(:,:)   ! prescribed functions: (ndistrfun,6)
-REAL(DBL),ALLOCATABLE:: curvature(:,:)   ! curvatures: (ncurv,NDIM)
-REAL(DBL),ALLOCATABLE:: sol_pt(:,:,:)    ! solutions for points sol_pt(nstep,nkp,NDIM+NDOF_ND)
-REAL(DBL),ALLOCATABLE:: sol_mb(:,:,:)    ! solutions for member sol_mb(nstep,nelem,NDIM+ndof_el): nelem: total number of elements
-REAL(DBL)            :: simu_time(2)     ! start and end time of the simulation. 
-REAL(DBL)            :: omega_a0(NDIM)   ! the magnitude of angular velocity of frame a 
-REAL(DBL)            :: v_root_a0(NDIM)  ! the magnitude of linear velocity of the starting point of the first member
-REAL(DBL),ALLOCATABLE:: init_cond(:,:)   ! initial conditions: init_cond(nelem,12);
-                                         ! init_cond(nelem,1:6) for initial displacements/rotations 
-									     ! init_cond(nelem,7:12) for initial velocities
-									     ! init_cond(nelem,13:12+NSTATES) Peters finite state parameter at time t+dt
-REAL(DBL),ALLOCATABLE::eigen_val(:,:),eigen_vec_pt(:,:,:),eigen_vec_mb(:,:,:) ! arrays for holding eigenvalues and eigenvectors
+REAL(DBL),ALLOCATABLE:: coord(:,:)       !< nodal coordinates: coord(nkp,NDIM)
+REAL(DBL),ALLOCATABLE:: material(:,:,:)  !< flexibility matrix: (nmate,12,6)
+REAL(DBL),ALLOCATABLE:: aerodyn_coef(:,:)!< 2D aerodynamic coefficient : (nmate,:)
+REAL(DBL),ALLOCATABLE:: frame(:,:,:)     !< member frames: (nframe,3,3)
+REAL(DBL),ALLOCATABLE:: distr_fun(:,:)   !< prescribed functions: (ndistrfun,6)
+REAL(DBL),ALLOCATABLE:: curvature(:,:)   !< curvatures: (ncurv,NDIM)
+REAL(DBL),ALLOCATABLE:: sol_pt(:,:,:)    !< solutions for points sol_pt(nstep,nkp,NDIM+NDOF_ND)
+REAL(DBL),ALLOCATABLE:: sol_mb(:,:,:)    !< solutions for member sol_mb(nstep,nelem,NDIM+ndof_el): nelem: total number of elements
+REAL(DBL)            :: simu_time(2)     !< start and end time of the simulation. 
+REAL(DBL)            :: omega_a0(NDIM)   !< the magnitude of angular velocity of frame a 
+REAL(DBL)            :: v_root_a0(NDIM)  !< the magnitude of linear velocity of the starting point of the first member
+REAL(DBL),ALLOCATABLE:: init_cond(:,:)   !< initial conditions: init_cond(nelem,12);
+                                         !< init_cond(nelem,1:6) for initial displacements/rotations 
+									     !< init_cond(nelem,7:12) for initial velocities
+									     !< init_cond(nelem,13:12+NSTATES) Peters finite state parameter at time t+dt
+REAL(DBL),ALLOCATABLE::eigen_val(:,:) !< arrays for holding eigenvalues and eigenvectors
+REAL(DBL),ALLOCATABLE::eigen_vec_pt(:,:,:) !< arrays for holding eigenvalues and eigenvectors
+REAL(DBL),ALLOCATABLE::eigen_vec_mb(:,:,:) !< arrays for holding eigenvalues and eigenvectors
 
 !Public derived types
 !--------------------------------------------------------------------------------
-TYPE(PrescriInf),ALLOCATABLE::pt_condition(:) ! prescribed information concentrated at nodes
-TYPE(PrescriInf),ALLOCATABLE::mb_condition(:) ! prescribed information distributed along beam members
-TYPE(TimeFunction),ALLOCATABLE::time_function(:) ! time functions
+TYPE(PrescriInf),ALLOCATABLE::pt_condition(:) !< prescribed information concentrated at nodes
+TYPE(PrescriInf),ALLOCATABLE::mb_condition(:) !< prescribed information distributed along beam members
+TYPE(TimeFunction),ALLOCATABLE::time_function(:) !< time functions
 !adding
 CHARACTER(CHAR_LEN)  :: Velocity_str = ''
-INTEGER::arpack,eigenoutput
+INTEGER::arpack !< Dummy input variable for ARPACK_MOD
+INTEGER::eigenoutput    !< Dummy input variable for EIGEN_OUTPUT
 
 
 !Public character variables
@@ -135,7 +142,7 @@ INTEGER:: i,j,narg,cptArg,length,ind,arpack
 INTEGER::tmp_no ! a temporary integer
 CHARACTER(CHAR_LEN):: arg,nb_modes_str='',aero_flag_str='',alpha_ac_str='',beta_ac_str='',analysis_str=''
 CHARACTER(CHAR_LEN):: niter_str='',nstep_str='',time_str='',nvtk_str='',vz_str='',wy_str='',tfe_str='',tfper_str=''
-CHARACTER(CHAR_LEN):: solver_str='',arpack_str='',eigenoutput_str=''
+CHARACTER(CHAR_LEN):: solver_str='',arpack_str='',eigenoutput_str='',flutter_limit_str=''
 !~ REAL(DBL)          :: Velocity,nb_modes,alpha_ac,beta_ac
 
 
@@ -187,6 +194,8 @@ IF (narg>0) THEN
             arpack_str=arg(ind+1:)
         CASE("eigenoutput")
             eigenoutput_str=arg(ind+1:)
+        CASE("flutter_limit")
+            flutter_limit_str=arg(ind+1:)
 		END SELECT
 		!running option
 		ELSEIF (arg(1:1)=="-") THEN
@@ -196,7 +205,7 @@ IF (narg>0) THEN
 		CASE ("s","silent")
 			RUNMOD = 2
 		CASE ("version")
-			write(*,*) 'gebtaero version 18.07 developped by French Air Force Academy Research Center'
+			write(*,*) 'gebtaero version 18.09 developped by French Air Force Academy Research Center'
 			RETURN		
 		END SELECT
 		ENDIF
@@ -245,6 +254,7 @@ IF (nstep_str /= '') READ(nstep_str,*) nstep
 IF (nvtk_str /= '') READ(nvtk_str,*) nvtk
 IF (arpack_str /= '') READ(arpack_str,*) arpack
 IF (eigenoutput_str /= '') READ(eigenoutput_str,*) eigenoutput
+IF (flutter_limit_str /= '') READ(flutter_limit_str,*) flutter_limit
 
 ARPACK_MOD = arpack
 EIGEN_OUTPUT = eigenoutput
@@ -769,7 +779,6 @@ ELSEIF (RUNMOD==1) THEN
                     WRITE(*,*) "*complex"
                     WRITE(*,*) eigen_val(:,imodes)
                     IF (EIGEN_OUTPUT==0) THEN
-!~                         WRITE(*,*) 0.
                         WRITE(*,*) EigenVec
                     ENDIF    
                 ELSE IF (complex_flag ==1) THEN
@@ -782,7 +791,6 @@ ELSEIF (RUNMOD==1) THEN
                         WRITE(*,*) "*real"
                         WRITE(*,*) eigen_val(:,imodes)
                         IF (EIGEN_OUTPUT==0) THEN
-!~                             WRITE(*,*) 0.
                             WRITE(*,*) EigenVec
                         ENDIF   
                     ENDIF      
@@ -861,101 +869,12 @@ commande_system='mkdir -p ' // TRIM(file_name)
 CALL EXECUTE_COMMAND_LINE(commande_system, wait=.TRUE.)
 
 file_name = TRIM(file_name) // '/' //TRIM(inp_name)
-!~ IF (Velocity_str/='') THEN
-!~ 		file_name = TRIM(file_name) //TRIM(Velocity_str) //'ms'
-!~ ENDIF
 
 ! cleaning of previous simulation
 commande_system='find '// TRIM(file_name) // '* -delete 2>/dev/null'
 CALL EXECUTE_COMMAND_LINE(commande_system, wait=.TRUE.)
 
 compt = 1
-
-!~ IF (analysis_flag==3) nstep=1
-!~ IF(nvtk>nstep) nvtk = nstep
-
-!~ DO iaero=1,nstep, FLOOR(REAL(nstep/nvtk))
-!~ 	! vtk file creation for each aero iteration
-!~ 	WRITE(iaero_str,*)compt
-!~ 	out_name = TRIM(file_name) // TRIM(ADJUSTL(iaero_str)) // ".vtk"
-	
-	
-!~ 	IF(FileOpen(OUT,  out_name,'REPLACE','WRITE',error)) RETURN
-
-!~ 	WRITE(OUT,'(A)')'# vtk DataFile Version 3.0'
-!~ 	WRITE(OUT,'(A)')out_name
-!~ 	WRITE(OUT,'(A)')'ASCII'
-!~ 	WRITE(OUT,*)' '
-!~ 	WRITE(OUT,'(A)')'DATASET POLYDATA'
-
-	
-!~ 	IF (analysis_flag==3) THEN 
-	
-!~ 	! Points coordinates
-!~ 	WRITE(OUT,'(A,I6,A)')'POINTS ',nelem,' float'
-!~ 	DO ielem=1,nelem
-!~ 		WRITE(OUT,*)eigen_vec_mb(1,ielem,1:3)
-!~ 	ENDDO
-
-!~ 	! Segments connections
-!~ 	WRITE(OUT,*)' '
-!~ 	WRITE(OUT,'(A,I4,I6,I6)')'LINES ',1,nelem+1,nelem
-!~ 	DO ielem=1,nelem
-!~ 		WRITE(OUT,'(I6)')ielem-1
-!~ 	ENDDO
-
-!~ 	WRITE(OUT,*)' '
-!~ 	WRITE(OUT,'(A,I6)')'POINT_DATA ',nelem
-	
-!~ 		DO istep=1,nev
-!~ 			IF (eigen_val(2,istep)>=-TOLERANCE) THEN
-!~ 				compt=1 ! modal displacement
-!~ 				WRITE(ifreq_str,'(E16.4)')eigen_val(2,istep)
-!~ 				ifreq_str='disp_'//TRIM(ADJUSTL(ifreq_str))//'Hz'
-!~ 				WRITE(OUT,'(A,A,A)')'VECTORS ',TRIM(ifreq_str),' float'
-!~ 				! normalisation
-!~ 				norme = MAXVAL(ABS(eigen_vec_mb(istep,:,4:6)))
-								
-!~ 				DO ielem=1,nelem
-!~ 					WRITE(OUT,*)eigen_vec_mb(istep,ielem,4:6)/norme
-!~ 				ENDDO
-!~ 				WRITE(OUT,*)' '
-				
-!~ 				! modal rotation
-!~ 				WRITE(ifreq_str,'(E16.4)')eigen_val(2,istep)
-!~ 				ifreq_str='rot_'//TRIM(ADJUSTL(ifreq_str))//'Hz'
-!~ 				WRITE(OUT,'(A,A,A)')'VECTORS ',TRIM(ifreq_str),' float'
-!~ 				! normalisation
-!~ 				norme = MAXVAL(ABS(eigen_vec_mb(istep,:,7:9)))
-				
-!~ 				DO ielem=1,nelem
-!~ 					WRITE(OUT,*) eigen_vec_mb(istep,nelem,7:9)/norme
-!~ 				ENDDO
-!~ 				WRITE(OUT,*)' '
-
-!~ 		! Orientation of the mid chord
-!~ 				WRITE(ifreq_str,'(E16.4)')eigen_val(2,istep)
-!~ 				ifreq_str='orientation_'//TRIM(ADJUSTL(ifreq_str))//'Hz'
-!~ 				WRITE(OUT,'(A,A,A)')'VECTORS ',TRIM(ifreq_str),' float'
-!~                 div_no = 0
-!~                 DO imemb=1,nmemb
-!~                     ndiv=member(imemb,6)
-!~                     IF (nframe > 0) THEN
-!~                         eCab = frame(imemb,:,:)
-!~                     ELSE
-!~                         eCab = I3
-!~                     ENDIF
-!~                     DO j=1,ndiv
-!~                         div_no=div_no+1
-!~                         CT = DirCosineTRodrigues(eigen_vec_mb(istep,nelem,7:9))
-!~                         bw = aerodyn_coef(member(imemb,3),3)
-!~                     WRITE(OUT,*) 2*bw*MATMUL(MATMUL(CT,eCab),(/1.D0,.0D0,0.D0/))
-!~                     ENDDO
-!~                 ENDDO
-!~ 				WRITE(OUT,*)' '
-!~ 			ENDIF
-!~ 		ENDDO		
-
 
 IF (analysis_flag==3) THEN
     nstep=nev
@@ -964,26 +883,114 @@ ENDIF
 IF(nvtk>nstep) nvtk = nstep
 
 DO iaero=1,nstep, FLOOR(REAL(nstep/nvtk))
-	! vtk file creation for each aero iteration
-	WRITE(iaero_str,*)compt
-	out_name = TRIM(file_name) // TRIM(ADJUSTL(iaero_str)) // ".vtk"
 	
-	
-	IF(FileOpen(OUT,  out_name,'REPLACE','WRITE',error)) RETURN
+	IF (analysis_flag==3) THEN ! modal simulation
+        IF (eigen_val(2,iaero)>0) THEN
+            ! vtk file creation for each aero iteration
+            WRITE(iaero_str,*)compt
+            out_name = TRIM(file_name) // TRIM(ADJUSTL(iaero_str)) // ".vtk"
+            
+            
+            IF(FileOpen(OUT,  out_name,'REPLACE','WRITE',error)) RETURN
 
-	WRITE(OUT,'(A)')'# vtk DataFile Version 3.0'
-	WRITE(OUT,'(A)')out_name
-	WRITE(OUT,'(A)')'ASCII'
-	WRITE(OUT,*)' '
-	WRITE(OUT,'(A)')'DATASET POLYDATA'
+            WRITE(OUT,'(A)')'# vtk DataFile Version 4.2'
+            WRITE(OUT,'(A)')out_name
+            WRITE(OUT,'(A)')'ASCII'
+            WRITE(OUT,*)' '
+            WRITE(OUT,'(A)')'DATASET POLYDATA'
+            
+            ! Points coordinates
+            WRITE(OUT,'(A,I6,A)')'POINTS ',nelem,' float'
+            DO ielem=1,nelem
+                WRITE(OUT,*)eigen_vec_mb(iaero,ielem,1:3)
+            ENDDO
 
-	
-	IF (analysis_flag==3) THEN 
-	
+            ! Segments connections
+            WRITE(OUT,*)' '
+            WRITE(OUT,'(A,I4,I6,I6)')'LINES ',1,nelem+1,nelem
+            DO ielem=1,nelem
+                WRITE(OUT,'(I6)')ielem-1
+            ENDDO
+            
+                ! simulation paramaters
+            WRITE(OUT,*)' '
+            WRITE(OUT,'(A)')'FIELD FieldData 7 '
+            WRITE(OUT,*)'Vinf 1 1 float'
+            WRITE(OUT,*)aerodyn_coef(1,1)
+            WRITE(OUT,*)'Rho 1 1 float'
+            WRITE(OUT,*)aerodyn_coef(1,2)
+            WRITE(OUT,*)'Chord 1 1 float'
+            WRITE(OUT,*)aerodyn_coef(1,3)
+            WRITE(OUT,*)'Alpha_AC 1 1 float'
+            WRITE(OUT,*)aerodyn_coef(1,5)
+            WRITE(OUT,*)'Beta_AC 1 1 float'
+            WRITE(OUT,*)aerodyn_coef(1,6)
+            WRITE(OUT,*)'Freq 1 1 float'
+            WRITE(OUT,*)ABS(eigen_val(2,iaero))
+            WRITE(OUT,*)'Damping 1 1 float'
+            WRITE(OUT,*)eigen_val(1,iaero)/(-11.78*eigen_val(2,iaero))
+            
+            WRITE(OUT,*)' '
+            WRITE(OUT,'(A,I6)')'POINT_DATA ',nelem
+            
+            WRITE(OUT,'(A,A,A)')'VECTORS ','displacements',' float'
+            ! normalisation
+            norme = MAXVAL(ABS(eigen_vec_mb(iaero,:,4:9)))
+                            
+            DO ielem=1,nelem
+                WRITE(OUT,*)eigen_vec_mb(iaero,ielem,4:6)/norme
+!~                 WRITE(OUT,*)eigen_vec_mb(iaero,ielem,4:6)
+            ENDDO
+            WRITE(OUT,*)' '
+            
+            WRITE(OUT,'(A,A,A)')'VECTORS ','rotation',' float'
+            ! normalisation
+!~             norme = MAXVAL(ABS(eigen_vec_mb(iaero,:,7:9)))
+            
+            DO ielem=1,nelem
+                WRITE(OUT,*) eigen_vec_mb(iaero,ielem,7:9)/norme
+!~                 WRITE(OUT,*) eigen_vec_mb(iaero,ielem,7:9)
+            ENDDO
+            WRITE(OUT,*)' '
+
+            WRITE(OUT,'(A,A,A)')'VECTORS ','midchord_ori',' float'
+            div_no = 0
+            DO imemb=1,nmemb
+                ndiv=member(imemb,6)
+				IF (ALLOCATED(frame)) THEN
+                    eCab = frame(imemb,:,:)
+                ELSE
+                    eCab = I3
+                ENDIF
+                DO j=1,ndiv
+                    div_no=div_no+1
+                    CT = DirCosineTRodrigues(eigen_vec_mb(iaero,nelem,7:9)/norme)
+                    bw = aerodyn_coef(member(imemb,3),3)
+                    ! vector yB (deformed frame)
+				    WRITE(OUT,*) bw*MATMUL(MATMUL(CT,eCab),(/0.D0,1.D0,0.D0/))
+                ENDDO
+            ENDDO
+            WRITE(OUT,*)' '		
+            compt = compt+1
+	    ENDIF
+    
+    ELSE ! dynamic simulation
+        ! vtk file creation for each aero iteration
+        WRITE(iaero_str,*)compt
+        out_name = TRIM(file_name) // TRIM(ADJUSTL(iaero_str)) // ".vtk"
+        
+        
+        IF(FileOpen(OUT,  out_name,'REPLACE','WRITE',error)) RETURN
+
+        WRITE(OUT,'(A)')'# vtk DataFile Version 4.2'
+        WRITE(OUT,'(A)')out_name
+        WRITE(OUT,'(A)')'ASCII'
+        WRITE(OUT,*)' '
+        WRITE(OUT,'(A)')'DATASET POLYDATA'
         ! Points coordinates
         WRITE(OUT,'(A,I6,A)')'POINTS ',nelem,' float'
         DO ielem=1,nelem
-            WRITE(OUT,*)eigen_vec_mb(iaero,ielem,1:3)
+            WRITE(OUT,*)sol_mb(iaero,ielem,1:3)
         ENDDO
 
         ! Segments connections
@@ -993,7 +1000,7 @@ DO iaero=1,nstep, FLOOR(REAL(nstep/nvtk))
             WRITE(OUT,'(I6)')ielem-1
         ENDDO
         
-            ! simulation paramaters
+        ! simulation paramaters
         WRITE(OUT,*)' '
         WRITE(OUT,'(A)')'FIELD FieldData 5 '
         WRITE(OUT,*)'Vinf 1 1 float'
@@ -1007,85 +1014,9 @@ DO iaero=1,nstep, FLOOR(REAL(nstep/nvtk))
         WRITE(OUT,*)'Beta_AC 1 1 float'
         WRITE(OUT,*)aerodyn_coef(1,6)
         
+        
         WRITE(OUT,*)' '
         WRITE(OUT,'(A,I6)')'POINT_DATA ',nelem
-        
-!~         WRITE(ifreq_str,'(E16.4)')eigen_val(2,istep)
-!~         ifreq_str='disp_'//TRIM(ADJUSTL(ifreq_str))//'Hz'
-        WRITE(OUT,'(A,A,A)')'VECTORS ','displacements',' float'
-        ! normalisation
-        norme = MAXVAL(ABS(eigen_vec_mb(iaero,:,4:6)))
-                        
-        DO ielem=1,nelem
-            WRITE(OUT,*)eigen_vec_mb(iaero,ielem,4:6)/norme
-        ENDDO
-        WRITE(OUT,*)' '
-        
-        ! modal rotation
-!~         WRITE(ifreq_str,'(E16.4)')eigen_val(2,istep)
-!~         ifreq_str='rot_'//TRIM(ADJUSTL(ifreq_str))//'Hz'
-        WRITE(OUT,'(A,A,A)')'VECTORS ','rotation',' float'
-        ! normalisation
-        norme = MAXVAL(ABS(eigen_vec_mb(iaero,:,7:9)))
-        
-        DO ielem=1,nelem
-            WRITE(OUT,*) eigen_vec_mb(iaero,ielem,7:9)/norme
-        ENDDO
-        WRITE(OUT,*)' '
-
-    ! Orientation of the mid chord
-!~         WRITE(ifreq_str,'(E16.4)')eigen_val(2,istep)
-!~         ifreq_str='orientation_'//TRIM(ADJUSTL(ifreq_str))//'Hz'
-        WRITE(OUT,'(A,A,A)')'VECTORS ','midchord_ori',' float'
-        div_no = 0
-        DO imemb=1,nmemb
-            ndiv=member(imemb,6)
-            IF (nframe > 0) THEN
-                eCab = frame(imemb,:,:)
-            ELSE
-                eCab = I3
-            ENDIF
-            DO j=1,ndiv
-                div_no=div_no+1
-                CT = DirCosineTRodrigues(eigen_vec_mb(iaero,nelem,7:9))
-                bw = aerodyn_coef(member(imemb,3),3)
-            WRITE(OUT,*) bw*MATMUL(MATMUL(CT,eCab),(/1.D0,.0D0,0.D0/))
-            ENDDO
-        ENDDO
-        WRITE(OUT,*)' '		
-	
-    
-    ELSE 
-	! Points coordinates
-	WRITE(OUT,'(A,I6,A)')'POINTS ',nelem,' float'
-	DO ielem=1,nelem
-		WRITE(OUT,*)sol_mb(iaero,ielem,1:3)
-	ENDDO
-
-	! Segments connections
-	WRITE(OUT,*)' '
-	WRITE(OUT,'(A,I4,I6,I6)')'LINES ',1,nelem+1,nelem
-	DO ielem=1,nelem
-		WRITE(OUT,'(I6)')ielem-1
-	ENDDO
-	
-    ! simulation paramaters
-    WRITE(OUT,*)' '
-    WRITE(OUT,'(A)')'FIELD FieldData 5 '
-    WRITE(OUT,*)'Vinf 1 1 float'
-    WRITE(OUT,*)aerodyn_coef(1,1)
-    WRITE(OUT,*)'Rho 1 1 float'
-    WRITE(OUT,*)aerodyn_coef(1,2)
-    WRITE(OUT,*)'Chord 1 1 float'
-    WRITE(OUT,*)aerodyn_coef(1,3)
-    WRITE(OUT,*)'Alpha_AC 1 1 float'
-    WRITE(OUT,*)aerodyn_coef(1,5)
-    WRITE(OUT,*)'Beta_AC 1 1 float'
-    WRITE(OUT,*)aerodyn_coef(1,6)
-    
-    
-	WRITE(OUT,*)' '
-	WRITE(OUT,'(A,I6)')'POINT_DATA ',nelem
 	
 	! displacement
 		WRITE(OUT,'(A,A,A)')'VECTORS ','displacements',' float'
@@ -1139,7 +1070,7 @@ DO iaero=1,nstep, FLOOR(REAL(nstep/nvtk))
 			div_no = 0
 			DO imemb=1,nmemb
 				ndiv=member(imemb,6)
-				IF (nframe > 0) THEN
+				IF (ALLOCATED(frame)) THEN
 					eCab = frame(imemb,:,:)
 				ELSE
 					eCab = I3
@@ -1148,49 +1079,71 @@ DO iaero=1,nstep, FLOOR(REAL(nstep/nvtk))
 					div_no=div_no+1
 					CT = DirCosineTRodrigues(sol_mb(iaero,j,7:9))
 					bw = aerodyn_coef(member(imemb,3),3)
-				WRITE(OUT,*) bw*MATMUL(MATMUL(CT,eCab),(/1.D0,.0D0,0.D0/))
+                    ! vector yB (deformed frame)
+				    WRITE(OUT,*) bw*MATMUL(MATMUL(CT,eCab),(/0.D0,1.D0,0.D0/))
 				ENDDO
 			ENDDO
+            
+			! normal of the mid chord
 			WRITE(OUT,*)' '
-			WRITE(OUT,'(A,A,A)')'VECTORS ','airfoil_ori',' float'
+			WRITE(OUT,'(A,A,A)')'VECTORS ','vector_xB',' float'
 			div_no = 0
 			DO imemb=1,nmemb
 				ndiv=member(imemb,6)
-			
-				! angles between flow and aircraft coordinate system 
-				alpha_ac = aerodyn_coef(member(imemb,3),5)
-				beta_ac = aerodyn_coef(member(imemb,3),6)
-				
-				! wind direction
-				xflow = (/COS(alpha_ac)*COS(beta_ac),-COS(alpha_ac)*SIN(beta_ac),-SIN(alpha_ac)/)
-
+				IF (ALLOCATED(frame)) THEN
+					eCab = frame(imemb,:,:)
+				ELSE
+					eCab = I3
+				ENDIF
 				DO j=1,ndiv
 					div_no=div_no+1
-
-					IF (member(imemb,5)>0) THEN
-						eCab = frame(imemb,:,:)
-					ELSE
-						eCab = I3
-					ENDIF
-					CT = DirCosineTRodrigues(sol_mb(iaero,div_no,7:9))
-
-					eCab=MATMUL(CT,eCab)
-					xB=eCab(:,1)
-					! direction of the airfoil coordinate system (xflow,dir_moment,dir_lift) in the aircraft reference
-					dir_lift = CrossProduct(xB,xflow)
-					dir_lift = 1/Norm(dir_lift)*dir_lift
-					dir_moment = CrossProduct(xflow,dir_lift)
-					dir_moment = 1/Norm(dir_moment)*dir_moment
-					dir_airfoil = CrossProduct(dir_lift,dir_moment)
-					WRITE(OUT,*) dir_lift
+					CT = DirCosineTRodrigues(sol_mb(iaero,j,7:9))
+					bw = aerodyn_coef(member(imemb,3),3)
+                    ! vector yB (deformed frame)
+				    WRITE(OUT,*) bw*MATMUL(MATMUL(CT,eCab),(/1.D0,0.D0,0.D0/))
 				ENDDO
 			ENDDO
+!~ 			WRITE(OUT,*)' '
+!~ 			WRITE(OUT,'(A,A,A)')'VECTORS ','airfoil_ori',' float'
+!~ 			div_no = 0
+!~ 			DO imemb=1,nmemb
+!~ 				ndiv=member(imemb,6)
+			
+!~ 				! angles between flow and aircraft coordinate system 
+!~ 				alpha_ac = aerodyn_coef(member(imemb,3),5)
+!~ 				beta_ac = aerodyn_coef(member(imemb,3),6)
+				
+!~ 				! wind direction
+!~ 				xflow = (/COS(alpha_ac)*COS(beta_ac),-COS(alpha_ac)*SIN(beta_ac),-SIN(alpha_ac)/)
+
+!~ 				DO j=1,ndiv
+!~ 					div_no=div_no+1
+
+!~ 					IF (member(imemb,5)>0) THEN
+!~ 						eCab = frame(imemb,:,:)
+!~ 					ELSE
+!~ 						eCab = I3
+!~ 					ENDIF
+!~ 					CT = DirCosineTRodrigues(sol_mb(iaero,div_no,7:9))
+
+!~ 					eCab=MATMUL(CT,eCab)
+!~ 					xB=eCab(:,1)
+!~ 					! direction of the airfoil coordinate system (xflow,dir_moment,dir_lift) in the aircraft reference
+!~ 					dir_lift = CrossProduct(xB,xflow)
+!~ 					dir_lift = 1/Norm(dir_lift)*dir_lift
+!~ 					dir_moment = CrossProduct(xflow,dir_lift)
+!~ 					dir_moment = 1/Norm(dir_moment)*dir_moment
+!~ 					dir_airfoil = CrossProduct(dir_lift,dir_moment)
+!~ 					WRITE(OUT,*) dir_lift
+!~ 				ENDDO
+!~ 			ENDDO
 			WRITE(OUT,*)' '
 		ENDIF
+        compt = compt+1
 	ENDIF
 
 
-	compt = compt+1
+!~ 	compt = compt+1
 
 ENDDO
 

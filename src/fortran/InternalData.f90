@@ -12,6 +12,9 @@
 !*                                                         *
 !*                Utah State University                    *
 !***********************************************************
+
+!> This module contains the variables needed internally in the program. Not necessary to be defined in the outside environment
+
 MODULE InternalData
 
 USE GlobalDataFun
@@ -40,21 +43,21 @@ REAL(DBL),ALLOCATABLE::cond_all(:,:)        ! the prescribed value for each poin
 REAL(DBL),ALLOCATABLE::init_memb(:,:)       ! initial displacement/rotations and time derivates for each member
 
 INTEGER:: init_flag  ! 1-initial step; 2-time marching; 0, otherwise
-REAL(DBL) ::two_divide_dt  ! 2/dt
-INTEGER   ::assemble_flag=0  ! for the purpose to share the routines between assembly of stiffness matrix and mass matrix
-INTEGER,ALLOCATABLE ::index_kp(:,:) ! the starting row and column for each kp
-INTEGER,ALLOCATABLE::index_mb(:,:) ! the starting row and column for each member
-REAL(DBL)::xyz_pt1(NDIM) ! the coordinate of the starting point of the first member
+REAL(DBL) ::two_divide_dt  !< 2/dt
+INTEGER   ::assemble_flag=0  !< for the purpose to share the routines between assembly of stiffness matrix and mass matrix
+INTEGER,ALLOCATABLE ::index_kp(:,:) !< the starting row and column for each kp
+INTEGER,ALLOCATABLE::index_mb(:,:) !< the starting row and column for each member
+REAL(DBL)::xyz_pt1(NDIM) !< the coordinate of the starting point of the first member
 
-TYPE MemberInf
-	 INTEGER   ::ndiv                       ! number of divisions
-	 INTEGER   ::ncol_memb                  ! total number of columns of the member
-	 REAL(DBL) ::dL                         ! length of each division 
-	 REAL(DBL),ALLOCATABLE::mate(:,:,:)     ! mate(ndiv,12,6): flexibity and mass properties for each division
-	 REAL(DBL),ALLOCATABLE::triad(:,:,:)    ! triad(ndiv,3,3): cab for each division, evaluated at the middle point of the division
-     REAL(DBL),ALLOCATABLE::Le(:)           ! Le(ndiv): ending arc length for each division
-	 REAL(DBL),ALLOCATABLE::coordinate(:,:) !coordinate(ndiv,3) coordinate for the middle of the division
-	 REAL(DBL),ALLOCATABLE::aerodyn_coef(:,:) !aerodynamic coefficients
+TYPE MemberInf !< structure containing the caracteritics of a finite element.
+	 INTEGER   ::ndiv                       !< number of divisions
+	 INTEGER   ::ncol_memb                  !< total number of columns of the member
+	 REAL(DBL) ::dL                         !< length of each division 
+	 REAL(DBL),ALLOCATABLE::mate(:,:,:)     !< mate(ndiv,12,6): flexibity and mass properties for each division
+	 REAL(DBL),ALLOCATABLE::triad(:,:,:)    !< triad(ndiv,3,3): cab for each division, evaluated at the middle point of the division
+     REAL(DBL),ALLOCATABLE::Le(:)           !< Le(ndiv): ending arc length for each division
+	 REAL(DBL),ALLOCATABLE::coordinate(:,:) !< coordinate(ndiv,3) coordinate for the middle of the division
+	 REAL(DBL),ALLOCATABLE::aerodyn_coef(:,:) !< aerodynamic coefficients
 END TYPE MemberInf
 
 INTEGER,PARAMETER::nzElemMax=500 ! maximum nonzero entries of the element matrix will be 318

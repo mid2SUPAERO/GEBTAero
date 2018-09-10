@@ -7,8 +7,7 @@
 !***********************************************************
 !=================================================================
 !
-! A module for defining time functions needed for both prescribed  
-! concentrated and distributed conditions 
+!> A module for defining time functions needed for both prescribed  concentrated and distributed conditions 
 !
 !=================================================================
 MODULE TimeFunctionModule
@@ -23,21 +22,21 @@ PUBLIC TimeFunction,GetTimeFunction,InitTF,InputEchoTimeFunctions,CurrentValues
 
 TYPE TimeFunction
 !~      PRIVATE
-	 INTEGER   ::fun_type             !function type: 0, user defined; 1, harmonic
-	 REAL(DBL) ::ts, te               ! starting and ending time
-	 INTEGER   ::entries              ! number of entries
-	 REAL(DBL),POINTER::time_val(:)   ! the ith time, in increasing order; the amplitude of the harmonic
-	 REAL(DBL),POINTER::fun_val(:)    ! the ith functional value; the period of the harmonic
-	 REAL(DBL),POINTER::phase_val(:)  ! the phase value of the harmonic
+	 INTEGER   ::fun_type             !<function type: 0, user defined; 1, harmonic
+	 REAL(DBL) ::ts, te               !< starting and ending time
+	 INTEGER   ::entries              !< number of entries
+	 REAL(DBL),POINTER::time_val(:)   !< the ith time, in increasing order; the amplitude of the harmonic
+	 REAL(DBL),POINTER::fun_val(:)    !< the ith functional value; the period of the harmonic
+	 REAL(DBL),POINTER::phase_val(:)  !< the phase value of the harmonic
 END TYPE TimeFunction
 
 CONTAINS
 
 !*********************************************************
 !*                                                       *
-!* get the time function value for any arbitrary time    *
-!* from a piecewise linear function or harmonic function *
-!* decide where t is located, then interpret the value   *
+!> get the time function value for any arbitrary time
+!! from a piecewise linear function or harmonic function
+!! decide where t is located, then interpret the value
 !*                                                       *
 !*********************************************************
 FUNCTION GetTimeFunction(tf,t) RESULT(res)
@@ -45,8 +44,8 @@ FUNCTION GetTimeFunction(tf,t) RESULT(res)
 TYPE (TimeFunction),INTENT(IN)::tf  
 REAL(DBL),INTENT(IN)::t 
 REAL(DBL):: res
-REAL(DBL)::t1, t2 ! t1<=t<=t2
-REAL(DBL)::f1,f2   ! function values corresponding to t1, t2, respectively.
+REAL(DBL)::t1, t2 !< t1<=t<=t2
+REAL(DBL)::f1,f2   !< function values corresponding to t1, t2, respectively.
 	
 INTEGER:: n
 INTEGER:: i
@@ -96,7 +95,7 @@ END FUNCTION GetTimeFunction
 
 !*********************************************************
 !*                                                       *
-!*             Initialize the time function              *
+!> Initialize the time function
 !*                                                       *
 !*********************************************************
 
@@ -117,12 +116,12 @@ END FUNCTION InitTF
 
 !************************************************************
 !*                                                          *
-!*  Input and echo Time Functions                           *
+!> Input and echo Time Functions
 !*															*
 !************************************************************
 FUNCTION InputEchoTimeFunctions(IN,EIN,error) RESULT(res)
 
-INTEGER,INTENT(IN)::IN,EIN ! file units for input anf echo files, respectively
+INTEGER,INTENT(IN)::IN,EIN !< file units for input anf echo files, respectively
 CHARACTER(*),INTENT(OUT)::error
 TYPE (TimeFunction)::res       
 INTEGER:: i,n
@@ -191,7 +190,7 @@ END FUNCTION InputEchoTimeFunctions
 
 !************************************************************
 !*                                                          *
-!*  Evaluate current function based on magnitude and time   *
+!>  Evaluate current function based on magnitude and time
 !* function and current time                                *
 !* vec: magnitude                                           *
 !* vec_tf: time function #   								*

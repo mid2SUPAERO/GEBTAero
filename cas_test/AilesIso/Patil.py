@@ -3,20 +3,20 @@ import numpy as np
 from gebtaero import *
 import math
 
-# ~ test1 = True
-test1 = False
+test1 = True
+# ~ test1 = False
 
-# ~ test2 = True
-test2 = False
+test2 = True
+# ~ test2 = False
 
-# ~ test3 = True
-test3 = False
+test3 = True
+# ~ test3 = False
 
 test4 = True
 # ~ test4 = False
 
-# ~ test5 = True
-test5 = False
+test5 = True
+# ~ test5 = False
 
 verbosity = 0
 # ~ verbosity = 1

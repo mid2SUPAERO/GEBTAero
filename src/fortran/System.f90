@@ -8,9 +8,7 @@
 
 !***************************************************************
 !*                                                             *
-!* This module assemles the system including the coefficient   *
-!* matrix (jacobian matrix) and the right hand side (negative  *
-!* of the equation values)                                     *
+!> This module assemles the system including the coefficient matrix (jacobian matrix) and the right hand side (negative of the equation values)                                     *
 !* Outputs:coef, rhs                                           *
 !*                                                             *
 !***************************************************************
@@ -26,14 +24,15 @@ PRIVATE       ! So everything is private, except declared by PUBLIC
 
 PUBLIC AssembleJacobian,AssembleRHS,ne,irn,jcn,coef
 
-REAL(DBL)::x_pt(NSTRN)         ! the solution from the previous step for a key point.
-INTEGER  ::kp_dof(NSTRN)       ! prescribed dof
-REAL(DBL)::kp_cond(NSTRN)      ! prescribed value
-INTEGER  ::kp_follower(NSTRN)  ! follower condition
+REAL(DBL)::x_pt(NSTRN)         !< the solution from the previous step for a key point.
+INTEGER  ::kp_dof(NSTRN)       !< prescribed dof
+REAL(DBL)::kp_cond(NSTRN)      !< prescribed value
+INTEGER  ::kp_follower(NSTRN)  !< follower condition
 
-INTEGER::ne
-INTEGER,ALLOCATABLE::irn(:),jcn(:)
-REAL(DBL),ALLOCATABLE::coef(:)
+INTEGER::ne !< Number of nonzero coefficients
+INTEGER,ALLOCATABLE::irn(:) !< line index of nonzero coefficients
+INTEGER,ALLOCATABLE::jcn(:) !< column index of nonzero coefficients
+REAL(DBL),ALLOCATABLE::coef(:)  !< value of nonzero coefficients
 
 !=============================================
 CONTAINS
@@ -41,31 +40,36 @@ CONTAINS
 
 !************************************************************
 !*                                                          *                                      
-!*  Assemble the coefficient matrix of the beam system      *
+!>  Assemble the coefficient matrix of the beam system      *
 !*															*
 !************************************************************ 
 SUBROUTINE AssembleJacobian(ndof_el,niter,memb_info,v_root_a,omega_a,member,error,&
 			& ncond_mb,mb_condition,distr_fun,dof_con,x,aero_flag,grav_flag,init_cond)
 
-INTEGER,INTENT(IN)::ndof_el,niter,aero_flag,grav_flag
-REAL(DBL),INTENT(IN)::v_root_a(:),omega_a(:)
-TYPE (MemberInf),INTENT(IN)::memb_info(:)
+INTEGER,INTENT(IN)::ndof_el !<#ioaero::ndof_el
+INTEGER,INTENT(IN)::niter   !<#ioaero::niter
+INTEGER,INTENT(IN)::aero_flag   !<#ioaero::aero_flag
+INTEGER,INTENT(IN)::grav_flag   !<#ioaero::grav_flag
+REAL(DBL),INTENT(IN)::v_root_a(:)   !< linear velocity of frame a
+REAL(DBL),INTENT(IN)::omega_a(:)    !< angular velocity of frame a
+TYPE (MemberInf),INTENT(IN)::memb_info(:)   !< contains the member parameters of the whole structure
 
-REAL(DBL),INTENT(IN) ::distr_fun(:,:)
-INTEGER,INTENT(IN)   ::member(:,:),ncond_mb
-INTEGER              ::dof_con(:) ! note dof_con is passed by value, hence what is changed in this subroutine will not affect the original value.
+REAL(DBL),INTENT(IN) ::distr_fun(:,:)   !<#ioaero::distr_fun
+INTEGER,INTENT(IN)   ::member(:,:)  !<#ioaero::member
+INTEGER,INTENT(IN)   ::ncond_mb !<#ioaero::ncond_mb
+INTEGER              ::dof_con(:) !< note dof_con is passed by value, hence what is changed in this subroutine will not affect the original value.
 
-REAL(DBL),INTENT(IN) :: x(:)
-TYPE(PrescriInf),INTENT(IN)::mb_condition(:)
-CHARACTER(*),INTENT(OUT)::error
+REAL(DBL),INTENT(IN) :: x(:)    !< solution vector
+TYPE(PrescriInf),INTENT(IN)::mb_condition(:)    !<#ioaero::mb_condition
+CHARACTER(*),INTENT(OUT)::error !<#ioaero::error
 
-REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)
+REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)   !<#ioaero::init_cond
 
 INTEGER::i,j
 
-INTEGER::pre_dof ! prescibed dof of the connection point
+INTEGER::pre_dof !< prescibed dof of the connection point
 
-REAL(DBL),ALLOCATABLE::coef_memb(:) ! coefficient matrix of a member
+REAL(DBL),ALLOCATABLE::coef_memb(:) !< coefficient matrix of a member
 
 INTEGER:: nrow,ncol,nrow_end,ncol_end
 INTEGER,ALLOCATABLE::irn_memb(:),jcn_memb(:)
@@ -193,12 +197,12 @@ ENDIF
 
 CONTAINS
 
-! Assemble the Jacobian related with trailing points       														
+!> Assemble the Jacobian related with trailing points       														
 !-----------------------------------------------------------------
 SUBROUTINE  AssemblePointJ(flag,kp,nrow_mb,ncol_mb) 
      
-INTEGER,INTENT(IN)::flag ! indicating whether it is the starting point or the ending point: -1-starting, 1-ending
-INTEGER,INTENT(IN)::kp ! the point number
+INTEGER,INTENT(IN)::flag !< indicating whether it is the starting point or the ending point: -1-starting, 1-ending
+INTEGER,INTENT(IN)::kp !< the point number
 INTEGER,INTENT(IN)::nrow_mb,ncol_mb
 
 INTEGER::nrow_kp,ncol_kp
@@ -309,33 +313,37 @@ END SUBROUTINE AssembleJacobian
 
 !************************************************************
 !*                                                          *                                      
-!*  Assemble the right hand side  							*
+!>  Assemble the right hand side
 !*															*
 !************************************************************ 
 SUBROUTINE AssembleRHS(ndof_el,memb_info,v_root_a,omega_a,member,error,&
 			& ncond_mb,mb_condition,distr_fun,dof_con,x,rhs,aero_flag,grav_flag,init_cond)
 
-INTEGER,INTENT(IN)::ndof_el,aero_flag,grav_flag
-TYPE (MemberInf),INTENT(IN)::memb_info(:)
+INTEGER,INTENT(IN)::ndof_el !<#ioaero::ndof_el
+INTEGER,INTENT(IN)::aero_flag    !<#ioaero::aero_flag
+INTEGER,INTENT(IN)::grav_flag   !<#ioaero::grav_flag
+TYPE (MemberInf),INTENT(IN)::memb_info(:)   !< contains the member parameters of the whole structure
 
-REAL(DBL),INTENT(IN)::v_root_a(:),omega_a(:)
-REAL(DBL),INTENT(IN) ::distr_fun(:,:)
-INTEGER,INTENT(IN)   ::member(:,:),ncond_mb
+REAL(DBL),INTENT(IN)::v_root_a(:)   !< linear velocity of frame a
+REAL(DBL),INTENT(IN)::omega_a(:)    !< angular velocity of frame a
+REAL(DBL),INTENT(IN) ::distr_fun(:,:)   !<#ioaero::distr_fun
+INTEGER,INTENT(IN)   ::member(:,:)  !<#ioaero::member
+INTEGER,INTENT(IN)   ::ncond_mb     !<#ioaero::ncond_mb
 INTEGER              ::dof_con(:) 
-REAL(DBL),INTENT(IN) :: x(:)
-TYPE(PrescriInf),INTENT(IN)::mb_condition(:)
+REAL(DBL),INTENT(IN) :: x(:)    !<solution vector
+TYPE(PrescriInf),INTENT(IN)::mb_condition(:)    !<#ioaero::mb_condition
 
 REAL(DBL),INTENT(OUT)::rhs(:)
 CHARACTER(*),INTENT(OUT)::error
 
-REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)
+REAL(DBL),OPTIONAL,INTENT(IN)::init_cond(:,:)   !<#ioaero::init_cond
 
-REAL(DBL),ALLOCATABLE::rhs_memb(:)    ! rhs for a member
+REAL(DBL),ALLOCATABLE::rhs_memb(:)    !< rhs for a member
 
 
 INTEGER::i,j
 INTEGER:: nrow,ncol,nrow_end
-INTEGER::pre_dof ! prescibed dof of the connection point
+INTEGER::pre_dof !< prescibed dof of the connection point
 
 rhs=0.0D0
 
@@ -404,13 +412,13 @@ ENDIF
 
 CONTAINS
 
-!  Assemble the Jacobian related with trailing points      
+!>  Assemble the Jacobian related with trailing points      
 !----------------------------------------------------------
 SUBROUTINE  AssemblePointRHS(flag,term_pt,rhs_tm,nrow_mb) 
      
-INTEGER,INTENT(IN)::flag ! indicating whether it is the starting point or the ending point: -1-starting, 1-ending
-INTEGER,INTENT(IN)::term_pt ! the point number
-REAL(DBL),INTENT(IN)::rhs_tm(:) ! the right hand side of the member associated with the end point
+INTEGER,INTENT(IN)::flag !< indicating whether it is the starting point or the ending point: -1-starting, 1-ending
+INTEGER,INTENT(IN)::term_pt !< the point number
+REAL(DBL),INTENT(IN)::rhs_tm(:) !< the right hand side of the member associated with the end point
 INTEGER,INTENT(IN)::nrow_mb
 
 INTEGER::nrow_kp,ncol_kp
@@ -486,8 +494,8 @@ END SUBROUTINE AssembleRHS
 
 !************************************************************
 !*                                                          *
-!*  Add the contribution to Jacobian matrix due to follower *
-!*  point force or moments                                  *
+!>  Add the contribution to Jacobian matrix due to follower
+!! point force or moments
 !*                                                          * 
 !************************************************************
 SUBROUTINE PointFollowerJ(flag,nrow,ncol,eCTtheta)
@@ -497,7 +505,7 @@ INTEGER,INTENT(IN)::nrow,ncol
 REAL(DBL),INTENT(IN)::eCTtheta(:,:,:)
 
 
-INTEGER:: str_row_fol ! starting row for inserting the jacobian due to follower conditions
+INTEGER:: str_row_fol !< starting row for inserting the jacobian due to follower conditions
 
 IF(ANY(kp_follower(1:3)==1)) THEN
    IF(kp_dof(1)==7) str_row_fol=nrow
