@@ -1,0 +1,121 @@
+\hypertarget{structprescribedcondition_1_1prescriinf}{}\section{prescribedcondition\+:\+:prescriinf Type Reference}
+\label{structprescribedcondition_1_1prescriinf}\index{prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}}
+
+
+Define the prescribed condition.  
+
+
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+integer \hyperlink{structprescribedcondition_1_1prescriinf_ad7a7ffe265b06ff7c2a1487bb0b9cf56}{id}
+\begin{DoxyCompactList}\small\item\em where it is applied, could be a node number or member number \end{DoxyCompactList}\item 
+integer, dimension(nstrn) \hyperlink{structprescribedcondition_1_1prescriinf_add1a1e3ab7bef3eaf011f074368c89f8}{dof}
+\begin{DoxyCompactList}\small\item\em maximum 6 degrees of freedom can be prescribed, for distributed loads, it is used to denote the distribution function no \end{DoxyCompactList}\item 
+real(dbl), dimension(nstrn) \hyperlink{structprescribedcondition_1_1prescriinf_a42fcd5b12e0a171e60ddf14041ab09aa}{value}
+\begin{DoxyCompactList}\small\item\em the magnitude of the prescribed values \end{DoxyCompactList}\item 
+integer, dimension(nstrn) \hyperlink{structprescribedcondition_1_1prescriinf_afebb4f4446a4d4877901b4d777af811a}{time\+\_\+fun\+\_\+no}
+\begin{DoxyCompactList}\small\item\em which time function is used \end{DoxyCompactList}\item 
+integer, dimension(nstrn) \hyperlink{structprescribedcondition_1_1prescriinf_a7e97cae9888b22f4229b56b3a0d2e3b1}{follower}
+\begin{DoxyCompactList}\small\item\em whether the prescribed quantity is a follower or not\+: 1 is a follower; 0 is not \end{DoxyCompactList}\item 
+real(dbl), dimension(nstrn) \hyperlink{structprescribedcondition_1_1prescriinf_adb8c3bfd5669cc2eccb447f24556ebaf}{value\+\_\+current}
+\begin{DoxyCompactList}\small\item\em indicate the current functional value updated by time steps, calculated internally \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Define the prescribed condition. 
+
+Definition at line 28 of file Prescribed\+Condition.\+f90.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structprescribedcondition_1_1prescriinf_add1a1e3ab7bef3eaf011f074368c89f8}\label{structprescribedcondition_1_1prescriinf_add1a1e3ab7bef3eaf011f074368c89f8}} 
+\index{prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}!dof@{dof}}
+\index{dof@{dof}!prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}}
+\subsubsection{\texorpdfstring{dof}{dof}}
+{\footnotesize\ttfamily integer, dimension(nstrn) prescribedcondition\+::prescriinf\+::dof\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+maximum 6 degrees of freedom can be prescribed, for distributed loads, it is used to denote the distribution function no 
+
+
+
+Definition at line 31 of file Prescribed\+Condition.\+f90.
+
+\mbox{\Hypertarget{structprescribedcondition_1_1prescriinf_a7e97cae9888b22f4229b56b3a0d2e3b1}\label{structprescribedcondition_1_1prescriinf_a7e97cae9888b22f4229b56b3a0d2e3b1}} 
+\index{prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}!follower@{follower}}
+\index{follower@{follower}!prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}}
+\subsubsection{\texorpdfstring{follower}{follower}}
+{\footnotesize\ttfamily integer, dimension(nstrn) prescribedcondition\+::prescriinf\+::follower\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+whether the prescribed quantity is a follower or not\+: 1 is a follower; 0 is not 
+
+
+
+Definition at line 35 of file Prescribed\+Condition.\+f90.
+
+\mbox{\Hypertarget{structprescribedcondition_1_1prescriinf_ad7a7ffe265b06ff7c2a1487bb0b9cf56}\label{structprescribedcondition_1_1prescriinf_ad7a7ffe265b06ff7c2a1487bb0b9cf56}} 
+\index{prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}!id@{id}}
+\index{id@{id}!prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}}
+\subsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily integer prescribedcondition\+::prescriinf\+::id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+where it is applied, could be a node number or member number 
+
+
+
+Definition at line 30 of file Prescribed\+Condition.\+f90.
+
+\mbox{\Hypertarget{structprescribedcondition_1_1prescriinf_afebb4f4446a4d4877901b4d777af811a}\label{structprescribedcondition_1_1prescriinf_afebb4f4446a4d4877901b4d777af811a}} 
+\index{prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}!time\+\_\+fun\+\_\+no@{time\+\_\+fun\+\_\+no}}
+\index{time\+\_\+fun\+\_\+no@{time\+\_\+fun\+\_\+no}!prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}}
+\subsubsection{\texorpdfstring{time\+\_\+fun\+\_\+no}{time\_fun\_no}}
+{\footnotesize\ttfamily integer, dimension(nstrn) prescribedcondition\+::prescriinf\+::time\+\_\+fun\+\_\+no\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+which time function is used 
+
+
+
+Definition at line 34 of file Prescribed\+Condition.\+f90.
+
+\mbox{\Hypertarget{structprescribedcondition_1_1prescriinf_a42fcd5b12e0a171e60ddf14041ab09aa}\label{structprescribedcondition_1_1prescriinf_a42fcd5b12e0a171e60ddf14041ab09aa}} 
+\index{prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}!value@{value}}
+\index{value@{value}!prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}}
+\subsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily real(dbl), dimension(nstrn) prescribedcondition\+::prescriinf\+::value\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the magnitude of the prescribed values 
+
+
+
+Definition at line 33 of file Prescribed\+Condition.\+f90.
+
+\mbox{\Hypertarget{structprescribedcondition_1_1prescriinf_adb8c3bfd5669cc2eccb447f24556ebaf}\label{structprescribedcondition_1_1prescriinf_adb8c3bfd5669cc2eccb447f24556ebaf}} 
+\index{prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}!value\+\_\+current@{value\+\_\+current}}
+\index{value\+\_\+current@{value\+\_\+current}!prescribedcondition\+::prescriinf@{prescribedcondition\+::prescriinf}}
+\subsubsection{\texorpdfstring{value\+\_\+current}{value\_current}}
+{\footnotesize\ttfamily real(dbl), dimension(nstrn) prescribedcondition\+::prescriinf\+::value\+\_\+current\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+indicate the current functional value updated by time steps, calculated internally 
+
+
+
+Definition at line 36 of file Prescribed\+Condition.\+f90.
+
+
+
+The documentation for this type was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/bertrand/these/logiciels/programme/src/\hyperlink{_prescribed_condition_8f90}{Prescribed\+Condition.\+f90}\end{DoxyCompactItemize}

@@ -1,11 +1,14 @@
+# coding=UTF-8
+
+## This class define a composite ply 
 class CompositePly:
-    """
-    This class defined a laminated composite ply with an orthotropic material, 
-    a thickness (m) and a fiber orientation (°)
-    """
+
     def __init__(self,Material,Thickness,Orientation):
+        ## the material of the ply (either IsoMaterial or OrthoMaterial)
         self.Material = Material
+        ## the thickness of the ply (m)
         self.Thickness = Thickness
+        ## the orientation of fiber in case of OrthoMaterial
         self.Orientation = Orientation
         
     def GetMaterial(self):

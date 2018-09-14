@@ -1,0 +1,272 @@
+\hypertarget{classgebtaero_1_1_simulation_1_1_simulation}{}\section{gebtaero.\+Simulation.\+Simulation Class Reference}
+\label{classgebtaero_1_1_simulation_1_1_simulation}\index{gebtaero.\+Simulation.\+Simulation@{gebtaero.\+Simulation.\+Simulation}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a865b25fd48ff7aded232e634e28679c3}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classgebtaero_1_1_wing_1_1_wing}{Wing})
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a2d7432b48522221861693e98b03568c4}{Get\+Wing} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a03a37673e2e1c67de5eaeb261512d122}{Eigenvalues} (self, Vinf, Rho, Alpha\+AC, Beta\+AC, Aero\+Flag, Number\+Of\+Modes, Grav\+Flag=0, verbosity=0, arpack=0, vtk=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a36da2334a6e743a9ab29bdfe1334ed04}{Static\+Loads} (self, Vinf, Rho, Alpha\+AC, Beta\+AC, Grav\+Flag=0, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ab62864a7bf462387f4cbe24b061b803a}{Modal\+Flutter\+Speed} (self, Rho, Vmin, Vmax, Vstep, DeltaV, Aero\+Flag, Freq\+Lim, Alpha\+AC, Beta\+AC, Ksi\+Obj=1e-\/6, Grav\+Flag=0, verbosity=0, arpack=1, Modes\+To\+Compute=20)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a62d8fc83c485da26015167268f4b8bb4}{Modal\+Critical\+Speed} (self, Rho, Vmin, Vmax, Vstep, DeltaV, Aero\+Flag, Alpha\+AC, Beta\+AC, Grav\+Flag=0, verbosity=0, mode=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ac3bea60a9f9d2c552125644a3256df88}{Modal\+Divergence\+Speed} (self, Rho, Vmin, Vmax, Vstep, DeltaV, Aero\+Flag, Alpha\+AC, Beta\+AC, Norm\+Lim=1., Ksi\+Obj=1e-\/6, Grav\+Flag=0, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ae06bc82e983fb16d7f3e303046a39a2e}{Modal\+Flutter\+Speed\+Sorted} (self, Rho, Vmax, DeltaV, Aero\+Flag, Modes\+To\+Compute, Modes\+To\+Plot, Alpha\+AC, Beta\+AC, Ksi\+Obj=1e-\/6, Corr\+Coef=0.\+9, Grav\+Flag=0, verbosity=0, arpack=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a597d75e677892bd4308a6537a27eedb8}{Modal\+Divergence\+Speed\+Sorted} (self, Rho, Vmax, DeltaV, Aero\+Flag, Modes\+To\+Compute, Modes\+To\+Plot, Alpha\+AC, Beta\+AC, Corr\+Coef=0.\+95, Grav\+Flag=0, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ae64bf3c9cef715d9d999acef888a840e}{Eigen\+Tab\+Sorted} (self, Rho, Vmax, DeltaV, Nstep, Aero\+Flag, Modes\+To\+Compute, Modes\+To\+Plot, Alpha\+AC, Beta\+AC, Corr\+Coef=0.\+9, Grav\+Flag=0, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a2907ad4a52664321ef36ca2d05a5ea64}{Eigen\+Tab} (self, Rho, Vmin, Vmax, Nstep, Aero\+Flag, Modes\+To\+Plot, Modes\+To\+Compute, Alpha\+AC, Beta\+AC, Grav\+Flag=0, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a0e2bbc13e4dd2169d7f5a868b7295bd9}{Deformed\+Modal\+Flutter\+Speed} (self, Rho, Vmin, Vmax, DeltaV, Aero\+Flag, Freq\+Lim, Number\+Of\+Modes, Ksitol, Lifttol, Beta\+AC, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a90e05cff1aefd9b6455b6bb1c96d78e4}{Deformed\+Modal\+Flutter\+Speed\+Sorted} (self, Rho, Vmax, DeltaV, Aero\+Flag, Modes\+To\+Compute, Modes\+To\+Plot, Lifttol, Beta\+AC, Ksi\+Obj=1e-\/6, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a36a121ab1505362902de50041d6c2e5d}{Equilibrium\+AoA} (self, Rho, Vinf, Beta\+AC, tolerance, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a5c540ad628ae1dd51acbe119b317e1ca}{Temporal\+Flutter\+Speed} (self, Rho, Vmin, Vmax, DeltaV, Aero\+Flag, Modes\+To\+Plot, Alpha\+AC, Beta\+AC, Ksitol, Nb\+Period, Step\+By\+Period, Coef\+Perturb, Grav\+Flag=0, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ac4f1096583af146da5e23f4365958f3a}{Flutter\+Vtk} (self, Rho, Vmin, Vmax, DeltaV, Aero\+Flag, Alpha\+AC, Beta\+AC, Nb\+Period, Step\+By\+Period, Coef\+Perturb, Coef\+Vinf, Nvtk, Flutter\+Limit=0.\+4, Grav\+Flag=0, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_afcb65f640228d363296f763b98e68248}{Temporal\+Dynamic} (self, Rho, Vinf, Aero\+Flag, Alpha\+AC, Beta\+AC, Time, Nstep, Freq\+Perturb, Time\+Perturb, Coef\+Perturb, Coef\+Vinf, Nvtk, Grav\+Flag=0, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ac3dce2054614b2bbcac1bf97ab9e4ace}{Temporal\+Divergence\+Speed} (self, Rho, Vmin, Vmax, Vstep, DeltaV, Aero\+Flag, Beta\+AC, Grav\+Flag=0, verbosity=0)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a2900b07110293466d8ca5c75ef8e04f8}{Wing}
+\item 
+\hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ad5005a77e6335eaefeec0af47edc46dc}{Input}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}This class contains the methods design to find eigenvalues, static shape, flutter speed
+(modal or temporal), divergence speed of a Wing in a particular configuration (AoA, Vinf,...)
+\end{DoxyVerb}
+ 
+
+Definition at line 12 of file Simulation.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a865b25fd48ff7aded232e634e28679c3}\label{classgebtaero_1_1_simulation_1_1_simulation_a865b25fd48ff7aded232e634e28679c3}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Wing }\end{DoxyParamCaption})}
+
+
+
+Definition at line 17 of file Simulation.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a0e2bbc13e4dd2169d7f5a868b7295bd9}\label{classgebtaero_1_1_simulation_1_1_simulation_a0e2bbc13e4dd2169d7f5a868b7295bd9}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Deformed\+Modal\+Flutter\+Speed@{Deformed\+Modal\+Flutter\+Speed}}
+\index{Deformed\+Modal\+Flutter\+Speed@{Deformed\+Modal\+Flutter\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Deformed\+Modal\+Flutter\+Speed()}{DeformedModalFlutterSpeed()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Deformed\+Modal\+Flutter\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Freq\+Lim,  }\item[{}]{Number\+Of\+Modes,  }\item[{}]{Ksitol,  }\item[{}]{Lifttol,  }\item[{}]{Beta\+AC,  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 717 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a90e05cff1aefd9b6455b6bb1c96d78e4}\label{classgebtaero_1_1_simulation_1_1_simulation_a90e05cff1aefd9b6455b6bb1c96d78e4}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Deformed\+Modal\+Flutter\+Speed\+Sorted@{Deformed\+Modal\+Flutter\+Speed\+Sorted}}
+\index{Deformed\+Modal\+Flutter\+Speed\+Sorted@{Deformed\+Modal\+Flutter\+Speed\+Sorted}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Deformed\+Modal\+Flutter\+Speed\+Sorted()}{DeformedModalFlutterSpeedSorted()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Deformed\+Modal\+Flutter\+Speed\+Sorted (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Modes\+To\+Compute,  }\item[{}]{Modes\+To\+Plot,  }\item[{}]{Lifttol,  }\item[{}]{Beta\+AC,  }\item[{}]{Ksi\+Obj = {\ttfamily 1e-\/6},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 740 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a2907ad4a52664321ef36ca2d05a5ea64}\label{classgebtaero_1_1_simulation_1_1_simulation_a2907ad4a52664321ef36ca2d05a5ea64}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Eigen\+Tab@{Eigen\+Tab}}
+\index{Eigen\+Tab@{Eigen\+Tab}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Eigen\+Tab()}{EigenTab()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Eigen\+Tab (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{Nstep,  }\item[{}]{Aero\+Flag,  }\item[{}]{Modes\+To\+Plot,  }\item[{}]{Modes\+To\+Compute,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 673 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ae64bf3c9cef715d9d999acef888a840e}\label{classgebtaero_1_1_simulation_1_1_simulation_ae64bf3c9cef715d9d999acef888a840e}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Eigen\+Tab\+Sorted@{Eigen\+Tab\+Sorted}}
+\index{Eigen\+Tab\+Sorted@{Eigen\+Tab\+Sorted}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Eigen\+Tab\+Sorted()}{EigenTabSorted()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Eigen\+Tab\+Sorted (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Nstep,  }\item[{}]{Aero\+Flag,  }\item[{}]{Modes\+To\+Compute,  }\item[{}]{Modes\+To\+Plot,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Corr\+Coef = {\ttfamily 0.9},  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 542 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a03a37673e2e1c67de5eaeb261512d122}\label{classgebtaero_1_1_simulation_1_1_simulation_a03a37673e2e1c67de5eaeb261512d122}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Eigenvalues@{Eigenvalues}}
+\index{Eigenvalues@{Eigenvalues}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Eigenvalues()}{Eigenvalues()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Eigenvalues (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Vinf,  }\item[{}]{Rho,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Aero\+Flag,  }\item[{}]{Number\+Of\+Modes,  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0},  }\item[{}]{arpack = {\ttfamily 0},  }\item[{}]{vtk = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 23 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a36a121ab1505362902de50041d6c2e5d}\label{classgebtaero_1_1_simulation_1_1_simulation_a36a121ab1505362902de50041d6c2e5d}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Equilibrium\+AoA@{Equilibrium\+AoA}}
+\index{Equilibrium\+AoA@{Equilibrium\+AoA}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Equilibrium\+Ao\+A()}{EquilibriumAoA()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Equilibrium\+AoA (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vinf,  }\item[{}]{Beta\+AC,  }\item[{}]{tolerance,  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 763 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ac4f1096583af146da5e23f4365958f3a}\label{classgebtaero_1_1_simulation_1_1_simulation_ac4f1096583af146da5e23f4365958f3a}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Flutter\+Vtk@{Flutter\+Vtk}}
+\index{Flutter\+Vtk@{Flutter\+Vtk}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Flutter\+Vtk()}{FlutterVtk()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Flutter\+Vtk (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Nb\+Period,  }\item[{}]{Step\+By\+Period,  }\item[{}]{Coef\+Perturb,  }\item[{}]{Coef\+Vinf,  }\item[{}]{Nvtk,  }\item[{}]{Flutter\+Limit = {\ttfamily 0.4},  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 837 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a2d7432b48522221861693e98b03568c4}\label{classgebtaero_1_1_simulation_1_1_simulation_a2d7432b48522221861693e98b03568c4}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Get\+Wing@{Get\+Wing}}
+\index{Get\+Wing@{Get\+Wing}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Get\+Wing()}{GetWing()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Get\+Wing (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 20 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a62d8fc83c485da26015167268f4b8bb4}\label{classgebtaero_1_1_simulation_1_1_simulation_a62d8fc83c485da26015167268f4b8bb4}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Critical\+Speed@{Modal\+Critical\+Speed}}
+\index{Modal\+Critical\+Speed@{Modal\+Critical\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Modal\+Critical\+Speed()}{ModalCriticalSpeed()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Modal\+Critical\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{Vstep,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0},  }\item[{}]{mode = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 124 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ac3bea60a9f9d2c552125644a3256df88}\label{classgebtaero_1_1_simulation_1_1_simulation_ac3bea60a9f9d2c552125644a3256df88}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Divergence\+Speed@{Modal\+Divergence\+Speed}}
+\index{Modal\+Divergence\+Speed@{Modal\+Divergence\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Modal\+Divergence\+Speed()}{ModalDivergenceSpeed()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Modal\+Divergence\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{Vstep,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Norm\+Lim = {\ttfamily 1.},  }\item[{}]{Ksi\+Obj = {\ttfamily 1e-\/6},  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 240 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a597d75e677892bd4308a6537a27eedb8}\label{classgebtaero_1_1_simulation_1_1_simulation_a597d75e677892bd4308a6537a27eedb8}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Divergence\+Speed\+Sorted@{Modal\+Divergence\+Speed\+Sorted}}
+\index{Modal\+Divergence\+Speed\+Sorted@{Modal\+Divergence\+Speed\+Sorted}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Modal\+Divergence\+Speed\+Sorted()}{ModalDivergenceSpeedSorted()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Modal\+Divergence\+Speed\+Sorted (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Modes\+To\+Compute,  }\item[{}]{Modes\+To\+Plot,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Corr\+Coef = {\ttfamily 0.95},  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 427 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ab62864a7bf462387f4cbe24b061b803a}\label{classgebtaero_1_1_simulation_1_1_simulation_ab62864a7bf462387f4cbe24b061b803a}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Flutter\+Speed@{Modal\+Flutter\+Speed}}
+\index{Modal\+Flutter\+Speed@{Modal\+Flutter\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Modal\+Flutter\+Speed()}{ModalFlutterSpeed()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Modal\+Flutter\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{Vstep,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Freq\+Lim,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Ksi\+Obj = {\ttfamily 1e-\/6},  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0},  }\item[{}]{arpack = {\ttfamily 1},  }\item[{}]{Modes\+To\+Compute = {\ttfamily 20} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 56 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ae06bc82e983fb16d7f3e303046a39a2e}\label{classgebtaero_1_1_simulation_1_1_simulation_ae06bc82e983fb16d7f3e303046a39a2e}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Flutter\+Speed\+Sorted@{Modal\+Flutter\+Speed\+Sorted}}
+\index{Modal\+Flutter\+Speed\+Sorted@{Modal\+Flutter\+Speed\+Sorted}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Modal\+Flutter\+Speed\+Sorted()}{ModalFlutterSpeedSorted()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Modal\+Flutter\+Speed\+Sorted (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Modes\+To\+Compute,  }\item[{}]{Modes\+To\+Plot,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Ksi\+Obj = {\ttfamily 1e-\/6},  }\item[{}]{Corr\+Coef = {\ttfamily 0.9},  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0},  }\item[{}]{arpack = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 299 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a36da2334a6e743a9ab29bdfe1334ed04}\label{classgebtaero_1_1_simulation_1_1_simulation_a36da2334a6e743a9ab29bdfe1334ed04}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Static\+Loads@{Static\+Loads}}
+\index{Static\+Loads@{Static\+Loads}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Static\+Loads()}{StaticLoads()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Static\+Loads (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Vinf,  }\item[{}]{Rho,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 40 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ac3dce2054614b2bbcac1bf97ab9e4ace}\label{classgebtaero_1_1_simulation_1_1_simulation_ac3dce2054614b2bbcac1bf97ab9e4ace}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Temporal\+Divergence\+Speed@{Temporal\+Divergence\+Speed}}
+\index{Temporal\+Divergence\+Speed@{Temporal\+Divergence\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Temporal\+Divergence\+Speed()}{TemporalDivergenceSpeed()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Temporal\+Divergence\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{Vstep,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Beta\+AC,  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 928 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_afcb65f640228d363296f763b98e68248}\label{classgebtaero_1_1_simulation_1_1_simulation_afcb65f640228d363296f763b98e68248}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Temporal\+Dynamic@{Temporal\+Dynamic}}
+\index{Temporal\+Dynamic@{Temporal\+Dynamic}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Temporal\+Dynamic()}{TemporalDynamic()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Temporal\+Dynamic (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vinf,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Time,  }\item[{}]{Nstep,  }\item[{}]{Freq\+Perturb,  }\item[{}]{Time\+Perturb,  }\item[{}]{Coef\+Perturb,  }\item[{}]{Coef\+Vinf,  }\item[{}]{Nvtk,  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 896 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a5c540ad628ae1dd51acbe119b317e1ca}\label{classgebtaero_1_1_simulation_1_1_simulation_a5c540ad628ae1dd51acbe119b317e1ca}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Temporal\+Flutter\+Speed@{Temporal\+Flutter\+Speed}}
+\index{Temporal\+Flutter\+Speed@{Temporal\+Flutter\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Temporal\+Flutter\+Speed()}{TemporalFlutterSpeed()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Temporal\+Flutter\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Modes\+To\+Plot,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Ksitol,  }\item[{}]{Nb\+Period,  }\item[{}]{Step\+By\+Period,  }\item[{}]{Coef\+Perturb,  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 781 of file Simulation.\+py.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ad5005a77e6335eaefeec0af47edc46dc}\label{classgebtaero_1_1_simulation_1_1_simulation_ad5005a77e6335eaefeec0af47edc46dc}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Input@{Input}}
+\index{Input@{Input}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Input}{Input}}
+{\footnotesize\ttfamily gebtaero.\+Simulation.\+Simulation.\+Input}
+
+
+
+Definition at line 26 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a2900b07110293466d8ca5c75ef8e04f8}\label{classgebtaero_1_1_simulation_1_1_simulation_a2900b07110293466d8ca5c75ef8e04f8}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Wing@{Wing}}
+\index{Wing@{Wing}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Wing}{Wing}}
+{\footnotesize\ttfamily gebtaero.\+Simulation.\+Simulation.\+Wing}
+
+
+
+Definition at line 18 of file Simulation.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/bertrand/these/logiciels/programme/interface/src/gebtaero/\hyperlink{_simulation_8py}{Simulation.\+py}\end{DoxyCompactItemize}

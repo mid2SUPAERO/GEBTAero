@@ -1,0 +1,258 @@
+\hypertarget{namespacesystem}{}\section{system Module Reference}
+\label{namespacesystem}\index{system@{system}}
+
+
+This module assemles the system including the coefficient matrix (jacobian matrix) and the right hand side (negative of the equation values) $\ast$.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespacesystem_aca86d62bded01533c138c9e2298cc804}{assemblejacobian} (ndof\+\_\+el, niter, memb\+\_\+info, v\+\_\+root\+\_\+a, omega\+\_\+a, member, error, ncond\+\_\+mb, mb\+\_\+condition, distr\+\_\+fun, dof\+\_\+con, x, aero\+\_\+flag, grav\+\_\+flag, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em Assemble the coefficient matrix of the beam system $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacesystem_a442f9666f95d674029a7fbe213b47f8a}{assemblerhs} (ndof\+\_\+el, memb\+\_\+info, v\+\_\+root\+\_\+a, omega\+\_\+a, member, error, ncond\+\_\+mb, mb\+\_\+condition, distr\+\_\+fun, dof\+\_\+con, x, rhs, aero\+\_\+flag, grav\+\_\+flag, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em Assemble the right hand side. \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespacesystem_a048a8c1a606cebab7e33f3ae1877c31a}{pointfollowerj} (flag, nrow, ncol, e\+C\+Ttheta)
+\begin{DoxyCompactList}\small\item\em Add the contribution to Jacobian matrix due to follower point force or moments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+real(dbl), dimension(nstrn) \hyperlink{namespacesystem_a9db5b0f39df1dc763bd7885fa9f4389d}{x\+\_\+pt}
+\begin{DoxyCompactList}\small\item\em the solution from the previous step for a key point. \end{DoxyCompactList}\item 
+integer, dimension(nstrn) \hyperlink{namespacesystem_a1ec6fa7d33c56b907f960706f2c49a97}{kp\+\_\+dof}
+\begin{DoxyCompactList}\small\item\em prescribed dof \end{DoxyCompactList}\item 
+real(dbl), dimension(nstrn) \hyperlink{namespacesystem_a52739e5016f753e4d31c5f933aa2b79a}{kp\+\_\+cond}
+\begin{DoxyCompactList}\small\item\em prescribed value \end{DoxyCompactList}\item 
+integer, dimension(nstrn) \hyperlink{namespacesystem_af7b15e252e65635b4d03452e4c717697}{kp\+\_\+follower}
+\begin{DoxyCompactList}\small\item\em follower condition \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespacesystem_a8c97c1868622a50b42869db23d0a2f11}{ne}
+\begin{DoxyCompactList}\small\item\em Number of nonzero coefficients. \end{DoxyCompactList}\item 
+integer, dimension(\+:), allocatable, public \hyperlink{namespacesystem_af8a50eade1073ff9c211526848dcec38}{irn}
+\begin{DoxyCompactList}\small\item\em line index of nonzero coefficients \end{DoxyCompactList}\item 
+integer, dimension(\+:), allocatable, public \hyperlink{namespacesystem_a32a5c04fae61a0d6a90727cd0bab43a7}{jcn}
+\begin{DoxyCompactList}\small\item\em column index of nonzero coefficients \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:), allocatable, public \hyperlink{namespacesystem_ac5c6f08d5a21faff727c9a1240bae697}{coef}
+\begin{DoxyCompactList}\small\item\em value of nonzero coefficients \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module assemles the system including the coefficient matrix (jacobian matrix) and the right hand side (negative of the equation values) $\ast$. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacesystem_aca86d62bded01533c138c9e2298cc804}\label{namespacesystem_aca86d62bded01533c138c9e2298cc804}} 
+\index{system@{system}!assemblejacobian@{assemblejacobian}}
+\index{assemblejacobian@{assemblejacobian}!system@{system}}
+\subsubsection{\texorpdfstring{assemblejacobian()}{assemblejacobian()}}
+{\footnotesize\ttfamily subroutine, public system\+::assemblejacobian (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{integer, intent(in)}]{niter,  }\item[{type (memberinf), dimension(\+:), intent(in)}]{memb\+\_\+info,  }\item[{real(dbl), dimension(\+:), intent(in)}]{v\+\_\+root\+\_\+a,  }\item[{real(dbl), dimension(\+:), intent(in)}]{omega\+\_\+a,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{character($\ast$), intent(out)}]{error,  }\item[{integer, intent(in)}]{ncond\+\_\+mb,  }\item[{type(prescriinf), dimension(\+:), intent(in)}]{mb\+\_\+condition,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{distr\+\_\+fun,  }\item[{integer, dimension(\+:)}]{dof\+\_\+con,  }\item[{real(dbl), dimension(\+:), intent(in)}]{x,  }\item[{integer, intent(in)}]{aero\+\_\+flag,  }\item[{integer, intent(in)}]{grav\+\_\+flag,  }\item[{real(dbl), dimension(\+:,\+:), intent(in), optional}]{init\+\_\+cond }\end{DoxyParamCaption})}
+
+
+
+Assemble the coefficient matrix of the beam system $\ast$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em niter} & \hyperlink{namespaceioaero_ac008486fd12e0029a1ef77b3ca5e12c3}{ioaero\+::niter}\\
+\hline
+\mbox{\tt in}  & {\em aero\+\_\+flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em grav\+\_\+flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em v\+\_\+root\+\_\+a} & linear velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em omega\+\_\+a} & angular velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em memb\+\_\+info} & contains the member parameters of the whole structure\\
+\hline
+\mbox{\tt in}  & {\em distr\+\_\+fun} & \hyperlink{namespaceioaero_a1d7c3689e30c2925cd403a84e9176242}{ioaero\+::distr\+\_\+fun}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in}  & {\em ncond\+\_\+mb} & \hyperlink{namespaceioaero_ab9193f4ff70a22ae5858118fc653f22b}{ioaero\+::ncond\+\_\+mb}\\
+\hline
+ & {\em dof\+\_\+con} & note dof\+\_\+con is passed by value, hence what is changed in this subroutine will not affect the original value.\\
+\hline
+\mbox{\tt in}  & {\em x} & solution vector\\
+\hline
+\mbox{\tt in}  & {\em mb\+\_\+condition} & \hyperlink{namespaceioaero_a2463929ef049b49fe7b49011c66cc806}{ioaero\+::mb\+\_\+condition}\\
+\hline
+\mbox{\tt out}  & {\em error} & \hyperlink{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}{ioaero\+::error}\\
+\hline
+\mbox{\tt in}  & {\em init\+\_\+cond} & \hyperlink{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}{ioaero\+::init\+\_\+cond} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 48 of file System.\+f90.
+
+\mbox{\Hypertarget{namespacesystem_a442f9666f95d674029a7fbe213b47f8a}\label{namespacesystem_a442f9666f95d674029a7fbe213b47f8a}} 
+\index{system@{system}!assemblerhs@{assemblerhs}}
+\index{assemblerhs@{assemblerhs}!system@{system}}
+\subsubsection{\texorpdfstring{assemblerhs()}{assemblerhs()}}
+{\footnotesize\ttfamily subroutine, public system\+::assemblerhs (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{type (memberinf), dimension(\+:), intent(in)}]{memb\+\_\+info,  }\item[{real(dbl), dimension(\+:), intent(in)}]{v\+\_\+root\+\_\+a,  }\item[{real(dbl), dimension(\+:), intent(in)}]{omega\+\_\+a,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{character($\ast$), intent(out)}]{error,  }\item[{integer, intent(in)}]{ncond\+\_\+mb,  }\item[{type(prescriinf), dimension(\+:), intent(in)}]{mb\+\_\+condition,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{distr\+\_\+fun,  }\item[{integer, dimension(\+:)}]{dof\+\_\+con,  }\item[{real(dbl), dimension(\+:), intent(in)}]{x,  }\item[{real(dbl), dimension(\+:), intent(out)}]{rhs,  }\item[{integer, intent(in)}]{aero\+\_\+flag,  }\item[{integer, intent(in)}]{grav\+\_\+flag,  }\item[{real(dbl), dimension(\+:,\+:), intent(in), optional}]{init\+\_\+cond }\end{DoxyParamCaption})}
+
+
+
+Assemble the right hand side. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em aero\+\_\+flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em grav\+\_\+flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em memb\+\_\+info} & contains the member parameters of the whole structure\\
+\hline
+\mbox{\tt in}  & {\em v\+\_\+root\+\_\+a} & linear velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em omega\+\_\+a} & angular velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em distr\+\_\+fun} & \hyperlink{namespaceioaero_a1d7c3689e30c2925cd403a84e9176242}{ioaero\+::distr\+\_\+fun}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in}  & {\em ncond\+\_\+mb} & \hyperlink{namespaceioaero_ab9193f4ff70a22ae5858118fc653f22b}{ioaero\+::ncond\+\_\+mb}\\
+\hline
+\mbox{\tt in}  & {\em x} & solution vector\\
+\hline
+\mbox{\tt in}  & {\em mb\+\_\+condition} & \hyperlink{namespaceioaero_a2463929ef049b49fe7b49011c66cc806}{ioaero\+::mb\+\_\+condition}\\
+\hline
+\mbox{\tt in}  & {\em init\+\_\+cond} & \hyperlink{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}{ioaero\+::init\+\_\+cond} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 321 of file System.\+f90.
+
+\mbox{\Hypertarget{namespacesystem_a048a8c1a606cebab7e33f3ae1877c31a}\label{namespacesystem_a048a8c1a606cebab7e33f3ae1877c31a}} 
+\index{system@{system}!pointfollowerj@{pointfollowerj}}
+\index{pointfollowerj@{pointfollowerj}!system@{system}}
+\subsubsection{\texorpdfstring{pointfollowerj()}{pointfollowerj()}}
+{\footnotesize\ttfamily subroutine system\+::pointfollowerj (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{flag,  }\item[{integer, intent(in)}]{nrow,  }\item[{integer, intent(in)}]{ncol,  }\item[{real(dbl), dimension(\+:,\+:,\+:), intent(in)}]{e\+C\+Ttheta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Add the contribution to Jacobian matrix due to follower point force or moments. 
+
+
+
+Definition at line 502 of file System.\+f90.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacesystem_ac5c6f08d5a21faff727c9a1240bae697}\label{namespacesystem_ac5c6f08d5a21faff727c9a1240bae697}} 
+\index{system@{system}!coef@{coef}}
+\index{coef@{coef}!system@{system}}
+\subsubsection{\texorpdfstring{coef}{coef}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:), allocatable, public system\+::coef}
+
+
+
+value of nonzero coefficients 
+
+
+
+Definition at line 35 of file System.\+f90.
+
+\mbox{\Hypertarget{namespacesystem_af8a50eade1073ff9c211526848dcec38}\label{namespacesystem_af8a50eade1073ff9c211526848dcec38}} 
+\index{system@{system}!irn@{irn}}
+\index{irn@{irn}!system@{system}}
+\subsubsection{\texorpdfstring{irn}{irn}}
+{\footnotesize\ttfamily integer, dimension(\+:), allocatable, public system\+::irn}
+
+
+
+line index of nonzero coefficients 
+
+
+
+Definition at line 33 of file System.\+f90.
+
+\mbox{\Hypertarget{namespacesystem_a32a5c04fae61a0d6a90727cd0bab43a7}\label{namespacesystem_a32a5c04fae61a0d6a90727cd0bab43a7}} 
+\index{system@{system}!jcn@{jcn}}
+\index{jcn@{jcn}!system@{system}}
+\subsubsection{\texorpdfstring{jcn}{jcn}}
+{\footnotesize\ttfamily integer, dimension(\+:), allocatable, public system\+::jcn}
+
+
+
+column index of nonzero coefficients 
+
+
+
+Definition at line 34 of file System.\+f90.
+
+\mbox{\Hypertarget{namespacesystem_a52739e5016f753e4d31c5f933aa2b79a}\label{namespacesystem_a52739e5016f753e4d31c5f933aa2b79a}} 
+\index{system@{system}!kp\+\_\+cond@{kp\+\_\+cond}}
+\index{kp\+\_\+cond@{kp\+\_\+cond}!system@{system}}
+\subsubsection{\texorpdfstring{kp\+\_\+cond}{kp\_cond}}
+{\footnotesize\ttfamily real(dbl), dimension(nstrn) system\+::kp\+\_\+cond\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+prescribed value 
+
+
+
+Definition at line 29 of file System.\+f90.
+
+\mbox{\Hypertarget{namespacesystem_a1ec6fa7d33c56b907f960706f2c49a97}\label{namespacesystem_a1ec6fa7d33c56b907f960706f2c49a97}} 
+\index{system@{system}!kp\+\_\+dof@{kp\+\_\+dof}}
+\index{kp\+\_\+dof@{kp\+\_\+dof}!system@{system}}
+\subsubsection{\texorpdfstring{kp\+\_\+dof}{kp\_dof}}
+{\footnotesize\ttfamily integer, dimension(nstrn) system\+::kp\+\_\+dof\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+prescribed dof 
+
+
+
+Definition at line 28 of file System.\+f90.
+
+\mbox{\Hypertarget{namespacesystem_af7b15e252e65635b4d03452e4c717697}\label{namespacesystem_af7b15e252e65635b4d03452e4c717697}} 
+\index{system@{system}!kp\+\_\+follower@{kp\+\_\+follower}}
+\index{kp\+\_\+follower@{kp\+\_\+follower}!system@{system}}
+\subsubsection{\texorpdfstring{kp\+\_\+follower}{kp\_follower}}
+{\footnotesize\ttfamily integer, dimension(nstrn) system\+::kp\+\_\+follower\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+follower condition 
+
+
+
+Definition at line 30 of file System.\+f90.
+
+\mbox{\Hypertarget{namespacesystem_a8c97c1868622a50b42869db23d0a2f11}\label{namespacesystem_a8c97c1868622a50b42869db23d0a2f11}} 
+\index{system@{system}!ne@{ne}}
+\index{ne@{ne}!system@{system}}
+\subsubsection{\texorpdfstring{ne}{ne}}
+{\footnotesize\ttfamily integer, public system\+::ne}
+
+
+
+Number of nonzero coefficients. 
+
+
+
+Definition at line 32 of file System.\+f90.
+
+\mbox{\Hypertarget{namespacesystem_a9db5b0f39df1dc763bd7885fa9f4389d}\label{namespacesystem_a9db5b0f39df1dc763bd7885fa9f4389d}} 
+\index{system@{system}!x\+\_\+pt@{x\+\_\+pt}}
+\index{x\+\_\+pt@{x\+\_\+pt}!system@{system}}
+\subsubsection{\texorpdfstring{x\+\_\+pt}{x\_pt}}
+{\footnotesize\ttfamily real(dbl), dimension(nstrn) system\+::x\+\_\+pt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the solution from the previous step for a key point. 
+
+
+
+Definition at line 27 of file System.\+f90.
+

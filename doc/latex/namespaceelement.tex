@@ -1,0 +1,1032 @@
+\hypertarget{namespaceelement}{}\section{element Module Reference}
+\label{namespaceelement}\index{element@{element}}
+
+
+This module contains information and calculation for an element within a member.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+real(dbl) function, dimension(ndof\+\_\+el+ndof\+\_\+nd), public \hyperlink{namespaceelement_a267c29ec99208b5121ba2c6af7180016}{elemeqn} (ndof\+\_\+el)
+\begin{DoxyCompactList}\small\item\em Compute the value of the Right Hand Side for a finite element. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespaceelement_a172c175acb51f133e8b15a64c6e7f238}{elemjacobian} (ndof\+\_\+el, niter, elem\+Jac)
+\begin{DoxyCompactList}\small\item\em Caculate the Jacobian matrix for each element. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespaceelement_aeac4f943f8f4e225381fac5a1278d4eb}{elemmass} (ndof\+\_\+el, elemM)
+\begin{DoxyCompactList}\small\item\em Caculate the mass matrix for each element. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespaceelement_aa0f853882f2705c359567e433bb31fe9}{extractelementproperties} (elem\+\_\+no, memb\+\_\+info\+\_\+i, x\+\_\+elem, v\+\_\+root\+\_\+a, omega\+\_\+a, ndof\+\_\+el, init\+\_\+elem, aero\+\_\+flag, grav\+\_\+flag)
+\begin{DoxyCompactList}\small\item\em Extract element properties needed for element assembly. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+real(dbl) \hyperlink{namespaceelement_a2ba7b882a33de416921d1a35d3a5e23a}{dl}
+\begin{DoxyCompactList}\small\item\em length of the element \end{DoxyCompactList}\item 
+real(dbl) \hyperlink{namespaceelement_a10e7976ce4185b147c590f281b7691b1}{le}
+\begin{DoxyCompactList}\small\item\em the ending arc length of the current element \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim, ndim) \hyperlink{namespaceelement_a235dfda3fd31cfbf932e5a7cba3d18ec}{ecab}
+\begin{DoxyCompactList}\small\item\em direction cosine matrix of the undeformed element \end{DoxyCompactList}\item 
+real(dbl), dimension(nstrn, nstrn) \hyperlink{namespaceelement_a5cd41224c84f496a89d157c781b0d207}{eflex}
+\begin{DoxyCompactList}\small\item\em flexibility matrix of the elment \end{DoxyCompactList}\item 
+real(dbl), dimension(nstrn, nstrn) \hyperlink{namespaceelement_acd7a12a677d8157d3f792f2090fd0664}{emass}
+\begin{DoxyCompactList}\small\item\em inverse of the mass matrix of the element \end{DoxyCompactList}\item 
+type(distriload), public \hyperlink{namespaceelement_a99d2f733169debb6f9d7d8b30fbc49c4}{load}
+\begin{DoxyCompactList}\small\item\em distributed load \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespaceelement_a4fecf0570d257bca42bf4ece885f4721}{exist\+\_\+load}
+\item 
+logical, public \hyperlink{namespaceelement_a2babdd1ffcf39971fb9b118d88d1e223}{follower\+\_\+load}
+\begin{DoxyCompactList}\small\item\em flags to indicate whether distributed load exist and whether they are follower forces \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_ad1b3c2d05a1c131831f0d4eef43f9105}{ui}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_ac0a8fcda10d1b0af47fd7d713ebcd5fe}{theta}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_aa97de262111f37b6e4b721cad221946a}{fi}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_aaa8af943c974b60b3eeacd9ea685f28b}{mi}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_aa1c0af00208b47c11ed5b1dc17fb33b3}{e1gammad}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_ad5ea7346491c313bb4094d1838fe747e}{kappa}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_afd7049cf1988fff1d20ea9fae6290b27}{epi}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_aec782f88829f63bff819c43e9c19f02c}{hi}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a7e7198874f6dd0702abdd8ba0dfc7c2d}{vi}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_ad819facefa1f1184a10576007ac79ba4}{omegai}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a38ecc4368e8e51d5672ad47f1a79536e}{ev\+\_\+i}
+\begin{DoxyCompactList}\small\item\em initial velocity of the mid point of the element \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a8d354f7c393ef7f0ba4144a20b5390ba}{eomega\+\_\+a}
+\begin{DoxyCompactList}\small\item\em initial angular velocity of the element \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim, ndim) \hyperlink{namespaceelement_a355b3273dce5e581cf75d079f4f4557d}{ect}
+\begin{DoxyCompactList}\small\item\em the transpose of the direction cosine matrix corresponding to elastic rotation \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim, ndim) \hyperlink{namespaceelement_a94c9e7eb21bc71af7de19ee37093b959}{ectcab}
+\begin{DoxyCompactList}\small\item\em e\+C\+T.\+Cab \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim, ndim) \hyperlink{namespaceelement_af027b6db49efde36e310bc9e4f8e0d06}{ecabhalfl}
+\begin{DoxyCompactList}\small\item\em e\+Cab$\ast$d\+L/2 \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim, ndim) \hyperlink{namespaceelement_afa3adc34db2cdcd479dd21a3873ef5d1}{ectcabhalfl}
+\begin{DoxyCompactList}\small\item\em e\+C\+T\+Cab$\ast$d\+L/2 \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a0ceabdb65183ba09653081ad8ca4259d}{uidot}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a7404d160f35ff4cfc4ea3e3d8f76cb89}{thetadot}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a8dd69dbb67c325d43811863c2f95e9e0}{ctcabpdot}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a4afdc10a9e39215ab6c7d03fe10a4473}{ctcabhdot}
+\item 
+real(dbl) \hyperlink{namespaceelement_a3c256e3e6f1a658f469f77ed8f7d033e}{rho}
+\item 
+real(dbl) \hyperlink{namespaceelement_a55d26e2f0da1242eeb9cc8d3d589f1e5}{chord}
+\item 
+real(dbl) \hyperlink{namespaceelement_aa46e16e8787633edb4e4c0c8c6809ecb}{x\+\_\+cg}
+\item 
+real(dbl) \hyperlink{namespaceelement_aa45829429fe33aa2b5cd6feaacc2c739}{alpha}
+\item 
+real(dbl) \hyperlink{namespaceelement_ac749aa20088ae7c80700929a64803dfe}{alphadot}
+\item 
+real(dbl) \hyperlink{namespaceelement_a50a818b525bc9fc33afce618163cb17e}{hdot}
+\item 
+real(dbl) \hyperlink{namespaceelement_a3a0a4401f2461a4b65f656a9af6e23d8}{aw}
+\item 
+real(dbl) \hyperlink{namespaceelement_af3dda698afcf40c00ff5008dc5f3da36}{bw}
+\item 
+real(dbl) \hyperlink{namespaceelement_a6d48ee96f674959ef1225a3730fcf3e7}{u}
+\item 
+real(dbl) \hyperlink{namespaceelement_a012a2b1125e535b957a6be4ea842da6d}{hdotdot}
+\item 
+real(dbl) \hyperlink{namespaceelement_a3b4df4c1043c9ebd56f5d23ca24d00ac}{alphadotdot}
+\item 
+real(dbl) \hyperlink{namespaceelement_aab90697519f32a9a4f56786465c1bd0b}{alpha\+\_\+ac}
+\item 
+real(dbl) \hyperlink{namespaceelement_a9ab0720aafb3053cad927fc402be3000}{beta\+\_\+ac}
+\item 
+real(dbl) \hyperlink{namespaceelement_a1ea3f00156313fce1a3de0a00499702c}{beta}
+\item 
+integer \hyperlink{namespaceelement_a17661475127df7ce4d09fb1e942cbd58}{a\+\_\+flag}
+\item 
+integer \hyperlink{namespaceelement_a4f9b46e901684a30dec91ad363247dd3}{g\+\_\+flag}
+\item 
+real(dbl), dimension(nstates) \hyperlink{namespaceelement_abfc6a3777c98caf9d75aa0fa4ce97e17}{lambda}
+\item 
+real(dbl), dimension(nstates) \hyperlink{namespaceelement_a627873fe5856f3a9c95039d8f6877039}{lambdadot}
+\item 
+real(dbl), dimension(nstates, 2 $\ast$nstates+2) \hyperlink{namespaceelement_abf487a07f5188539bf21883fc0a10c70}{p}
+\item 
+real(dbl), dimension(nstates, nstates) \hyperlink{namespaceelement_af575d84cfbaeca87aec268f375efac06}{ident}
+\item 
+real(dbl) \hyperlink{namespaceelement_aa9695f47555869b8d547d0d87d49275e}{lambda0}
+\item 
+real(dbl), dimension(nstates, nstates) \hyperlink{namespaceelement_ad0c7d68510d195a504efc593e729263f}{a}
+\item 
+real(dbl), dimension(nstates) \hyperlink{namespaceelement_a031bf1cdfa87524ec1b508c44f537002}{b}
+\item 
+real(dbl), dimension(nstates) \hyperlink{namespaceelement_a1203577a202409830d687bf3b68c621e}{c}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a88c83da354d518bfd81c3ef7691b4682}{dir\+\_\+moment}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a10ce0718ec68d00dd9fab0c290410366}{dir\+\_\+lift}
+\item 
+real(dbl), dimension(ndim, ndim) \hyperlink{namespaceelement_a1dcc074ceaab61da55e1b1964ea3d235}{jdir\+\_\+moment}
+\item 
+real(dbl), dimension(ndim, ndim) \hyperlink{namespaceelement_a580ce3f83ad83383203449b2d8f4a3a4}{jdir\+\_\+lift}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a38bfdfabd1e6c253836e6fb02c0d6784}{jalpha\+\_\+theta}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a6c09852dc997af8b311d0ced2855794d}{jalphadot\+\_\+theta}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_a8fc86f2f6fcef7f4b4216181ed52a8b7}{jhdot\+\_\+theta}
+\item 
+real(dbl), dimension(ndim+ndim) \hyperlink{namespaceelement_a21fa4f1bba2c9d7c57ba982869fe0a95}{jalphadot\+\_\+ph}
+\item 
+real(dbl), dimension(ndim+ndim) \hyperlink{namespaceelement_a9ef70f6658a771b1ae6491475da5f9c3}{jhdot\+\_\+ph}
+\item 
+real(dbl), dimension(ndim+ndim) \hyperlink{namespaceelement_ab9d2421c52f64e5ff0b10858aca6bd43}{jalphadotdot\+\_\+phdot}
+\item 
+real(dbl), dimension(ndim+ndim) \hyperlink{namespaceelement_a0928be80ffe200a8be069851f2c20dbd}{jhdotdot\+\_\+phdot}
+\item 
+real(dbl), dimension(ndim+ndim) \hyperlink{namespaceelement_a098f0887e0821d48cc06e45f446b9aab}{jalphadotdot\+\_\+ph}
+\item 
+real(dbl), dimension(ndim+ndim) \hyperlink{namespaceelement_a2ce32735f66193668003049e1cf17d61}{jhdotdot\+\_\+ph}
+\item 
+real(dbl), dimension(ndim+ndim) \hyperlink{namespaceelement_a7c62d3aab34ad67ea920d7293726205e}{jlambda0\+\_\+phdot}
+\item 
+real(dbl), dimension(nstates) \hyperlink{namespaceelement_abb09debf79a65110c87abb4892423e00}{jlambda0\+\_\+lambda}
+\item 
+real(dbl), dimension(3, 18+nstates) \hyperlink{namespaceelement_a2cc8d4739c02a1302e8c31d681c70eb8}{jlift}
+\item 
+real(dbl), dimension(3, 18+nstates) \hyperlink{namespaceelement_ac6e33874e30f493a8e29de4f0c87af0a}{jmoment}
+\item 
+real(dbl), dimension(ndim, ndim) \hyperlink{namespaceelement_a8cf9df9304438d7eaddcd8609c6968c5}{ecaf}
+\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceelement_aeced564b191f69b1327f9b9164f371f5}{wind}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module contains information and calculation for an element within a member. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespaceelement_a267c29ec99208b5121ba2c6af7180016}\label{namespaceelement_a267c29ec99208b5121ba2c6af7180016}} 
+\index{element@{element}!elemeqn@{elemeqn}}
+\index{elemeqn@{elemeqn}!element@{element}}
+\subsubsection{\texorpdfstring{elemeqn()}{elemeqn()}}
+{\footnotesize\ttfamily real(dbl) function, dimension(ndof\+\_\+el+ndof\+\_\+nd), public element\+::elemeqn (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el }\end{DoxyParamCaption})}
+
+
+
+Compute the value of the Right Hand Side for a finite element. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 79 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a172c175acb51f133e8b15a64c6e7f238}\label{namespaceelement_a172c175acb51f133e8b15a64c6e7f238}} 
+\index{element@{element}!elemjacobian@{elemjacobian}}
+\index{elemjacobian@{elemjacobian}!element@{element}}
+\subsubsection{\texorpdfstring{elemjacobian()}{elemjacobian()}}
+{\footnotesize\ttfamily subroutine, public element\+::elemjacobian (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{integer, intent(in)}]{niter,  }\item[{real(dbl), dimension(\+:,\+:), intent(out)}]{elem\+Jac }\end{DoxyParamCaption})}
+
+
+
+Caculate the Jacobian matrix for each element. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em niter} & \hyperlink{namespaceioaero_ac008486fd12e0029a1ef77b3ca5e12c3}{ioaero\+::niter}\\
+\hline
+\mbox{\tt out}  & {\em elemjac} & the coefficient matrix for each element \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 209 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_aeac4f943f8f4e225381fac5a1278d4eb}\label{namespaceelement_aeac4f943f8f4e225381fac5a1278d4eb}} 
+\index{element@{element}!elemmass@{elemmass}}
+\index{elemmass@{elemmass}!element@{element}}
+\subsubsection{\texorpdfstring{elemmass()}{elemmass()}}
+{\footnotesize\ttfamily subroutine, public element\+::elemmass (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{real(dbl), dimension(\+:,\+:), intent(out)}]{elemM }\end{DoxyParamCaption})}
+
+
+
+Caculate the mass matrix for each element. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt out}  & {\em elemm} & the mass matrix for each element \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 487 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_aa0f853882f2705c359567e433bb31fe9}\label{namespaceelement_aa0f853882f2705c359567e433bb31fe9}} 
+\index{element@{element}!extractelementproperties@{extractelementproperties}}
+\index{extractelementproperties@{extractelementproperties}!element@{element}}
+\subsubsection{\texorpdfstring{extractelementproperties()}{extractelementproperties()}}
+{\footnotesize\ttfamily subroutine, public element\+::extractelementproperties (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{elem\+\_\+no,  }\item[{type (memberinf), intent(in)}]{memb\+\_\+info\+\_\+i,  }\item[{real(dbl), dimension(\+:), intent(in)}]{x\+\_\+elem,  }\item[{real(dbl), dimension(\+:), intent(in)}]{v\+\_\+root\+\_\+a,  }\item[{real(dbl), dimension(\+:), intent(in)}]{omega\+\_\+a,  }\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{real(dbl), dimension(\+:,\+:), intent(inout)}]{init\+\_\+elem,  }\item[{integer, intent(in)}]{aero\+\_\+flag,  }\item[{integer, intent(in)}]{grav\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Extract element properties needed for element assembly. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em elem\+\_\+no} & Element index\\
+\hline
+\mbox{\tt in}  & {\em memb\+\_\+info\+\_\+i} & the paramater of the members (see memberinf Type)\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+elem} & the 12 variables of the element u\+\_\+i, , F\+\_\+i, M\+\_\+i, for dynamic analysis, 6 more Pi, Hi. for initial step, x\+\_\+elem contains, C\+T\+Cab\+Pdot, C\+T\+Cab\+Hdot, F\+\_\+i, M\+\_\+i, P\+\_\+i, H\+\_\+i. Finally for Peters aero the Ns induced flow states\\
+\hline
+\mbox{\tt in}  & {\em v\+\_\+root\+\_\+a} & linear velocity of the root point in inertial frame\\
+\hline
+\mbox{\tt in}  & {\em omega\+\_\+a} & angular velocity of the root point in inertial frame\\
+\hline
+\mbox{\tt in,out}  & {\em init\+\_\+elem} & initial step\+: the 12 initial values of the element u\+\_\+i, $ \theta_i, \dot{u}_i, \dot{theta}_i.$ Time marching\+: $2/dt ui+\dot{u}_i, 2/dt thetai+\dot{theta}_i, 2/dt CTCabP+\dot, 2/dt CTCabP+dot $\\
+\hline
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \#ioaero\+::nedof\+\_\+el\\
+\hline
+\mbox{\tt in}  & {\em aero\+\_\+flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em grav\+\_\+flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 616 of file Element.\+f90.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceelement_ad0c7d68510d195a504efc593e729263f}\label{namespaceelement_ad0c7d68510d195a504efc593e729263f}} 
+\index{element@{element}!a@{a}}
+\index{a@{a}!element@{element}}
+\subsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily real(dbl), dimension(nstates,nstates) element\+::a\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 56 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a17661475127df7ce4d09fb1e942cbd58}\label{namespaceelement_a17661475127df7ce4d09fb1e942cbd58}} 
+\index{element@{element}!a\+\_\+flag@{a\+\_\+flag}}
+\index{a\+\_\+flag@{a\+\_\+flag}!element@{element}}
+\subsubsection{\texorpdfstring{a\+\_\+flag}{a\_flag}}
+{\footnotesize\ttfamily integer element\+::a\+\_\+flag\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 52 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_aa45829429fe33aa2b5cd6feaacc2c739}\label{namespaceelement_aa45829429fe33aa2b5cd6feaacc2c739}} 
+\index{element@{element}!alpha@{alpha}}
+\index{alpha@{alpha}!element@{element}}
+\subsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily real(dbl) element\+::alpha\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_aab90697519f32a9a4f56786465c1bd0b}\label{namespaceelement_aab90697519f32a9a4f56786465c1bd0b}} 
+\index{element@{element}!alpha\+\_\+ac@{alpha\+\_\+ac}}
+\index{alpha\+\_\+ac@{alpha\+\_\+ac}!element@{element}}
+\subsubsection{\texorpdfstring{alpha\+\_\+ac}{alpha\_ac}}
+{\footnotesize\ttfamily real(dbl) element\+::alpha\+\_\+ac\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_ac749aa20088ae7c80700929a64803dfe}\label{namespaceelement_ac749aa20088ae7c80700929a64803dfe}} 
+\index{element@{element}!alphadot@{alphadot}}
+\index{alphadot@{alphadot}!element@{element}}
+\subsubsection{\texorpdfstring{alphadot}{alphadot}}
+{\footnotesize\ttfamily real(dbl) element\+::alphadot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a3b4df4c1043c9ebd56f5d23ca24d00ac}\label{namespaceelement_a3b4df4c1043c9ebd56f5d23ca24d00ac}} 
+\index{element@{element}!alphadotdot@{alphadotdot}}
+\index{alphadotdot@{alphadotdot}!element@{element}}
+\subsubsection{\texorpdfstring{alphadotdot}{alphadotdot}}
+{\footnotesize\ttfamily real(dbl) element\+::alphadotdot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a3a0a4401f2461a4b65f656a9af6e23d8}\label{namespaceelement_a3a0a4401f2461a4b65f656a9af6e23d8}} 
+\index{element@{element}!aw@{aw}}
+\index{aw@{aw}!element@{element}}
+\subsubsection{\texorpdfstring{aw}{aw}}
+{\footnotesize\ttfamily real(dbl) element\+::aw\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a031bf1cdfa87524ec1b508c44f537002}\label{namespaceelement_a031bf1cdfa87524ec1b508c44f537002}} 
+\index{element@{element}!b@{b}}
+\index{b@{b}!element@{element}}
+\subsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily real(dbl), dimension(nstates) element\+::b\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 56 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a1ea3f00156313fce1a3de0a00499702c}\label{namespaceelement_a1ea3f00156313fce1a3de0a00499702c}} 
+\index{element@{element}!beta@{beta}}
+\index{beta@{beta}!element@{element}}
+\subsubsection{\texorpdfstring{beta}{beta}}
+{\footnotesize\ttfamily real(dbl) element\+::beta\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a9ab0720aafb3053cad927fc402be3000}\label{namespaceelement_a9ab0720aafb3053cad927fc402be3000}} 
+\index{element@{element}!beta\+\_\+ac@{beta\+\_\+ac}}
+\index{beta\+\_\+ac@{beta\+\_\+ac}!element@{element}}
+\subsubsection{\texorpdfstring{beta\+\_\+ac}{beta\_ac}}
+{\footnotesize\ttfamily real(dbl) element\+::beta\+\_\+ac\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_af3dda698afcf40c00ff5008dc5f3da36}\label{namespaceelement_af3dda698afcf40c00ff5008dc5f3da36}} 
+\index{element@{element}!bw@{bw}}
+\index{bw@{bw}!element@{element}}
+\subsubsection{\texorpdfstring{bw}{bw}}
+{\footnotesize\ttfamily real(dbl) element\+::bw\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a1203577a202409830d687bf3b68c621e}\label{namespaceelement_a1203577a202409830d687bf3b68c621e}} 
+\index{element@{element}!c@{c}}
+\index{c@{c}!element@{element}}
+\subsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily real(dbl), dimension(nstates) element\+::c\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 56 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a55d26e2f0da1242eeb9cc8d3d589f1e5}\label{namespaceelement_a55d26e2f0da1242eeb9cc8d3d589f1e5}} 
+\index{element@{element}!chord@{chord}}
+\index{chord@{chord}!element@{element}}
+\subsubsection{\texorpdfstring{chord}{chord}}
+{\footnotesize\ttfamily real(dbl) element\+::chord\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a4afdc10a9e39215ab6c7d03fe10a4473}\label{namespaceelement_a4afdc10a9e39215ab6c7d03fe10a4473}} 
+\index{element@{element}!ctcabhdot@{ctcabhdot}}
+\index{ctcabhdot@{ctcabhdot}!element@{element}}
+\subsubsection{\texorpdfstring{ctcabhdot}{ctcabhdot}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::ctcabhdot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 48 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a8dd69dbb67c325d43811863c2f95e9e0}\label{namespaceelement_a8dd69dbb67c325d43811863c2f95e9e0}} 
+\index{element@{element}!ctcabpdot@{ctcabpdot}}
+\index{ctcabpdot@{ctcabpdot}!element@{element}}
+\subsubsection{\texorpdfstring{ctcabpdot}{ctcabpdot}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::ctcabpdot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 48 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a10ce0718ec68d00dd9fab0c290410366}\label{namespaceelement_a10ce0718ec68d00dd9fab0c290410366}} 
+\index{element@{element}!dir\+\_\+lift@{dir\+\_\+lift}}
+\index{dir\+\_\+lift@{dir\+\_\+lift}!element@{element}}
+\subsubsection{\texorpdfstring{dir\+\_\+lift}{dir\_lift}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::dir\+\_\+lift\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 57 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a88c83da354d518bfd81c3ef7691b4682}\label{namespaceelement_a88c83da354d518bfd81c3ef7691b4682}} 
+\index{element@{element}!dir\+\_\+moment@{dir\+\_\+moment}}
+\index{dir\+\_\+moment@{dir\+\_\+moment}!element@{element}}
+\subsubsection{\texorpdfstring{dir\+\_\+moment}{dir\_moment}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::dir\+\_\+moment\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 57 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a2ba7b882a33de416921d1a35d3a5e23a}\label{namespaceelement_a2ba7b882a33de416921d1a35d3a5e23a}} 
+\index{element@{element}!dl@{dl}}
+\index{dl@{dl}!element@{element}}
+\subsubsection{\texorpdfstring{dl}{dl}}
+{\footnotesize\ttfamily real(dbl) element\+::dl\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+length of the element 
+
+
+
+Definition at line 31 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_aa1c0af00208b47c11ed5b1dc17fb33b3}\label{namespaceelement_aa1c0af00208b47c11ed5b1dc17fb33b3}} 
+\index{element@{element}!e1gammad@{e1gammad}}
+\index{e1gammad@{e1gammad}!element@{element}}
+\subsubsection{\texorpdfstring{e1gammad}{e1gammad}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::e1gammad\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a235dfda3fd31cfbf932e5a7cba3d18ec}\label{namespaceelement_a235dfda3fd31cfbf932e5a7cba3d18ec}} 
+\index{element@{element}!ecab@{ecab}}
+\index{ecab@{ecab}!element@{element}}
+\subsubsection{\texorpdfstring{ecab}{ecab}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim,ndim) element\+::ecab\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+direction cosine matrix of the undeformed element 
+
+
+
+Definition at line 33 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_af027b6db49efde36e310bc9e4f8e0d06}\label{namespaceelement_af027b6db49efde36e310bc9e4f8e0d06}} 
+\index{element@{element}!ecabhalfl@{ecabhalfl}}
+\index{ecabhalfl@{ecabhalfl}!element@{element}}
+\subsubsection{\texorpdfstring{ecabhalfl}{ecabhalfl}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim,ndim) element\+::ecabhalfl\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+e\+Cab$\ast$d\+L/2 
+
+
+
+Definition at line 45 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a8cf9df9304438d7eaddcd8609c6968c5}\label{namespaceelement_a8cf9df9304438d7eaddcd8609c6968c5}} 
+\index{element@{element}!ecaf@{ecaf}}
+\index{ecaf@{ecaf}!element@{element}}
+\subsubsection{\texorpdfstring{ecaf}{ecaf}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim,ndim) element\+::ecaf\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 63 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a355b3273dce5e581cf75d079f4f4557d}\label{namespaceelement_a355b3273dce5e581cf75d079f4f4557d}} 
+\index{element@{element}!ect@{ect}}
+\index{ect@{ect}!element@{element}}
+\subsubsection{\texorpdfstring{ect}{ect}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim,ndim) element\+::ect\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the transpose of the direction cosine matrix corresponding to elastic rotation 
+
+
+
+Definition at line 43 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a94c9e7eb21bc71af7de19ee37093b959}\label{namespaceelement_a94c9e7eb21bc71af7de19ee37093b959}} 
+\index{element@{element}!ectcab@{ectcab}}
+\index{ectcab@{ectcab}!element@{element}}
+\subsubsection{\texorpdfstring{ectcab}{ectcab}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim,ndim) element\+::ectcab\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+e\+C\+T.\+Cab 
+
+
+
+Definition at line 44 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_afa3adc34db2cdcd479dd21a3873ef5d1}\label{namespaceelement_afa3adc34db2cdcd479dd21a3873ef5d1}} 
+\index{element@{element}!ectcabhalfl@{ectcabhalfl}}
+\index{ectcabhalfl@{ectcabhalfl}!element@{element}}
+\subsubsection{\texorpdfstring{ectcabhalfl}{ectcabhalfl}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim,ndim) element\+::ectcabhalfl\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+e\+C\+T\+Cab$\ast$d\+L/2 
+
+
+
+Definition at line 46 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a5cd41224c84f496a89d157c781b0d207}\label{namespaceelement_a5cd41224c84f496a89d157c781b0d207}} 
+\index{element@{element}!eflex@{eflex}}
+\index{eflex@{eflex}!element@{element}}
+\subsubsection{\texorpdfstring{eflex}{eflex}}
+{\footnotesize\ttfamily real(dbl), dimension(nstrn,nstrn) element\+::eflex\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+flexibility matrix of the elment 
+
+
+
+Definition at line 34 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_acd7a12a677d8157d3f792f2090fd0664}\label{namespaceelement_acd7a12a677d8157d3f792f2090fd0664}} 
+\index{element@{element}!emass@{emass}}
+\index{emass@{emass}!element@{element}}
+\subsubsection{\texorpdfstring{emass}{emass}}
+{\footnotesize\ttfamily real(dbl), dimension(nstrn,nstrn) element\+::emass\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+inverse of the mass matrix of the element 
+
+
+
+Definition at line 35 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a8d354f7c393ef7f0ba4144a20b5390ba}\label{namespaceelement_a8d354f7c393ef7f0ba4144a20b5390ba}} 
+\index{element@{element}!eomega\+\_\+a@{eomega\+\_\+a}}
+\index{eomega\+\_\+a@{eomega\+\_\+a}!element@{element}}
+\subsubsection{\texorpdfstring{eomega\+\_\+a}{eomega\_a}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::eomega\+\_\+a\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+initial angular velocity of the element 
+
+
+
+Definition at line 41 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_afd7049cf1988fff1d20ea9fae6290b27}\label{namespaceelement_afd7049cf1988fff1d20ea9fae6290b27}} 
+\index{element@{element}!epi@{epi}}
+\index{epi@{epi}!element@{element}}
+\subsubsection{\texorpdfstring{epi}{epi}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::epi\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a38ecc4368e8e51d5672ad47f1a79536e}\label{namespaceelement_a38ecc4368e8e51d5672ad47f1a79536e}} 
+\index{element@{element}!ev\+\_\+i@{ev\+\_\+i}}
+\index{ev\+\_\+i@{ev\+\_\+i}!element@{element}}
+\subsubsection{\texorpdfstring{ev\+\_\+i}{ev\_i}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::ev\+\_\+i\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+initial velocity of the mid point of the element 
+
+
+
+Definition at line 40 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a4fecf0570d257bca42bf4ece885f4721}\label{namespaceelement_a4fecf0570d257bca42bf4ece885f4721}} 
+\index{element@{element}!exist\+\_\+load@{exist\+\_\+load}}
+\index{exist\+\_\+load@{exist\+\_\+load}!element@{element}}
+\subsubsection{\texorpdfstring{exist\+\_\+load}{exist\_load}}
+{\footnotesize\ttfamily logical, public element\+::exist\+\_\+load}
+
+
+
+Definition at line 37 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_aa97de262111f37b6e4b721cad221946a}\label{namespaceelement_aa97de262111f37b6e4b721cad221946a}} 
+\index{element@{element}!fi@{fi}}
+\index{fi@{fi}!element@{element}}
+\subsubsection{\texorpdfstring{fi}{fi}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::fi\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a2babdd1ffcf39971fb9b118d88d1e223}\label{namespaceelement_a2babdd1ffcf39971fb9b118d88d1e223}} 
+\index{element@{element}!follower\+\_\+load@{follower\+\_\+load}}
+\index{follower\+\_\+load@{follower\+\_\+load}!element@{element}}
+\subsubsection{\texorpdfstring{follower\+\_\+load}{follower\_load}}
+{\footnotesize\ttfamily logical, public element\+::follower\+\_\+load}
+
+
+
+flags to indicate whether distributed load exist and whether they are follower forces 
+
+
+
+Definition at line 37 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a4f9b46e901684a30dec91ad363247dd3}\label{namespaceelement_a4f9b46e901684a30dec91ad363247dd3}} 
+\index{element@{element}!g\+\_\+flag@{g\+\_\+flag}}
+\index{g\+\_\+flag@{g\+\_\+flag}!element@{element}}
+\subsubsection{\texorpdfstring{g\+\_\+flag}{g\_flag}}
+{\footnotesize\ttfamily integer element\+::g\+\_\+flag\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 52 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a50a818b525bc9fc33afce618163cb17e}\label{namespaceelement_a50a818b525bc9fc33afce618163cb17e}} 
+\index{element@{element}!hdot@{hdot}}
+\index{hdot@{hdot}!element@{element}}
+\subsubsection{\texorpdfstring{hdot}{hdot}}
+{\footnotesize\ttfamily real(dbl) element\+::hdot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a012a2b1125e535b957a6be4ea842da6d}\label{namespaceelement_a012a2b1125e535b957a6be4ea842da6d}} 
+\index{element@{element}!hdotdot@{hdotdot}}
+\index{hdotdot@{hdotdot}!element@{element}}
+\subsubsection{\texorpdfstring{hdotdot}{hdotdot}}
+{\footnotesize\ttfamily real(dbl) element\+::hdotdot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_aec782f88829f63bff819c43e9c19f02c}\label{namespaceelement_aec782f88829f63bff819c43e9c19f02c}} 
+\index{element@{element}!hi@{hi}}
+\index{hi@{hi}!element@{element}}
+\subsubsection{\texorpdfstring{hi}{hi}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::hi\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_af575d84cfbaeca87aec268f375efac06}\label{namespaceelement_af575d84cfbaeca87aec268f375efac06}} 
+\index{element@{element}!ident@{ident}}
+\index{ident@{ident}!element@{element}}
+\subsubsection{\texorpdfstring{ident}{ident}}
+{\footnotesize\ttfamily real(dbl), dimension(nstates,nstates) element\+::ident\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 54 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a38bfdfabd1e6c253836e6fb02c0d6784}\label{namespaceelement_a38bfdfabd1e6c253836e6fb02c0d6784}} 
+\index{element@{element}!jalpha\+\_\+theta@{jalpha\+\_\+theta}}
+\index{jalpha\+\_\+theta@{jalpha\+\_\+theta}!element@{element}}
+\subsubsection{\texorpdfstring{jalpha\+\_\+theta}{jalpha\_theta}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::jalpha\+\_\+theta\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 58 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a21fa4f1bba2c9d7c57ba982869fe0a95}\label{namespaceelement_a21fa4f1bba2c9d7c57ba982869fe0a95}} 
+\index{element@{element}!jalphadot\+\_\+ph@{jalphadot\+\_\+ph}}
+\index{jalphadot\+\_\+ph@{jalphadot\+\_\+ph}!element@{element}}
+\subsubsection{\texorpdfstring{jalphadot\+\_\+ph}{jalphadot\_ph}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim+ndim) element\+::jalphadot\+\_\+ph\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 58 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a6c09852dc997af8b311d0ced2855794d}\label{namespaceelement_a6c09852dc997af8b311d0ced2855794d}} 
+\index{element@{element}!jalphadot\+\_\+theta@{jalphadot\+\_\+theta}}
+\index{jalphadot\+\_\+theta@{jalphadot\+\_\+theta}!element@{element}}
+\subsubsection{\texorpdfstring{jalphadot\+\_\+theta}{jalphadot\_theta}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::jalphadot\+\_\+theta\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 58 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a098f0887e0821d48cc06e45f446b9aab}\label{namespaceelement_a098f0887e0821d48cc06e45f446b9aab}} 
+\index{element@{element}!jalphadotdot\+\_\+ph@{jalphadotdot\+\_\+ph}}
+\index{jalphadotdot\+\_\+ph@{jalphadotdot\+\_\+ph}!element@{element}}
+\subsubsection{\texorpdfstring{jalphadotdot\+\_\+ph}{jalphadotdot\_ph}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim+ndim) element\+::jalphadotdot\+\_\+ph\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 60 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_ab9d2421c52f64e5ff0b10858aca6bd43}\label{namespaceelement_ab9d2421c52f64e5ff0b10858aca6bd43}} 
+\index{element@{element}!jalphadotdot\+\_\+phdot@{jalphadotdot\+\_\+phdot}}
+\index{jalphadotdot\+\_\+phdot@{jalphadotdot\+\_\+phdot}!element@{element}}
+\subsubsection{\texorpdfstring{jalphadotdot\+\_\+phdot}{jalphadotdot\_phdot}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim+ndim) element\+::jalphadotdot\+\_\+phdot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 59 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a580ce3f83ad83383203449b2d8f4a3a4}\label{namespaceelement_a580ce3f83ad83383203449b2d8f4a3a4}} 
+\index{element@{element}!jdir\+\_\+lift@{jdir\+\_\+lift}}
+\index{jdir\+\_\+lift@{jdir\+\_\+lift}!element@{element}}
+\subsubsection{\texorpdfstring{jdir\+\_\+lift}{jdir\_lift}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim,ndim) element\+::jdir\+\_\+lift\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 57 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a1dcc074ceaab61da55e1b1964ea3d235}\label{namespaceelement_a1dcc074ceaab61da55e1b1964ea3d235}} 
+\index{element@{element}!jdir\+\_\+moment@{jdir\+\_\+moment}}
+\index{jdir\+\_\+moment@{jdir\+\_\+moment}!element@{element}}
+\subsubsection{\texorpdfstring{jdir\+\_\+moment}{jdir\_moment}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim,ndim) element\+::jdir\+\_\+moment\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 57 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a9ef70f6658a771b1ae6491475da5f9c3}\label{namespaceelement_a9ef70f6658a771b1ae6491475da5f9c3}} 
+\index{element@{element}!jhdot\+\_\+ph@{jhdot\+\_\+ph}}
+\index{jhdot\+\_\+ph@{jhdot\+\_\+ph}!element@{element}}
+\subsubsection{\texorpdfstring{jhdot\+\_\+ph}{jhdot\_ph}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim+ndim) element\+::jhdot\+\_\+ph\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 58 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a8fc86f2f6fcef7f4b4216181ed52a8b7}\label{namespaceelement_a8fc86f2f6fcef7f4b4216181ed52a8b7}} 
+\index{element@{element}!jhdot\+\_\+theta@{jhdot\+\_\+theta}}
+\index{jhdot\+\_\+theta@{jhdot\+\_\+theta}!element@{element}}
+\subsubsection{\texorpdfstring{jhdot\+\_\+theta}{jhdot\_theta}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::jhdot\+\_\+theta\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 58 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a2ce32735f66193668003049e1cf17d61}\label{namespaceelement_a2ce32735f66193668003049e1cf17d61}} 
+\index{element@{element}!jhdotdot\+\_\+ph@{jhdotdot\+\_\+ph}}
+\index{jhdotdot\+\_\+ph@{jhdotdot\+\_\+ph}!element@{element}}
+\subsubsection{\texorpdfstring{jhdotdot\+\_\+ph}{jhdotdot\_ph}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim+ndim) element\+::jhdotdot\+\_\+ph\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 60 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a0928be80ffe200a8be069851f2c20dbd}\label{namespaceelement_a0928be80ffe200a8be069851f2c20dbd}} 
+\index{element@{element}!jhdotdot\+\_\+phdot@{jhdotdot\+\_\+phdot}}
+\index{jhdotdot\+\_\+phdot@{jhdotdot\+\_\+phdot}!element@{element}}
+\subsubsection{\texorpdfstring{jhdotdot\+\_\+phdot}{jhdotdot\_phdot}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim+ndim) element\+::jhdotdot\+\_\+phdot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 59 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_abb09debf79a65110c87abb4892423e00}\label{namespaceelement_abb09debf79a65110c87abb4892423e00}} 
+\index{element@{element}!jlambda0\+\_\+lambda@{jlambda0\+\_\+lambda}}
+\index{jlambda0\+\_\+lambda@{jlambda0\+\_\+lambda}!element@{element}}
+\subsubsection{\texorpdfstring{jlambda0\+\_\+lambda}{jlambda0\_lambda}}
+{\footnotesize\ttfamily real(dbl), dimension(nstates) element\+::jlambda0\+\_\+lambda\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 61 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a7c62d3aab34ad67ea920d7293726205e}\label{namespaceelement_a7c62d3aab34ad67ea920d7293726205e}} 
+\index{element@{element}!jlambda0\+\_\+phdot@{jlambda0\+\_\+phdot}}
+\index{jlambda0\+\_\+phdot@{jlambda0\+\_\+phdot}!element@{element}}
+\subsubsection{\texorpdfstring{jlambda0\+\_\+phdot}{jlambda0\_phdot}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim+ndim) element\+::jlambda0\+\_\+phdot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 61 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a2cc8d4739c02a1302e8c31d681c70eb8}\label{namespaceelement_a2cc8d4739c02a1302e8c31d681c70eb8}} 
+\index{element@{element}!jlift@{jlift}}
+\index{jlift@{jlift}!element@{element}}
+\subsubsection{\texorpdfstring{jlift}{jlift}}
+{\footnotesize\ttfamily real(dbl), dimension(3,18+nstates) element\+::jlift\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 62 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_ac6e33874e30f493a8e29de4f0c87af0a}\label{namespaceelement_ac6e33874e30f493a8e29de4f0c87af0a}} 
+\index{element@{element}!jmoment@{jmoment}}
+\index{jmoment@{jmoment}!element@{element}}
+\subsubsection{\texorpdfstring{jmoment}{jmoment}}
+{\footnotesize\ttfamily real(dbl), dimension(3,18+nstates) element\+::jmoment\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 62 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_ad5ea7346491c313bb4094d1838fe747e}\label{namespaceelement_ad5ea7346491c313bb4094d1838fe747e}} 
+\index{element@{element}!kappa@{kappa}}
+\index{kappa@{kappa}!element@{element}}
+\subsubsection{\texorpdfstring{kappa}{kappa}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::kappa\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_abfc6a3777c98caf9d75aa0fa4ce97e17}\label{namespaceelement_abfc6a3777c98caf9d75aa0fa4ce97e17}} 
+\index{element@{element}!lambda@{lambda}}
+\index{lambda@{lambda}!element@{element}}
+\subsubsection{\texorpdfstring{lambda}{lambda}}
+{\footnotesize\ttfamily real(dbl), dimension(nstates) element\+::lambda\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 53 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_aa9695f47555869b8d547d0d87d49275e}\label{namespaceelement_aa9695f47555869b8d547d0d87d49275e}} 
+\index{element@{element}!lambda0@{lambda0}}
+\index{lambda0@{lambda0}!element@{element}}
+\subsubsection{\texorpdfstring{lambda0}{lambda0}}
+{\footnotesize\ttfamily real(dbl) element\+::lambda0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 55 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a627873fe5856f3a9c95039d8f6877039}\label{namespaceelement_a627873fe5856f3a9c95039d8f6877039}} 
+\index{element@{element}!lambdadot@{lambdadot}}
+\index{lambdadot@{lambdadot}!element@{element}}
+\subsubsection{\texorpdfstring{lambdadot}{lambdadot}}
+{\footnotesize\ttfamily real(dbl), dimension(nstates) element\+::lambdadot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 53 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a10e7976ce4185b147c590f281b7691b1}\label{namespaceelement_a10e7976ce4185b147c590f281b7691b1}} 
+\index{element@{element}!le@{le}}
+\index{le@{le}!element@{element}}
+\subsubsection{\texorpdfstring{le}{le}}
+{\footnotesize\ttfamily real(dbl) element\+::le\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the ending arc length of the current element 
+
+
+
+Definition at line 32 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a99d2f733169debb6f9d7d8b30fbc49c4}\label{namespaceelement_a99d2f733169debb6f9d7d8b30fbc49c4}} 
+\index{element@{element}!load@{load}}
+\index{load@{load}!element@{element}}
+\subsubsection{\texorpdfstring{load}{load}}
+{\footnotesize\ttfamily type(distriload), public element\+::load}
+
+
+
+distributed load 
+
+
+
+Definition at line 36 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_aaa8af943c974b60b3eeacd9ea685f28b}\label{namespaceelement_aaa8af943c974b60b3eeacd9ea685f28b}} 
+\index{element@{element}!mi@{mi}}
+\index{mi@{mi}!element@{element}}
+\subsubsection{\texorpdfstring{mi}{mi}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::mi\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_ad819facefa1f1184a10576007ac79ba4}\label{namespaceelement_ad819facefa1f1184a10576007ac79ba4}} 
+\index{element@{element}!omegai@{omegai}}
+\index{omegai@{omegai}!element@{element}}
+\subsubsection{\texorpdfstring{omegai}{omegai}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::omegai\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_abf487a07f5188539bf21883fc0a10c70}\label{namespaceelement_abf487a07f5188539bf21883fc0a10c70}} 
+\index{element@{element}!p@{p}}
+\index{p@{p}!element@{element}}
+\subsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily real(dbl), dimension(nstates,2$\ast$nstates+2) element\+::p\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 53 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a3c256e3e6f1a658f469f77ed8f7d033e}\label{namespaceelement_a3c256e3e6f1a658f469f77ed8f7d033e}} 
+\index{element@{element}!rho@{rho}}
+\index{rho@{rho}!element@{element}}
+\subsubsection{\texorpdfstring{rho}{rho}}
+{\footnotesize\ttfamily real(dbl) element\+::rho\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_ac0a8fcda10d1b0af47fd7d713ebcd5fe}\label{namespaceelement_ac0a8fcda10d1b0af47fd7d713ebcd5fe}} 
+\index{element@{element}!theta@{theta}}
+\index{theta@{theta}!element@{element}}
+\subsubsection{\texorpdfstring{theta}{theta}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::theta\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a7404d160f35ff4cfc4ea3e3d8f76cb89}\label{namespaceelement_a7404d160f35ff4cfc4ea3e3d8f76cb89}} 
+\index{element@{element}!thetadot@{thetadot}}
+\index{thetadot@{thetadot}!element@{element}}
+\subsubsection{\texorpdfstring{thetadot}{thetadot}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::thetadot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 48 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a6d48ee96f674959ef1225a3730fcf3e7}\label{namespaceelement_a6d48ee96f674959ef1225a3730fcf3e7}} 
+\index{element@{element}!u@{u}}
+\index{u@{u}!element@{element}}
+\subsubsection{\texorpdfstring{u}{u}}
+{\footnotesize\ttfamily real(dbl) element\+::u\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_ad1b3c2d05a1c131831f0d4eef43f9105}\label{namespaceelement_ad1b3c2d05a1c131831f0d4eef43f9105}} 
+\index{element@{element}!ui@{ui}}
+\index{ui@{ui}!element@{element}}
+\subsubsection{\texorpdfstring{ui}{ui}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::ui\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a0ceabdb65183ba09653081ad8ca4259d}\label{namespaceelement_a0ceabdb65183ba09653081ad8ca4259d}} 
+\index{element@{element}!uidot@{uidot}}
+\index{uidot@{uidot}!element@{element}}
+\subsubsection{\texorpdfstring{uidot}{uidot}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::uidot\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 48 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_a7e7198874f6dd0702abdd8ba0dfc7c2d}\label{namespaceelement_a7e7198874f6dd0702abdd8ba0dfc7c2d}} 
+\index{element@{element}!vi@{vi}}
+\index{vi@{vi}!element@{element}}
+\subsubsection{\texorpdfstring{vi}{vi}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::vi\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_aeced564b191f69b1327f9b9164f371f5}\label{namespaceelement_aeced564b191f69b1327f9b9164f371f5}} 
+\index{element@{element}!wind@{wind}}
+\index{wind@{wind}!element@{element}}
+\subsubsection{\texorpdfstring{wind}{wind}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) element\+::wind\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 63 of file Element.\+f90.
+
+\mbox{\Hypertarget{namespaceelement_aa46e16e8787633edb4e4c0c8c6809ecb}\label{namespaceelement_aa46e16e8787633edb4e4c0c8c6809ecb}} 
+\index{element@{element}!x\+\_\+cg@{x\+\_\+cg}}
+\index{x\+\_\+cg@{x\+\_\+cg}!element@{element}}
+\subsubsection{\texorpdfstring{x\+\_\+cg}{x\_cg}}
+{\footnotesize\ttfamily real(dbl) element\+::x\+\_\+cg\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Element.\+f90.
+

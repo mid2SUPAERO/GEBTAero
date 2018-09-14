@@ -1,0 +1,48 @@
+\hypertarget{_solve_mumps_8f90}{}\section{/home/bertrand/these/logiciels/programme/src/\+Solve\+Mumps.f90 File Reference}
+\label{_solve_mumps_8f90}\index{/home/bertrand/these/logiciels/programme/src/\+Solve\+Mumps.\+f90@{/home/bertrand/these/logiciels/programme/src/\+Solve\+Mumps.\+f90}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \hyperlink{namespacesolvemumps}{solvemumps}
+\begin{DoxyCompactList}\small\item\em This module contains the linear \& nonlinear solver interfaced with M\+U\+M\+PS direct solver library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespacesolvemumps_aad7849d30a944c0bd614bf4e103ef494}{solvemumps\+::linearsolutionmumps} (ndof\+\_\+el, memb\+\_\+info, v\+\_\+root\+\_\+a, omega\+\_\+a, member, error, ncond\+\_\+mb, mb\+\_\+condition, distr\+\_\+fun, dof\+\_\+con, x, aero\+\_\+flag, grav\+\_\+flag, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em The linear solver is basically the Newton-\/\+Raphson with $\ast$ initial guess equal to zero and only uses one iterations $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacesolvemumps_a243ff65847b437ecb22933d782df2db4}{solvemumps\+::newtonraphsonmumps} (ndof\+\_\+el, memb\+\_\+info, v\+\_\+root\+\_\+a, omega\+\_\+a, member, niter, error, ncond\+\_\+mb, mb\+\_\+condition, distr\+\_\+fun, dof\+\_\+con, x, aero\+\_\+flag, grav\+\_\+flag, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em Use Newton-\/\+Raphson method to solve the nonlinear system $\ast$. \end{DoxyCompactList}\item 
+subroutine \hyperlink{_solve_mumps_8f90_abd8e42559d02f73ced63544359b8b6a9}{linesearch}
+\begin{DoxyCompactList}\small\item\em Use line search to improve the convergence of Newton Raphson method, modified from the book\+: Numerical Recipes$\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacesolvemumps_aaa9b81bc0ea43f279abc42c729140761}{solvemumps\+::extractsolution} (ndof\+\_\+el, member, coord, memb\+\_\+info, x, dof\+\_\+con, sol\+\_\+pt\+\_\+i, sol\+\_\+mb\+\_\+i)
+\begin{DoxyCompactList}\small\item\em The subroutine extracts the solution for each key point and each member from the solution vector $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacesolvemumps_ae4f9a2e645ae55a030964764cf5b0218}{solvemumps\+::extractelementvalues} (ndof\+\_\+el, member, x, sol\+\_\+mb\+\_\+i)
+\begin{DoxyCompactList}\small\item\em The subroutine extracts elemental values from $\ast$ the solution vector $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacesolvemumps_a3c8d285942de4048473a98c26d248fd7}{solvemumps\+::insertelementvalues} (ndof\+\_\+el, member, x, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em The subroutine insert the elemental values into the solution vector\+: needed for initial guess for starting time marching\+: replace the first six valumes for each element with given initial conditions $\ast$. \end{DoxyCompactList}\item 
+real(dbl) function, dimension(size(sol\+\_\+mb\+\_\+i, 1), 6), public \hyperlink{namespacesolvemumps_a680703eba15a14e08417723cd80080b1}{solvemumps\+::ctcabph} (niter, member, memb\+\_\+info, sol\+\_\+mb\+\_\+i)
+\begin{DoxyCompactList}\small\item\em Transfer the vector PH (linear and angular momenta) form frame B to frame a. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+type(dmumps\+\_\+struc) \hyperlink{namespacesolvemumps_ab76b5a7f705b0acb09ebc3ecf7e51f91}{solvemumps\+::mumps\+\_\+par}
+\begin{DoxyCompactList}\small\item\em an array containing the configuration parameters of M\+U\+M\+PS solver \end{DoxyCompactList}\item 
+integer \hyperlink{namespacesolvemumps_a5f812a31bb5931d66e5d6bb4c05f4a51}{solvemumps\+::ierr}
+\begin{DoxyCompactList}\small\item\em error code of the M\+U\+M\+PS solver \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{_solve_mumps_8f90_abd8e42559d02f73ced63544359b8b6a9}\label{_solve_mumps_8f90_abd8e42559d02f73ced63544359b8b6a9}} 
+\index{Solve\+Mumps.\+f90@{Solve\+Mumps.\+f90}!linesearch@{linesearch}}
+\index{linesearch@{linesearch}!Solve\+Mumps.\+f90@{Solve\+Mumps.\+f90}}
+\subsubsection{\texorpdfstring{linesearch()}{linesearch()}}
+{\footnotesize\ttfamily subroutine newtonraphsonmumps\+::linesearch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Use line search to improve the convergence of Newton Raphson method, modified from the book\+: Numerical Recipes$\ast$. 
+
+
+
+Definition at line 303 of file Solve\+Mumps.\+f90.
+

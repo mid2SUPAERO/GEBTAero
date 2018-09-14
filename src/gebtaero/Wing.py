@@ -1,37 +1,21 @@
 # coding=UTF-8
 import numpy as np
 
+## This class represent the wing and is used by the class Simulation to generate the InputFile
 class Wing:
-    """
-    Wing compose by one ore more wing section
-    :version: 12/02/18
-    :author: Bertrand Kirsch
-    
-    ATTRIBUTES
-    
-    A list containing the wing sections
-    WingSections (private) : WingSection[]
-    
-    A vector containing the wing root position
-    WingRootPosition (private) : np.array[3]
-    
-    A vector containing the direction of the wing at the root
-    WingRootAxis (private) : np.array[3]
-    
-    The wing twist at the root (rad)
-    WingRootTwist (private) : float
-    
-    The wing frame to be input in the solver regarding the wing axis and the wing twist
-    WingFrame (private) : np.array[3][3]        
-    """
     def __init__(self,Name,WingRootPosition):
+        ## the name of the wing used to generate the different files
         self.Name = Name
+        ## the 3D coordinate of the wing root
         self.WingRootPosition = np.copy(WingRootPosition)
         
-        # Initialisation of list
+        ## a list containing the wing sections
         self.WingSections = []
+        ## a list containing the wing frames
         self.Frames = []
+        ## a list containing the wing cross sections
         self.CrossSections = []
+        ## a list containing the wing keypoints (cf )
         self.KpList = []
         self.KpList.append(WingRootPosition)
         
@@ -83,3 +67,14 @@ class Wing:
         for Section in WS:
             Surface = Surface + Section.GetSectionLength()*Section.GetChord()
         return Surface    
+        
+    def ModifySectionLength(self,index,SectionLength):
+        if index>len(self.GetWingSections()):
+            raise RuntimeError("the index is greater than the number of wing sections")
+        self.WingSections[index].SetSectionLength(SectionLength)   
+        # update the liste of key point position
+        self.KpList=[]
+        self.KpList.append(self.WingRootPosition)
+        for i in range(len(self.GetWingSections())):
+            Section=self.GetWingSections()[i]
+            self.KpList.append(self.KpList[-1]+Section.GetFrame().GetAxis()*Section.GetSectionLength())

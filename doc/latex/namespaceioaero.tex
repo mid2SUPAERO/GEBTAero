@@ -1,0 +1,864 @@
+\hypertarget{namespaceioaero}{}\section{ioaero Module Reference}
+\label{namespaceioaero}\index{ioaero@{ioaero}}
+
+
+This module handle I/O of the computation code. Allow to read a .dat command file possibly with a .ini file and output a .out text output file or/and a folder with .vtk file intended to be used with paraview.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespaceioaero_a039bc1aae10012ce8e368bc202bb81be}{input}
+\item 
+subroutine, public \hyperlink{namespaceioaero_a1f2f8f2b4f6e233d2753c1fd1809a44a}{output}
+\item 
+subroutine, public \hyperlink{namespaceioaero_a7eb68cb1588d24e05c8f056ca107e163}{outputvtk}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, parameter, private \hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{char\+\_\+len} =256
+\item 
+integer, parameter \hyperlink{namespaceioaero_a09d53f15b1a2c723ad2b4df01c16bccc}{in} =10
+\item 
+character(\hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{char\+\_\+len}) \hyperlink{namespaceioaero_ae3b39e5c092106ddc3bb8b81daf8bd13}{inp\+\_\+name}
+\item 
+integer, parameter, public \hyperlink{namespaceioaero_a6a4b9f5362e2eee64e5777786065f563}{ein} =20
+\begin{DoxyCompactList}\small\item\em file for echoing the inputs\+: inp\+\_\+name.\+ech \end{DoxyCompactList}\item 
+character(\hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{char\+\_\+len}+3) \hyperlink{namespaceioaero_a175dde142a22987a0e59b9738444d2e3}{ech\+\_\+name}
+\item 
+integer, parameter \hyperlink{namespaceioaero_a7c01d4bcd841d8d6281f29d5fc818fd8}{out} =40
+\begin{DoxyCompactList}\small\item\em file for output\+: inp\+\_\+name.\+out \end{DoxyCompactList}\item 
+character(\hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{char\+\_\+len}+3) \hyperlink{namespaceioaero_a6693b9440660a84d2d2fc41ac183bb0f}{out\+\_\+name}
+\item 
+integer, parameter \hyperlink{namespaceioaero_afb3050696f2887599d4083672103b6e7}{init} =50
+\begin{DoxyCompactList}\small\item\em file for initial conditions\+: inp\+\_\+name.\+ini \end{DoxyCompactList}\item 
+character(\hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{char\+\_\+len}+3) \hyperlink{namespaceioaero_a5a12b8b21f86b26e7364428778a85d0b}{init\+\_\+name}
+\item 
+integer, public \hyperlink{namespaceioaero_a24506866304c39bd1fa57ef73b124335}{nkp}
+\begin{DoxyCompactList}\small\item\em number of key points \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a543ebf3623a96606d0956211621ce254}{nelem}
+\begin{DoxyCompactList}\small\item\em total number of elements \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_ab59096c14b19d71fd53523822067402c}{nmemb}
+\begin{DoxyCompactList}\small\item\em number of members \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_ad8817641275f11b821b7720a78651531}{nmate}
+\begin{DoxyCompactList}\small\item\em number of cross-\/sectional properties sets \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_ac9fe2ddcc0797f81e7bc475a28692978}{nframe}
+\begin{DoxyCompactList}\small\item\em number of frames \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a5ffc5d3578d9abad99d3736ba352e07d}{ncond\+\_\+pt}
+\begin{DoxyCompactList}\small\item\em number of point conditions for concentrated loads and boundary conditions \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a89e1f8f2d6913d23ef482a5788d2eba5}{ndistrfun}
+\begin{DoxyCompactList}\small\item\em number of distributed functions \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a34dabcb4bc1b4f260277297856ac3653}{ncurv}
+\begin{DoxyCompactList}\small\item\em number of initial curvatures/twists \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a435527b09d62e7aac9883e1a6d6f3438}{analysis\+\_\+flag}
+\begin{DoxyCompactList}\small\item\em 0\+: static analysis; 1\+: steady state response; 2\+: transient analysis; 3\+: eigenvalue analysis \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}{nev}
+\begin{DoxyCompactList}\small\item\em number of frequencies and modeshapes. \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{aero\+\_\+flag}
+\begin{DoxyCompactList}\small\item\em 0\+: no aero analasys; 1\+: stationary aerodynamic, 2\+: unsteady aerodynamic \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{grav\+\_\+flag}
+\item 
+integer, public \hyperlink{namespaceioaero_ab9193f4ff70a22ae5858118fc653f22b}{ncond\+\_\+mb}
+\begin{DoxyCompactList}\small\item\em number of member conditions for distributed loads \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a8d0cfe1f4a5677d76ba3f3e775b12d1e}{ntimefun}
+\begin{DoxyCompactList}\small\item\em number of time functions \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_ac008486fd12e0029a1ef77b3ca5e12c3}{niter}
+\begin{DoxyCompactList}\small\item\em number of maximum iterations \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_ab078a397454a22b07a19ae3a7443a561}{nstep}
+\begin{DoxyCompactList}\small\item\em number of time steps/load steps \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a29c506d8ad3a3609366b35e7e4c00fa4}{nvtk}
+\begin{DoxyCompactList}\small\item\em number of the aerodynamic cycle \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{member}
+\begin{DoxyCompactList}\small\item\em member property array\+: member(nmemb,\+M\+E\+M\+B\+\_\+\+C\+O\+N\+S\+T) \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ndof\+\_\+el}
+\begin{DoxyCompactList}\small\item\em dofs per element\+: 12 for static analysis, 18 for dynamic analysis, +\+Ns if aero\+\_\+flag = 3 \end{DoxyCompactList}\item 
+integer, dimension(ndim), public \hyperlink{namespaceioaero_a9ec25357ecfc1c09628efa147300aaee}{omega\+\_\+a\+\_\+tf}
+\begin{DoxyCompactList}\small\item\em time function numbers for the angular velocity of frame a \end{DoxyCompactList}\item 
+integer, dimension(ndim), public \hyperlink{namespaceioaero_adb4e11942a388b1bf1f13d10c79614bc}{v\+\_\+root\+\_\+a\+\_\+tf}
+\begin{DoxyCompactList}\small\item\em time function numbers for the velocity of the starting point of the first member \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_ad67cddc00712c4d5a6d4008b2fe6c452}{coord}
+\begin{DoxyCompactList}\small\item\em nodal coordinates\+: coord(nkp,\+N\+D\+I\+M) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a83ca534029c39300d045045432607a69}{material}
+\begin{DoxyCompactList}\small\item\em flexibility matrix\+: (nmate,12,6) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a116b30aa43f6d871e7d4a3ed6f4428c3}{aerodyn\+\_\+coef}
+\begin{DoxyCompactList}\small\item\em 2D aerodynamic coefficient \+: (nmate,\+:) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a26d467b1adbb838f4b1ba3dd4ee1ea0d}{frame}
+\begin{DoxyCompactList}\small\item\em member frames\+: (nframe,3,3) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a1d7c3689e30c2925cd403a84e9176242}{distr\+\_\+fun}
+\begin{DoxyCompactList}\small\item\em prescribed functions\+: (ndistrfun,6) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_ab2bc17b64328528015d161cab6490b80}{curvature}
+\begin{DoxyCompactList}\small\item\em curvatures\+: (ncurv,N\+D\+IM) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_af6e62942bb38b7b7d69ea25972fe00bf}{sol\+\_\+pt}
+\begin{DoxyCompactList}\small\item\em solutions for points sol\+\_\+pt(nstep,nkp,N\+D\+I\+M+\+N\+D\+O\+F\+\_\+\+ND) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a4933d28025772ee22892dc12780a8eef}{sol\+\_\+mb}
+\begin{DoxyCompactList}\small\item\em solutions for member sol\+\_\+mb(nstep,nelem,N\+D\+I\+M+ndof\+\_\+el)\+: nelem\+: total number of elements \end{DoxyCompactList}\item 
+real(dbl), dimension(2), public \hyperlink{namespaceioaero_ab6c271c9ebbeb9a315ec53d38facb60b}{simu\+\_\+time}
+\begin{DoxyCompactList}\small\item\em start and end time of the simulation. \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim), public \hyperlink{namespaceioaero_a38fc5ef87ae7c2e312ad32f857e791cb}{omega\+\_\+a0}
+\begin{DoxyCompactList}\small\item\em the magnitude of angular velocity of frame a \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim), public \hyperlink{namespaceioaero_a3cefdbd9d62bffe41f44b7f79f321f67}{v\+\_\+root\+\_\+a0}
+\begin{DoxyCompactList}\small\item\em the magnitude of linear velocity of the starting point of the first member \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}{init\+\_\+cond}
+\begin{DoxyCompactList}\small\item\em initial conditions\+: init\+\_\+cond(nelem,12); init\+\_\+cond(nelem,1\+:6) for initial displacements/rotations init\+\_\+cond(nelem,7\+:12) for initial velocities init\+\_\+cond(nelem,13\+:12+\+N\+S\+T\+A\+T\+ES) Peters finite state parameter at time t+dt \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_ae043619051217506f070ece6f24deedf}{eigen\+\_\+val}
+\begin{DoxyCompactList}\small\item\em arrays for holding eigenvalues and eigenvectors \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a53e09660909f61713dee3887a3adc1ec}{eigen\+\_\+vec\+\_\+pt}
+\begin{DoxyCompactList}\small\item\em arrays for holding eigenvalues and eigenvectors \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a0d150f0b81c676515b90fcf83d7ff8c3}{eigen\+\_\+vec\+\_\+mb}
+\begin{DoxyCompactList}\small\item\em arrays for holding eigenvalues and eigenvectors \end{DoxyCompactList}\item 
+type(prescriinf), dimension(\+:), allocatable, public \hyperlink{namespaceioaero_a4344b2018135ae7fe0a09f4265fd2c29}{pt\+\_\+condition}
+\begin{DoxyCompactList}\small\item\em prescribed information concentrated at nodes \end{DoxyCompactList}\item 
+type(prescriinf), dimension(\+:), allocatable, public \hyperlink{namespaceioaero_a2463929ef049b49fe7b49011c66cc806}{mb\+\_\+condition}
+\begin{DoxyCompactList}\small\item\em prescribed information distributed along beam members \end{DoxyCompactList}\item 
+type(timefunction), dimension(\+:), allocatable, public \hyperlink{namespaceioaero_accb03392882ddfd413b5ac9ce3be09c6}{time\+\_\+function}
+\begin{DoxyCompactList}\small\item\em time functions \end{DoxyCompactList}\item 
+character(\hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{char\+\_\+len}), public \hyperlink{namespaceioaero_ac653c5aea8d1de1b6255d0f47b6722f6}{velocity\+\_\+str} = \textquotesingle{}\textquotesingle{}
+\item 
+integer \hyperlink{namespaceioaero_a02839259538f3d7e305ebe79cb43d2c4}{arpack}
+\begin{DoxyCompactList}\small\item\em Dummy input variable for A\+R\+P\+A\+C\+K\+\_\+\+M\+OD. \end{DoxyCompactList}\item 
+integer \hyperlink{namespaceioaero_a8d534ecfa53489b513fc3e339bbfc064}{eigenoutput}
+\begin{DoxyCompactList}\small\item\em Dummy input variable for E\+I\+G\+E\+N\+\_\+\+O\+U\+T\+P\+UT. \end{DoxyCompactList}\item 
+character(300), public \hyperlink{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}{error}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module handle I/O of the computation code. Allow to read a .dat command file possibly with a .ini file and output a .out text output file or/and a folder with .vtk file intended to be used with paraview. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespaceioaero_a039bc1aae10012ce8e368bc202bb81be}\label{namespaceioaero_a039bc1aae10012ce8e368bc202bb81be}} 
+\index{ioaero@{ioaero}!input@{input}}
+\index{input@{input}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{input()}{input()}}
+{\footnotesize\ttfamily subroutine, public ioaero\+::input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 140 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a1f2f8f2b4f6e233d2753c1fd1809a44a}\label{namespaceioaero_a1f2f8f2b4f6e233d2753c1fd1809a44a}} 
+\index{ioaero@{ioaero}!output@{output}}
+\index{output@{output}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{output()}{output()}}
+{\footnotesize\ttfamily subroutine, public ioaero\+::output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 651 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a7eb68cb1588d24e05c8f056ca107e163}\label{namespaceioaero_a7eb68cb1588d24e05c8f056ca107e163}} 
+\index{ioaero@{ioaero}!outputvtk@{outputvtk}}
+\index{outputvtk@{outputvtk}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{outputvtk()}{outputvtk()}}
+{\footnotesize\ttfamily subroutine, public ioaero\+::outputvtk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 854 of file I\+Oaero.\+f90.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}\label{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}} 
+\index{ioaero@{ioaero}!aero\+\_\+flag@{aero\+\_\+flag}}
+\index{aero\+\_\+flag@{aero\+\_\+flag}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{aero\+\_\+flag}{aero\_flag}}
+{\footnotesize\ttfamily integer, public ioaero\+::aero\+\_\+flag}
+
+
+
+0\+: no aero analasys; 1\+: stationary aerodynamic, 2\+: unsteady aerodynamic 
+
+
+
+Definition at line 76 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a116b30aa43f6d871e7d4a3ed6f4428c3}\label{namespaceioaero_a116b30aa43f6d871e7d4a3ed6f4428c3}} 
+\index{ioaero@{ioaero}!aerodyn\+\_\+coef@{aerodyn\+\_\+coef}}
+\index{aerodyn\+\_\+coef@{aerodyn\+\_\+coef}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{aerodyn\+\_\+coef}{aerodyn\_coef}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:), allocatable, public ioaero\+::aerodyn\+\_\+coef}
+
+
+
+2D aerodynamic coefficient \+: (nmate,\+:) 
+
+
+
+Definition at line 97 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a435527b09d62e7aac9883e1a6d6f3438}\label{namespaceioaero_a435527b09d62e7aac9883e1a6d6f3438}} 
+\index{ioaero@{ioaero}!analysis\+\_\+flag@{analysis\+\_\+flag}}
+\index{analysis\+\_\+flag@{analysis\+\_\+flag}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{analysis\+\_\+flag}{analysis\_flag}}
+{\footnotesize\ttfamily integer, public ioaero\+::analysis\+\_\+flag}
+
+
+
+0\+: static analysis; 1\+: steady state response; 2\+: transient analysis; 3\+: eigenvalue analysis 
+
+
+
+Definition at line 74 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a02839259538f3d7e305ebe79cb43d2c4}\label{namespaceioaero_a02839259538f3d7e305ebe79cb43d2c4}} 
+\index{ioaero@{ioaero}!arpack@{arpack}}
+\index{arpack@{arpack}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{arpack}{arpack}}
+{\footnotesize\ttfamily integer ioaero\+::arpack\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dummy input variable for A\+R\+P\+A\+C\+K\+\_\+\+M\+OD. 
+
+
+
+Definition at line 121 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}\label{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}} 
+\index{ioaero@{ioaero}!char\+\_\+len@{char\+\_\+len}}
+\index{char\+\_\+len@{char\+\_\+len}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{char\+\_\+len}{char\_len}}
+{\footnotesize\ttfamily integer, parameter, private ioaero\+::char\+\_\+len =256\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 43 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ad67cddc00712c4d5a6d4008b2fe6c452}\label{namespaceioaero_ad67cddc00712c4d5a6d4008b2fe6c452}} 
+\index{ioaero@{ioaero}!coord@{coord}}
+\index{coord@{coord}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{coord}{coord}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:), allocatable, public ioaero\+::coord}
+
+
+
+nodal coordinates\+: coord(nkp,\+N\+D\+I\+M) 
+
+
+
+Definition at line 95 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ab2bc17b64328528015d161cab6490b80}\label{namespaceioaero_ab2bc17b64328528015d161cab6490b80}} 
+\index{ioaero@{ioaero}!curvature@{curvature}}
+\index{curvature@{curvature}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{curvature}{curvature}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:), allocatable, public ioaero\+::curvature}
+
+
+
+curvatures\+: (ncurv,N\+D\+IM) 
+
+
+
+Definition at line 100 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a1d7c3689e30c2925cd403a84e9176242}\label{namespaceioaero_a1d7c3689e30c2925cd403a84e9176242}} 
+\index{ioaero@{ioaero}!distr\+\_\+fun@{distr\+\_\+fun}}
+\index{distr\+\_\+fun@{distr\+\_\+fun}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{distr\+\_\+fun}{distr\_fun}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:), allocatable, public ioaero\+::distr\+\_\+fun}
+
+
+
+prescribed functions\+: (ndistrfun,6) 
+
+
+
+Definition at line 99 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a175dde142a22987a0e59b9738444d2e3}\label{namespaceioaero_a175dde142a22987a0e59b9738444d2e3}} 
+\index{ioaero@{ioaero}!ech\+\_\+name@{ech\+\_\+name}}
+\index{ech\+\_\+name@{ech\+\_\+name}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{ech\+\_\+name}{ech\_name}}
+{\footnotesize\ttfamily character(\hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{char\+\_\+len}+3) ioaero\+::ech\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 48 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ae043619051217506f070ece6f24deedf}\label{namespaceioaero_ae043619051217506f070ece6f24deedf}} 
+\index{ioaero@{ioaero}!eigen\+\_\+val@{eigen\+\_\+val}}
+\index{eigen\+\_\+val@{eigen\+\_\+val}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{eigen\+\_\+val}{eigen\_val}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:), allocatable, public ioaero\+::eigen\+\_\+val}
+
+
+
+arrays for holding eigenvalues and eigenvectors 
+
+
+
+Definition at line 110 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a0d150f0b81c676515b90fcf83d7ff8c3}\label{namespaceioaero_a0d150f0b81c676515b90fcf83d7ff8c3}} 
+\index{ioaero@{ioaero}!eigen\+\_\+vec\+\_\+mb@{eigen\+\_\+vec\+\_\+mb}}
+\index{eigen\+\_\+vec\+\_\+mb@{eigen\+\_\+vec\+\_\+mb}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{eigen\+\_\+vec\+\_\+mb}{eigen\_vec\_mb}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:,\+:), allocatable, public ioaero\+::eigen\+\_\+vec\+\_\+mb}
+
+
+
+arrays for holding eigenvalues and eigenvectors 
+
+
+
+Definition at line 112 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a53e09660909f61713dee3887a3adc1ec}\label{namespaceioaero_a53e09660909f61713dee3887a3adc1ec}} 
+\index{ioaero@{ioaero}!eigen\+\_\+vec\+\_\+pt@{eigen\+\_\+vec\+\_\+pt}}
+\index{eigen\+\_\+vec\+\_\+pt@{eigen\+\_\+vec\+\_\+pt}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{eigen\+\_\+vec\+\_\+pt}{eigen\_vec\_pt}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:,\+:), allocatable, public ioaero\+::eigen\+\_\+vec\+\_\+pt}
+
+
+
+arrays for holding eigenvalues and eigenvectors 
+
+
+
+Definition at line 111 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a8d534ecfa53489b513fc3e339bbfc064}\label{namespaceioaero_a8d534ecfa53489b513fc3e339bbfc064}} 
+\index{ioaero@{ioaero}!eigenoutput@{eigenoutput}}
+\index{eigenoutput@{eigenoutput}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{eigenoutput}{eigenoutput}}
+{\footnotesize\ttfamily integer ioaero\+::eigenoutput\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dummy input variable for E\+I\+G\+E\+N\+\_\+\+O\+U\+T\+P\+UT. 
+
+
+
+Definition at line 122 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a6a4b9f5362e2eee64e5777786065f563}\label{namespaceioaero_a6a4b9f5362e2eee64e5777786065f563}} 
+\index{ioaero@{ioaero}!ein@{ein}}
+\index{ein@{ein}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{ein}{ein}}
+{\footnotesize\ttfamily integer, parameter, public ioaero\+::ein =20}
+
+
+
+file for echoing the inputs\+: inp\+\_\+name.\+ech 
+
+
+
+Definition at line 47 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}\label{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}} 
+\index{ioaero@{ioaero}!error@{error}}
+\index{error@{error}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily character(300), public ioaero\+::error}
+
+
+
+Definition at line 127 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a26d467b1adbb838f4b1ba3dd4ee1ea0d}\label{namespaceioaero_a26d467b1adbb838f4b1ba3dd4ee1ea0d}} 
+\index{ioaero@{ioaero}!frame@{frame}}
+\index{frame@{frame}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{frame}{frame}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:,\+:), allocatable, public ioaero\+::frame}
+
+
+
+member frames\+: (nframe,3,3) 
+
+
+
+Definition at line 98 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}\label{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}} 
+\index{ioaero@{ioaero}!grav\+\_\+flag@{grav\+\_\+flag}}
+\index{grav\+\_\+flag@{grav\+\_\+flag}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{grav\+\_\+flag}{grav\_flag}}
+{\footnotesize\ttfamily integer, public ioaero\+::grav\+\_\+flag}
+
+
+\begin{DoxyParams}{Parameters}
+{\em grav\+\_\+flag} & 0\+: without gravity; 1\+: with gravity \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 77 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a09d53f15b1a2c723ad2b4df01c16bccc}\label{namespaceioaero_a09d53f15b1a2c723ad2b4df01c16bccc}} 
+\index{ioaero@{ioaero}!in@{in}}
+\index{in@{in}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{in}{in}}
+{\footnotesize\ttfamily integer, parameter ioaero\+::in =10\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 44 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_afb3050696f2887599d4083672103b6e7}\label{namespaceioaero_afb3050696f2887599d4083672103b6e7}} 
+\index{ioaero@{ioaero}!init@{init}}
+\index{init@{init}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{init}{init}}
+{\footnotesize\ttfamily integer, parameter ioaero\+::init =50\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+file for initial conditions\+: inp\+\_\+name.\+ini 
+
+
+
+Definition at line 53 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}\label{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}} 
+\index{ioaero@{ioaero}!init\+\_\+cond@{init\+\_\+cond}}
+\index{init\+\_\+cond@{init\+\_\+cond}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{init\+\_\+cond}{init\_cond}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:), allocatable, public ioaero\+::init\+\_\+cond}
+
+
+
+initial conditions\+: init\+\_\+cond(nelem,12); init\+\_\+cond(nelem,1\+:6) for initial displacements/rotations init\+\_\+cond(nelem,7\+:12) for initial velocities init\+\_\+cond(nelem,13\+:12+\+N\+S\+T\+A\+T\+ES) Peters finite state parameter at time t+dt 
+
+
+
+Definition at line 106 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a5a12b8b21f86b26e7364428778a85d0b}\label{namespaceioaero_a5a12b8b21f86b26e7364428778a85d0b}} 
+\index{ioaero@{ioaero}!init\+\_\+name@{init\+\_\+name}}
+\index{init\+\_\+name@{init\+\_\+name}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{init\+\_\+name}{init\_name}}
+{\footnotesize\ttfamily character(\hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{char\+\_\+len}+3) ioaero\+::init\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 54 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ae3b39e5c092106ddc3bb8b81daf8bd13}\label{namespaceioaero_ae3b39e5c092106ddc3bb8b81daf8bd13}} 
+\index{ioaero@{ioaero}!inp\+\_\+name@{inp\+\_\+name}}
+\index{inp\+\_\+name@{inp\+\_\+name}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{inp\+\_\+name}{inp\_name}}
+{\footnotesize\ttfamily character(\hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{char\+\_\+len}) ioaero\+::inp\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 45 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a83ca534029c39300d045045432607a69}\label{namespaceioaero_a83ca534029c39300d045045432607a69}} 
+\index{ioaero@{ioaero}!material@{material}}
+\index{material@{material}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{material}{material}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:,\+:), allocatable, public ioaero\+::material}
+
+
+
+flexibility matrix\+: (nmate,12,6) 
+
+
+
+Definition at line 96 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a2463929ef049b49fe7b49011c66cc806}\label{namespaceioaero_a2463929ef049b49fe7b49011c66cc806}} 
+\index{ioaero@{ioaero}!mb\+\_\+condition@{mb\+\_\+condition}}
+\index{mb\+\_\+condition@{mb\+\_\+condition}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{mb\+\_\+condition}{mb\_condition}}
+{\footnotesize\ttfamily type(prescriinf), dimension(\+:), allocatable, public ioaero\+::mb\+\_\+condition}
+
+
+
+prescribed information distributed along beam members 
+
+
+
+Definition at line 117 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ae040b39fe109c45b001985415e230ec3}\label{namespaceioaero_ae040b39fe109c45b001985415e230ec3}} 
+\index{ioaero@{ioaero}!member@{member}}
+\index{member@{member}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{member}{member}}
+{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable, public ioaero\+::member}
+
+
+
+member property array\+: member(nmemb,\+M\+E\+M\+B\+\_\+\+C\+O\+N\+S\+T) 
+
+
+
+Definition at line 87 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ab9193f4ff70a22ae5858118fc653f22b}\label{namespaceioaero_ab9193f4ff70a22ae5858118fc653f22b}} 
+\index{ioaero@{ioaero}!ncond\+\_\+mb@{ncond\+\_\+mb}}
+\index{ncond\+\_\+mb@{ncond\+\_\+mb}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{ncond\+\_\+mb}{ncond\_mb}}
+{\footnotesize\ttfamily integer, public ioaero\+::ncond\+\_\+mb}
+
+
+
+number of member conditions for distributed loads 
+
+
+
+Definition at line 82 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a5ffc5d3578d9abad99d3736ba352e07d}\label{namespaceioaero_a5ffc5d3578d9abad99d3736ba352e07d}} 
+\index{ioaero@{ioaero}!ncond\+\_\+pt@{ncond\+\_\+pt}}
+\index{ncond\+\_\+pt@{ncond\+\_\+pt}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{ncond\+\_\+pt}{ncond\_pt}}
+{\footnotesize\ttfamily integer, public ioaero\+::ncond\+\_\+pt}
+
+
+
+number of point conditions for concentrated loads and boundary conditions 
+
+
+
+Definition at line 71 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a34dabcb4bc1b4f260277297856ac3653}\label{namespaceioaero_a34dabcb4bc1b4f260277297856ac3653}} 
+\index{ioaero@{ioaero}!ncurv@{ncurv}}
+\index{ncurv@{ncurv}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{ncurv}{ncurv}}
+{\footnotesize\ttfamily integer, public ioaero\+::ncurv}
+
+
+
+number of initial curvatures/twists 
+
+
+
+Definition at line 73 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a89e1f8f2d6913d23ef482a5788d2eba5}\label{namespaceioaero_a89e1f8f2d6913d23ef482a5788d2eba5}} 
+\index{ioaero@{ioaero}!ndistrfun@{ndistrfun}}
+\index{ndistrfun@{ndistrfun}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{ndistrfun}{ndistrfun}}
+{\footnotesize\ttfamily integer, public ioaero\+::ndistrfun}
+
+
+
+number of distributed functions 
+
+
+
+Definition at line 72 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}\label{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}} 
+\index{ioaero@{ioaero}!ndof\+\_\+el@{ndof\+\_\+el}}
+\index{ndof\+\_\+el@{ndof\+\_\+el}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{ndof\+\_\+el}{ndof\_el}}
+{\footnotesize\ttfamily integer, public ioaero\+::ndof\+\_\+el}
+
+
+
+dofs per element\+: 12 for static analysis, 18 for dynamic analysis, +\+Ns if aero\+\_\+flag = 3 
+
+
+
+Definition at line 88 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a543ebf3623a96606d0956211621ce254}\label{namespaceioaero_a543ebf3623a96606d0956211621ce254}} 
+\index{ioaero@{ioaero}!nelem@{nelem}}
+\index{nelem@{nelem}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{nelem}{nelem}}
+{\footnotesize\ttfamily integer, public ioaero\+::nelem}
+
+
+
+total number of elements 
+
+
+
+Definition at line 67 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}\label{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}} 
+\index{ioaero@{ioaero}!nev@{nev}}
+\index{nev@{nev}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{nev}{nev}}
+{\footnotesize\ttfamily integer, public ioaero\+::nev}
+
+
+
+number of frequencies and modeshapes. 
+
+
+
+Definition at line 75 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ac9fe2ddcc0797f81e7bc475a28692978}\label{namespaceioaero_ac9fe2ddcc0797f81e7bc475a28692978}} 
+\index{ioaero@{ioaero}!nframe@{nframe}}
+\index{nframe@{nframe}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{nframe}{nframe}}
+{\footnotesize\ttfamily integer, public ioaero\+::nframe}
+
+
+
+number of frames 
+
+
+
+Definition at line 70 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ac008486fd12e0029a1ef77b3ca5e12c3}\label{namespaceioaero_ac008486fd12e0029a1ef77b3ca5e12c3}} 
+\index{ioaero@{ioaero}!niter@{niter}}
+\index{niter@{niter}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{niter}{niter}}
+{\footnotesize\ttfamily integer, public ioaero\+::niter}
+
+
+
+number of maximum iterations 
+
+
+
+Definition at line 84 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a24506866304c39bd1fa57ef73b124335}\label{namespaceioaero_a24506866304c39bd1fa57ef73b124335}} 
+\index{ioaero@{ioaero}!nkp@{nkp}}
+\index{nkp@{nkp}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{nkp}{nkp}}
+{\footnotesize\ttfamily integer, public ioaero\+::nkp}
+
+
+
+number of key points 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nkp} & number of key points \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ad8817641275f11b821b7720a78651531}\label{namespaceioaero_ad8817641275f11b821b7720a78651531}} 
+\index{ioaero@{ioaero}!nmate@{nmate}}
+\index{nmate@{nmate}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{nmate}{nmate}}
+{\footnotesize\ttfamily integer, public ioaero\+::nmate}
+
+
+
+number of cross-\/sectional properties sets 
+
+
+
+Definition at line 69 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ab59096c14b19d71fd53523822067402c}\label{namespaceioaero_ab59096c14b19d71fd53523822067402c}} 
+\index{ioaero@{ioaero}!nmemb@{nmemb}}
+\index{nmemb@{nmemb}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{nmemb}{nmemb}}
+{\footnotesize\ttfamily integer, public ioaero\+::nmemb}
+
+
+
+number of members 
+
+
+
+Definition at line 68 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ab078a397454a22b07a19ae3a7443a561}\label{namespaceioaero_ab078a397454a22b07a19ae3a7443a561}} 
+\index{ioaero@{ioaero}!nstep@{nstep}}
+\index{nstep@{nstep}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{nstep}{nstep}}
+{\footnotesize\ttfamily integer, public ioaero\+::nstep}
+
+
+
+number of time steps/load steps 
+
+
+
+Definition at line 85 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a8d0cfe1f4a5677d76ba3f3e775b12d1e}\label{namespaceioaero_a8d0cfe1f4a5677d76ba3f3e775b12d1e}} 
+\index{ioaero@{ioaero}!ntimefun@{ntimefun}}
+\index{ntimefun@{ntimefun}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{ntimefun}{ntimefun}}
+{\footnotesize\ttfamily integer, public ioaero\+::ntimefun}
+
+
+
+number of time functions 
+
+
+
+Definition at line 83 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a29c506d8ad3a3609366b35e7e4c00fa4}\label{namespaceioaero_a29c506d8ad3a3609366b35e7e4c00fa4}} 
+\index{ioaero@{ioaero}!nvtk@{nvtk}}
+\index{nvtk@{nvtk}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{nvtk}{nvtk}}
+{\footnotesize\ttfamily integer, public ioaero\+::nvtk}
+
+
+
+number of the aerodynamic cycle 
+
+
+
+Definition at line 86 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a38fc5ef87ae7c2e312ad32f857e791cb}\label{namespaceioaero_a38fc5ef87ae7c2e312ad32f857e791cb}} 
+\index{ioaero@{ioaero}!omega\+\_\+a0@{omega\+\_\+a0}}
+\index{omega\+\_\+a0@{omega\+\_\+a0}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{omega\+\_\+a0}{omega\_a0}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim), public ioaero\+::omega\+\_\+a0}
+
+
+
+the magnitude of angular velocity of frame a 
+
+
+
+Definition at line 104 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a9ec25357ecfc1c09628efa147300aaee}\label{namespaceioaero_a9ec25357ecfc1c09628efa147300aaee}} 
+\index{ioaero@{ioaero}!omega\+\_\+a\+\_\+tf@{omega\+\_\+a\+\_\+tf}}
+\index{omega\+\_\+a\+\_\+tf@{omega\+\_\+a\+\_\+tf}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{omega\+\_\+a\+\_\+tf}{omega\_a\_tf}}
+{\footnotesize\ttfamily integer, dimension(ndim), public ioaero\+::omega\+\_\+a\+\_\+tf}
+
+
+
+time function numbers for the angular velocity of frame a 
+
+
+
+Definition at line 89 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a7c01d4bcd841d8d6281f29d5fc818fd8}\label{namespaceioaero_a7c01d4bcd841d8d6281f29d5fc818fd8}} 
+\index{ioaero@{ioaero}!out@{out}}
+\index{out@{out}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{out}{out}}
+{\footnotesize\ttfamily integer, parameter ioaero\+::out =40\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+file for output\+: inp\+\_\+name.\+out 
+
+
+
+Definition at line 50 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a6693b9440660a84d2d2fc41ac183bb0f}\label{namespaceioaero_a6693b9440660a84d2d2fc41ac183bb0f}} 
+\index{ioaero@{ioaero}!out\+\_\+name@{out\+\_\+name}}
+\index{out\+\_\+name@{out\+\_\+name}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{out\+\_\+name}{out\_name}}
+{\footnotesize\ttfamily character(\hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{char\+\_\+len}+3) ioaero\+::out\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a4344b2018135ae7fe0a09f4265fd2c29}\label{namespaceioaero_a4344b2018135ae7fe0a09f4265fd2c29}} 
+\index{ioaero@{ioaero}!pt\+\_\+condition@{pt\+\_\+condition}}
+\index{pt\+\_\+condition@{pt\+\_\+condition}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{pt\+\_\+condition}{pt\_condition}}
+{\footnotesize\ttfamily type(prescriinf), dimension(\+:), allocatable, public ioaero\+::pt\+\_\+condition}
+
+
+
+prescribed information concentrated at nodes 
+
+
+
+Definition at line 116 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ab6c271c9ebbeb9a315ec53d38facb60b}\label{namespaceioaero_ab6c271c9ebbeb9a315ec53d38facb60b}} 
+\index{ioaero@{ioaero}!simu\+\_\+time@{simu\+\_\+time}}
+\index{simu\+\_\+time@{simu\+\_\+time}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{simu\+\_\+time}{simu\_time}}
+{\footnotesize\ttfamily real(dbl), dimension(2), public ioaero\+::simu\+\_\+time}
+
+
+
+start and end time of the simulation. 
+
+
+
+Definition at line 103 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a4933d28025772ee22892dc12780a8eef}\label{namespaceioaero_a4933d28025772ee22892dc12780a8eef}} 
+\index{ioaero@{ioaero}!sol\+\_\+mb@{sol\+\_\+mb}}
+\index{sol\+\_\+mb@{sol\+\_\+mb}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{sol\+\_\+mb}{sol\_mb}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:,\+:), allocatable, public ioaero\+::sol\+\_\+mb}
+
+
+
+solutions for member sol\+\_\+mb(nstep,nelem,N\+D\+I\+M+ndof\+\_\+el)\+: nelem\+: total number of elements 
+
+
+
+Definition at line 102 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_af6e62942bb38b7b7d69ea25972fe00bf}\label{namespaceioaero_af6e62942bb38b7b7d69ea25972fe00bf}} 
+\index{ioaero@{ioaero}!sol\+\_\+pt@{sol\+\_\+pt}}
+\index{sol\+\_\+pt@{sol\+\_\+pt}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{sol\+\_\+pt}{sol\_pt}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:,\+:), allocatable, public ioaero\+::sol\+\_\+pt}
+
+
+
+solutions for points sol\+\_\+pt(nstep,nkp,N\+D\+I\+M+\+N\+D\+O\+F\+\_\+\+ND) 
+
+
+
+Definition at line 101 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_accb03392882ddfd413b5ac9ce3be09c6}\label{namespaceioaero_accb03392882ddfd413b5ac9ce3be09c6}} 
+\index{ioaero@{ioaero}!time\+\_\+function@{time\+\_\+function}}
+\index{time\+\_\+function@{time\+\_\+function}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{time\+\_\+function}{time\_function}}
+{\footnotesize\ttfamily type(timefunction), dimension(\+:), allocatable, public ioaero\+::time\+\_\+function}
+
+
+
+time functions 
+
+
+
+Definition at line 118 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_a3cefdbd9d62bffe41f44b7f79f321f67}\label{namespaceioaero_a3cefdbd9d62bffe41f44b7f79f321f67}} 
+\index{ioaero@{ioaero}!v\+\_\+root\+\_\+a0@{v\+\_\+root\+\_\+a0}}
+\index{v\+\_\+root\+\_\+a0@{v\+\_\+root\+\_\+a0}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{v\+\_\+root\+\_\+a0}{v\_root\_a0}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim), public ioaero\+::v\+\_\+root\+\_\+a0}
+
+
+
+the magnitude of linear velocity of the starting point of the first member 
+
+
+
+Definition at line 105 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_adb4e11942a388b1bf1f13d10c79614bc}\label{namespaceioaero_adb4e11942a388b1bf1f13d10c79614bc}} 
+\index{ioaero@{ioaero}!v\+\_\+root\+\_\+a\+\_\+tf@{v\+\_\+root\+\_\+a\+\_\+tf}}
+\index{v\+\_\+root\+\_\+a\+\_\+tf@{v\+\_\+root\+\_\+a\+\_\+tf}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{v\+\_\+root\+\_\+a\+\_\+tf}{v\_root\_a\_tf}}
+{\footnotesize\ttfamily integer, dimension(ndim), public ioaero\+::v\+\_\+root\+\_\+a\+\_\+tf}
+
+
+
+time function numbers for the velocity of the starting point of the first member 
+
+
+
+Definition at line 90 of file I\+Oaero.\+f90.
+
+\mbox{\Hypertarget{namespaceioaero_ac653c5aea8d1de1b6255d0f47b6722f6}\label{namespaceioaero_ac653c5aea8d1de1b6255d0f47b6722f6}} 
+\index{ioaero@{ioaero}!velocity\+\_\+str@{velocity\+\_\+str}}
+\index{velocity\+\_\+str@{velocity\+\_\+str}!ioaero@{ioaero}}
+\subsubsection{\texorpdfstring{velocity\+\_\+str}{velocity\_str}}
+{\footnotesize\ttfamily character(\hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{char\+\_\+len}), public ioaero\+::velocity\+\_\+str = \textquotesingle{}\textquotesingle{}}
+
+
+
+Definition at line 120 of file I\+Oaero.\+f90.
+

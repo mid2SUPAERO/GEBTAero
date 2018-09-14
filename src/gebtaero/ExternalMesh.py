@@ -6,12 +6,9 @@ from .utils import *
 from .OrthoMaterial import *
 from .IsoMaterial import *
 
-
+##This class allow to use a mesh created without cgx, the elset name must correspond to the component name. The input mesh format has to be inp format or unv using the unical format translator
 class ExternalMesh:
-    """
-    This class allow to use a mesh created without cgx, the elset name must correspond to the component name. 
-    The input mesh format has to be inp
-    """        
+    
     def __init__(self,MeshFile,OffsetY=0.,OffsetZ=0.,UnvConv=False,Chord=1.):
         # does the meshfile exist
         if not os.path.isfile(MeshFile):
@@ -20,29 +17,46 @@ class ExternalMesh:
             RunUnvConv(MeshFile,"converted.msh")
             self.MeshFile = "converted.msh"
         else:
+            ## the name of the meshfile
             self.MeshFile = MeshFile    
+        ## a list of group of elements (material affectation)
         self.Components = []
+        ## a list of materials (either IsoMaterial or OrthoMaterial)
         self.Materials = []
+        ## a list of fiber orientation
         self.Orientations = []
-        self.TotThickness = 0.
+        ## Y coordinate of the mesh center in the Frame B
         self.OffsetY = OffsetY
+        ## Z coordinate of the mesh center in the Frame B
         self.OffsetZ = OffsetZ
+        ## The chord of the airfoil
         self.Chord=Chord
         [nstrain,ncurv,x0,Lx,nodes,elements]=CreatePeriodicEq(self.MeshFile)
         RemoveFiles()
+        ## index of the nstrain ccx dummy node
         self.nstrain = None
+        ## index of the nstrain ccx dummy node
         self.ncurv = None
+        ## length of the RVE in direction xb
         self.Lx = None
+        ## list of the mesh nodes (inp format)
         self.nodes = None
+        ## index of the nodes belonging to the first RVE periodic face 
         self.x0 = None
+        ## list of the mesh element (inp format)
         self.elements = None
         
+    ## interface to the utils::CreatePeriodicEq
     def CreatePeriodicEq(self):
         [self.nstrain,self.ncurv,self.x0,self.Lx,self.nodes,self.elements]=CreatePeriodicEq(self.MeshFile)            
         
     def GetMeshFile(self):
         return self.MeshFile    
         
+    ## Link a mesh element group to a material
+    #@param Name the name of the element group as it is set in the meshfile (ELSET)
+    #@param Material material to be set in the element group (either IsoMatrial or OrthoMaterial)
+    #@param the fiber orientation in case of OrthoMaterial
     def AppendComponent(self,Name,Material,Orientation=None):
         self.Components.append([Name.upper(),Material,Orientation])
         if(Material not in self.Materials):
@@ -54,6 +68,10 @@ class ExternalMesh:
             if(Orientation not in self.Orientations):
                 self.Orientations.append(Orientation)
             
+    ## Create the input file for ccx solver
+    #@param Stress True = output the stress tensor for each elementary load case, False = no stress output
+    #@param PlaneSection True = warping of the cross section is not allowed, False = warping of the cross section is allowed
+    #@param Disp  Determine the set of elementary load cases : 0=all the 4 load cases, 1 = traction, 2 = warping, 3 = bending span-wise, 4 = bending chord-wise.        
     def CreateInpFile(self,Stress=False,PlaneSection=False,Disp=0):
         NbComp = len(self.Components)
         NbMat = len(self.Materials)
@@ -123,6 +141,16 @@ class ExternalMesh:
             file.write("*step\n*static\n*cload,OP=NEW\nncurv,3,3.\n*node file,NSET=Nall\nU\n*end step\n\n")
         file.close()
         
+    ## Compute the surface and the center of gravity of the triangular face of a penta element
+    #@param nodes The node list of the Mesh
+    #@param element the index of the element computed
+    #@param x0 the nodes index list of the RVE periodic face
+    #@return surface the area of the triangular face belonging to the reference periodic face of the RVE (which nodes are in x0)
+    #@return ycg the y position of the element CG    
+    #@return zcg the z position of the element CG    
+    #@return elI22 inertia I22 of the element   
+    #@return elI33 inertia I33 of the element   
+    #@return elI23 inertia I23 of the element   
     def ComputeElementSurfAndCG(self,nodes,element,x0):
         vertex = []
         # extractions of node belonging to the x0 face
@@ -157,6 +185,16 @@ class ExternalMesh:
             raise RuntimeError('not coded yet')
         return surface,ycg,zcg,elI22,elI33,elI23
 
+    ## Approximate the CrossSection::MassMatrix using the mesh elements
+    #@param nodes The node list of the Mesh
+    #@param x0 the nodes index list of the RVE periodic face
+    #@param elements list of the mesh elements (inp format)
+    #@return Mu Mass per unit length (kg/m)
+    #@return I22 mass moment of inertia around yB (bending span-wise, kg.m) 
+    #@return I33 mass moment of inertia around zB (bending chord-wise, kg.m) 
+    #@return I23 product of inertia in plane (yB,zB)
+    #@return Ycg Y coordinate of the Center of Gravity in frame B
+    #@return Zcg Z coordinate of the Center of Gravity in frame B
     def ComputeMassMatrixFromMesh(self,nodes,x0,elements):
         Ycg = 0.
         Zcg = 0.
@@ -195,6 +233,8 @@ class ExternalMesh:
         #~ print(surface,Ycg,Zcg,I22,I33,I23)
         return [Mu,I22,I33,I23,Ycg,Zcg]
         
+    ## Launch the cgx postprocessor with a particular elementary load case.
+    #@param DefType  Determine the set of elementary load cases : 0=all the 4 load cases, 1 = traction, 2 = warping, 3 = bending span-wise, 4 = bending chord-wise.
     def DisplaySectionDeformation(self,DefType):
         self.CreatePeriodicEq()
         self.CreateInpFile(Disp=DefType)

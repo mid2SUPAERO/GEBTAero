@@ -1,0 +1,280 @@
+\hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section}{}\section{gebtaero.\+Wing\+Section.\+Wing\+Section Class Reference}
+\label{classgebtaero_1_1_wing_section_1_1_wing_section}\index{gebtaero.\+Wing\+Section.\+Wing\+Section@{gebtaero.\+Wing\+Section.\+Wing\+Section}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_aa313aa86c7d8588a0ce454b9268cf7a8}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a844f4ac911b02212eb5c8a3d04bc2626}{Chord}, \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a0da2330696a15bce08b3ac29b2efaf17}{ParameterA}, \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a350cd9770457b51a9fc2d8c5a1171bf0}{Number\+Of\+Elements}, \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a87909d32978a886e9e329df69f7d918e}{Section\+Length}, \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section}{Cross\+Section}, \hyperlink{classgebtaero_1_1_frame_1_1_frame}{Frame})
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_acb553aceb237ebac8cc046e4f4a46edf}{Set\+ParameterA} (self, \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a0da2330696a15bce08b3ac29b2efaf17}{ParameterA})
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_adc79518e2f548a3aaee672b9206a83f4}{Get\+ParameterA} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a8371272d51d0381a5a39213aee9b1814}{Set\+Chord} (self, \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a844f4ac911b02212eb5c8a3d04bc2626}{Chord})
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a8221f8451dd85532c56dc9b2c1a2cd02}{Get\+Chord} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a2f91e7d10247a836983ad07c09130788}{Get\+Half\+Chord} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_ad10719c65734570b888b9ab60431bf87}{Set\+Number\+Of\+Elements} (self, \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a350cd9770457b51a9fc2d8c5a1171bf0}{Number\+Of\+Elements})
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a04c09389662d9c6d3cc34032296dd03e}{Get\+Number\+Of\+Elements} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_ab34adcbd5dd0ad028a03fa6e3581afef}{Set\+Section\+Length} (self, \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a87909d32978a886e9e329df69f7d918e}{Section\+Length})
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a55b1955062f73aea55c508427f9491bf}{Get\+Section\+Length} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_aa8304c2d733dc66fba50fcb4b3f4a902}{Get\+Cross\+Section} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a8b0b0e7224ca8bd3b39dbb4fb159274e}{Get\+Frame} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a844f4ac911b02212eb5c8a3d04bc2626}{Chord}
+\item 
+\hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a0da2330696a15bce08b3ac29b2efaf17}{ParameterA}
+\item 
+\hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a350cd9770457b51a9fc2d8c5a1171bf0}{Number\+Of\+Elements}
+\item 
+\hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a87909d32978a886e9e329df69f7d918e}{Section\+Length}
+\item 
+\hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a6b0d6833d40f1de17a90670b2d93f1d7}{Half\+Chord}
+\item 
+\hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a66c05b18f3b13c9ab00815cb938fed49}{Cross\+Section}
+\item 
+\hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a33e1121a1f998bf192ab4bb39d22d76a}{Frame}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}Section of a wing. A section is defined for each changing parameter (dihedral,
+flexibility,...)
+
+:version: 12/02/18
+:author: Bertrand Kirsch
+
+ATTRIBUTES
+
+The loccal chord of the wing section (m)
+Chord  (private) : float
+
+Distance between the moment calculation point and the half chord. For isotropic
+wing the moment calculation point is placed on the elastic center
+ParameterA  (private) : float
+
+Half of the local wing chord used in the aerodynamic model
+HalfChord  (private) : float
+
+Number of FE elements of the wing section
+NumberOfElements  (private) : int
+
+Length of the wing section
+SectionLength (private) : float\end{DoxyVerb}
+ 
+
+Definition at line 3 of file Wing\+Section.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_aa313aa86c7d8588a0ce454b9268cf7a8}\label{classgebtaero_1_1_wing_section_1_1_wing_section_aa313aa86c7d8588a0ce454b9268cf7a8}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Chord,  }\item[{}]{ParameterA,  }\item[{}]{Number\+Of\+Elements,  }\item[{}]{Section\+Length,  }\item[{}]{Cross\+Section,  }\item[{}]{Frame }\end{DoxyParamCaption})}
+
+
+
+Definition at line 30 of file Wing\+Section.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a8221f8451dd85532c56dc9b2c1a2cd02}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a8221f8451dd85532c56dc9b2c1a2cd02}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+Chord@{Get\+Chord}}
+\index{Get\+Chord@{Get\+Chord}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Get\+Chord()}{GetChord()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+Get\+Chord (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 49 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_aa8304c2d733dc66fba50fcb4b3f4a902}\label{classgebtaero_1_1_wing_section_1_1_wing_section_aa8304c2d733dc66fba50fcb4b3f4a902}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+Cross\+Section@{Get\+Cross\+Section}}
+\index{Get\+Cross\+Section@{Get\+Cross\+Section}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Get\+Cross\+Section()}{GetCrossSection()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+Get\+Cross\+Section (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 69 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a8b0b0e7224ca8bd3b39dbb4fb159274e}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a8b0b0e7224ca8bd3b39dbb4fb159274e}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+Frame@{Get\+Frame}}
+\index{Get\+Frame@{Get\+Frame}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Get\+Frame()}{GetFrame()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+Get\+Frame (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 72 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a2f91e7d10247a836983ad07c09130788}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a2f91e7d10247a836983ad07c09130788}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+Half\+Chord@{Get\+Half\+Chord}}
+\index{Get\+Half\+Chord@{Get\+Half\+Chord}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Get\+Half\+Chord()}{GetHalfChord()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+Get\+Half\+Chord (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 52 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a04c09389662d9c6d3cc34032296dd03e}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a04c09389662d9c6d3cc34032296dd03e}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+Number\+Of\+Elements@{Get\+Number\+Of\+Elements}}
+\index{Get\+Number\+Of\+Elements@{Get\+Number\+Of\+Elements}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Get\+Number\+Of\+Elements()}{GetNumberOfElements()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+Get\+Number\+Of\+Elements (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 59 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_adc79518e2f548a3aaee672b9206a83f4}\label{classgebtaero_1_1_wing_section_1_1_wing_section_adc79518e2f548a3aaee672b9206a83f4}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+ParameterA@{Get\+ParameterA}}
+\index{Get\+ParameterA@{Get\+ParameterA}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Get\+Parameter\+A()}{GetParameterA()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+Get\+ParameterA (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 42 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a55b1955062f73aea55c508427f9491bf}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a55b1955062f73aea55c508427f9491bf}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+Section\+Length@{Get\+Section\+Length}}
+\index{Get\+Section\+Length@{Get\+Section\+Length}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Get\+Section\+Length()}{GetSectionLength()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+Get\+Section\+Length (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 66 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a8371272d51d0381a5a39213aee9b1814}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a8371272d51d0381a5a39213aee9b1814}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Set\+Chord@{Set\+Chord}}
+\index{Set\+Chord@{Set\+Chord}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Set\+Chord()}{SetChord()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+Set\+Chord (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Chord }\end{DoxyParamCaption})}
+
+
+
+Definition at line 45 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_ad10719c65734570b888b9ab60431bf87}\label{classgebtaero_1_1_wing_section_1_1_wing_section_ad10719c65734570b888b9ab60431bf87}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Set\+Number\+Of\+Elements@{Set\+Number\+Of\+Elements}}
+\index{Set\+Number\+Of\+Elements@{Set\+Number\+Of\+Elements}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Set\+Number\+Of\+Elements()}{SetNumberOfElements()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+Set\+Number\+Of\+Elements (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Number\+Of\+Elements }\end{DoxyParamCaption})}
+
+
+
+Definition at line 56 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_acb553aceb237ebac8cc046e4f4a46edf}\label{classgebtaero_1_1_wing_section_1_1_wing_section_acb553aceb237ebac8cc046e4f4a46edf}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Set\+ParameterA@{Set\+ParameterA}}
+\index{Set\+ParameterA@{Set\+ParameterA}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Set\+Parameter\+A()}{SetParameterA()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+Set\+ParameterA (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{ParameterA }\end{DoxyParamCaption})}
+
+
+
+Definition at line 39 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_ab34adcbd5dd0ad028a03fa6e3581afef}\label{classgebtaero_1_1_wing_section_1_1_wing_section_ab34adcbd5dd0ad028a03fa6e3581afef}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Set\+Section\+Length@{Set\+Section\+Length}}
+\index{Set\+Section\+Length@{Set\+Section\+Length}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Set\+Section\+Length()}{SetSectionLength()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing\+Section.\+Wing\+Section.\+Set\+Section\+Length (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Section\+Length }\end{DoxyParamCaption})}
+
+
+
+Definition at line 63 of file Wing\+Section.\+py.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a844f4ac911b02212eb5c8a3d04bc2626}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a844f4ac911b02212eb5c8a3d04bc2626}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Chord@{Chord}}
+\index{Chord@{Chord}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Chord}{Chord}}
+{\footnotesize\ttfamily gebtaero.\+Wing\+Section.\+Wing\+Section.\+Chord}
+
+
+
+Definition at line 31 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a66c05b18f3b13c9ab00815cb938fed49}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a66c05b18f3b13c9ab00815cb938fed49}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Cross\+Section@{Cross\+Section}}
+\index{Cross\+Section@{Cross\+Section}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Cross\+Section}{CrossSection}}
+{\footnotesize\ttfamily gebtaero.\+Wing\+Section.\+Wing\+Section.\+Cross\+Section}
+
+
+
+Definition at line 36 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a33e1121a1f998bf192ab4bb39d22d76a}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a33e1121a1f998bf192ab4bb39d22d76a}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Frame@{Frame}}
+\index{Frame@{Frame}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Frame}{Frame}}
+{\footnotesize\ttfamily gebtaero.\+Wing\+Section.\+Wing\+Section.\+Frame}
+
+
+
+Definition at line 37 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a6b0d6833d40f1de17a90670b2d93f1d7}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a6b0d6833d40f1de17a90670b2d93f1d7}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Half\+Chord@{Half\+Chord}}
+\index{Half\+Chord@{Half\+Chord}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Half\+Chord}{HalfChord}}
+{\footnotesize\ttfamily gebtaero.\+Wing\+Section.\+Wing\+Section.\+Half\+Chord}
+
+
+
+Definition at line 35 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a350cd9770457b51a9fc2d8c5a1171bf0}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a350cd9770457b51a9fc2d8c5a1171bf0}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Number\+Of\+Elements@{Number\+Of\+Elements}}
+\index{Number\+Of\+Elements@{Number\+Of\+Elements}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Number\+Of\+Elements}{NumberOfElements}}
+{\footnotesize\ttfamily gebtaero.\+Wing\+Section.\+Wing\+Section.\+Number\+Of\+Elements}
+
+
+
+Definition at line 33 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a0da2330696a15bce08b3ac29b2efaf17}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a0da2330696a15bce08b3ac29b2efaf17}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!ParameterA@{ParameterA}}
+\index{ParameterA@{ParameterA}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{ParameterA}{ParameterA}}
+{\footnotesize\ttfamily gebtaero.\+Wing\+Section.\+Wing\+Section.\+ParameterA}
+
+
+
+Definition at line 32 of file Wing\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a87909d32978a886e9e329df69f7d918e}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a87909d32978a886e9e329df69f7d918e}} 
+\index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Section\+Length@{Section\+Length}}
+\index{Section\+Length@{Section\+Length}!gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}}
+\subsubsection{\texorpdfstring{Section\+Length}{SectionLength}}
+{\footnotesize\ttfamily gebtaero.\+Wing\+Section.\+Wing\+Section.\+Section\+Length}
+
+
+
+Definition at line 34 of file Wing\+Section.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/bertrand/these/logiciels/programme/interface/src/gebtaero/\hyperlink{_wing_section_8py}{Wing\+Section.\+py}\end{DoxyCompactItemize}

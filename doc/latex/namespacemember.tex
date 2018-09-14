@@ -1,0 +1,169 @@
+\hypertarget{namespacemember}{}\section{member Module Reference}
+\label{namespacemember}\index{member@{member}}
+
+
+This module assemles within a member without considering the particular conditions of the end points.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespacemember_ac35a49c8cdb17a8b26f8c4b23d6053be}{assemblememberrhs} (ndof\+\_\+el, memb\+\_\+info\+\_\+i, v\+\_\+root\+\_\+a, omega\+\_\+a, x\+\_\+memb, rhs\+\_\+memb, aero\+\_\+flag, grav\+\_\+flag, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em Assemble the equations for each member $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemember_ad1206aacf86963bb366e5976c4f605c2}{assemblememberjacobian} (ndof\+\_\+el, niter, memb\+\_\+info\+\_\+i, v\+\_\+root\+\_\+a, omega\+\_\+a, x\+\_\+memb, nz\+\_\+memb, irn\+\_\+memb, jcn\+\_\+memb, coef\+\_\+memb, aero\+\_\+flag, grav\+\_\+flag)
+\begin{DoxyCompactList}\small\item\em Assemble the Jacobian for each member $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemember_a8618a013da87b108e5e91013028fc1a8}{extractmemberproperties} (memb\+\_\+no, memb\+\_\+info\+\_\+i, member, ncond\+\_\+mb, mb\+\_\+condition, distr\+\_\+fun, error, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em Extract member properties $\ast$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, public \hyperlink{namespacemember_a3e6a3b0896edb5c30c113dc22ab7181a}{ndiv}
+\begin{DoxyCompactList}\small\item\em number of divisions \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespacemember_a20895477b227a3352a4e758b21b01bf8}{ncol\+\_\+memb}
+\begin{DoxyCompactList}\small\item\em the total number of columns of the member \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module assemles within a member without considering the particular conditions of the end points. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacemember_ad1206aacf86963bb366e5976c4f605c2}\label{namespacemember_ad1206aacf86963bb366e5976c4f605c2}} 
+\index{member@{member}!assemblememberjacobian@{assemblememberjacobian}}
+\index{assemblememberjacobian@{assemblememberjacobian}!member@{member}}
+\subsubsection{\texorpdfstring{assemblememberjacobian()}{assemblememberjacobian()}}
+{\footnotesize\ttfamily subroutine, public member\+::assemblememberjacobian (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{integer, intent(in)}]{niter,  }\item[{type (memberinf), intent(in)}]{memb\+\_\+info\+\_\+i,  }\item[{real(dbl), dimension(\+:), intent(in)}]{v\+\_\+root\+\_\+a,  }\item[{real(dbl), dimension(\+:), intent(in)}]{omega\+\_\+a,  }\item[{real(dbl), dimension(\+:), intent(in)}]{x\+\_\+memb,  }\item[{integer, intent(out)}]{nz\+\_\+memb,  }\item[{integer, dimension(\+:), intent(out)}]{irn\+\_\+memb,  }\item[{integer, dimension(\+:), intent(out)}]{jcn\+\_\+memb,  }\item[{real(dbl), dimension(\+:), intent(out)}]{coef\+\_\+memb,  }\item[{integer, intent(in)}]{aero\+\_\+flag,  }\item[{integer, intent(in)}]{grav\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Assemble the Jacobian for each member $\ast$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em niter} & \hyperlink{namespaceioaero_ac008486fd12e0029a1ef77b3ca5e12c3}{ioaero\+::niter}\\
+\hline
+\mbox{\tt in}  & {\em aero\+\_\+flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em grav\+\_\+flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em memb\+\_\+info\+\_\+i} & array containing the characteristics of a beam member\\
+\hline
+\mbox{\tt in}  & {\em v\+\_\+root\+\_\+a} & linear velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em omega\+\_\+a} & angular velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+memb} & solution vector of a beam member\\
+\hline
+\mbox{\tt out}  & {\em nz\+\_\+memb} & Number of nonzero value of the member Jacobian\\
+\hline
+\mbox{\tt out}  & {\em irn\+\_\+memb} & line index of the nonzero coefficient\\
+\hline
+\mbox{\tt out}  & {\em jcn\+\_\+memb} & column index of the nonzero coefficient\\
+\hline
+\mbox{\tt out}  & {\em coef\+\_\+memb} & value of the nonzero coefficient \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 82 of file Member.\+f90.
+
+\mbox{\Hypertarget{namespacemember_ac35a49c8cdb17a8b26f8c4b23d6053be}\label{namespacemember_ac35a49c8cdb17a8b26f8c4b23d6053be}} 
+\index{member@{member}!assemblememberrhs@{assemblememberrhs}}
+\index{assemblememberrhs@{assemblememberrhs}!member@{member}}
+\subsubsection{\texorpdfstring{assemblememberrhs()}{assemblememberrhs()}}
+{\footnotesize\ttfamily subroutine, public member\+::assemblememberrhs (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{type (memberinf), intent(in)}]{memb\+\_\+info\+\_\+i,  }\item[{real(dbl), dimension(\+:), intent(in)}]{v\+\_\+root\+\_\+a,  }\item[{real(dbl), dimension(\+:), intent(in)}]{omega\+\_\+a,  }\item[{real(dbl), dimension(\+:), intent(in)}]{x\+\_\+memb,  }\item[{real(dbl), dimension(\+:), intent(out)}]{rhs\+\_\+memb,  }\item[{integer, intent(in)}]{aero\+\_\+flag,  }\item[{integer, intent(in)}]{grav\+\_\+flag,  }\item[{real(dbl), dimension(\+:,\+:), intent(in), optional}]{init\+\_\+cond }\end{DoxyParamCaption})}
+
+
+
+Assemble the equations for each member $\ast$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em aero\+\_\+flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em grav\+\_\+flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em memb\+\_\+info\+\_\+i} & array containing the characteristics of a beam member\\
+\hline
+\mbox{\tt in}  & {\em v\+\_\+root\+\_\+a} & linear velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em omega\+\_\+a} & angular velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+memb} & solution vector of a beam member\\
+\hline
+\mbox{\tt out}  & {\em rhs\+\_\+memb} & R\+HS vector of a beam member\\
+\hline
+\mbox{\tt in}  & {\em init\+\_\+cond} & \hyperlink{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}{ioaero\+::init\+\_\+cond} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 38 of file Member.\+f90.
+
+\mbox{\Hypertarget{namespacemember_a8618a013da87b108e5e91013028fc1a8}\label{namespacemember_a8618a013da87b108e5e91013028fc1a8}} 
+\index{member@{member}!extractmemberproperties@{extractmemberproperties}}
+\index{extractmemberproperties@{extractmemberproperties}!member@{member}}
+\subsubsection{\texorpdfstring{extractmemberproperties()}{extractmemberproperties()}}
+{\footnotesize\ttfamily subroutine, public member\+::extractmemberproperties (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{memb\+\_\+no,  }\item[{type (memberinf), intent(in)}]{memb\+\_\+info\+\_\+i,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{integer, intent(in)}]{ncond\+\_\+mb,  }\item[{type(prescriinf), dimension(\+:), intent(in)}]{mb\+\_\+condition,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{distr\+\_\+fun,  }\item[{character($\ast$), intent(out)}]{error,  }\item[{real(dbl), dimension(\+:,\+:), intent(in), optional}]{init\+\_\+cond }\end{DoxyParamCaption})}
+
+
+
+Extract member properties $\ast$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em memb\+\_\+no} & Number of the current member\\
+\hline
+\mbox{\tt in}  & {\em ncond\+\_\+mb} & \hyperlink{namespaceioaero_ab9193f4ff70a22ae5858118fc653f22b}{ioaero\+::ncond\+\_\+mb}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in}  & {\em memb\+\_\+info\+\_\+i} & array containing the characteristics of a beam member\\
+\hline
+\mbox{\tt in}  & {\em distr\+\_\+fun} & \hyperlink{namespaceioaero_a1d7c3689e30c2925cd403a84e9176242}{ioaero\+::distr\+\_\+fun}\\
+\hline
+\mbox{\tt in}  & {\em mb\+\_\+condition} & \hyperlink{namespaceioaero_a2463929ef049b49fe7b49011c66cc806}{ioaero\+::mb\+\_\+condition}\\
+\hline
+\mbox{\tt out}  & {\em error} & \hyperlink{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}{ioaero\+::error}\\
+\hline
+\mbox{\tt in}  & {\em init\+\_\+cond} & \hyperlink{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}{ioaero\+::init\+\_\+cond} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 149 of file Member.\+f90.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacemember_a20895477b227a3352a4e758b21b01bf8}\label{namespacemember_a20895477b227a3352a4e758b21b01bf8}} 
+\index{member@{member}!ncol\+\_\+memb@{ncol\+\_\+memb}}
+\index{ncol\+\_\+memb@{ncol\+\_\+memb}!member@{member}}
+\subsubsection{\texorpdfstring{ncol\+\_\+memb}{ncol\_memb}}
+{\footnotesize\ttfamily integer, public member\+::ncol\+\_\+memb}
+
+
+
+the total number of columns of the member 
+
+
+
+Definition at line 27 of file Member.\+f90.
+
+\mbox{\Hypertarget{namespacemember_a3e6a3b0896edb5c30c113dc22ab7181a}\label{namespacemember_a3e6a3b0896edb5c30c113dc22ab7181a}} 
+\index{member@{member}!ndiv@{ndiv}}
+\index{ndiv@{ndiv}!member@{member}}
+\subsubsection{\texorpdfstring{ndiv}{ndiv}}
+{\footnotesize\ttfamily integer, public member\+::ndiv}
+
+
+
+number of divisions 
+
+
+
+Definition at line 26 of file Member.\+f90.
+

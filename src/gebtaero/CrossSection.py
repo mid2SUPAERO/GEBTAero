@@ -3,23 +3,26 @@ import numpy as np
 from .utils import *
 from .IsoMaterial import *
 
+## This class is used to determine the Mass matrix and the flexibility matrix of a cross section. It could be done analytically or with the 3D FEM solver ccx.
 class CrossSection:
-    """
-    class containing the flexibility and mass matrix of a wing section
-    Mass matrix is defined analytically, flexibility matrix is defined either analytically 
-    or using 3D FEM solver Calculix
-    """
+    
+    ## The constructor initialize both matrices to zero.
     def __init__(self):
+        ## Mass matrix of the cross section (see GEBTAero paper)
         self.MassMatrix = np.zeros([6,6])
+        ## Flexibility matrix of the cross section (see GEBTAero paper)
         self.FlexibilityMatrix = np.zeros([6,6])
+        ## Coordinate of the elastic center in the plane (yB,Zb)
         self.ElasticCenter = None
         
+    ## Set the Mass matrix using classical isotropic test cases parameters
+    #@param Mu Mass per unit length (kg/m)
+    #@param I22 mass moment of inertia around yB (bending span-wise, kg.m) 
+    #@param I33 mass moment of inertia around zB (bending chord-wise, kg.m) 
+    #@param I23 product of inertia in plane (yB,zB)
+    #@param Nu : Distance between moment calculation point and center of gravity. Positif is the CG is near leading edge
+    #@param Zcg : coordinate Z of the center of gravity in frame B
     def SetMassMatrix(self, Mu, I22, I33, I23, Nu, Zcg=0.):
-        """
-        @param float Mu : Mass per unit length
-        @param float I11 : Mass moment of inertia about wingspan axis
-        @param float Nu : Distance between moment calculation point and center of gravity. Positif is the CG is near leading edge
-        """
         if (Mu < 0):
             raise ValueError ('Mu must be positive')
         else :
@@ -38,16 +41,23 @@ class CrossSection:
             self.MassMatrix[0][4] = self.MassMatrix[4][0] = Mu*Zcg
             self.MassMatrix[1][3] = self.MassMatrix[3][1]  = -Mu*Zcg
 
+    ## Interface to CompositePlate::ComputeMassMatrix
     def SetMassMatrixByPlate(self,Plate):
         [OffsetY,OffsetZ] = Plate.GetOffsets()
         [Mu,I22,I33,I23,Ycg,Zcg]=Plate.ComputeMassMatrix(OffsetY,OffsetZ)
         self.SetMassMatrix(Mu,I22,I33,I23,-Ycg,Zcg=Zcg)   
     
+    ## Interface to CompositeBox::ComputeMassMatrix
     def SetMassMatrixByBox(self,Box):
         [OffsetY,OffsetZ] = Box.GetOffsets()
         [Mu,I22,I33,I23,Ycg,Zcg]=Box.ComputeMassMatrix(OffsetY,OffsetZ)
         self.SetMassMatrix(Mu,I22,I33,I23,-Ycg,Zcg=Zcg)   
     
+    ## Analytical definition of the CrossSection::MassMatrix in case of a rectangular section isotropic beam
+    #@param h Section height
+    #@param L Section width
+    #@param Mat Material of the beam (must be IsoMaterial)
+    #@param NeglectI22 True = the value of I22 is forced to zero, False = nothing appends
     def SetMassMatrixByRectBeamValues(self,h,L,Mat,NeglectI22=False):
         if not isinstance(Mat,IsoMaterial):
             raise TypeError("the material must be isotropic") 
@@ -62,7 +72,12 @@ class CrossSection:
             Mu=Rho*L*h
             self.SetMassMatrix(Mu,I22,I33,0.,0.)
             
-        
+    ## Interface to Mesh::ComputeMassMatrixFromMesh
+    #@param Mesh The Mesh used for the calculation (inp format)
+    #@param AtElasticCenter Compute the Elastic center and then compute the mass matrix at the elastic center
+    #@param SymY True = force the horizontal symetry of the cross section
+    #@param ChordScale True = the Mesh have a dimension 1 in the chord direction (yB) the mass matrix obtained is scaled afterward with the parameter Mesh::Chord
+    #@param verbosity 0 = no log, 1 = output the log of the computation
     def SetMassMatrixByMesh(self,Mesh,AtElasticCenter=False,SymY=False,ChordScale=False,verbosity=0):
         if AtElasticCenter:
             if self.ElasticCenter is None:
@@ -97,14 +112,16 @@ class CrossSection:
             self.MassMatrix[3:6,3:6] = self.MassMatrix[3:6,3:6] *(Mesh.Chord**4)
             self.MassMatrix[0:3,3:6] = self.MassMatrix[0:3,3:6] *(Mesh.Chord**3)
             self.MassMatrix[3:6,0:3] = self.MassMatrix[3:6,0:3] *(Mesh.Chord**3)
-                
-            
-            
-            
-    
+
+
     def GetMassMatrix(self):
         return self.MassMatrix
         
+    ## Analytical definition of the CrossSection::FlexibilityMatrix for a rectangular section isotropic beam    
+    #@param h Section height
+    #@param L Section width
+    #@param Mat Material of the beam (must be IsoMaterial)
+    #@param RigidEIg3 True = supress the bending ddl in the lag axis
     def SetFlexibilityMatrixByRectBeamValues(self,h,L,Mat,RigidEIg3=False):
         if isinstance(Mat,IsoMaterial):
             E = Mat.GetIso()[0]
@@ -123,15 +140,11 @@ class CrossSection:
             raise TypeError("the material must be isotropic")    
         self.SetFlexibilityMatrixByIsotropicValues(E*Ig2,E*Ig3,G*J)
 
+    ## Set the CrossSection::FlexibilityMatrix using isotropic beam stiffness values.
+    #@param EIg2 bending stiffness span-wise
+    #@param EIg3 bending stiffness chord-wise
+    #@param GJ torsional stiffness
     def SetFlexibilityMatrixByIsotropicValues(self, EIg2, EIg3, GJ):
-        """
-        Set the flexibility matrix using isotropic vlaues namely the bending stiffness
-        spanwise EIg2, the bending stiffness chordwise EIg3 and the torsionnal stiffness
-        GJ.
-        @param float EIg2 : bending stiffness spanwise
-        @param float EIg3 : bending stiffness chordwise
-        @param float GJ : torsionnal stiffness
-        """
         if (EIg2 <0):
             raise ValueError ('bending stiffness must be positive')
         elif (EIg2 > 0):
@@ -147,12 +160,15 @@ class CrossSection:
         elif (GJ > 0):
             self.FlexibilityMatrix[3][3] = 1./GJ				
 
+    ## Set the CrossSection::FlexibilityMatrix using a periodic 3DFEM calculation with a CompositePlate
+    #@param Plate the CompositePlate used for the calculation
+    #@param TypeElem the type of finite element used for the computation. Supported : he20r, he20, he8i, he8, pe15 (see ccx doc)
+    #@param NbElemX the number of finite element across the beam direction (for a constant cross section, 1 element is enough)
+    #@param NBElemY the number of finite element across the width
+    #@param NBElemPly the number of finite element in a composite ply    
+    #@param RigidX True = supress the traction ddl of the beam
+    #@param RigidZ True = supress the bending in the lag axis ddl
     def SetFlexibilityMatrixByPlate(self,Plate,TypeElem,NbElemX,NbElemY,NbElemPly,RigidX=False,RigidZ=False):
-        """
-        Set the flexibility matrix using homogeneisation process.
-        First a 4*4 Stiffness matrix is computed, then inverted and coefficients are
-        placed in the final 6*6 Flexibility Matrix
-        """
         Plate.CreateFbdFile(TypeElem,NbElemX,NbElemY,NbElemPly)
         RunFbdFile("Plate.fbd")
         Plate.CreatePeriodicEq()
@@ -168,13 +184,16 @@ class CrossSection:
         self.FlexibilityMatrix[3:6,0:3] = self.FlexibilityMatrix[3:6,0:3] *(Plate.Chord**-3)
         RemoveFiles()
         
-    def SetFlexibilityMatrixByBox(self,Box,TypeElem,NbElemX,NbElemY,NbElemPly,RigidX=False,RigidZ=False):
-        """
-        Set the flexibility matrix using homogeneisation process.
-        First a 4*4 Stiffness matrix is computed, then coefficients are
-        placed in the final 6*6 Flexibility Matrix and scaled using the box width
-        """
-        Box.CreateFbdFile(TypeElem,NbElemX,NbElemY,NbElemPly)
+    ## Set the CrossSection::FlexibilityMatrix using a periodic 3DFEM calculation with a CompositeBox
+    #@param Box the CompositeBox used for the calculation
+    #@param TypeElem the type of finite element used for the computation. Supported : he20r, he20, he8i, he8, pe15 (see ccx doc)
+    #@param NbElemX the number of finite element across the beam direction (for a constant cross section, 1 element is enough)
+    #@param NBElemYZ the number of finite element along the wall directions
+    #@param NBElemPly the number of finite element in a composite ply    
+    #@param RigidX True = supress the traction ddl of the beam
+    #@param RigidZ True = supress the bending in the lag axis ddl        
+    def SetFlexibilityMatrixByBox(self,Box,TypeElem,NbElemX,NbElemYZ,NbElemPly,RigidX=False,RigidZ=False):
+        Box.CreateFbdFile(TypeElem,NbElemX,NbElemYZ,NbElemPly)
         RunFbdFile("Box.fbd")
         Box.CreatePeriodicEq()
         Box.CreateInpFile()
@@ -189,6 +208,13 @@ class CrossSection:
         self.FlexibilityMatrix[3:6,0:3] = self.FlexibilityMatrix[3:6,0:3] *(Box.Width**-3)
         RemoveFiles()
         
+    ## Set the CrossSection::FlexibilityMatrix using Mesh
+    #@param Mesh The Mesh used for the calculation (inp format)
+    #@param PlaneSection True = warping of the cross section is not allowed, False = warping of the cross section is allowed
+    #@param AtElasticCenter Compute the Elastic center and then compute the mass matrix at the elastic center
+    #@param RigidX True = supress the traction ddl of the beam
+    #@param RigidZ True = supress the bending in the lag axis ddl
+    #@param ChordScale True = the Mesh have a dimension 1 in the chord direction (yB) the mass matrix obtained is scaled afterward with the parameter Mesh::Chord      
     def SetFlexibilityMatrixByMesh(self,Mesh,PlaneSection=False,AtElasticCenter=False,RigidX=False,RigidZ=False,ChordScale=False):
         Mesh.CreatePeriodicEq()
         Mesh.CreateInpFile(Stress=False,PlaneSection=PlaneSection)

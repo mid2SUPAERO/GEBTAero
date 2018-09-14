@@ -23,7 +23,8 @@ PUBLIC TimeFunction,GetTimeFunction,InitTF,InputEchoTimeFunctions,CurrentValues
 TYPE TimeFunction
 !~      PRIVATE
 	 INTEGER   ::fun_type             !<function type: 0, user defined; 1, harmonic
-	 REAL(DBL) ::ts, te               !< starting and ending time
+	 REAL(DBL) ::ts           !< starting time
+	 REAL(DBL) ::te               !< ending time
 	 INTEGER   ::entries              !< number of entries
 	 REAL(DBL),POINTER::time_val(:)   !< the ith time, in increasing order; the amplitude of the harmonic
 	 REAL(DBL),POINTER::fun_val(:)    !< the ith functional value; the period of the harmonic

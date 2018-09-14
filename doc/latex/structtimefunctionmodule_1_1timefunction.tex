@@ -1,0 +1,128 @@
+\hypertarget{structtimefunctionmodule_1_1timefunction}{}\section{timefunctionmodule\+:\+:timefunction Type Reference}
+\label{structtimefunctionmodule_1_1timefunction}\index{timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+integer \hyperlink{structtimefunctionmodule_1_1timefunction_acd580915b25f29aa47c58467c394d2f4}{fun\+\_\+type}
+\begin{DoxyCompactList}\small\item\em function type\+: 0, user defined; 1, harmonic \end{DoxyCompactList}\item 
+real(dbl) \hyperlink{structtimefunctionmodule_1_1timefunction_a62e761e489833d17dcd1dbcac5c1dfd6}{ts}
+\item 
+real(dbl) \hyperlink{structtimefunctionmodule_1_1timefunction_a4378638965011462c9fd4a912f6dc8fd}{te}
+\begin{DoxyCompactList}\small\item\em starting and ending time \end{DoxyCompactList}\item 
+integer \hyperlink{structtimefunctionmodule_1_1timefunction_a0f07f62ccbe6c9bcc7d9418b4157b234}{entries}
+\begin{DoxyCompactList}\small\item\em number of entries \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:), pointer \hyperlink{structtimefunctionmodule_1_1timefunction_abad80cdb684de5f31a51015b9d88751f}{time\+\_\+val}
+\begin{DoxyCompactList}\small\item\em the ith time, in increasing order; the amplitude of the harmonic \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:), pointer \hyperlink{structtimefunctionmodule_1_1timefunction_a7d1b3a0f76df56f38891ba45d161ca9d}{fun\+\_\+val}
+\begin{DoxyCompactList}\small\item\em the ith functional value; the period of the harmonic \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:), pointer \hyperlink{structtimefunctionmodule_1_1timefunction_a0f4fd140ac6990ddc82b4129b23cfa08}{phase\+\_\+val}
+\begin{DoxyCompactList}\small\item\em the phase value of the harmonic \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 23 of file Time\+Function.\+f90.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structtimefunctionmodule_1_1timefunction_a0f07f62ccbe6c9bcc7d9418b4157b234}\label{structtimefunctionmodule_1_1timefunction_a0f07f62ccbe6c9bcc7d9418b4157b234}} 
+\index{timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}!entries@{entries}}
+\index{entries@{entries}!timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}}
+\subsubsection{\texorpdfstring{entries}{entries}}
+{\footnotesize\ttfamily integer timefunctionmodule\+::timefunction\+::entries\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of entries 
+
+
+
+Definition at line 27 of file Time\+Function.\+f90.
+
+\mbox{\Hypertarget{structtimefunctionmodule_1_1timefunction_acd580915b25f29aa47c58467c394d2f4}\label{structtimefunctionmodule_1_1timefunction_acd580915b25f29aa47c58467c394d2f4}} 
+\index{timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}!fun\+\_\+type@{fun\+\_\+type}}
+\index{fun\+\_\+type@{fun\+\_\+type}!timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}}
+\subsubsection{\texorpdfstring{fun\+\_\+type}{fun\_type}}
+{\footnotesize\ttfamily integer timefunctionmodule\+::timefunction\+::fun\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+function type\+: 0, user defined; 1, harmonic 
+
+
+
+Definition at line 25 of file Time\+Function.\+f90.
+
+\mbox{\Hypertarget{structtimefunctionmodule_1_1timefunction_a7d1b3a0f76df56f38891ba45d161ca9d}\label{structtimefunctionmodule_1_1timefunction_a7d1b3a0f76df56f38891ba45d161ca9d}} 
+\index{timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}!fun\+\_\+val@{fun\+\_\+val}}
+\index{fun\+\_\+val@{fun\+\_\+val}!timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}}
+\subsubsection{\texorpdfstring{fun\+\_\+val}{fun\_val}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:), pointer timefunctionmodule\+::timefunction\+::fun\+\_\+val\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the ith functional value; the period of the harmonic 
+
+
+
+Definition at line 29 of file Time\+Function.\+f90.
+
+\mbox{\Hypertarget{structtimefunctionmodule_1_1timefunction_a0f4fd140ac6990ddc82b4129b23cfa08}\label{structtimefunctionmodule_1_1timefunction_a0f4fd140ac6990ddc82b4129b23cfa08}} 
+\index{timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}!phase\+\_\+val@{phase\+\_\+val}}
+\index{phase\+\_\+val@{phase\+\_\+val}!timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}}
+\subsubsection{\texorpdfstring{phase\+\_\+val}{phase\_val}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:), pointer timefunctionmodule\+::timefunction\+::phase\+\_\+val\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the phase value of the harmonic 
+
+
+
+Definition at line 30 of file Time\+Function.\+f90.
+
+\mbox{\Hypertarget{structtimefunctionmodule_1_1timefunction_a4378638965011462c9fd4a912f6dc8fd}\label{structtimefunctionmodule_1_1timefunction_a4378638965011462c9fd4a912f6dc8fd}} 
+\index{timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}!te@{te}}
+\index{te@{te}!timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}}
+\subsubsection{\texorpdfstring{te}{te}}
+{\footnotesize\ttfamily real(dbl) timefunctionmodule\+::timefunction\+::te\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+starting and ending time 
+
+
+
+Definition at line 26 of file Time\+Function.\+f90.
+
+\mbox{\Hypertarget{structtimefunctionmodule_1_1timefunction_abad80cdb684de5f31a51015b9d88751f}\label{structtimefunctionmodule_1_1timefunction_abad80cdb684de5f31a51015b9d88751f}} 
+\index{timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}!time\+\_\+val@{time\+\_\+val}}
+\index{time\+\_\+val@{time\+\_\+val}!timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}}
+\subsubsection{\texorpdfstring{time\+\_\+val}{time\_val}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:), pointer timefunctionmodule\+::timefunction\+::time\+\_\+val\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+the ith time, in increasing order; the amplitude of the harmonic 
+
+
+
+Definition at line 28 of file Time\+Function.\+f90.
+
+\mbox{\Hypertarget{structtimefunctionmodule_1_1timefunction_a62e761e489833d17dcd1dbcac5c1dfd6}\label{structtimefunctionmodule_1_1timefunction_a62e761e489833d17dcd1dbcac5c1dfd6}} 
+\index{timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}!ts@{ts}}
+\index{ts@{ts}!timefunctionmodule\+::timefunction@{timefunctionmodule\+::timefunction}}
+\subsubsection{\texorpdfstring{ts}{ts}}
+{\footnotesize\ttfamily real(dbl) timefunctionmodule\+::timefunction\+::ts\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 26 of file Time\+Function.\+f90.
+
+
+
+The documentation for this type was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/bertrand/these/logiciels/programme/src/\hyperlink{_time_function_8f90}{Time\+Function.\+f90}\end{DoxyCompactItemize}

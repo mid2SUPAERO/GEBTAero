@@ -9,8 +9,8 @@ test1 = True
 test2 = True
 # ~ test2 = False
 
-verbosity = 0
-# ~ verbosity = 1
+# ~ verbosity = 0
+verbosity = 1
 
 Chord = 1.8288
 parameterA = -0.34
@@ -69,10 +69,10 @@ if test1:
     print("test 1 : temporal goland flutter speed")
     NbPeriod = 1000
     StepByPeriod = 10
-    CoefPerturb = 1e-8
+    CoefPerturb = 1e-6
     DeltaV = 1
     Vmin = 30
-    VFlutterTemp = Simu.TemporalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,ModesToPlot,AlphaAC,BetaAC,Ksitol,NbPeriod,StepByPeriod,CoefPerturb,GravFlag=0,verbosity=verbosity)
+    VFlutterTemp = Simu.TemporalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,AlphaAC,BetaAC,NbPeriod,StepByPeriod,CoefPerturb,GravFlag=0,verbosity=verbosity)
     assert(math.isclose(VFlutterTemp,137.,rel_tol=0.02)),"Error temporal flutter speed"
     print("#####OK#####")
     

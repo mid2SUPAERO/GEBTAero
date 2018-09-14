@@ -1,32 +1,50 @@
 # coding=UTF-8
 import subprocess as sp
 
+## This class is designed to write the input file .dat readable by the fortran computation code
 class InputFile:
-    """
-    This class is a mirror of the input data file of the solver
-    a method is implemented to write the input file using the class argument
-    """        
     def __init__(self,Name,AnalysisFlag,AeroFlag,GravFlag,Niter,Nstep,Nvtk,Nev,ACOmegaa,ACOmegaaTFNumber,ACVa,ACVaTFNumber,Wing,Vinf,Rho,AlphaAC,BetaAC,SimuStart,SimuEnd,Xcg=0.):
+        ## the Name of the simulation
         self.Name = Name
+        ## the name on the input file .dat
         self.FileName = Name+".dat"
+        ## link to ioaero::analysis_flag
         self.AnalysisFlag = AnalysisFlag
+        ## link to ioaero::aero_flag
         self.AeroFlag = AeroFlag
+        ## link to ioaero::grav_flag
         self.GravFlag = GravFlag
+        ## link to ioaero::niter
         self.Niter = Niter
+        ## link to ioaero::nstep
         self.Nstep = Nstep
+        ## link to ioaero::nvtk
         self.Nvtk = Nvtk
+        ## link to ioaero::nev
         self.Nev = Nev
+        ## link to ioaero::omega_a0
         self.ACOmegaa = ACOmegaa
+        ## link to ioaero::omega_a_tf
         self.ACOmegaaTFNumber = ACOmegaaTFNumber
+        ## link to ioaero::v_root_a0
         self.ACVa = ACVa
+        ## link to ioaero::v_root_a_tf
         self.ACVaTFNumber = ACVaTFNumber
+        ## the Wing used in the simulation
         self.Wing = Wing
+        ## Upstream velocity of the simulation
         self.Vinf = Vinf
+        ## air density of the simulation
         self.Rho = Rho
+        ## Aircraft angle of attack
         self.AlphaAC = AlphaAC
+        ## Aircraft yaw angle
         self.BetaAC = BetaAC
+        ## Start time of the simulation
         self.SimuStart = SimuStart
+        ## End time of the simulation
         self.SimuEnd = SimuEnd
+        ## position of center of gravity in frame a
         self.Xcg = Xcg
         
         # Initialisation of time function list
@@ -41,16 +59,15 @@ class InputFile:
     def GetAnalysisFlag(self):
         return self.AnalysisFlag    
         
+    ## Add a TimeFunction to the InputFile    
     def AppendTimeFunction(self,TimeFunction):
         self.TimeFunctions.append(TimeFunction)
     
     def GetTimeFunction(self,index):
         return self.TimeFunctions[index]
         
+    ## Write a .dat input file readable by the fortran computation code    
     def WriteInputFile(self):
-        """
-        This method intend to write the input data file of the solver using the class attributes
-        """
         nkp = len(self.Wing.GetKpList())
         nmemb = len(self.Wing.GetWingSections())
         nmate = len(self.Wing.GetCrossSections())
@@ -204,10 +221,12 @@ class InputFile:
                 file.write("\n")                
         file.close()
 
+    ## Remove the .dat input file, the .ini (initial condition for dynamic simulation) and the input.ech (summary of the input process)
     def RemoveInputFile(self):
         Command = "rm "+self.FileName+" input.ech "+self.FileName+".ini"
         sp.getoutput(Command)
         
+    ## Write the .ini filled with 0.0 for a transient dynamic simulation with no initial displacement or velocity
     def WriteInitFile(self):
         # write the .ini filled with 0.0
         FileName = self.GetFileName()+".ini"

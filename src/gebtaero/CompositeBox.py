@@ -5,19 +5,25 @@ from .utils import *
 from .OrthoMaterial import *
 from .IsoMaterial import *
 
+## Class interfacing the solver with 3D FEM calculix computation to obtain the cross section parameter from a composite box
 class CompositeBox:
-    """
-    Class interfacing the solver with 3D FEM calculix computation to obtain stiffness matrix
-    from a composite box
-    """        
+    ## Composite box constructor; It contains 4 CompositePlate; modify the chord of left and right wall  
     def __init__(self,Left,Right,Up,Down,Width,Height,OffsetY=0.,OffsetZ=0.):
-        self.Left = Left
+        ## Left wall of the box (CompositePlate)
+        self.Left = Left    
+        ## Right wall of the box (CompositePlate)
         self.Right = Right
+        ## Up wall of the box (CompositePlate)
         self.Up = Up
+        ## Down wall of the box (CompositePlate)
         self.Down = Down
+        ## Width of the box (m)
         self.Width = Width
+        ## Height height of the box (m)
         self.Height = Height
+        ## Y coordinate of the box center in the Frame B
         self.OffsetY = OffsetY
+        ## Z coordinate of the box center in the Frame B
         self.OffsetZ = OffsetZ
         self.Up.Chord = Width
         self.Down.Chord = Width
@@ -33,6 +39,11 @@ class CompositeBox:
     def GetHeight(self):
         return self.Height
         
+    ## Create the input file for cgx preprocessor  
+    #@param TypeElem the type of finite element used for the computation. Supported : he20r, he20, he8i, he8, pe15 (see ccx doc)
+    #@param NbElemX the number of finite element in the beam direction (for a constant cross section, 1 element is enough)
+    #@param NBElemYZ the number of finite element along the wall directions
+    #@param NBElemPly the number of finite element in a composite ply  
     def CreateFbdFile(self,TypeElem,NbElemX,NbElemYZ,NbElemPly):
         if(TypeElem in ["he20r","he20"]):
             divX = 2*NbElemX
@@ -158,6 +169,11 @@ class CompositeBox:
             file.write("SEND ply{0}right abq nam\n".format(i+1))   
         file.close
         
+        
+    ## Create the input file for ccx solver
+    #@param Stress True = output the stress tensor for each elementary load case, False = no stress output
+    #@param PlaneSection True = warping of the cross section is not allowed, False = warping of the cross section is allowed
+    #@param Disp  Determine the set of elementary load cases : 0=all the 4 load cases, 1 = traction, 2 = warping, 3 = bending span-wise, 4 = bending chord-wise.
     def CreateInpFile(self,Stress=False,PlaneSection=False,Disp=0):
         # 0 = Up; 1 = Left; 2 = Down; 3 = Right    
         Materials = self.Up.Materials
@@ -283,7 +299,15 @@ class CompositeBox:
         elif Disp == 4:
             file.write("*step\n*static\n*cload,OP=NEW\nncurv,3,3.\n*node file,NSET=Nall\nU\n*end step\n\n")
         file.close()
-     
+        
+        
+    ## Compute the CrossSection::MassMatrix using the mass matrix of the 4 walls of the box
+    #@return Mu Mass per unit length (kg/m)
+    #@return I22 mass moment of inertia around yB (bending span-wise, kg.m) 
+    #@return I33 mass moment of inertia around zB (bending chord-wise, kg.m) 
+    #@return I23 product of inertia in plane (yB,zB)
+    #@return Ycg Y coordinate of the Center of Gravity in frame B
+    #@return Zcg Z coordinate of the Center of Gravity in frame B
     def ComputeMassMatrix(self,OffsetY=0.,OffsetZ=0.):
         OffsetYup = OffsetY
         OffsetZup = OffsetZ - 0.5*self.Height + 0.5*self.Up.GetTotThickness()
@@ -310,14 +334,22 @@ class CompositeBox:
         I22 = I22up+I22left+I22down+I22right
         I33 = I33up+I33left+I33down+I33right
         I23 = I23up+I23left+I23down+I23right
-       
         return [Mu,I22,I33,I23,Ycg,Zcg]
         
+        
+    ## Interface to the utils subroutine utils::CreatePeriodicEq
     def CreatePeriodicEq(self):
         [self.nstrain,self.ncurv,self.x0,self.Lx,self.nodes,self.elements]=CreatePeriodicEq("all.msh")
-        
-    def DisplaySectionDeformation(self,TypeElem,NbElemX,NbElemY,NbElemPly,DefType,PlaneSection=False):
-        self.CreateFbdFile(TypeElem,NbElemX,NbElemY,NbElemPly)
+    
+    ## Launch the cgx postprocessor with a particular elementary load case.
+    #@param TypeElem the type of finite element used for the computation. Supported : he20r, he20, he8i, he8, pe15
+    #@param NbElemX the number of finite element in the beam direction (for a constant cross section, 1 element is enough)
+    #@param NBElemYZ the number of finite element along the wall directions
+    #@param NBElemPly the number of finite element in a composite ply
+    #@param DefType  Determine the set of elementary load cases : 0=all the 4 load cases, 1 = traction, 2 = warping, 3 = bending span-wise, 4 = bending chord-wise.
+    #@param PlaneSection : True = warping of the cross section is not allowed, False = warping of the cross section is allowed
+    def DisplaySectionDeformation(self,TypeElem,NbElemX,NbElemYZ,NbElemPly,DefType,PlaneSection=False):
+        self.CreateFbdFile(TypeElem,NbElemX,NbElemYZ,NbElemPly)
         RunFbdFile("Box.fbd")
         self.CreatePeriodicEq()
         self.CreateInpFile(Disp=DefType,PlaneSection=PlaneSection)

@@ -1,0 +1,90 @@
+\hypertarget{namespacetimefunctionmodule}{}\section{timefunctionmodule Module Reference}
+\label{namespacetimefunctionmodule}\index{timefunctionmodule@{timefunctionmodule}}
+
+
+A module for defining time functions needed for both prescribed concentrated and distributed conditions.  
+
+
+\subsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+type \hyperlink{structtimefunctionmodule_1_1timefunction}{timefunction}
+\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+real(dbl) function, public \hyperlink{namespacetimefunctionmodule_a177d2096c59b79cbbfd85b4e05b57f29}{gettimefunction} (tf, t)
+\begin{DoxyCompactList}\small\item\em get the time function value for any arbitrary time from a piecewise linear function or harmonic function decide where t is located, then interpret the value \end{DoxyCompactList}\item 
+elemental type(\hyperlink{structtimefunctionmodule_1_1timefunction}{timefunction}) function, public \hyperlink{namespacetimefunctionmodule_a4a9a0cfa8fd5fc6dcfd21c0eeed2a027}{inittf} ()
+\begin{DoxyCompactList}\small\item\em Initialize the time function. \end{DoxyCompactList}\item 
+type(\hyperlink{structtimefunctionmodule_1_1timefunction}{timefunction}) function, public \hyperlink{namespacetimefunctionmodule_a9dc9317deeac617a45cf48f6101f11d2}{inputechotimefunctions} (IN, E\+IN, error)
+\begin{DoxyCompactList}\small\item\em Input and echo Time Functions. \end{DoxyCompactList}\item 
+real(dbl) function, dimension(size(vec)), public \hyperlink{namespacetimefunctionmodule_a907e0921288aa4f538e605c521686e4a}{currentvalues} (vec, vec\+\_\+tf, time\+\_\+fun, time\+\_\+current)
+\begin{DoxyCompactList}\small\item\em Evaluate current function based on magnitude and time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A module for defining time functions needed for both prescribed concentrated and distributed conditions. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacetimefunctionmodule_a907e0921288aa4f538e605c521686e4a}\label{namespacetimefunctionmodule_a907e0921288aa4f538e605c521686e4a}} 
+\index{timefunctionmodule@{timefunctionmodule}!currentvalues@{currentvalues}}
+\index{currentvalues@{currentvalues}!timefunctionmodule@{timefunctionmodule}}
+\subsubsection{\texorpdfstring{currentvalues()}{currentvalues()}}
+{\footnotesize\ttfamily real(dbl) function, dimension(size(vec)), public timefunctionmodule\+::currentvalues (\begin{DoxyParamCaption}\item[{real(dbl), dimension(\+:), intent(in)}]{vec,  }\item[{integer, dimension(\+:), intent(in)}]{vec\+\_\+tf,  }\item[{type (\hyperlink{structtimefunctionmodule_1_1timefunction}{timefunction}), dimension(\+:), intent(in)}]{time\+\_\+fun,  }\item[{real(dbl), intent(in)}]{time\+\_\+current }\end{DoxyParamCaption})}
+
+
+
+Evaluate current function based on magnitude and time. 
+
+
+
+Definition at line 201 of file Time\+Function.\+f90.
+
+\mbox{\Hypertarget{namespacetimefunctionmodule_a177d2096c59b79cbbfd85b4e05b57f29}\label{namespacetimefunctionmodule_a177d2096c59b79cbbfd85b4e05b57f29}} 
+\index{timefunctionmodule@{timefunctionmodule}!gettimefunction@{gettimefunction}}
+\index{gettimefunction@{gettimefunction}!timefunctionmodule@{timefunctionmodule}}
+\subsubsection{\texorpdfstring{gettimefunction()}{gettimefunction()}}
+{\footnotesize\ttfamily real(dbl) function, public timefunctionmodule\+::gettimefunction (\begin{DoxyParamCaption}\item[{type (\hyperlink{structtimefunctionmodule_1_1timefunction}{timefunction}), intent(in)}]{tf,  }\item[{real(dbl), intent(in)}]{t }\end{DoxyParamCaption})}
+
+
+
+get the time function value for any arbitrary time from a piecewise linear function or harmonic function decide where t is located, then interpret the value 
+
+
+
+Definition at line 43 of file Time\+Function.\+f90.
+
+\mbox{\Hypertarget{namespacetimefunctionmodule_a4a9a0cfa8fd5fc6dcfd21c0eeed2a027}\label{namespacetimefunctionmodule_a4a9a0cfa8fd5fc6dcfd21c0eeed2a027}} 
+\index{timefunctionmodule@{timefunctionmodule}!inittf@{inittf}}
+\index{inittf@{inittf}!timefunctionmodule@{timefunctionmodule}}
+\subsubsection{\texorpdfstring{inittf()}{inittf()}}
+{\footnotesize\ttfamily elemental type (\hyperlink{structtimefunctionmodule_1_1timefunction}{timefunction}) function, public timefunctionmodule\+::inittf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the time function. 
+
+
+
+Definition at line 103 of file Time\+Function.\+f90.
+
+\mbox{\Hypertarget{namespacetimefunctionmodule_a9dc9317deeac617a45cf48f6101f11d2}\label{namespacetimefunctionmodule_a9dc9317deeac617a45cf48f6101f11d2}} 
+\index{timefunctionmodule@{timefunctionmodule}!inputechotimefunctions@{inputechotimefunctions}}
+\index{inputechotimefunctions@{inputechotimefunctions}!timefunctionmodule@{timefunctionmodule}}
+\subsubsection{\texorpdfstring{inputechotimefunctions()}{inputechotimefunctions()}}
+{\footnotesize\ttfamily type (\hyperlink{structtimefunctionmodule_1_1timefunction}{timefunction}) function, public timefunctionmodule\+::inputechotimefunctions (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{IN,  }\item[{integer, intent(in)}]{E\+IN,  }\item[{character($\ast$), intent(out)}]{error }\end{DoxyParamCaption})}
+
+
+
+Input and echo Time Functions. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ein} & file units for input anf echo files, respectively \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 123 of file Time\+Function.\+f90.
+

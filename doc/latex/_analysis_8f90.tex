@@ -1,0 +1,105 @@
+\hypertarget{_analysis_8f90}{}\section{/home/bertrand/these/logiciels/programme/src/\+Analysis.f90 File Reference}
+\label{_analysis_8f90}\index{/home/bertrand/these/logiciels/programme/src/\+Analysis.\+f90@{/home/bertrand/these/logiciels/programme/src/\+Analysis.\+f90}}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{_analysis_8f90_aaee5e32aa3983fc7dd592bc71d7d5494}{analysis} (nkp, nelem, ndof\+\_\+el, nmemb, ncond\+\_\+pt, nmate, nframe, ndistrfun, ncurv, coord, member, pt\+\_\+condition, material, aerodyn\+\_\+coef, niter, nstep, sol\+\_\+pt, sol\+\_\+mb, error, ncond\+\_\+mb, ntimefun, frame, mb\+\_\+condition, distr\+\_\+fun, curvature, omega\+\_\+a0, omega\+\_\+a\+\_\+tf, v\+\_\+root\+\_\+a0, v\+\_\+root\+\_\+a\+\_\+tf, simu\+\_\+time, time\+\_\+function, analysis\+\_\+flag, init\+\_\+cond, nev, eigen\+\_\+val, eigen\+\_\+vec\+\_\+pt, eigen\+\_\+vec\+\_\+mb, aero\+\_\+flag, grav\+\_\+flag)
+\begin{DoxyCompactList}\small\item\em The file contains the analysis subroutine called by the main program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{_analysis_8f90_aaee5e32aa3983fc7dd592bc71d7d5494}\label{_analysis_8f90_aaee5e32aa3983fc7dd592bc71d7d5494}} 
+\index{Analysis.\+f90@{Analysis.\+f90}!analysis@{analysis}}
+\index{analysis@{analysis}!Analysis.\+f90@{Analysis.\+f90}}
+\subsubsection{\texorpdfstring{analysis()}{analysis()}}
+{\footnotesize\ttfamily subroutine analysis (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{nkp,  }\item[{integer, intent(in)}]{nelem,  }\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{integer, intent(in)}]{nmemb,  }\item[{integer, intent(in)}]{ncond\+\_\+pt,  }\item[{integer, intent(in)}]{nmate,  }\item[{integer, intent(in)}]{nframe,  }\item[{integer, intent(in)}]{ndistrfun,  }\item[{integer, intent(in)}]{ncurv,  }\item[{real(dbl), dimension(nkp,ndim), intent(in)}]{coord,  }\item[{integer, dimension(nmemb,memb\+\_\+const), intent(in)}]{member,  }\item[{type(prescriinf), dimension(ncond\+\_\+pt), intent(inout)}]{pt\+\_\+condition,  }\item[{real(dbl), dimension(nmate,nstrn+nstrn,nstrn), intent(inout)}]{material,  }\item[{real(dbl), dimension(nmate,8), intent(in)}]{aerodyn\+\_\+coef,  }\item[{integer, intent(in)}]{niter,  }\item[{integer, intent(in)}]{nstep,  }\item[{real(dbl), dimension(nstep,nkp,ndim+ndof\+\_\+nd), intent(out)}]{sol\+\_\+pt,  }\item[{real(dbl), dimension(nstep,nelem,ndim+ndof\+\_\+el), intent(out)}]{sol\+\_\+mb,  }\item[{character($\ast$), intent(out)}]{error,  }\item[{integer, intent(in)}]{ncond\+\_\+mb,  }\item[{integer, intent(in)}]{ntimefun,  }\item[{real(dbl), dimension(nframe,ndim,ndim), intent(in)}]{frame,  }\item[{type(prescriinf), dimension(ncond\+\_\+mb), intent(inout)}]{mb\+\_\+condition,  }\item[{real(dbl), dimension(ndistrfun,nstrn), intent(in)}]{distr\+\_\+fun,  }\item[{real(dbl), dimension(ncurv,ndim), intent(in)}]{curvature,  }\item[{real(dbl), dimension(ndim), intent(in)}]{omega\+\_\+a0,  }\item[{integer, dimension(ndim), intent(in)}]{omega\+\_\+a\+\_\+tf,  }\item[{real(dbl), dimension(ndim), intent(in)}]{v\+\_\+root\+\_\+a0,  }\item[{integer, dimension(ndim), intent(in)}]{v\+\_\+root\+\_\+a\+\_\+tf,  }\item[{real(dbl), dimension(2), intent(in)}]{simu\+\_\+time,  }\item[{type(timefunction), dimension(ntimefun), intent(in)}]{time\+\_\+function,  }\item[{integer, intent(in)}]{analysis\+\_\+flag,  }\item[{real(dbl), dimension(nelem,12+nstates), intent(inout)}]{init\+\_\+cond,  }\item[{integer, intent(inout)}]{nev,  }\item[{real(dbl), dimension(2,nev+1), intent(out)}]{eigen\+\_\+val,  }\item[{real(dbl), dimension(nev+1,nkp,ndim+ndof\+\_\+nd), intent(out)}]{eigen\+\_\+vec\+\_\+pt,  }\item[{real(dbl), dimension(nev+1,nelem,ndim+ndof\+\_\+el), intent(out)}]{eigen\+\_\+vec\+\_\+mb,  }\item[{integer, intent(in)}]{aero\+\_\+flag,  }\item[{integer, intent(in)}]{grav\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+The file contains the analysis subroutine called by the main program. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nkp} & \hyperlink{namespaceioaero_a24506866304c39bd1fa57ef73b124335}{ioaero\+::nkp}\\
+\hline
+\mbox{\tt in}  & {\em nelem} & \hyperlink{namespaceioaero_a543ebf3623a96606d0956211621ce254}{ioaero\+::nelem}\\
+\hline
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em nmemb} & \hyperlink{namespaceioaero_ab59096c14b19d71fd53523822067402c}{ioaero\+::nmemb}\\
+\hline
+\mbox{\tt in}  & {\em ncond\+\_\+pt} & \hyperlink{namespaceioaero_a5ffc5d3578d9abad99d3736ba352e07d}{ioaero\+::ncond\+\_\+pt}\\
+\hline
+\mbox{\tt in}  & {\em nmate} & \hyperlink{namespaceioaero_ad8817641275f11b821b7720a78651531}{ioaero\+::nmate}\\
+\hline
+\mbox{\tt in}  & {\em nframe} & \hyperlink{namespaceioaero_ac9fe2ddcc0797f81e7bc475a28692978}{ioaero\+::nframe}\\
+\hline
+\mbox{\tt in}  & {\em ndistrfun} & \hyperlink{namespaceioaero_a89e1f8f2d6913d23ef482a5788d2eba5}{ioaero\+::ndistrfun}\\
+\hline
+\mbox{\tt in}  & {\em ncurv} & \hyperlink{namespaceioaero_a34dabcb4bc1b4f260277297856ac3653}{ioaero\+::ncurv}\\
+\hline
+\mbox{\tt in}  & {\em coord} & \hyperlink{namespaceioaero_ad67cddc00712c4d5a6d4008b2fe6c452}{ioaero\+::coord}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in,out}  & {\em pt\+\_\+condition} & \hyperlink{namespaceioaero_a4344b2018135ae7fe0a09f4265fd2c29}{ioaero\+::pt\+\_\+condition}\\
+\hline
+\mbox{\tt in,out}  & {\em material} & \hyperlink{namespaceioaero_a83ca534029c39300d045045432607a69}{ioaero\+::material}\\
+\hline
+\mbox{\tt in}  & {\em aerodyn\+\_\+coef} & \hyperlink{namespaceioaero_a116b30aa43f6d871e7d4a3ed6f4428c3}{ioaero\+::aerodyn\+\_\+coef}\\
+\hline
+\mbox{\tt in}  & {\em niter} & \hyperlink{namespaceioaero_ac008486fd12e0029a1ef77b3ca5e12c3}{ioaero\+::niter}\\
+\hline
+\mbox{\tt in}  & {\em nstep} & \hyperlink{namespaceioaero_ab078a397454a22b07a19ae3a7443a561}{ioaero\+::nstep}\\
+\hline
+\mbox{\tt out}  & {\em sol\+\_\+pt} & \hyperlink{namespaceioaero_af6e62942bb38b7b7d69ea25972fe00bf}{ioaero\+::sol\+\_\+pt}\\
+\hline
+\mbox{\tt out}  & {\em sol\+\_\+mb} & \hyperlink{namespaceioaero_a4933d28025772ee22892dc12780a8eef}{ioaero\+::sol\+\_\+mb}\\
+\hline
+\mbox{\tt out}  & {\em error} & \hyperlink{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}{ioaero\+::error}\\
+\hline
+\mbox{\tt in}  & {\em ncond\+\_\+mb} & \hyperlink{namespaceioaero_ab9193f4ff70a22ae5858118fc653f22b}{ioaero\+::ncond\+\_\+mb}\\
+\hline
+\mbox{\tt in}  & {\em ntimefun} & \hyperlink{namespaceioaero_a8d0cfe1f4a5677d76ba3f3e775b12d1e}{ioaero\+::ntimefun}\\
+\hline
+\mbox{\tt in}  & {\em frame} & \hyperlink{namespaceioaero_a26d467b1adbb838f4b1ba3dd4ee1ea0d}{ioaero\+::frame}\\
+\hline
+\mbox{\tt in,out}  & {\em mb\+\_\+condition} & \hyperlink{namespaceioaero_a2463929ef049b49fe7b49011c66cc806}{ioaero\+::mb\+\_\+condition}\\
+\hline
+\mbox{\tt in}  & {\em distr\+\_\+fun} & \hyperlink{namespaceioaero_a1d7c3689e30c2925cd403a84e9176242}{ioaero\+::distr\+\_\+fun}\\
+\hline
+\mbox{\tt in}  & {\em curvature} & \hyperlink{namespaceioaero_ab2bc17b64328528015d161cab6490b80}{ioaero\+::curvature}\\
+\hline
+\mbox{\tt in}  & {\em omega\+\_\+a0} & \hyperlink{namespaceioaero_a38fc5ef87ae7c2e312ad32f857e791cb}{ioaero\+::omega\+\_\+a0}\\
+\hline
+\mbox{\tt in}  & {\em v\+\_\+root\+\_\+a0} & \hyperlink{namespaceioaero_a3cefdbd9d62bffe41f44b7f79f321f67}{ioaero\+::v\+\_\+root\+\_\+a0}\\
+\hline
+\mbox{\tt in}  & {\em omega\+\_\+a\+\_\+tf} & \hyperlink{namespaceioaero_a9ec25357ecfc1c09628efa147300aaee}{ioaero\+::omega\+\_\+a\+\_\+tf}\\
+\hline
+\mbox{\tt in}  & {\em v\+\_\+root\+\_\+a\+\_\+tf} & \hyperlink{namespaceioaero_adb4e11942a388b1bf1f13d10c79614bc}{ioaero\+::v\+\_\+root\+\_\+a\+\_\+tf}\\
+\hline
+\mbox{\tt in}  & {\em simu\+\_\+time} & \hyperlink{namespaceioaero_ab6c271c9ebbeb9a315ec53d38facb60b}{ioaero\+::simu\+\_\+time}\\
+\hline
+\mbox{\tt in}  & {\em time\+\_\+function} & \hyperlink{namespaceioaero_accb03392882ddfd413b5ac9ce3be09c6}{ioaero\+::time\+\_\+function}\\
+\hline
+\mbox{\tt in,out}  & {\em init\+\_\+cond} & \hyperlink{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}{ioaero\+::init\+\_\+cond}\\
+\hline
+\mbox{\tt in}  & {\em analysis\+\_\+flag} & \hyperlink{namespaceioaero_a435527b09d62e7aac9883e1a6d6f3438}{ioaero\+::analysis\+\_\+flag}\\
+\hline
+\mbox{\tt in,out}  & {\em nev} & \hyperlink{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}{ioaero\+::nev}\\
+\hline
+\mbox{\tt out}  & {\em eigen\+\_\+val} & \hyperlink{namespaceioaero_ae043619051217506f070ece6f24deedf}{ioaero\+::eigen\+\_\+val}\\
+\hline
+\mbox{\tt out}  & {\em eigen\+\_\+vec\+\_\+pt} & \hyperlink{namespaceioaero_a53e09660909f61713dee3887a3adc1ec}{ioaero\+::eigen\+\_\+vec\+\_\+pt}\\
+\hline
+\mbox{\tt out}  & {\em eigen\+\_\+vec\+\_\+mb} & \hyperlink{namespaceioaero_a0d150f0b81c676515b90fcf83d7ff8c3}{ioaero\+::eigen\+\_\+vec\+\_\+mb}\\
+\hline
+\mbox{\tt in}  & {\em aero\+\_\+flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em grav\+\_\+flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 7 of file Analysis.\+f90.
+

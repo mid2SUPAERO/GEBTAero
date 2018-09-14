@@ -1,0 +1,243 @@
+\hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box}{}\section{gebtaero.\+Composite\+Box.\+Composite\+Box Class Reference}
+\label{classgebtaero_1_1_composite_box_1_1_composite_box}\index{gebtaero.\+Composite\+Box.\+Composite\+Box@{gebtaero.\+Composite\+Box.\+Composite\+Box}}
+
+
+Class interfacing the solver with 3D F\+EM calculix computation to obtain the cross section parameter from a composite box.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a64c4292dbd036313813fc00a78fb13cb}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a7bfe2dab84e5ae8d8cdba1337b89c309}{Left}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a61cdca93cc1f5ef451192395fc50b67b}{Right}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a4c043150a29d71b986a91f21be6a4e47}{Up}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_ad1559917cabe3fcb6c05bf603d8b0b0c}{Down}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a44593d7302ceb1c46ac637437b5e1061}{Width}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_affc2b38183c3b0ec7534629cf63e4cc5}{Height}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a26fcf7763030afb28f45f2354125c352}{OffsetY}=0., \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a50e38078e66133a95f34f2d9176329d9}{OffsetZ}=0.)
+\item 
+def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a80477ea79acc12d0d45970d6c0b208d6}{Get\+Offsets} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a227089b18b5436fdba7853cbe1071a99}{Get\+Width} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a8ca332752a2b78ca0ba4c65f99ab1b62}{Get\+Height} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_af2465d364bb51056af14fde13bd05d4a}{Create\+Fbd\+File} (self, Type\+Elem, Nb\+ElemX, Nb\+Elem\+YZ, Nb\+Elem\+Ply)
+\item 
+def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a005e7c9de0e4307ad9ff7ed4e8f7c8a4}{Create\+Inp\+File} (self, Stress=False, Plane\+Section=False, Disp=0)
+\item 
+def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a6b944eeef7002377d7b83c5dd6ae6550}{Compute\+Mass\+Matrix} (self, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a26fcf7763030afb28f45f2354125c352}{OffsetY}=0., \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a50e38078e66133a95f34f2d9176329d9}{OffsetZ}=0.)
+\item 
+def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a9328777b54ead0767f0075fe599b09d9}{Create\+Periodic\+Eq} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a9ea871cc97fc62978a19b3a46526ed07}{Display\+Section\+Deformation} (self, Type\+Elem, Nb\+ElemX, Nb\+ElemY, Nb\+Elem\+Ply, Def\+Type, Plane\+Section=False)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a7bfe2dab84e5ae8d8cdba1337b89c309}{Left}
+\item 
+\hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a61cdca93cc1f5ef451192395fc50b67b}{Right}
+\item 
+\hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a4c043150a29d71b986a91f21be6a4e47}{Up}
+\item 
+\hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_ad1559917cabe3fcb6c05bf603d8b0b0c}{Down}
+\item 
+\hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a44593d7302ceb1c46ac637437b5e1061}{Width}
+\item 
+\hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_affc2b38183c3b0ec7534629cf63e4cc5}{Height}
+\item 
+\hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a26fcf7763030afb28f45f2354125c352}{OffsetY}
+\item 
+\hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a50e38078e66133a95f34f2d9176329d9}{OffsetZ}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class interfacing the solver with 3D F\+EM calculix computation to obtain the cross section parameter from a composite box. 
+
+\begin{DoxyVerb}Class interfacing the solver with 3D FEM calculix computation to obtain stiffness matrix
+from a composite box
+\end{DoxyVerb}
+ 
+
+Definition at line 9 of file Composite\+Box.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a64c4292dbd036313813fc00a78fb13cb}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a64c4292dbd036313813fc00a78fb13cb}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def gebtaero.\+Composite\+Box.\+Composite\+Box.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Left,  }\item[{}]{Right,  }\item[{}]{Up,  }\item[{}]{Down,  }\item[{}]{Width,  }\item[{}]{Height,  }\item[{}]{OffsetY = {\ttfamily 0.},  }\item[{}]{OffsetZ = {\ttfamily 0.} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 14 of file Composite\+Box.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a6b944eeef7002377d7b83c5dd6ae6550}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a6b944eeef7002377d7b83c5dd6ae6550}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Compute\+Mass\+Matrix@{Compute\+Mass\+Matrix}}
+\index{Compute\+Mass\+Matrix@{Compute\+Mass\+Matrix}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Compute\+Mass\+Matrix()}{ComputeMassMatrix()}}
+{\footnotesize\ttfamily def gebtaero.\+Composite\+Box.\+Composite\+Box.\+Compute\+Mass\+Matrix (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{OffsetY = {\ttfamily 0.},  }\item[{}]{OffsetZ = {\ttfamily 0.} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 288 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_af2465d364bb51056af14fde13bd05d4a}\label{classgebtaero_1_1_composite_box_1_1_composite_box_af2465d364bb51056af14fde13bd05d4a}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Create\+Fbd\+File@{Create\+Fbd\+File}}
+\index{Create\+Fbd\+File@{Create\+Fbd\+File}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Create\+Fbd\+File()}{CreateFbdFile()}}
+{\footnotesize\ttfamily def gebtaero.\+Composite\+Box.\+Composite\+Box.\+Create\+Fbd\+File (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Type\+Elem,  }\item[{}]{Nb\+ElemX,  }\item[{}]{Nb\+Elem\+YZ,  }\item[{}]{Nb\+Elem\+Ply }\end{DoxyParamCaption})}
+
+
+
+Definition at line 37 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a005e7c9de0e4307ad9ff7ed4e8f7c8a4}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a005e7c9de0e4307ad9ff7ed4e8f7c8a4}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Create\+Inp\+File@{Create\+Inp\+File}}
+\index{Create\+Inp\+File@{Create\+Inp\+File}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Create\+Inp\+File()}{CreateInpFile()}}
+{\footnotesize\ttfamily def gebtaero.\+Composite\+Box.\+Composite\+Box.\+Create\+Inp\+File (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Stress = {\ttfamily False},  }\item[{}]{Plane\+Section = {\ttfamily False},  }\item[{}]{Disp = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 162 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a9328777b54ead0767f0075fe599b09d9}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a9328777b54ead0767f0075fe599b09d9}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Create\+Periodic\+Eq@{Create\+Periodic\+Eq}}
+\index{Create\+Periodic\+Eq@{Create\+Periodic\+Eq}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Create\+Periodic\+Eq()}{CreatePeriodicEq()}}
+{\footnotesize\ttfamily def gebtaero.\+Composite\+Box.\+Composite\+Box.\+Create\+Periodic\+Eq (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 317 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a9ea871cc97fc62978a19b3a46526ed07}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a9ea871cc97fc62978a19b3a46526ed07}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Display\+Section\+Deformation@{Display\+Section\+Deformation}}
+\index{Display\+Section\+Deformation@{Display\+Section\+Deformation}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Display\+Section\+Deformation()}{DisplaySectionDeformation()}}
+{\footnotesize\ttfamily def gebtaero.\+Composite\+Box.\+Composite\+Box.\+Display\+Section\+Deformation (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Type\+Elem,  }\item[{}]{Nb\+ElemX,  }\item[{}]{Nb\+ElemY,  }\item[{}]{Nb\+Elem\+Ply,  }\item[{}]{Def\+Type,  }\item[{}]{Plane\+Section = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 320 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a8ca332752a2b78ca0ba4c65f99ab1b62}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a8ca332752a2b78ca0ba4c65f99ab1b62}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Get\+Height@{Get\+Height}}
+\index{Get\+Height@{Get\+Height}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Get\+Height()}{GetHeight()}}
+{\footnotesize\ttfamily def gebtaero.\+Composite\+Box.\+Composite\+Box.\+Get\+Height (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 34 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a80477ea79acc12d0d45970d6c0b208d6}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a80477ea79acc12d0d45970d6c0b208d6}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Get\+Offsets@{Get\+Offsets}}
+\index{Get\+Offsets@{Get\+Offsets}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Get\+Offsets()}{GetOffsets()}}
+{\footnotesize\ttfamily def gebtaero.\+Composite\+Box.\+Composite\+Box.\+Get\+Offsets (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 28 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a227089b18b5436fdba7853cbe1071a99}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a227089b18b5436fdba7853cbe1071a99}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Get\+Width@{Get\+Width}}
+\index{Get\+Width@{Get\+Width}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Get\+Width()}{GetWidth()}}
+{\footnotesize\ttfamily def gebtaero.\+Composite\+Box.\+Composite\+Box.\+Get\+Width (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 31 of file Composite\+Box.\+py.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_ad1559917cabe3fcb6c05bf603d8b0b0c}\label{classgebtaero_1_1_composite_box_1_1_composite_box_ad1559917cabe3fcb6c05bf603d8b0b0c}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Down@{Down}}
+\index{Down@{Down}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Down}{Down}}
+{\footnotesize\ttfamily gebtaero.\+Composite\+Box.\+Composite\+Box.\+Down}
+
+
+
+Definition at line 18 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_affc2b38183c3b0ec7534629cf63e4cc5}\label{classgebtaero_1_1_composite_box_1_1_composite_box_affc2b38183c3b0ec7534629cf63e4cc5}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Height@{Height}}
+\index{Height@{Height}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Height}{Height}}
+{\footnotesize\ttfamily gebtaero.\+Composite\+Box.\+Composite\+Box.\+Height}
+
+
+
+Definition at line 20 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a7bfe2dab84e5ae8d8cdba1337b89c309}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a7bfe2dab84e5ae8d8cdba1337b89c309}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Left@{Left}}
+\index{Left@{Left}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Left}{Left}}
+{\footnotesize\ttfamily gebtaero.\+Composite\+Box.\+Composite\+Box.\+Left}
+
+
+
+Definition at line 15 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a26fcf7763030afb28f45f2354125c352}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a26fcf7763030afb28f45f2354125c352}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!OffsetY@{OffsetY}}
+\index{OffsetY@{OffsetY}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{OffsetY}{OffsetY}}
+{\footnotesize\ttfamily gebtaero.\+Composite\+Box.\+Composite\+Box.\+OffsetY}
+
+
+
+Definition at line 21 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a50e38078e66133a95f34f2d9176329d9}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a50e38078e66133a95f34f2d9176329d9}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!OffsetZ@{OffsetZ}}
+\index{OffsetZ@{OffsetZ}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{OffsetZ}{OffsetZ}}
+{\footnotesize\ttfamily gebtaero.\+Composite\+Box.\+Composite\+Box.\+OffsetZ}
+
+
+
+Definition at line 22 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a61cdca93cc1f5ef451192395fc50b67b}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a61cdca93cc1f5ef451192395fc50b67b}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Right@{Right}}
+\index{Right@{Right}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Right}{Right}}
+{\footnotesize\ttfamily gebtaero.\+Composite\+Box.\+Composite\+Box.\+Right}
+
+
+
+Definition at line 16 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a4c043150a29d71b986a91f21be6a4e47}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a4c043150a29d71b986a91f21be6a4e47}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Up@{Up}}
+\index{Up@{Up}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Up}{Up}}
+{\footnotesize\ttfamily gebtaero.\+Composite\+Box.\+Composite\+Box.\+Up}
+
+
+
+Definition at line 17 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a44593d7302ceb1c46ac637437b5e1061}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a44593d7302ceb1c46ac637437b5e1061}} 
+\index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Width@{Width}}
+\index{Width@{Width}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
+\subsubsection{\texorpdfstring{Width}{Width}}
+{\footnotesize\ttfamily gebtaero.\+Composite\+Box.\+Composite\+Box.\+Width}
+
+
+
+Definition at line 19 of file Composite\+Box.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/bertrand/these/logiciels/programme/interface/src/gebtaero/\hyperlink{_composite_box_8py}{Composite\+Box.\+py}\end{DoxyCompactItemize}

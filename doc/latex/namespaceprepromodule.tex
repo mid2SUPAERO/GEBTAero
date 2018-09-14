@@ -1,0 +1,174 @@
+\hypertarget{namespaceprepromodule}{}\section{prepromodule Module Reference}
+\label{namespaceprepromodule}\index{prepromodule@{prepromodule}}
+
+
+This module preprocess the finite element model including connectivity and member information. This information are time step indepedent.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespaceprepromodule_a4c7a91f217e227051ae54c12a67e702e}{preprocess} (nkp, nelem, ndof\+\_\+el, member, material, frame, coord, curvature, dof\+\_\+con, memb\+\_\+info, error, aero\+\_\+flag, grav\+\_\+flag, aerodyn\+\_\+coef)
+\begin{DoxyCompactList}\small\item\em Obtaining the connection condition for each key point $\ast$ if a point is connected to more than one member, it is $\ast$ a connection point, otherwise it is a boundary point. $\ast$ It also calculates the size of the problem $\ast$. \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespaceprepromodule_a2011e4ceff94f407d454a10cc186d45b}{memberproperties} (memb\+\_\+no, ndof\+\_\+el, member, material, frame, coord, curvature, memb\+\_\+info\+\_\+i, error, aero\+\_\+flag, grav\+\_\+flag, aerodyn\+\_\+coef)
+\begin{DoxyCompactList}\small\item\em Extract member properties for each division $\ast$. \end{DoxyCompactList}\item 
+real(dbl) function \hyperlink{namespaceprepromodule_aba8b0787c8f7aa138ead8a8c9161bc4b}{curvebeamfun} (kn, mL, kn2, k12, kn4, xvar)
+\begin{DoxyCompactList}\small\item\em Function for evaluating arc length of initially curved and twisted beams. \end{DoxyCompactList}\item 
+real(dbl) function \hyperlink{namespaceprepromodule_a078487e47a4a49a0b7f7c94be9f2c8f9}{rtbis} (func, kn, mL, kn2, k12, kn4, x1, x2, xacc, maxit, error)
+\begin{DoxyCompactList}\small\item\em Use biosection to find root of a function $\ast$ from the book of Numerical Recipes $\ast$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer \hyperlink{namespaceprepromodule_a6339275501f8c1e8f0b418c9e918005e}{ndiv}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespacemember_a3e6a3b0896edb5c30c113dc22ab7181a}{member\+::ndiv} \end{DoxyCompactList}\item 
+integer \hyperlink{namespaceprepromodule_a41d66ef3ffc050f01bc1763c62c6f3e1}{ncol\+\_\+memb}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespacemember_a20895477b227a3352a4e758b21b01bf8}{member\+::ncol\+\_\+memb} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module preprocess the finite element model including connectivity and member information. This information are time step indepedent. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespaceprepromodule_aba8b0787c8f7aa138ead8a8c9161bc4b}\label{namespaceprepromodule_aba8b0787c8f7aa138ead8a8c9161bc4b}} 
+\index{prepromodule@{prepromodule}!curvebeamfun@{curvebeamfun}}
+\index{curvebeamfun@{curvebeamfun}!prepromodule@{prepromodule}}
+\subsubsection{\texorpdfstring{curvebeamfun()}{curvebeamfun()}}
+{\footnotesize\ttfamily real(dbl) function prepromodule\+::curvebeamfun (\begin{DoxyParamCaption}\item[{real(dbl), intent(in)}]{kn,  }\item[{real(dbl), intent(in)}]{mL,  }\item[{real(dbl), intent(in)}]{kn2,  }\item[{real(dbl), intent(in)}]{k12,  }\item[{real(dbl), intent(in)}]{kn4,  }\item[{real(dbl), intent(in)}]{xvar }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Function for evaluating arc length of initially curved and twisted beams. 
+
+
+
+Definition at line 337 of file Preprocess.\+f90.
+
+\mbox{\Hypertarget{namespaceprepromodule_a2011e4ceff94f407d454a10cc186d45b}\label{namespaceprepromodule_a2011e4ceff94f407d454a10cc186d45b}} 
+\index{prepromodule@{prepromodule}!memberproperties@{memberproperties}}
+\index{memberproperties@{memberproperties}!prepromodule@{prepromodule}}
+\subsubsection{\texorpdfstring{memberproperties()}{memberproperties()}}
+{\footnotesize\ttfamily subroutine prepromodule\+::memberproperties (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{memb\+\_\+no,  }\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{real(dbl), dimension(\+:,\+:,\+:), intent(in)}]{material,  }\item[{real(dbl), dimension(\+:,\+:,\+:), intent(in)}]{frame,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{coord,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{curvature,  }\item[{type (memberinf), intent(out)}]{memb\+\_\+info\+\_\+i,  }\item[{character($\ast$), intent(out)}]{error,  }\item[{integer, intent(in)}]{aero\+\_\+flag,  }\item[{integer, intent(in)}]{grav\+\_\+flag,  }\item[{real(dbl), dimension(\+:,\+:), intent(in), optional}]{aerodyn\+\_\+coef }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Extract member properties for each division $\ast$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em memb\+\_\+no} & member index\\
+\hline
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in}  & {\em aero\+\_\+flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em grav\+\_\+flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em material} & \hyperlink{namespaceioaero_a83ca534029c39300d045045432607a69}{ioaero\+::material}\\
+\hline
+\mbox{\tt in}  & {\em frame} & \hyperlink{namespaceioaero_a26d467b1adbb838f4b1ba3dd4ee1ea0d}{ioaero\+::frame}\\
+\hline
+\mbox{\tt in}  & {\em coord} & \hyperlink{namespaceioaero_ad67cddc00712c4d5a6d4008b2fe6c452}{ioaero\+::coord}\\
+\hline
+\mbox{\tt in}  & {\em curvature} & \hyperlink{namespaceioaero_ab2bc17b64328528015d161cab6490b80}{ioaero\+::curvature}\\
+\hline
+\mbox{\tt in}  & {\em aerodyn\+\_\+coef} & \hyperlink{namespaceioaero_a116b30aa43f6d871e7d4a3ed6f4428c3}{ioaero\+::aerodyn\+\_\+coef}\\
+\hline
+\mbox{\tt out}  & {\em memb\+\_\+info\+\_\+i} & the characteristics of the ith beam member\\
+\hline
+\mbox{\tt out}  & {\em error} & \hyperlink{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}{ioaero\+::error} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 188 of file Preprocess.\+f90.
+
+\mbox{\Hypertarget{namespaceprepromodule_a4c7a91f217e227051ae54c12a67e702e}\label{namespaceprepromodule_a4c7a91f217e227051ae54c12a67e702e}} 
+\index{prepromodule@{prepromodule}!preprocess@{preprocess}}
+\index{preprocess@{preprocess}!prepromodule@{prepromodule}}
+\subsubsection{\texorpdfstring{preprocess()}{preprocess()}}
+{\footnotesize\ttfamily subroutine, public prepromodule\+::preprocess (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{nkp,  }\item[{integer, intent(in)}]{nelem,  }\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{real(dbl), dimension(\+:,\+:,\+:), intent(inout)}]{material,  }\item[{real(dbl), dimension(\+:,\+:,\+:), intent(in)}]{frame,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{coord,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{curvature,  }\item[{integer, dimension(\+:), intent(out)}]{dof\+\_\+con,  }\item[{type (memberinf), dimension(\+:), intent(out)}]{memb\+\_\+info,  }\item[{character($\ast$), intent(out)}]{error,  }\item[{integer, intent(in)}]{aero\+\_\+flag,  }\item[{integer, intent(in)}]{grav\+\_\+flag,  }\item[{real(dbl), dimension(\+:,\+:), intent(in), optional}]{aerodyn\+\_\+coef }\end{DoxyParamCaption})}
+
+
+
+Obtaining the connection condition for each key point $\ast$ if a point is connected to more than one member, it is $\ast$ a connection point, otherwise it is a boundary point. $\ast$ It also calculates the size of the problem $\ast$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nkp} & \hyperlink{namespaceioaero_a24506866304c39bd1fa57ef73b124335}{ioaero\+::nkp}\\
+\hline
+\mbox{\tt in}  & {\em nelem} & \hyperlink{namespaceioaero_a543ebf3623a96606d0956211621ce254}{ioaero\+::nelem}\\
+\hline
+\mbox{\tt in}  & {\em aero\+\_\+flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em grav\+\_\+flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in,out}  & {\em material} & \hyperlink{namespaceioaero_a83ca534029c39300d045045432607a69}{ioaero\+::material}\\
+\hline
+\mbox{\tt in}  & {\em frame} & \hyperlink{namespaceioaero_a26d467b1adbb838f4b1ba3dd4ee1ea0d}{ioaero\+::frame}\\
+\hline
+\mbox{\tt in}  & {\em coord} & \hyperlink{namespaceioaero_ad67cddc00712c4d5a6d4008b2fe6c452}{ioaero\+::coord}\\
+\hline
+\mbox{\tt in}  & {\em curvature} & \hyperlink{namespaceioaero_ab2bc17b64328528015d161cab6490b80}{ioaero\+::curvature}\\
+\hline
+\mbox{\tt in}  & {\em aerodyn\+\_\+coef} & \hyperlink{namespaceioaero_a116b30aa43f6d871e7d4a3ed6f4428c3}{ioaero\+::aerodyn\+\_\+coef}\\
+\hline
+\mbox{\tt out}  & {\em dof\+\_\+con} & the connecting condition for key point.\\
+\hline
+\mbox{\tt out}  & {\em memb\+\_\+info} & the member parameters of the whole structure \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 43 of file Preprocess.\+f90.
+
+\mbox{\Hypertarget{namespaceprepromodule_a078487e47a4a49a0b7f7c94be9f2c8f9}\label{namespaceprepromodule_a078487e47a4a49a0b7f7c94be9f2c8f9}} 
+\index{prepromodule@{prepromodule}!rtbis@{rtbis}}
+\index{rtbis@{rtbis}!prepromodule@{prepromodule}}
+\subsubsection{\texorpdfstring{rtbis()}{rtbis()}}
+{\footnotesize\ttfamily real(dbl) function prepromodule\+::rtbis (\begin{DoxyParamCaption}\item[{}]{func,  }\item[{real(dbl), intent(in)}]{kn,  }\item[{real(dbl), intent(in)}]{mL,  }\item[{real(dbl), intent(in)}]{kn2,  }\item[{real(dbl), intent(in)}]{k12,  }\item[{real(dbl), intent(in)}]{kn4,  }\item[{real(dbl), intent(in)}]{x1,  }\item[{real(dbl), intent(in)}]{x2,  }\item[{real(dbl), intent(in)}]{xacc,  }\item[{integer, intent(in)}]{maxit,  }\item[{character($\ast$), intent(out)}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Use biosection to find root of a function $\ast$ from the book of Numerical Recipes $\ast$. 
+
+
+
+Definition at line 368 of file Preprocess.\+f90.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceprepromodule_a41d66ef3ffc050f01bc1763c62c6f3e1}\label{namespaceprepromodule_a41d66ef3ffc050f01bc1763c62c6f3e1}} 
+\index{prepromodule@{prepromodule}!ncol\+\_\+memb@{ncol\+\_\+memb}}
+\index{ncol\+\_\+memb@{ncol\+\_\+memb}!prepromodule@{prepromodule}}
+\subsubsection{\texorpdfstring{ncol\+\_\+memb}{ncol\_memb}}
+{\footnotesize\ttfamily integer prepromodule\+::ncol\+\_\+memb\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\hyperlink{namespacemember_a20895477b227a3352a4e758b21b01bf8}{member\+::ncol\+\_\+memb} 
+
+
+
+Definition at line 28 of file Preprocess.\+f90.
+
+\mbox{\Hypertarget{namespaceprepromodule_a6339275501f8c1e8f0b418c9e918005e}\label{namespaceprepromodule_a6339275501f8c1e8f0b418c9e918005e}} 
+\index{prepromodule@{prepromodule}!ndiv@{ndiv}}
+\index{ndiv@{ndiv}!prepromodule@{prepromodule}}
+\subsubsection{\texorpdfstring{ndiv}{ndiv}}
+{\footnotesize\ttfamily integer prepromodule\+::ndiv\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\hyperlink{namespacemember_a3e6a3b0896edb5c30c113dc22ab7181a}{member\+::ndiv} 
+
+
+
+Definition at line 27 of file Preprocess.\+f90.
+

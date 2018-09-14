@@ -1,0 +1,260 @@
+\hypertarget{namespacesolvemumps}{}\section{solvemumps Module Reference}
+\label{namespacesolvemumps}\index{solvemumps@{solvemumps}}
+
+
+This module contains the linear \& nonlinear solver interfaced with M\+U\+M\+PS direct solver library.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespacesolvemumps_aad7849d30a944c0bd614bf4e103ef494}{linearsolutionmumps} (ndof\+\_\+el, memb\+\_\+info, v\+\_\+root\+\_\+a, omega\+\_\+a, member, error, ncond\+\_\+mb, mb\+\_\+condition, distr\+\_\+fun, dof\+\_\+con, x, aero\+\_\+flag, grav\+\_\+flag, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em The linear solver is basically the Newton-\/\+Raphson with $\ast$ initial guess equal to zero and only uses one iterations $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacesolvemumps_a243ff65847b437ecb22933d782df2db4}{newtonraphsonmumps} (ndof\+\_\+el, memb\+\_\+info, v\+\_\+root\+\_\+a, omega\+\_\+a, member, niter, error, ncond\+\_\+mb, mb\+\_\+condition, distr\+\_\+fun, dof\+\_\+con, x, aero\+\_\+flag, grav\+\_\+flag, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em Use Newton-\/\+Raphson method to solve the nonlinear system $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacesolvemumps_aaa9b81bc0ea43f279abc42c729140761}{extractsolution} (ndof\+\_\+el, member, coord, memb\+\_\+info, x, dof\+\_\+con, sol\+\_\+pt\+\_\+i, sol\+\_\+mb\+\_\+i)
+\begin{DoxyCompactList}\small\item\em The subroutine extracts the solution for each key point and each member from the solution vector $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacesolvemumps_ae4f9a2e645ae55a030964764cf5b0218}{extractelementvalues} (ndof\+\_\+el, member, x, sol\+\_\+mb\+\_\+i)
+\begin{DoxyCompactList}\small\item\em The subroutine extracts elemental values from $\ast$ the solution vector $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacesolvemumps_a3c8d285942de4048473a98c26d248fd7}{insertelementvalues} (ndof\+\_\+el, member, x, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em The subroutine insert the elemental values into the solution vector\+: needed for initial guess for starting time marching\+: replace the first six valumes for each element with given initial conditions $\ast$. \end{DoxyCompactList}\item 
+real(dbl) function, dimension(size(sol\+\_\+mb\+\_\+i, 1), 6), public \hyperlink{namespacesolvemumps_a680703eba15a14e08417723cd80080b1}{ctcabph} (niter, member, memb\+\_\+info, sol\+\_\+mb\+\_\+i)
+\begin{DoxyCompactList}\small\item\em Transfer the vector PH (linear and angular momenta) form frame B to frame a. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+type(dmumps\+\_\+struc) \hyperlink{namespacesolvemumps_ab76b5a7f705b0acb09ebc3ecf7e51f91}{mumps\+\_\+par}
+\begin{DoxyCompactList}\small\item\em an array containing the configuration parameters of M\+U\+M\+PS solver \end{DoxyCompactList}\item 
+integer \hyperlink{namespacesolvemumps_a5f812a31bb5931d66e5d6bb4c05f4a51}{ierr}
+\begin{DoxyCompactList}\small\item\em error code of the M\+U\+M\+PS solver \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module contains the linear \& nonlinear solver interfaced with M\+U\+M\+PS direct solver library. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacesolvemumps_a680703eba15a14e08417723cd80080b1}\label{namespacesolvemumps_a680703eba15a14e08417723cd80080b1}} 
+\index{solvemumps@{solvemumps}!ctcabph@{ctcabph}}
+\index{ctcabph@{ctcabph}!solvemumps@{solvemumps}}
+\subsubsection{\texorpdfstring{ctcabph()}{ctcabph()}}
+{\footnotesize\ttfamily real(dbl) function, dimension(size(sol\+\_\+mb\+\_\+i,1),6), public solvemumps\+::ctcabph (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{niter,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{type (memberinf), dimension(\+:), intent(in)}]{memb\+\_\+info,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{sol\+\_\+mb\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+Transfer the vector PH (linear and angular momenta) form frame B to frame a. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em niter} & \hyperlink{namespaceioaero_ac008486fd12e0029a1ef77b3ca5e12c3}{ioaero\+::niter}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in}  & {\em sol\+\_\+mb\+\_\+i} & solutions for members for ith step \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 534 of file Solve\+Mumps.\+f90.
+
+\mbox{\Hypertarget{namespacesolvemumps_ae4f9a2e645ae55a030964764cf5b0218}\label{namespacesolvemumps_ae4f9a2e645ae55a030964764cf5b0218}} 
+\index{solvemumps@{solvemumps}!extractelementvalues@{extractelementvalues}}
+\index{extractelementvalues@{extractelementvalues}!solvemumps@{solvemumps}}
+\subsubsection{\texorpdfstring{extractelementvalues()}{extractelementvalues()}}
+{\footnotesize\ttfamily subroutine, public solvemumps\+::extractelementvalues (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{real(dbl), dimension(\+:), intent(in)}]{x,  }\item[{real(dbl), dimension(\+:,\+:), intent(out)}]{sol\+\_\+mb\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+The subroutine extracts elemental values from $\ast$ the solution vector $\ast$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in}  & {\em x} & the solution vector\\
+\hline
+\mbox{\tt out}  & {\em sol\+\_\+mb\+\_\+i} & solutions for all the elements for ith step \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 463 of file Solve\+Mumps.\+f90.
+
+\mbox{\Hypertarget{namespacesolvemumps_aaa9b81bc0ea43f279abc42c729140761}\label{namespacesolvemumps_aaa9b81bc0ea43f279abc42c729140761}} 
+\index{solvemumps@{solvemumps}!extractsolution@{extractsolution}}
+\index{extractsolution@{extractsolution}!solvemumps@{solvemumps}}
+\subsubsection{\texorpdfstring{extractsolution()}{extractsolution()}}
+{\footnotesize\ttfamily subroutine, public solvemumps\+::extractsolution (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{coord,  }\item[{type (memberinf), dimension(\+:), intent(in)}]{memb\+\_\+info,  }\item[{real(dbl), dimension(\+:), intent(in)}]{x,  }\item[{integer, dimension(\+:), intent(in)}]{dof\+\_\+con,  }\item[{real(dbl), dimension(\+:,\+:), intent(out)}]{sol\+\_\+pt\+\_\+i,  }\item[{real(dbl), dimension(\+:,\+:), intent(out)}]{sol\+\_\+mb\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+The subroutine extracts the solution for each key point and each member from the solution vector $\ast$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in}  & {\em coord} & \hyperlink{namespaceioaero_ad67cddc00712c4d5a6d4008b2fe6c452}{ioaero\+::coord}\\
+\hline
+\mbox{\tt in}  & {\em memb\+\_\+info} & contains the member parameters of the whole structure\\
+\hline
+\mbox{\tt in}  & {\em x} & the solution vector\\
+\hline
+\mbox{\tt in}  & {\em dof\+\_\+con} & the connecting condition for key point.\\
+\hline
+\mbox{\tt out}  & {\em sol\+\_\+pt\+\_\+i} & solutions for points for ith step\\
+\hline
+\mbox{\tt out}  & {\em sol\+\_\+mb\+\_\+i} & solutions for members for ith step \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 383 of file Solve\+Mumps.\+f90.
+
+\mbox{\Hypertarget{namespacesolvemumps_a3c8d285942de4048473a98c26d248fd7}\label{namespacesolvemumps_a3c8d285942de4048473a98c26d248fd7}} 
+\index{solvemumps@{solvemumps}!insertelementvalues@{insertelementvalues}}
+\index{insertelementvalues@{insertelementvalues}!solvemumps@{solvemumps}}
+\subsubsection{\texorpdfstring{insertelementvalues()}{insertelementvalues()}}
+{\footnotesize\ttfamily subroutine, public solvemumps\+::insertelementvalues (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{real(dbl), dimension(\+:), intent(inout)}]{x,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{init\+\_\+cond }\end{DoxyParamCaption})}
+
+
+
+The subroutine insert the elemental values into the solution vector\+: needed for initial guess for starting time marching\+: replace the first six valumes for each element with given initial conditions $\ast$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em member} & \#ioaero\+::memeber\\
+\hline
+\mbox{\tt in,out}  & {\em x} & the solution vector\\
+\hline
+\mbox{\tt in}  & {\em init\+\_\+cond} & \hyperlink{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}{ioaero\+::init\+\_\+cond} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 500 of file Solve\+Mumps.\+f90.
+
+\mbox{\Hypertarget{namespacesolvemumps_aad7849d30a944c0bd614bf4e103ef494}\label{namespacesolvemumps_aad7849d30a944c0bd614bf4e103ef494}} 
+\index{solvemumps@{solvemumps}!linearsolutionmumps@{linearsolutionmumps}}
+\index{linearsolutionmumps@{linearsolutionmumps}!solvemumps@{solvemumps}}
+\subsubsection{\texorpdfstring{linearsolutionmumps()}{linearsolutionmumps()}}
+{\footnotesize\ttfamily subroutine, public solvemumps\+::linearsolutionmumps (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{type (memberinf), dimension(\+:), intent(in)}]{memb\+\_\+info,  }\item[{real(dbl), dimension(\+:), intent(in)}]{v\+\_\+root\+\_\+a,  }\item[{real(dbl), dimension(\+:), intent(in)}]{omega\+\_\+a,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{character($\ast$), intent(out)}]{error,  }\item[{integer, intent(in)}]{ncond\+\_\+mb,  }\item[{type(prescriinf), dimension(\+:), intent(in)}]{mb\+\_\+condition,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{distr\+\_\+fun,  }\item[{integer, dimension(\+:)}]{dof\+\_\+con,  }\item[{real(dbl), dimension(\+:), intent(out)}]{x,  }\item[{integer, intent(in)}]{aero\+\_\+flag,  }\item[{integer, intent(in)}]{grav\+\_\+flag,  }\item[{real(dbl), dimension(\+:,\+:), intent(in), optional}]{init\+\_\+cond }\end{DoxyParamCaption})}
+
+
+
+The linear solver is basically the Newton-\/\+Raphson with $\ast$ initial guess equal to zero and only uses one iterations $\ast$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em aero\+\_\+flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em grav\+\_\+flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em v\+\_\+root\+\_\+a} & linear velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em omega\+\_\+a} & angular velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em distr\+\_\+fun} & \hyperlink{namespaceioaero_a1d7c3689e30c2925cd403a84e9176242}{ioaero\+::distr\+\_\+fun}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in}  & {\em ncond\+\_\+mb} & \hyperlink{namespaceioaero_ab9193f4ff70a22ae5858118fc653f22b}{ioaero\+::ncond\+\_\+mb}\\
+\hline
+\mbox{\tt in}  & {\em mb\+\_\+condition} & \hyperlink{namespaceioaero_a2463929ef049b49fe7b49011c66cc806}{ioaero\+::mb\+\_\+condition}\\
+\hline
+ & {\em dof\+\_\+con} & this array is passed by value\\
+\hline
+\mbox{\tt out}  & {\em error} & \hyperlink{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}{ioaero\+::error}\\
+\hline
+\mbox{\tt out}  & {\em x} & The solution vector\\
+\hline
+\mbox{\tt in}  & {\em init\+\_\+cond} & \hyperlink{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}{ioaero\+::init\+\_\+cond} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 42 of file Solve\+Mumps.\+f90.
+
+\mbox{\Hypertarget{namespacesolvemumps_a243ff65847b437ecb22933d782df2db4}\label{namespacesolvemumps_a243ff65847b437ecb22933d782df2db4}} 
+\index{solvemumps@{solvemumps}!newtonraphsonmumps@{newtonraphsonmumps}}
+\index{newtonraphsonmumps@{newtonraphsonmumps}!solvemumps@{solvemumps}}
+\subsubsection{\texorpdfstring{newtonraphsonmumps()}{newtonraphsonmumps()}}
+{\footnotesize\ttfamily subroutine, public solvemumps\+::newtonraphsonmumps (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{type (memberinf), dimension(\+:), intent(in)}]{memb\+\_\+info,  }\item[{real(dbl), dimension(\+:), intent(in)}]{v\+\_\+root\+\_\+a,  }\item[{real(dbl), dimension(\+:), intent(in)}]{omega\+\_\+a,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{integer, intent(in)}]{niter,  }\item[{character($\ast$), intent(out)}]{error,  }\item[{integer, intent(in)}]{ncond\+\_\+mb,  }\item[{type(prescriinf), dimension(\+:), intent(in)}]{mb\+\_\+condition,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{distr\+\_\+fun,  }\item[{integer, dimension(\+:)}]{dof\+\_\+con,  }\item[{real(dbl), dimension(\+:), intent(inout)}]{x,  }\item[{integer, intent(in)}]{aero\+\_\+flag,  }\item[{integer, intent(in)}]{grav\+\_\+flag,  }\item[{real(dbl), dimension(\+:,\+:), intent(in), optional}]{init\+\_\+cond }\end{DoxyParamCaption})}
+
+
+
+Use Newton-\/\+Raphson method to solve the nonlinear system $\ast$. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em aero\+\_\+flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em grav\+\_\+flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em memb\+\_\+info} & contains the member parameters of the whole structure\\
+\hline
+\mbox{\tt in}  & {\em v\+\_\+root\+\_\+a} & linear velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em omega\+\_\+a} & angular velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em distr\+\_\+fun} & \hyperlink{namespaceioaero_a1d7c3689e30c2925cd403a84e9176242}{ioaero\+::distr\+\_\+fun}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in}  & {\em niter} & \hyperlink{namespaceioaero_ac008486fd12e0029a1ef77b3ca5e12c3}{ioaero\+::niter}\\
+\hline
+\mbox{\tt in}  & {\em ncond\+\_\+mb} & \hyperlink{namespaceioaero_ab9193f4ff70a22ae5858118fc653f22b}{ioaero\+::ncond\+\_\+mb}\\
+\hline
+\mbox{\tt in}  & {\em mb\+\_\+condition} & \hyperlink{namespaceioaero_a2463929ef049b49fe7b49011c66cc806}{ioaero\+::mb\+\_\+condition}\\
+\hline
+\mbox{\tt in,out}  & {\em x} & The solution vector\\
+\hline
+\mbox{\tt out}  & {\em error} & \hyperlink{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}{ioaero\+::error}\\
+\hline
+\mbox{\tt in}  & {\em init\+\_\+cond} & \hyperlink{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}{ioaero\+::init\+\_\+cond} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 141 of file Solve\+Mumps.\+f90.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacesolvemumps_a5f812a31bb5931d66e5d6bb4c05f4a51}\label{namespacesolvemumps_a5f812a31bb5931d66e5d6bb4c05f4a51}} 
+\index{solvemumps@{solvemumps}!ierr@{ierr}}
+\index{ierr@{ierr}!solvemumps@{solvemumps}}
+\subsubsection{\texorpdfstring{ierr}{ierr}}
+{\footnotesize\ttfamily integer solvemumps\+::ierr}
+
+
+
+error code of the M\+U\+M\+PS solver 
+
+
+
+Definition at line 25 of file Solve\+Mumps.\+f90.
+
+\mbox{\Hypertarget{namespacesolvemumps_ab76b5a7f705b0acb09ebc3ecf7e51f91}\label{namespacesolvemumps_ab76b5a7f705b0acb09ebc3ecf7e51f91}} 
+\index{solvemumps@{solvemumps}!mumps\+\_\+par@{mumps\+\_\+par}}
+\index{mumps\+\_\+par@{mumps\+\_\+par}!solvemumps@{solvemumps}}
+\subsubsection{\texorpdfstring{mumps\+\_\+par}{mumps\_par}}
+{\footnotesize\ttfamily type (dmumps\+\_\+struc) solvemumps\+::mumps\+\_\+par}
+
+
+
+an array containing the configuration parameters of M\+U\+M\+PS solver 
+
+
+
+Definition at line 24 of file Solve\+Mumps.\+f90.
+

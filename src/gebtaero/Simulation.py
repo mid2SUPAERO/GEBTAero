@@ -8,18 +8,27 @@ from .TimeFunction import *
 from .GebtPlot import *
 from numpy.linalg import norm as norm
 
-
+## This class is used to defined aeroelastic simulation (static, dynamic or modal) in a particular configuration (AoA, Velocity, air density,...)
 class Simulation:
-    """
-    This class contains the methods design to find eigenvalues, static shape, flutter speed
-    (modal or temporal), divergence speed of a Wing in a particular configuration (AoA, Vinf,...)
-    """
+
     def __init__(self,Wing):
         self.Wing = Wing
         
     def GetWing(self):
         return self.Wing
         
+    ## Compute an eigenvalue analysis
+    #@param Vinf Upstream velocity 
+    #@param Rho Air density
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param AeroFlag ioaero::aero_flag
+    #@param NumberOfModes ioaero::nev
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    #@param arpack globaldatafun::arpack_mod
+    #@param vtk 0: no paraview output, 1: paraview output
+    #@return EigenValues a numpy array containing eigenvalues
     def Eigenvalues(self,Vinf,Rho,AlphaAC,BetaAC,AeroFlag,NumberOfModes,GravFlag=0,verbosity=0,arpack=0,vtk=0):
         Name = self.GetWing().GetName()+"Modes"
         VecNul = np.zeros([3])
@@ -37,6 +46,14 @@ class Simulation:
             print(EigenValues)
         return EigenValues
 
+    ##Compute the wing root static loads
+    #@param Vinf Upstream velocity 
+    #@param Rho Air density
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    #@return Output a numpy array containing the wing root loads
     def StaticLoads(self,Vinf,Rho,AlphaAC,BetaAC,GravFlag=0,verbosity=0):
         Name = self.GetWing().GetName()+"Static"+str(Vinf)+"ms"
         VecNul = np.zeros([3])
@@ -52,7 +69,23 @@ class Simulation:
         self.Input.RemoveInputFile()
         return Output
 
-
+    ## Compute the flutter speed with a set of modal simulation
+    #@param Rho Air density
+    #@param Vmin the lower bound of the velocity interval
+    #@param Vmax the upper bound of the velocity interval
+    #@param Vstep the initial velocity step used in the algorithm
+    #@param DeltaV the velocity precision of the research
+    #@param AeroFlag ioaero::aero_flag
+    #@param FreqLim aeroelastic with frequency higher than FreqLim are not recorded
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param KsiObj the negative reduced damping value corresponding to a flutter
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    #@param arpack globaldatafun::arpack_mod
+    #@param ModesToCompute ioaero::nev
+    #@return Velocity the flutter speed (m/s)
+    #@return FlutterFreq the flutter frequency (Hz)
     def ModalFlutterSpeed(self,Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,FreqLim,AlphaAC,BetaAC,KsiObj=1e-6,GravFlag=0,verbosity=0,arpack=1,ModesToCompute=20):
         Name = self.GetWing().GetName()+"ModalFlutter"
         VecNul = np.zeros([3])
@@ -120,7 +153,21 @@ class Simulation:
             print("The flutter speed is {0} ; the flutter frequency is {1} Hz converged with a tolerance of {2} m/s and a reduced damping of {3}".format(Velocity,FlutterFreq,DeltaV,MinDamp))
         return [Velocity,FlutterFreq]
         
-
+    ## Compute the critical speed (divergence or/and flutter)
+    #@param Rho Air density
+    #@param Vmin the lower bound of the velocity interval
+    #@param Vmax the upper bound of the velocity interval
+    #@param Vstep the initial velocity step used in the algorithm
+    #@param DeltaV the velocity precision of the research
+    #@param AeroFlag ioaero::aero_flag
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    #@param mode which critical speed are computed.0: the first critical speed (either divergence or flutter),1: flutter only ,2: divergence only,  3: divergence and flutter
+    #@return Flutter speed (m/s)
+    #@return Flutter frequency (Hz)
+    #@return Divegence speed (m/s)
     def ModalCriticalSpeed(self,Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=0,verbosity=0,mode=0):
         if mode ==3: #looking for both divergence and flutter speed
             CritVelocity1,CritFreq1 = self.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=GravFlag,verbosity=verbosity,mode=0)
@@ -236,7 +283,20 @@ class Simulation:
             return [Velocity,CritFreq]    
         
 
-
+    ## Compute the divergence speed with modal simulation
+    #@param Rho Air density
+    #@param Vmin the lower bound of the velocity interval
+    #@param Vmax the upper bound of the velocity interval
+    #@param Vstep the initial velocity step used in the algorithm
+    #@param DeltaV the velocity precision of the research
+    #@param AeroFlag ioaero::aero_flag
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param NormLim a parameter set to adjust the number of modes to compute at each step
+    #@param KsiObj the negative reduced damping value corresponding to a flutter
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    #@return Velocity the divergence speed
     def ModalDivergenceSpeed(self,Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,NormLim=1.,KsiObj=1e-6,GravFlag=0,verbosity=0):
         Name = self.GetWing().GetName()+"ModalFlutter"
         VecNul = np.zeros([3])
@@ -295,7 +355,24 @@ class Simulation:
         return Velocity
         
         
-        
+    ## Compute the flutter speed using modal simulation with an algorithm following the aeroelastic modes 
+    #@param Rho Air density
+    #@param Vmax the upper bound of the velocity interval
+    #@param DeltaV the velocity precision of the research
+    #@param AeroFlag ioaero::aero_flag
+    #@param ModesToCompute ioaero::nev
+    #@param ModesToPlot Number of aeroelastic modes to follow
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param KsiObj the negative reduced damping value corresponding to a flutter
+    #@param CorrCoef the minimal correlation coefficient required between two eigenvectors calculated for two different velocity to associated them into the same aeroelastic mode
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    #@param arpack globaldatafun::arpack_mod
+    #@return Vinf the flutter speed (m/s)
+    #@return Freq the flutter frequency (Hz)
+    #@return Velocity the list of upstream velocity used at each step (matplotlib output option)
+    #@return Modes the list of eigenvalues computed at each step (matplotlib output option)
     def ModalFlutterSpeedSorted(self,Rho,Vmax,DeltaV,AeroFlag,ModesToCompute,ModesToPlot,AlphaAC,BetaAC,KsiObj=1e-6,CorrCoef=0.9,GravFlag=0,verbosity=0,arpack=0):
         if AeroFlag == 3:
             ModesToCompute = max(ModesToCompute,5*ModesToPlot)
@@ -423,7 +500,21 @@ class Simulation:
         Modes = np.array(Modes)
         return Vinf,Freq,[Velocity,Modes] 
    
-   
+    ## Compute the divergence speed using modal simulation with an algorithm following the aeroelastic modes 
+    #@param Rho Air density
+    #@param Vmax the upper bound of the velocity interval
+    #@param DeltaV the velocity precision of the research
+    #@param AeroFlag ioaero::aero_flag
+    #@param ModesToCompute ioaero::nev
+    #@param ModesToPlot Number of aeroelastic modes to follow
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param CorrCoef the minimal correlation coefficient required between two eigenvectors calculated for two different velocity to associated them into the same aeroelastic mode
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    #@return Vinf the divergence speed (m/s)
+    #@return Velocity the list of upstream velocity used at each step (matplotlib output option)
+    #@return Modes the list of eigenvalues computed at each step (matplotlib output option)
     def ModalDivergenceSpeedSorted(self,Rho,Vmax,DeltaV,AeroFlag,ModesToCompute,ModesToPlot,AlphaAC,BetaAC,CorrCoef=0.95,GravFlag=0,verbosity=0):
         if AeroFlag == 3:
             ModesToCompute = max(ModesToCompute,5*ModesToPlot)
@@ -539,6 +630,21 @@ class Simulation:
         self.Input.RemoveInputFile()
         return Vinf,[Velocity,Modes] 
     
+    ## Compute the eigenvalues for a set of velocity and correlate the results into aeroelastic modes
+    #@param Rho Air density
+    #@param Vmax the upper bound of the velocity interval
+    #@param DeltaV the velocity precision of the research
+    #@param Nstep the number of velocity step to compute (equitably distributed)
+    #@param AeroFlag ioaero::aero_flag
+    #@param ModesToCompute ioaero::nev
+    #@param ModesToPlot Number of aeroelastic modes to follow
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param CorrCoef the minimal correlation coefficient required between two eigenvectors calculated for two different velocity to associated them into the same aeroelastic mode
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    #@return Velocity the list of upstream velocity used at each step (matplotlib output)
+    #@return Modes the list of eigenvalues computed at each step (matplotlib output)
     def EigenTabSorted(self,Rho,Vmax,DeltaV,Nstep,AeroFlag,ModesToCompute,ModesToPlot,AlphaAC,BetaAC,CorrCoef=0.9,GravFlag=0,verbosity=0):
         if AeroFlag == 3:
             ModesToCompute = max(ModesToCompute,5*ModesToPlot)
@@ -669,7 +775,21 @@ class Simulation:
                 Modes[i]=np.append(Modes[i],[[None,None]],axis=0)
         Modes = np.array(Modes) 
         return [Velocity,Modes]
-            
+    
+    ## Compute the eigenvalues for a set of velocity without correlation into aeroelastic modes
+    #@param Rho Air density
+    #@param Vmin the lower bound of the velocity interval
+    #@param Vmax the upper bound of the velocity interval
+    #@param Nstep the number of velocity step to compute (equitably distributed)
+    #@param AeroFlag ioaero::aero_flag
+    #@param ModesToCompute ioaero::nev
+    #@param ModesToPlot Number of aeroelastic modes to follow
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    #@return Velocity the list of upstream velocity used at each step (matplotlib output)
+    #@return Modes the list of eigenvalues computed at each step (matplotlib output)
     def EigenTab(self,Rho,Vmin,Vmax,Nstep,AeroFlag,ModesToPlot,ModesToCompute,AlphaAC,BetaAC,GravFlag=0,verbosity=0):
         if AeroFlag == 3:
             ModesToCompute = max(ModesToCompute,2*ModesToPlot)
@@ -714,52 +834,59 @@ class Simulation:
         return [Velocity,Modes]
             
             
-    def DeformedModalFlutterSpeed(self,Rho,Vmin,Vmax,DeltaV,AeroFlag,FreqLim,NumberOfModes,Ksitol,Lifttol,BetaAC,verbosity=0):
-        Weight = self.Wing.GetWeight()
-        Surface = self.Wing.GetSurface()
-        Vstep = 0.1*(Vmax-Vmin)
-        # Initialisation with the undeformed flutter speed
-        VFlutter = self.ModalFlutterSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,FreqLim,0.,BetaAC,Ksitol)[0]
-        VelocityOld = VFlutter
-        # Equilibrium AlphaAC 
-        AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol)
-        VFlutter = self.ModalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,NumberOfModes,AlphaEq,BetaAC,Ksitol)[0]
-        counter = 0
-        while(abs(VFlutter-VelocityOld)>DeltaV):
-            counter = counter+1
-            if (counter >100):
-                raise RuntimeError('the algorithm is unable to converge : more than ',counter,' iterations yet')
-            VelocityOld = VFlutter
-            AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol)
-            Flutter = self.ModalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,NumberOfModes,AlphaEq,BetaAC,Ksitol)
-            VFlutter = Flutter[0]
-        if verbosity==1 :
-            print('Flutter speed = ',str(round(VFlutter,2)),' m/s ; Flutter frequency = ',str(round(Flutter[1],2))+' Hz ; Equilibirum AoA = ',str(round(AlphaEq,4)),' deg')
-        return Flutter
+    # ~ def DeformedModalFlutterSpeed(self,Rho,Vmin,Vmax,DeltaV,AeroFlag,FreqLim,NumberOfModes,Ksitol,Lifttol,BetaAC,verbosity=0):
+        # ~ Weight = self.Wing.GetWeight()
+        # ~ Surface = self.Wing.GetSurface()
+        # ~ Vstep = 0.1*(Vmax-Vmin)
+        # ~ # Initialisation with the undeformed flutter speed
+        # ~ VFlutter = self.ModalFlutterSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,FreqLim,0.,BetaAC,Ksitol)[0]
+        # ~ VelocityOld = VFlutter
+        # ~ # Equilibrium AlphaAC 
+        # ~ AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol)
+        # ~ VFlutter = self.ModalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,NumberOfModes,AlphaEq,BetaAC,Ksitol)[0]
+        # ~ counter = 0
+        # ~ while(abs(VFlutter-VelocityOld)>DeltaV):
+            # ~ counter = counter+1
+            # ~ if (counter >100):
+                # ~ raise RuntimeError('the algorithm is unable to converge : more than ',counter,' iterations yet')
+            # ~ VelocityOld = VFlutter
+            # ~ AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol)
+            # ~ Flutter = self.ModalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,NumberOfModes,AlphaEq,BetaAC,Ksitol)
+            # ~ VFlutter = Flutter[0]
+        # ~ if verbosity==1 :
+            # ~ print('Flutter speed = ',str(round(VFlutter,2)),' m/s ; Flutter frequency = ',str(round(Flutter[1],2))+' Hz ; Equilibirum AoA = ',str(round(AlphaEq,4)),' deg')
+        # ~ return Flutter
             
-    def DeformedModalFlutterSpeedSorted(self,Rho,Vmax,DeltaV,AeroFlag,ModesToCompute,ModesToPlot,Lifttol,BetaAC,KsiObj=1e-6,verbosity=0):
-        Weight = self.Wing.GetWeight()
-        Surface = self.Wing.GetSurface()
-        # Initialisation with the undeformed flutter speed
-        VFlutter = self.ModalFlutterSpeedSorted(Rho,Vmax,DeltaV,AeroFlag,ModesToCompute,ModesToPlot,0.,BetaAC,KsiObj)[0]
-        VelocityOld = VFlutter
-        # Equilibrium AlphaAC 
-        AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol)
-        VFlutter = self.ModalFlutterSpeedSorted(Rho,Vmax,DeltaV,AeroFlag,ModesToCompute,ModesToPlot,AlphaEq,BetaAC)[0]
-        counter = 0
-        while(abs(VFlutter-VelocityOld)>DeltaV):
-            counter = counter+1
-            if (counter >100):
-                raise RuntimeError('the algorithm is unable to converge : more than ',counter,' iterations yet')
-            VelocityOld = VFlutter
-            AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol)
-            Flutter = self.ModalFlutterSpeedSorted(Rho,Vmax,DeltaV,AeroFlag,ModesToCompute,ModesToPlot,AlphaEq,BetaAC)
-            VFlutter = Flutter[0]
-        if verbosity==1 :
-            print('Flutter speed = ',str(round(VFlutter,2)),' m/s ; Flutter frequency = ',str(round(Flutter[1],2))+' Hz ; Equilibirum AoA = ',str(round(AlphaEq,4)),' deg')
-        return Flutter
+    # ~ def DeformedModalFlutterSpeedSorted(self,Rho,Vmax,DeltaV,AeroFlag,ModesToCompute,ModesToPlot,Lifttol,BetaAC,KsiObj=1e-6,verbosity=0):
+        # ~ Weight = self.Wing.GetWeight()
+        # ~ Surface = self.Wing.GetSurface()
+        # ~ # Initialisation with the undeformed flutter speed
+        # ~ VFlutter = self.ModalFlutterSpeedSorted(Rho,Vmax,DeltaV,AeroFlag,ModesToCompute,ModesToPlot,0.,BetaAC,KsiObj)[0]
+        # ~ VelocityOld = VFlutter
+        # ~ # Equilibrium AlphaAC 
+        # ~ AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol)
+        # ~ VFlutter = self.ModalFlutterSpeedSorted(Rho,Vmax,DeltaV,AeroFlag,ModesToCompute,ModesToPlot,AlphaEq,BetaAC)[0]
+        # ~ counter = 0
+        # ~ while(abs(VFlutter-VelocityOld)>DeltaV):
+            # ~ counter = counter+1
+            # ~ if (counter >100):
+                # ~ raise RuntimeError('the algorithm is unable to converge : more than ',counter,' iterations yet')
+            # ~ VelocityOld = VFlutter
+            # ~ AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol)
+            # ~ Flutter = self.ModalFlutterSpeedSorted(Rho,Vmax,DeltaV,AeroFlag,ModesToCompute,ModesToPlot,AlphaEq,BetaAC)
+            # ~ VFlutter = Flutter[0]
+        # ~ if verbosity==1 :
+            # ~ print('Flutter speed = ',str(round(VFlutter,2)),' m/s ; Flutter frequency = ',str(round(Flutter[1],2))+' Hz ; Equilibirum AoA = ',str(round(AlphaEq,4)),' deg')
+        # ~ return Flutter
         
-        
+    ## Compute the equilibirum angle of attack of a wing in a particular configuration
+    #@param Rho Air density
+    #@param Vinf the upstream velocity
+    #@param AeroFlag ioaero::aero_flag
+    #@param BetaAC Aicraft yaw angle
+    #@param tolerance the AoA accuracy
+    #@param verbosity log output parameter
+    #@return the equilibirum angle of attack
     def EquilibriumAoA(self,Rho,Vinf,BetaAC,tolerance,verbosity=0):
         Weight = self.GetWing().GetWeight()
         Surface = self.GetWing().GetSurface()
@@ -777,8 +904,21 @@ class Simulation:
             print('Equilibirum Angle of Attack = ',str(round(AlphaEq,4)),' deg for a flow velocity of ',str(round(Vinf,2)),' corresponding to a Lift of ',str(round(Lift,2)))        
         return AlphaEq
   
-        
-    def TemporalFlutterSpeed(self,Rho,Vmin,Vmax,DeltaV,AeroFlag,ModesToPlot,AlphaAC,BetaAC,Ksitol,NbPeriod,StepByPeriod,CoefPerturb,GravFlag=0,verbosity=0):  
+    ## This routine intend to verify the correlation between the modal flutter speed and the temporal dynamic behavior of the wing. after a modal flutter speed determination it performs temporal simulation at several speed to find the lowest speed with a temporal instability (a flutter flag is trigger when the maximal rotation is above the parameter FlutterLimit )
+    #@param Rho Air density
+    #@param Vmin the lower bound of the velocity interval
+    #@param Vmax the upper bound of the velocity interval
+    #@param DeltaV the modal flutter speed computation accuracy
+    #@param AeroFlag ioaero::aero_flag
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param NbPeriod the number of flutter period to set the simulation duration
+    #@param StepByPeriod the number of time step temporal simulation for each flutter period
+    #@param CoefPerturb the coefficient between the upstream velocity and the perturbation vertical speed.
+    #@param FlutterLimit when the maximal rotation of the wing exceed FlutterLimit, the flutter_flag is triggered
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    def TemporalFlutterSpeed(self,Rho,Vmin,Vmax,DeltaV,AeroFlag,AlphaAC,BetaAC,NbPeriod,StepByPeriod,CoefPerturb,FlutterLimit=0.4,GravFlag=0,verbosity=0):  
         # Determination of the flutter speed using the transient dynamic capacity of gebtaero
         Vstep = 0.1*(Vmax-Vmin)
         ModalFlutter = self.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=GravFlag,verbosity=verbosity,mode=1)
@@ -795,7 +935,7 @@ class Simulation:
         DeltaT = float(PeriodFlutter)/StepByPeriod        
         #initial perturbation parameters
         VecNul = np.zeros([3])
-        Vz = round(CoefPerturb*Vinf,8)
+        Vz = round(CoefPerturb*Vinf,12)
         #~ Vz = CoefPerturb*Vinf
         #time simulation
         Nstep = int(float(Time)/DeltaT)
@@ -805,7 +945,7 @@ class Simulation:
         TF.AppendFunctionEntrieHarmonic(1.,PeriodFlutter,0.)
         # Input file creation
         Name = self.GetWing().GetName()+"TempFlutter"
-        self.Input = InputFile(Name,2,AeroFlag,0,1000,Nstep,0,0,VecNul,1,VecNul,1,self.Wing,Vinf,Rho,AlphaAC,BetaAC,0.,1.)       
+        self.Input = InputFile(Name,2,AeroFlag,GravFlag,1000,Nstep,0,0,VecNul,1,VecNul,1,self.Wing,Vinf,Rho,AlphaAC,BetaAC,0.,1.)       
         self.Input.AppendTimeFunction(TF)
         self.Input.WriteInputFile()
         self.Input.WriteInitFile()
@@ -814,10 +954,10 @@ class Simulation:
             # call of gebtaero, the velocity of the input file is override by v= of the command
             if verbosity ==1:
                 print('temporal simulation at Vinf=',str(Vinf),' ; number of time steps=',str(Nstep))
-            Command = "gebtaero -s "+self.Input.GetFileName()+" v="+str(Vinf)+" aero="+str(AeroFlag)+" time="+str(Time)+" vz="+str(Vz)+" nstep="+str(Nstep)+" tfe="+str(PeriodFlutter)+" tfper="+str(PeriodFlutter)
+            Command = "gebtaero -s "+self.Input.GetFileName()+" v="+str(Vinf)+" aero="+str(AeroFlag)+" time="+str(Time)+" vz="+str(Vz)+" nstep="+str(Nstep)+" tfe="+str(PeriodFlutter)+" tfper="+str(PeriodFlutter)+" flutter_limit="+str(FlutterLimit)
             Output = sp.getoutput(Command)
             Output = Output.split()
-            if (Output[0] == "no"):
+            if not (Output[0] == "#"):
                 if (Vstep > DeltaV):
                     Vinf = Vinf + 0.75*Vstep
                     Vstep = max(DeltaV,0.5*Vstep)
@@ -834,6 +974,21 @@ class Simulation:
         self.Input.RemoveInputFile()     
         return(Vinf)
 
+    ## Perform a temporal simulation at a velocity greater than the flutter speed to generate a paraview visualisation of the phenomenon
+    #@param Rho Air density
+    #@param Vmin the lower bound of the velocity interval
+    #@param Vmax the upper bound of the velocity interval
+    #@param DeltaV the modal flutter speed computation accuracy
+    #@param AeroFlag ioaero::aero_flag
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param NbPeriod the number of flutter period to set the simulation duration
+    #@param StepByPeriod the number of time step temporal simulation for each flutter period
+    #@param CoefPerturb the coefficient between the upstream velocity and the perturbation vertical speed.
+    #@param CoefVinf the temporal simulation is done at Vinf=CoefVinf*Vflutter
+    #@param FlutterLimit when the maximal rotation of the wing exceed FlutterLimit, the flutter_flag is triggered
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
     def FlutterVtk(self,Rho,Vmin,Vmax,DeltaV,AeroFlag,AlphaAC,BetaAC,NbPeriod,StepByPeriod,CoefPerturb,CoefVinf,Nvtk,FlutterLimit=0.4,GravFlag=0,verbosity=0):  
         # Computation of vtk files corresponding to a temporal flutter
         import shutil
@@ -892,8 +1047,21 @@ class Simulation:
                 # ~ Time = 0.95*Time*step_flutter/Nstep
         self.Input.RemoveInputFile()  
         
-        
-    def TemporalDynamic(self,Rho,Vinf,AeroFlag,AlphaAC,BetaAC,Time,Nstep,FreqPerturb,TimePerturb,CoefPerturb,CoefVinf,Nvtk,GravFlag=0,verbosity=0):  
+    ## Realise a temporal simulation in a specified configuration with an initial harmonic perturbation (vertical speed of frame a in inertial frame)
+    #@param Rho Air density
+    #@param Vinf the upstream velocity
+    #@param AeroFlag ioaero::aero_flag
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param Time the simulation duration
+    #@param Nstep the number of simulation time step
+    #@param FreqPerturb the frequency of the initial perturbation
+    #@param TimePerturb the duration of the perturbation
+    #@param CoefPerturb the coefficient between the upstream velocity and the perturbation vertical speed.
+    #@param Nvk the number of output vtk files
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    def TemporalDynamic(self,Rho,Vinf,AeroFlag,AlphaAC,BetaAC,Time,Nstep,FreqPerturb,TimePerturb,CoefPerturb,Nvtk,GravFlag=0,verbosity=0):  
         # Computation of vtk files corresponding to a temporal flutter
         import shutil 
         #initial perturbation parameters
@@ -924,7 +1092,18 @@ class Simulation:
         Output = sp.getoutput(Command)
         self.Input.RemoveInputFile()  
                 
-        
+    ## Compute the divergence speed by monitoring the divergence (swith in the sign) of the internal wing root forces
+    #@param Rho Air density
+    #@param Vmin the lower bound of the velocity interval
+    #@param Vmax the upper bound of the velocity interval
+    #@param Vstep the velocity step of the search algoritm
+    #@param DeltaV the divergence speed accuracy
+    #@param AeroFlag ioaero::aero_flag
+    #@param AlphaAC Aicraft angle of attack
+    #@param BetaAC Aicraft yaw angle
+    #@param GravFlag ioaero::grav_flag
+    #@param verbosity log output parameter
+    #@return Divergence speed
     def TemporalDivergenceSpeed(self,Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,BetaAC,GravFlag=0,verbosity=0):
         Name = self.GetWing().GetName()+"TemporalDivergence"
         VecNul = np.zeros([3])

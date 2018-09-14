@@ -97,7 +97,7 @@ if False:
     Vmax = 50.       # Upper boundary of the plotting interval
     DeltaV = 0.01       # Velocity tolerance of the mode correlation algorithm
     CorrCoef=0.99       # Minimal mode correlation coefficient allowed
-    Modes = Simu.EigenTabSorted(Rho,Vmax,DeltaV,Nstep,AeroFlag,ModesToPlot,ModesToPlot,AlphaAC,BetaAC,CorrCoef=0.99,GravFlag=1,verbosity=1)
+    Modes = Simu.EigenTabSorted(Rho,Vmax,DeltaV,Nstep,AeroFlag,ModesToPlot,ModesToPlot,AlphaAC,BetaAC,CorrCoef=0.99,GravFlag=GravFlag,verbosity=1)
     #ReducedDamping: True if the real part of the mode is converted into reduced damping; DampAxis: True if the damping scale is reduced to Damp Scale value
     GebtPlot.EigenFreqDamping(Modes[0],Modes[1],ReducedDamping=True,DampAxis=True,DampScale=0.01)      
 
@@ -116,7 +116,7 @@ if True:
     CoefPerturb = 0.0001        #a vertical speed to initiate the flutter is applied during one period with a coefficient relative to the upstream velocity
     CoefVinf = 1.2    #the simulation is done a V = ModalFlutterVelocity*CoefVinf
     Nvtk = 1000     #number of vtk output file
-    FlutterLimit = 0.4      #value of the maximal angular deformation (radian) of the wing which will trigger the temporal flutter state
+    FlutterLimit = 0.8      #value of the maximal angular deformation (radian) of the wing which will trigger the temporal flutter state
     # Realisation of temporal simulation and creation a a vtk file folder "PatilTempFlutter.dat_vtk/" in the work directory 
     Simu.FlutterVtk(Rho,Vmin,Vmax,DeltaV,AeroFlag,AlphaAC,BetaAC,NbPeriod,StepByPeriod,CoefPerturb,CoefVinf,Nvtk,FlutterLimit,GravFlag=GravFlag,verbosity=1)
     # write a paraview script with the vtk folder

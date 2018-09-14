@@ -1,3 +1,5 @@
+## @package gebtaero This package contains the pre/postprocessor python library of the computation code GEBTAero
+
 from .CompositePlate import *
 from .CompositeBox import *
 from .CompositePly import *

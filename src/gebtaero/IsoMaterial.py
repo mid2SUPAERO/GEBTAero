@@ -1,10 +1,13 @@
+# coding=UTF-8
+
+## This class correspond to the TYPE=ISO of the *ELASTIC input card of ccx solver
 class IsoMaterial:
-    """
-    This class contains the isotropic material characteristics
-    """
     def __init__(self,E,Nu,Rho=None):
+        ## Young Modulus
         self.E = E
+        ## Poisson Ratio
         self.Nu = Nu
+        ## Density
         self.Rho = Rho
         
     def GetIso(self):

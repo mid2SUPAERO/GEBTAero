@@ -1,0 +1,123 @@
+\hypertarget{_i_oaero_8f90}{}\section{/home/bertrand/these/logiciels/programme/src/\+I\+Oaero.f90 File Reference}
+\label{_i_oaero_8f90}\index{/home/bertrand/these/logiciels/programme/src/\+I\+Oaero.\+f90@{/home/bertrand/these/logiciels/programme/src/\+I\+Oaero.\+f90}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \hyperlink{namespaceioaero}{ioaero}
+\begin{DoxyCompactList}\small\item\em This module handle I/O of the computation code. Allow to read a .dat command file possibly with a .ini file and output a .out text output file or/and a folder with .vtk file intended to be used with paraview. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespaceioaero_a039bc1aae10012ce8e368bc202bb81be}{ioaero\+::input}
+\item 
+subroutine, public \hyperlink{namespaceioaero_a1f2f8f2b4f6e233d2753c1fd1809a44a}{ioaero\+::output}
+\item 
+subroutine, public \hyperlink{namespaceioaero_a7eb68cb1588d24e05c8f056ca107e163}{ioaero\+::outputvtk}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, parameter, private \hyperlink{namespaceioaero_acd6bdfdcfd986fd1c26261e5996e3b03}{ioaero\+::char\+\_\+len} =256
+\item 
+integer, parameter \hyperlink{namespaceioaero_a09d53f15b1a2c723ad2b4df01c16bccc}{ioaero\+::in} =10
+\item 
+character(char\+\_\+len) \hyperlink{namespaceioaero_ae3b39e5c092106ddc3bb8b81daf8bd13}{ioaero\+::inp\+\_\+name}
+\item 
+integer, parameter, public \hyperlink{namespaceioaero_a6a4b9f5362e2eee64e5777786065f563}{ioaero\+::ein} =20
+\begin{DoxyCompactList}\small\item\em file for echoing the inputs\+: inp\+\_\+name.\+ech \end{DoxyCompactList}\item 
+character(char\+\_\+len+3) \hyperlink{namespaceioaero_a175dde142a22987a0e59b9738444d2e3}{ioaero\+::ech\+\_\+name}
+\item 
+integer, parameter \hyperlink{namespaceioaero_a7c01d4bcd841d8d6281f29d5fc818fd8}{ioaero\+::out} =40
+\begin{DoxyCompactList}\small\item\em file for output\+: inp\+\_\+name.\+out \end{DoxyCompactList}\item 
+character(char\+\_\+len+3) \hyperlink{namespaceioaero_a6693b9440660a84d2d2fc41ac183bb0f}{ioaero\+::out\+\_\+name}
+\item 
+integer, parameter \hyperlink{namespaceioaero_afb3050696f2887599d4083672103b6e7}{ioaero\+::init} =50
+\begin{DoxyCompactList}\small\item\em file for initial conditions\+: inp\+\_\+name.\+ini \end{DoxyCompactList}\item 
+character(char\+\_\+len+3) \hyperlink{namespaceioaero_a5a12b8b21f86b26e7364428778a85d0b}{ioaero\+::init\+\_\+name}
+\item 
+integer, public \hyperlink{namespaceioaero_a24506866304c39bd1fa57ef73b124335}{ioaero\+::nkp}
+\begin{DoxyCompactList}\small\item\em number of key points \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a543ebf3623a96606d0956211621ce254}{ioaero\+::nelem}
+\begin{DoxyCompactList}\small\item\em total number of elements \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_ab59096c14b19d71fd53523822067402c}{ioaero\+::nmemb}
+\begin{DoxyCompactList}\small\item\em number of members \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_ad8817641275f11b821b7720a78651531}{ioaero\+::nmate}
+\begin{DoxyCompactList}\small\item\em number of cross-\/sectional properties sets \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_ac9fe2ddcc0797f81e7bc475a28692978}{ioaero\+::nframe}
+\begin{DoxyCompactList}\small\item\em number of frames \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a5ffc5d3578d9abad99d3736ba352e07d}{ioaero\+::ncond\+\_\+pt}
+\begin{DoxyCompactList}\small\item\em number of point conditions for concentrated loads and boundary conditions \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a89e1f8f2d6913d23ef482a5788d2eba5}{ioaero\+::ndistrfun}
+\begin{DoxyCompactList}\small\item\em number of distributed functions \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a34dabcb4bc1b4f260277297856ac3653}{ioaero\+::ncurv}
+\begin{DoxyCompactList}\small\item\em number of initial curvatures/twists \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a435527b09d62e7aac9883e1a6d6f3438}{ioaero\+::analysis\+\_\+flag}
+\begin{DoxyCompactList}\small\item\em 0\+: static analysis; 1\+: steady state response; 2\+: transient analysis; 3\+: eigenvalue analysis \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}{ioaero\+::nev}
+\begin{DoxyCompactList}\small\item\em number of frequencies and modeshapes. \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}
+\begin{DoxyCompactList}\small\item\em 0\+: no aero analasys; 1\+: stationary aerodynamic, 2\+: unsteady aerodynamic \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag}
+\item 
+integer, public \hyperlink{namespaceioaero_ab9193f4ff70a22ae5858118fc653f22b}{ioaero\+::ncond\+\_\+mb}
+\begin{DoxyCompactList}\small\item\em number of member conditions for distributed loads \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a8d0cfe1f4a5677d76ba3f3e775b12d1e}{ioaero\+::ntimefun}
+\begin{DoxyCompactList}\small\item\em number of time functions \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_ac008486fd12e0029a1ef77b3ca5e12c3}{ioaero\+::niter}
+\begin{DoxyCompactList}\small\item\em number of maximum iterations \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_ab078a397454a22b07a19ae3a7443a561}{ioaero\+::nstep}
+\begin{DoxyCompactList}\small\item\em number of time steps/load steps \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a29c506d8ad3a3609366b35e7e4c00fa4}{ioaero\+::nvtk}
+\begin{DoxyCompactList}\small\item\em number of the aerodynamic cycle \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}
+\begin{DoxyCompactList}\small\item\em member property array\+: member(nmemb,\+M\+E\+M\+B\+\_\+\+C\+O\+N\+S\+T) \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}
+\begin{DoxyCompactList}\small\item\em dofs per element\+: 12 for static analysis, 18 for dynamic analysis, +\+Ns if aero\+\_\+flag = 3 \end{DoxyCompactList}\item 
+integer, dimension(ndim), public \hyperlink{namespaceioaero_a9ec25357ecfc1c09628efa147300aaee}{ioaero\+::omega\+\_\+a\+\_\+tf}
+\begin{DoxyCompactList}\small\item\em time function numbers for the angular velocity of frame a \end{DoxyCompactList}\item 
+integer, dimension(ndim), public \hyperlink{namespaceioaero_adb4e11942a388b1bf1f13d10c79614bc}{ioaero\+::v\+\_\+root\+\_\+a\+\_\+tf}
+\begin{DoxyCompactList}\small\item\em time function numbers for the velocity of the starting point of the first member \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_ad67cddc00712c4d5a6d4008b2fe6c452}{ioaero\+::coord}
+\begin{DoxyCompactList}\small\item\em nodal coordinates\+: coord(nkp,\+N\+D\+I\+M) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a83ca534029c39300d045045432607a69}{ioaero\+::material}
+\begin{DoxyCompactList}\small\item\em flexibility matrix\+: (nmate,12,6) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a116b30aa43f6d871e7d4a3ed6f4428c3}{ioaero\+::aerodyn\+\_\+coef}
+\begin{DoxyCompactList}\small\item\em 2D aerodynamic coefficient \+: (nmate,\+:) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a26d467b1adbb838f4b1ba3dd4ee1ea0d}{ioaero\+::frame}
+\begin{DoxyCompactList}\small\item\em member frames\+: (nframe,3,3) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a1d7c3689e30c2925cd403a84e9176242}{ioaero\+::distr\+\_\+fun}
+\begin{DoxyCompactList}\small\item\em prescribed functions\+: (ndistrfun,6) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_ab2bc17b64328528015d161cab6490b80}{ioaero\+::curvature}
+\begin{DoxyCompactList}\small\item\em curvatures\+: (ncurv,N\+D\+IM) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_af6e62942bb38b7b7d69ea25972fe00bf}{ioaero\+::sol\+\_\+pt}
+\begin{DoxyCompactList}\small\item\em solutions for points sol\+\_\+pt(nstep,nkp,N\+D\+I\+M+\+N\+D\+O\+F\+\_\+\+ND) \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a4933d28025772ee22892dc12780a8eef}{ioaero\+::sol\+\_\+mb}
+\begin{DoxyCompactList}\small\item\em solutions for member sol\+\_\+mb(nstep,nelem,N\+D\+I\+M+ndof\+\_\+el)\+: nelem\+: total number of elements \end{DoxyCompactList}\item 
+real(dbl), dimension(2), public \hyperlink{namespaceioaero_ab6c271c9ebbeb9a315ec53d38facb60b}{ioaero\+::simu\+\_\+time}
+\begin{DoxyCompactList}\small\item\em start and end time of the simulation. \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim), public \hyperlink{namespaceioaero_a38fc5ef87ae7c2e312ad32f857e791cb}{ioaero\+::omega\+\_\+a0}
+\begin{DoxyCompactList}\small\item\em the magnitude of angular velocity of frame a \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim), public \hyperlink{namespaceioaero_a3cefdbd9d62bffe41f44b7f79f321f67}{ioaero\+::v\+\_\+root\+\_\+a0}
+\begin{DoxyCompactList}\small\item\em the magnitude of linear velocity of the starting point of the first member \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_ad88d83709eb2f4596a89098db11ba770}{ioaero\+::init\+\_\+cond}
+\begin{DoxyCompactList}\small\item\em initial conditions\+: init\+\_\+cond(nelem,12); init\+\_\+cond(nelem,1\+:6) for initial displacements/rotations init\+\_\+cond(nelem,7\+:12) for initial velocities init\+\_\+cond(nelem,13\+:12+\+N\+S\+T\+A\+T\+ES) Peters finite state parameter at time t+dt \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:), allocatable, public \hyperlink{namespaceioaero_ae043619051217506f070ece6f24deedf}{ioaero\+::eigen\+\_\+val}
+\begin{DoxyCompactList}\small\item\em arrays for holding eigenvalues and eigenvectors \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a53e09660909f61713dee3887a3adc1ec}{ioaero\+::eigen\+\_\+vec\+\_\+pt}
+\begin{DoxyCompactList}\small\item\em arrays for holding eigenvalues and eigenvectors \end{DoxyCompactList}\item 
+real(dbl), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespaceioaero_a0d150f0b81c676515b90fcf83d7ff8c3}{ioaero\+::eigen\+\_\+vec\+\_\+mb}
+\begin{DoxyCompactList}\small\item\em arrays for holding eigenvalues and eigenvectors \end{DoxyCompactList}\item 
+type(prescriinf), dimension(\+:), allocatable, public \hyperlink{namespaceioaero_a4344b2018135ae7fe0a09f4265fd2c29}{ioaero\+::pt\+\_\+condition}
+\begin{DoxyCompactList}\small\item\em prescribed information concentrated at nodes \end{DoxyCompactList}\item 
+type(prescriinf), dimension(\+:), allocatable, public \hyperlink{namespaceioaero_a2463929ef049b49fe7b49011c66cc806}{ioaero\+::mb\+\_\+condition}
+\begin{DoxyCompactList}\small\item\em prescribed information distributed along beam members \end{DoxyCompactList}\item 
+type(timefunction), dimension(\+:), allocatable, public \hyperlink{namespaceioaero_accb03392882ddfd413b5ac9ce3be09c6}{ioaero\+::time\+\_\+function}
+\begin{DoxyCompactList}\small\item\em time functions \end{DoxyCompactList}\item 
+character(char\+\_\+len), public \hyperlink{namespaceioaero_ac653c5aea8d1de1b6255d0f47b6722f6}{ioaero\+::velocity\+\_\+str} = \textquotesingle{}\textquotesingle{}
+\item 
+integer \hyperlink{namespaceioaero_a02839259538f3d7e305ebe79cb43d2c4}{ioaero\+::arpack}
+\begin{DoxyCompactList}\small\item\em Dummy input variable for A\+R\+P\+A\+C\+K\+\_\+\+M\+OD. \end{DoxyCompactList}\item 
+integer \hyperlink{namespaceioaero_a8d534ecfa53489b513fc3e339bbfc064}{ioaero\+::eigenoutput}
+\begin{DoxyCompactList}\small\item\em Dummy input variable for E\+I\+G\+E\+N\+\_\+\+O\+U\+T\+P\+UT. \end{DoxyCompactList}\item 
+character(300), public \hyperlink{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}{ioaero\+::error}
+\end{DoxyCompactItemize}

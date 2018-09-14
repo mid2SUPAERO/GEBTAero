@@ -1,0 +1,23 @@
+\hypertarget{_time_function_8f90}{}\section{/home/bertrand/these/logiciels/programme/src/\+Time\+Function.f90 File Reference}
+\label{_time_function_8f90}\index{/home/bertrand/these/logiciels/programme/src/\+Time\+Function.\+f90@{/home/bertrand/these/logiciels/programme/src/\+Time\+Function.\+f90}}
+\subsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+type \hyperlink{structtimefunctionmodule_1_1timefunction}{timefunctionmodule\+::timefunction}
+\end{DoxyCompactItemize}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \hyperlink{namespacetimefunctionmodule}{timefunctionmodule}
+\begin{DoxyCompactList}\small\item\em A module for defining time functions needed for both prescribed concentrated and distributed conditions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+real(dbl) function, public \hyperlink{namespacetimefunctionmodule_a177d2096c59b79cbbfd85b4e05b57f29}{timefunctionmodule\+::gettimefunction} (tf, t)
+\begin{DoxyCompactList}\small\item\em get the time function value for any arbitrary time from a piecewise linear function or harmonic function decide where t is located, then interpret the value \end{DoxyCompactList}\item 
+elemental type(timefunction) function, public \hyperlink{namespacetimefunctionmodule_a4a9a0cfa8fd5fc6dcfd21c0eeed2a027}{timefunctionmodule\+::inittf} ()
+\begin{DoxyCompactList}\small\item\em Initialize the time function. \end{DoxyCompactList}\item 
+type(timefunction) function, public \hyperlink{namespacetimefunctionmodule_a9dc9317deeac617a45cf48f6101f11d2}{timefunctionmodule\+::inputechotimefunctions} (IN, E\+IN, error)
+\begin{DoxyCompactList}\small\item\em Input and echo Time Functions. \end{DoxyCompactList}\item 
+real(dbl) function, dimension(size(vec)), public \hyperlink{namespacetimefunctionmodule_a907e0921288aa4f538e605c521686e4a}{timefunctionmodule\+::currentvalues} (vec, vec\+\_\+tf, time\+\_\+fun, time\+\_\+current)
+\begin{DoxyCompactList}\small\item\em Evaluate current function based on magnitude and time. \end{DoxyCompactList}\end{DoxyCompactItemize}

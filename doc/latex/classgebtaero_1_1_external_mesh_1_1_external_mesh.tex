@@ -1,0 +1,296 @@
+\hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh}{}\section{gebtaero.\+External\+Mesh.\+External\+Mesh Class Reference}
+\label{classgebtaero_1_1_external_mesh_1_1_external_mesh}\index{gebtaero.\+External\+Mesh.\+External\+Mesh@{gebtaero.\+External\+Mesh.\+External\+Mesh}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad1301073ba0c00d8ad8fe3dc4baa6068}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a53b38c75b026fb6c56b50b2dd9b5270f}{Mesh\+File}, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a87faefe634a474727d516e58eb8bf944}{OffsetY}=0., \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6639038ee73b225cf0d3ea1bd9c52783}{OffsetZ}=0., Unv\+Conv=False, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac9f8fc4f8dd8e81757bc8a5b2b5323d4}{Chord}=1.)
+\item 
+def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_aea59f570ee7b3c010c86c61384472834}{Create\+Periodic\+Eq} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a9ac15ea158d9eeccf982355c551ae334}{Get\+Mesh\+File} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad1c3ba8013a6829353d55d9513d49359}{Append\+Component} (self, Name, Material, Orientation=None)
+\item 
+def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a54e9efc572ecf40516e5c28a48be0bae}{Create\+Inp\+File} (self, Stress=False, Plane\+Section=False, Disp=0)
+\item 
+def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad2151661d358ae9a36e05f98a7d29dc8}{Compute\+Element\+Surf\+And\+CG} (self, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_abb7c716a5f2adf2a1f878b1034dcdc57}{nodes}, element, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_acaa3b125cb4f80848007b82426c14ffa}{x0})
+\item 
+def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_af2195154db17cc393dab153465e33b59}{Compute\+Mass\+Matrix\+From\+Mesh} (self, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_abb7c716a5f2adf2a1f878b1034dcdc57}{nodes}, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_acaa3b125cb4f80848007b82426c14ffa}{x0}, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a1a044fbcf39f5f8e7d3e3b98d291010d}{elements})
+\item 
+def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6cad952ce309870f33277bb9a89c5ca1}{Display\+Section\+Deformation} (self, Def\+Type)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a53b38c75b026fb6c56b50b2dd9b5270f}{Mesh\+File}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a592c0deea81b1ba0e686add0943889b4}{Components}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a60dc1666f258188383bc1a172bb3d219}{Materials}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a531dc1641becd6ea9cc5225ddfea8752}{Orientations}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6e7c70282c461d0a68a05419bf152973}{Tot\+Thickness}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a87faefe634a474727d516e58eb8bf944}{OffsetY}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6639038ee73b225cf0d3ea1bd9c52783}{OffsetZ}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac9f8fc4f8dd8e81757bc8a5b2b5323d4}{Chord}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac8524a9940fbf969271113875fd4da1a}{nstrain}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac11f9e6adddf7c9e5ae563d694d4b1b9}{ncurv}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a7804df618265ca2d1e76ba4697139f9d}{Lx}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_abb7c716a5f2adf2a1f878b1034dcdc57}{nodes}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_acaa3b125cb4f80848007b82426c14ffa}{x0}
+\item 
+\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a1a044fbcf39f5f8e7d3e3b98d291010d}{elements}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}This class allow to use a mesh created without cgx, the elset name must correspond to the component name. 
+The input mesh format has to be inp
+\end{DoxyVerb}
+ 
+
+Definition at line 10 of file External\+Mesh.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad1301073ba0c00d8ad8fe3dc4baa6068}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad1301073ba0c00d8ad8fe3dc4baa6068}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def gebtaero.\+External\+Mesh.\+External\+Mesh.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Mesh\+File,  }\item[{}]{OffsetY = {\ttfamily 0.},  }\item[{}]{OffsetZ = {\ttfamily 0.},  }\item[{}]{Unv\+Conv = {\ttfamily False},  }\item[{}]{Chord = {\ttfamily 1.} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 15 of file External\+Mesh.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad1c3ba8013a6829353d55d9513d49359}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad1c3ba8013a6829353d55d9513d49359}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Append\+Component@{Append\+Component}}
+\index{Append\+Component@{Append\+Component}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Append\+Component()}{AppendComponent()}}
+{\footnotesize\ttfamily def gebtaero.\+External\+Mesh.\+External\+Mesh.\+Append\+Component (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Name,  }\item[{}]{Material,  }\item[{}]{Orientation = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 46 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad2151661d358ae9a36e05f98a7d29dc8}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad2151661d358ae9a36e05f98a7d29dc8}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Compute\+Element\+Surf\+And\+CG@{Compute\+Element\+Surf\+And\+CG}}
+\index{Compute\+Element\+Surf\+And\+CG@{Compute\+Element\+Surf\+And\+CG}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Compute\+Element\+Surf\+And\+C\+G()}{ComputeElementSurfAndCG()}}
+{\footnotesize\ttfamily def gebtaero.\+External\+Mesh.\+External\+Mesh.\+Compute\+Element\+Surf\+And\+CG (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{nodes,  }\item[{}]{element,  }\item[{}]{x0 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 126 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_af2195154db17cc393dab153465e33b59}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_af2195154db17cc393dab153465e33b59}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Compute\+Mass\+Matrix\+From\+Mesh@{Compute\+Mass\+Matrix\+From\+Mesh}}
+\index{Compute\+Mass\+Matrix\+From\+Mesh@{Compute\+Mass\+Matrix\+From\+Mesh}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Compute\+Mass\+Matrix\+From\+Mesh()}{ComputeMassMatrixFromMesh()}}
+{\footnotesize\ttfamily def gebtaero.\+External\+Mesh.\+External\+Mesh.\+Compute\+Mass\+Matrix\+From\+Mesh (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{nodes,  }\item[{}]{x0,  }\item[{}]{elements }\end{DoxyParamCaption})}
+
+
+
+Definition at line 160 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a54e9efc572ecf40516e5c28a48be0bae}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a54e9efc572ecf40516e5c28a48be0bae}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Create\+Inp\+File@{Create\+Inp\+File}}
+\index{Create\+Inp\+File@{Create\+Inp\+File}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Create\+Inp\+File()}{CreateInpFile()}}
+{\footnotesize\ttfamily def gebtaero.\+External\+Mesh.\+External\+Mesh.\+Create\+Inp\+File (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Stress = {\ttfamily False},  }\item[{}]{Plane\+Section = {\ttfamily False},  }\item[{}]{Disp = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 57 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_aea59f570ee7b3c010c86c61384472834}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_aea59f570ee7b3c010c86c61384472834}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Create\+Periodic\+Eq@{Create\+Periodic\+Eq}}
+\index{Create\+Periodic\+Eq@{Create\+Periodic\+Eq}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Create\+Periodic\+Eq()}{CreatePeriodicEq()}}
+{\footnotesize\ttfamily def gebtaero.\+External\+Mesh.\+External\+Mesh.\+Create\+Periodic\+Eq (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 40 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6cad952ce309870f33277bb9a89c5ca1}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6cad952ce309870f33277bb9a89c5ca1}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Display\+Section\+Deformation@{Display\+Section\+Deformation}}
+\index{Display\+Section\+Deformation@{Display\+Section\+Deformation}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Display\+Section\+Deformation()}{DisplaySectionDeformation()}}
+{\footnotesize\ttfamily def gebtaero.\+External\+Mesh.\+External\+Mesh.\+Display\+Section\+Deformation (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Def\+Type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 198 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a9ac15ea158d9eeccf982355c551ae334}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a9ac15ea158d9eeccf982355c551ae334}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Get\+Mesh\+File@{Get\+Mesh\+File}}
+\index{Get\+Mesh\+File@{Get\+Mesh\+File}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Get\+Mesh\+File()}{GetMeshFile()}}
+{\footnotesize\ttfamily def gebtaero.\+External\+Mesh.\+External\+Mesh.\+Get\+Mesh\+File (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 43 of file External\+Mesh.\+py.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac9f8fc4f8dd8e81757bc8a5b2b5323d4}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac9f8fc4f8dd8e81757bc8a5b2b5323d4}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Chord@{Chord}}
+\index{Chord@{Chord}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Chord}{Chord}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+Chord}
+
+
+
+Definition at line 30 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a592c0deea81b1ba0e686add0943889b4}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a592c0deea81b1ba0e686add0943889b4}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Components@{Components}}
+\index{Components@{Components}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Components}{Components}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+Components}
+
+
+
+Definition at line 24 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a1a044fbcf39f5f8e7d3e3b98d291010d}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a1a044fbcf39f5f8e7d3e3b98d291010d}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!elements@{elements}}
+\index{elements@{elements}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{elements}{elements}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+elements}
+
+
+
+Definition at line 38 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a7804df618265ca2d1e76ba4697139f9d}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a7804df618265ca2d1e76ba4697139f9d}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Lx@{Lx}}
+\index{Lx@{Lx}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Lx}{Lx}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+Lx}
+
+
+
+Definition at line 35 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a60dc1666f258188383bc1a172bb3d219}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a60dc1666f258188383bc1a172bb3d219}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Materials@{Materials}}
+\index{Materials@{Materials}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Materials}{Materials}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+Materials}
+
+
+
+Definition at line 25 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a53b38c75b026fb6c56b50b2dd9b5270f}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a53b38c75b026fb6c56b50b2dd9b5270f}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Mesh\+File@{Mesh\+File}}
+\index{Mesh\+File@{Mesh\+File}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Mesh\+File}{MeshFile}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+Mesh\+File}
+
+
+
+Definition at line 21 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac11f9e6adddf7c9e5ae563d694d4b1b9}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac11f9e6adddf7c9e5ae563d694d4b1b9}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!ncurv@{ncurv}}
+\index{ncurv@{ncurv}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{ncurv}{ncurv}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+ncurv}
+
+
+
+Definition at line 34 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_abb7c716a5f2adf2a1f878b1034dcdc57}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_abb7c716a5f2adf2a1f878b1034dcdc57}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!nodes@{nodes}}
+\index{nodes@{nodes}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{nodes}{nodes}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+nodes}
+
+
+
+Definition at line 36 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac8524a9940fbf969271113875fd4da1a}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac8524a9940fbf969271113875fd4da1a}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!nstrain@{nstrain}}
+\index{nstrain@{nstrain}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{nstrain}{nstrain}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+nstrain}
+
+
+
+Definition at line 33 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a87faefe634a474727d516e58eb8bf944}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a87faefe634a474727d516e58eb8bf944}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!OffsetY@{OffsetY}}
+\index{OffsetY@{OffsetY}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{OffsetY}{OffsetY}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+OffsetY}
+
+
+
+Definition at line 28 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6639038ee73b225cf0d3ea1bd9c52783}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6639038ee73b225cf0d3ea1bd9c52783}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!OffsetZ@{OffsetZ}}
+\index{OffsetZ@{OffsetZ}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{OffsetZ}{OffsetZ}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+OffsetZ}
+
+
+
+Definition at line 29 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a531dc1641becd6ea9cc5225ddfea8752}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a531dc1641becd6ea9cc5225ddfea8752}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Orientations@{Orientations}}
+\index{Orientations@{Orientations}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Orientations}{Orientations}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+Orientations}
+
+
+
+Definition at line 26 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6e7c70282c461d0a68a05419bf152973}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6e7c70282c461d0a68a05419bf152973}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Tot\+Thickness@{Tot\+Thickness}}
+\index{Tot\+Thickness@{Tot\+Thickness}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{Tot\+Thickness}{TotThickness}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+Tot\+Thickness}
+
+
+
+Definition at line 27 of file External\+Mesh.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_acaa3b125cb4f80848007b82426c14ffa}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_acaa3b125cb4f80848007b82426c14ffa}} 
+\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!x0@{x0}}
+\index{x0@{x0}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
+\subsubsection{\texorpdfstring{x0}{x0}}
+{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+x0}
+
+
+
+Definition at line 37 of file External\+Mesh.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/bertrand/these/logiciels/programme/interface/src/gebtaero/\hyperlink{_external_mesh_8py}{External\+Mesh.\+py}\end{DoxyCompactItemize}

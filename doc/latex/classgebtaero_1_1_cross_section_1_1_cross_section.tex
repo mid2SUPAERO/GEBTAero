@@ -1,0 +1,244 @@
+\hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section}{}\section{gebtaero.\+Cross\+Section.\+Cross\+Section Class Reference}
+\label{classgebtaero_1_1_cross_section_1_1_cross_section}\index{gebtaero.\+Cross\+Section.\+Cross\+Section@{gebtaero.\+Cross\+Section.\+Cross\+Section}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a26142f8a77b098b8725d7d024cfd5199}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a09866889e6a297e305d32daa5d57e1cb}{Set\+Mass\+Matrix} (self, Mu, I22, I33, I23, Nu, Zcg=0.)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a0e87dd20eeef95c96cbbeebc0491fe86}{Set\+Mass\+Matrix\+By\+Plate} (self, Plate)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a4914caf35d9b8cfadafe8e359a590d7c}{Set\+Mass\+Matrix\+By\+Box} (self, Box)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a7fa57a9ed49c1029409a78f45a45c562}{Set\+Mass\+Matrix\+By\+Rect\+Beam\+Values} (self, h, L, Mat, Neglect\+I22=False)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a51f5f560da9f747310ebc55db72fd353}{Set\+Mass\+Matrix\+By\+Mesh} (self, Mesh, At\+Elastic\+Center=False, SymY=False, Chord\+Scale=False, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a329e4ccf313b33bf8fd5a1af65d95d0f}{Get\+Mass\+Matrix} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_ae470ab0c1773947882a762c5e36351d5}{Set\+Flexibility\+Matrix\+By\+Rect\+Beam\+Values} (self, h, L, Mat, Rigid\+E\+Ig3=False)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a8e1902ba4dd5fbdb184868b55b663ebc}{Set\+Flexibility\+Matrix\+By\+Isotropic\+Values} (self, E\+Ig2, E\+Ig3, GJ)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a1f7fe7afe016bebd24eb42a7199df862}{Set\+Flexibility\+Matrix\+By\+Plate} (self, Plate, Type\+Elem, Nb\+ElemX, Nb\+ElemY, Nb\+Elem\+Ply, RigidX=False, RigidZ=False)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a1dc9bde378c556e404c167dfaeda0806}{Set\+Flexibility\+Matrix\+By\+Box} (self, Box, Type\+Elem, Nb\+ElemX, Nb\+ElemY, Nb\+Elem\+Ply, RigidX=False, RigidZ=False)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a70eb1851ddf4a3f88fb14cfc827e0c83}{Set\+Flexibility\+Matrix\+By\+Mesh} (self, Mesh, Plane\+Section=False, At\+Elastic\+Center=False, RigidX=False, RigidZ=False, Chord\+Scale=False)
+\item 
+def \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_ac06cec90003112b1de53b100c0085842}{Get\+Flexibility\+Matrix} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_ae9be8649853163b2b4dfdaa3584d9f78}{Mass\+Matrix}
+\item 
+\hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_ac20eafaf38ff757f9a8c9ae89212396a}{Flexibility\+Matrix}
+\item 
+\hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_a1eb436d0de5edf2c25612bbc15d88d91}{Elastic\+Center}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}class containing the flexibility and mass matrix of a wing section
+Mass matrix is defined analytically, flexibility matrix is defined either analytically 
+or using 3D FEM solver Calculix
+\end{DoxyVerb}
+ 
+
+Definition at line 6 of file Cross\+Section.\+py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a26142f8a77b098b8725d7d024cfd5199}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a26142f8a77b098b8725d7d024cfd5199}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 12 of file Cross\+Section.\+py.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_ac06cec90003112b1de53b100c0085842}\label{classgebtaero_1_1_cross_section_1_1_cross_section_ac06cec90003112b1de53b100c0085842}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Get\+Flexibility\+Matrix@{Get\+Flexibility\+Matrix}}
+\index{Get\+Flexibility\+Matrix@{Get\+Flexibility\+Matrix}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Get\+Flexibility\+Matrix()}{GetFlexibilityMatrix()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Get\+Flexibility\+Matrix (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 218 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a329e4ccf313b33bf8fd5a1af65d95d0f}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a329e4ccf313b33bf8fd5a1af65d95d0f}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Get\+Mass\+Matrix@{Get\+Mass\+Matrix}}
+\index{Get\+Mass\+Matrix@{Get\+Mass\+Matrix}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Get\+Mass\+Matrix()}{GetMassMatrix()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Get\+Mass\+Matrix (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line 105 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a1dc9bde378c556e404c167dfaeda0806}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a1dc9bde378c556e404c167dfaeda0806}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Set\+Flexibility\+Matrix\+By\+Box@{Set\+Flexibility\+Matrix\+By\+Box}}
+\index{Set\+Flexibility\+Matrix\+By\+Box@{Set\+Flexibility\+Matrix\+By\+Box}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Set\+Flexibility\+Matrix\+By\+Box()}{SetFlexibilityMatrixByBox()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Set\+Flexibility\+Matrix\+By\+Box (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Box,  }\item[{}]{Type\+Elem,  }\item[{}]{Nb\+ElemX,  }\item[{}]{Nb\+ElemY,  }\item[{}]{Nb\+Elem\+Ply,  }\item[{}]{RigidX = {\ttfamily False},  }\item[{}]{RigidZ = {\ttfamily False} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Set the flexibility matrix using homogeneisation process.
+First a 4*4 Stiffness matrix is computed, then coefficients are
+placed in the final 6*6 Flexibility Matrix and scaled using the box width
+\end{DoxyVerb}
+ 
+
+Definition at line 171 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a8e1902ba4dd5fbdb184868b55b663ebc}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a8e1902ba4dd5fbdb184868b55b663ebc}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Set\+Flexibility\+Matrix\+By\+Isotropic\+Values@{Set\+Flexibility\+Matrix\+By\+Isotropic\+Values}}
+\index{Set\+Flexibility\+Matrix\+By\+Isotropic\+Values@{Set\+Flexibility\+Matrix\+By\+Isotropic\+Values}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Set\+Flexibility\+Matrix\+By\+Isotropic\+Values()}{SetFlexibilityMatrixByIsotropicValues()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Set\+Flexibility\+Matrix\+By\+Isotropic\+Values (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{E\+Ig2,  }\item[{}]{E\+Ig3,  }\item[{}]{GJ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Set the flexibility matrix using isotropic vlaues namely the bending stiffness
+spanwise EIg2, the bending stiffness chordwise EIg3 and the torsionnal stiffness
+GJ.
+@param float EIg2 : bending stiffness spanwise
+@param float EIg3 : bending stiffness chordwise
+@param float GJ : torsionnal stiffness
+\end{DoxyVerb}
+ 
+
+Definition at line 126 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a70eb1851ddf4a3f88fb14cfc827e0c83}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a70eb1851ddf4a3f88fb14cfc827e0c83}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Set\+Flexibility\+Matrix\+By\+Mesh@{Set\+Flexibility\+Matrix\+By\+Mesh}}
+\index{Set\+Flexibility\+Matrix\+By\+Mesh@{Set\+Flexibility\+Matrix\+By\+Mesh}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Set\+Flexibility\+Matrix\+By\+Mesh()}{SetFlexibilityMatrixByMesh()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Set\+Flexibility\+Matrix\+By\+Mesh (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Mesh,  }\item[{}]{Plane\+Section = {\ttfamily False},  }\item[{}]{At\+Elastic\+Center = {\ttfamily False},  }\item[{}]{RigidX = {\ttfamily False},  }\item[{}]{RigidZ = {\ttfamily False},  }\item[{}]{Chord\+Scale = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 192 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a1f7fe7afe016bebd24eb42a7199df862}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a1f7fe7afe016bebd24eb42a7199df862}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Set\+Flexibility\+Matrix\+By\+Plate@{Set\+Flexibility\+Matrix\+By\+Plate}}
+\index{Set\+Flexibility\+Matrix\+By\+Plate@{Set\+Flexibility\+Matrix\+By\+Plate}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Set\+Flexibility\+Matrix\+By\+Plate()}{SetFlexibilityMatrixByPlate()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Set\+Flexibility\+Matrix\+By\+Plate (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Plate,  }\item[{}]{Type\+Elem,  }\item[{}]{Nb\+ElemX,  }\item[{}]{Nb\+ElemY,  }\item[{}]{Nb\+Elem\+Ply,  }\item[{}]{RigidX = {\ttfamily False},  }\item[{}]{RigidZ = {\ttfamily False} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Set the flexibility matrix using homogeneisation process.
+First a 4*4 Stiffness matrix is computed, then inverted and coefficients are
+placed in the final 6*6 Flexibility Matrix
+\end{DoxyVerb}
+ 
+
+Definition at line 150 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_ae470ab0c1773947882a762c5e36351d5}\label{classgebtaero_1_1_cross_section_1_1_cross_section_ae470ab0c1773947882a762c5e36351d5}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Set\+Flexibility\+Matrix\+By\+Rect\+Beam\+Values@{Set\+Flexibility\+Matrix\+By\+Rect\+Beam\+Values}}
+\index{Set\+Flexibility\+Matrix\+By\+Rect\+Beam\+Values@{Set\+Flexibility\+Matrix\+By\+Rect\+Beam\+Values}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Set\+Flexibility\+Matrix\+By\+Rect\+Beam\+Values()}{SetFlexibilityMatrixByRectBeamValues()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Set\+Flexibility\+Matrix\+By\+Rect\+Beam\+Values (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{h,  }\item[{}]{L,  }\item[{}]{Mat,  }\item[{}]{Rigid\+E\+Ig3 = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 108 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a09866889e6a297e305d32daa5d57e1cb}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a09866889e6a297e305d32daa5d57e1cb}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Set\+Mass\+Matrix@{Set\+Mass\+Matrix}}
+\index{Set\+Mass\+Matrix@{Set\+Mass\+Matrix}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Set\+Mass\+Matrix()}{SetMassMatrix()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Set\+Mass\+Matrix (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Mu,  }\item[{}]{I22,  }\item[{}]{I33,  }\item[{}]{I23,  }\item[{}]{Nu,  }\item[{}]{Zcg = {\ttfamily 0.} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@param float Mu : Mass per unit length
+@param float I11 : Mass moment of inertia about wingspan axis
+@param float Nu : Distance between moment calculation point and center of gravity. Positif is the CG is near leading edge
+\end{DoxyVerb}
+ 
+
+Definition at line 17 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a4914caf35d9b8cfadafe8e359a590d7c}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a4914caf35d9b8cfadafe8e359a590d7c}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Set\+Mass\+Matrix\+By\+Box@{Set\+Mass\+Matrix\+By\+Box}}
+\index{Set\+Mass\+Matrix\+By\+Box@{Set\+Mass\+Matrix\+By\+Box}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Set\+Mass\+Matrix\+By\+Box()}{SetMassMatrixByBox()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Set\+Mass\+Matrix\+By\+Box (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Box }\end{DoxyParamCaption})}
+
+
+
+Definition at line 46 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a51f5f560da9f747310ebc55db72fd353}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a51f5f560da9f747310ebc55db72fd353}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Set\+Mass\+Matrix\+By\+Mesh@{Set\+Mass\+Matrix\+By\+Mesh}}
+\index{Set\+Mass\+Matrix\+By\+Mesh@{Set\+Mass\+Matrix\+By\+Mesh}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Set\+Mass\+Matrix\+By\+Mesh()}{SetMassMatrixByMesh()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Set\+Mass\+Matrix\+By\+Mesh (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Mesh,  }\item[{}]{At\+Elastic\+Center = {\ttfamily False},  }\item[{}]{SymY = {\ttfamily False},  }\item[{}]{Chord\+Scale = {\ttfamily False},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 66 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a0e87dd20eeef95c96cbbeebc0491fe86}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a0e87dd20eeef95c96cbbeebc0491fe86}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Set\+Mass\+Matrix\+By\+Plate@{Set\+Mass\+Matrix\+By\+Plate}}
+\index{Set\+Mass\+Matrix\+By\+Plate@{Set\+Mass\+Matrix\+By\+Plate}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Set\+Mass\+Matrix\+By\+Plate()}{SetMassMatrixByPlate()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Set\+Mass\+Matrix\+By\+Plate (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Plate }\end{DoxyParamCaption})}
+
+
+
+Definition at line 41 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a7fa57a9ed49c1029409a78f45a45c562}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a7fa57a9ed49c1029409a78f45a45c562}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Set\+Mass\+Matrix\+By\+Rect\+Beam\+Values@{Set\+Mass\+Matrix\+By\+Rect\+Beam\+Values}}
+\index{Set\+Mass\+Matrix\+By\+Rect\+Beam\+Values@{Set\+Mass\+Matrix\+By\+Rect\+Beam\+Values}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Set\+Mass\+Matrix\+By\+Rect\+Beam\+Values()}{SetMassMatrixByRectBeamValues()}}
+{\footnotesize\ttfamily def gebtaero.\+Cross\+Section.\+Cross\+Section.\+Set\+Mass\+Matrix\+By\+Rect\+Beam\+Values (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{h,  }\item[{}]{L,  }\item[{}]{Mat,  }\item[{}]{Neglect\+I22 = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 51 of file Cross\+Section.\+py.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_a1eb436d0de5edf2c25612bbc15d88d91}\label{classgebtaero_1_1_cross_section_1_1_cross_section_a1eb436d0de5edf2c25612bbc15d88d91}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Elastic\+Center@{Elastic\+Center}}
+\index{Elastic\+Center@{Elastic\+Center}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Elastic\+Center}{ElasticCenter}}
+{\footnotesize\ttfamily gebtaero.\+Cross\+Section.\+Cross\+Section.\+Elastic\+Center}
+
+
+
+Definition at line 15 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_ac20eafaf38ff757f9a8c9ae89212396a}\label{classgebtaero_1_1_cross_section_1_1_cross_section_ac20eafaf38ff757f9a8c9ae89212396a}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Flexibility\+Matrix@{Flexibility\+Matrix}}
+\index{Flexibility\+Matrix@{Flexibility\+Matrix}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Flexibility\+Matrix}{FlexibilityMatrix}}
+{\footnotesize\ttfamily gebtaero.\+Cross\+Section.\+Cross\+Section.\+Flexibility\+Matrix}
+
+
+
+Definition at line 14 of file Cross\+Section.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_cross_section_1_1_cross_section_ae9be8649853163b2b4dfdaa3584d9f78}\label{classgebtaero_1_1_cross_section_1_1_cross_section_ae9be8649853163b2b4dfdaa3584d9f78}} 
+\index{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}!Mass\+Matrix@{Mass\+Matrix}}
+\index{Mass\+Matrix@{Mass\+Matrix}!gebtaero\+::\+Cross\+Section\+::\+Cross\+Section@{gebtaero\+::\+Cross\+Section\+::\+Cross\+Section}}
+\subsubsection{\texorpdfstring{Mass\+Matrix}{MassMatrix}}
+{\footnotesize\ttfamily gebtaero.\+Cross\+Section.\+Cross\+Section.\+Mass\+Matrix}
+
+
+
+Definition at line 13 of file Cross\+Section.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/bertrand/these/logiciels/programme/interface/src/gebtaero/\hyperlink{_cross_section_8py}{Cross\+Section.\+py}\end{DoxyCompactItemize}

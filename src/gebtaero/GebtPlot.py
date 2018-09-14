@@ -4,15 +4,16 @@ import numpy as np
 import os as os
 from .utils import *
 
+## This class is used to generate output using matplotlib and paraview
 class GebtPlot:
-
-    """
-    Class containing ploting routines
-    """
+    ## Generate a matplotlib graph describing some aeroelastic modes
+    #@param Velocity a list containing the velocity where the modes are plotted (x axis)
+    #@param Modes a list containing the frequency and the real part of the modes (y axis)
+    #@param Style the style of the curve (matplotlib doc)
+    #@param ReducedDamping if true, replace the real part of the mode with the reduced damping (divided by -1/(4*pi*f))
+    #@param DampAxis if true,impose the scale of the damping graph
+    #@param DampScale the scale of the damping graph
     def EigenFreqDamping(Velocity,Modes,Style=None,ReducedDamping=True,DampAxis=False,DampScale=0.01):
-        """
-        Plot frequencies and Damping of a set of computed modes
-        """
         Nmodes = len(Modes[0,:,0])
         plt.figure(1)
         plt.subplot(211)
@@ -24,11 +25,6 @@ class GebtPlot:
                 plt.plot(Velocity,Modes[:,i,1],linewidth=3)
             else:    
                 plt.plot(Velocity,Modes[:,i,1],Style,linewidth=3)
-        # ~ plt.axis([min(Velocity),max(Velocity),0.,1.1*np.amax(Modes[:,:,1])])
-        # ~ deg5, = plt.plot(Velocity,Modes[:,0,1],linewidth=3,label="[-45/2$z_c$/5]")
-        # ~ deg10, = plt.plot(Velocity,Modes[:,1,1],linewidth=3,label="[-45/2$z_c$/10]")
-        # ~ plt.axis([min(Velocity),max(Velocity),25.,45.])
-        # ~ plt.legend(handles=[deg5,deg10],loc=1, prop={'size': 25})
         plt.grid()		
 
         plt.subplot(212)
@@ -61,7 +57,12 @@ class GebtPlot:
         plt.grid()
         plt.show()
         
-        
+    ## a method similar to GebtPlot::EigenFreqDamping for unsorted modes (style point to avoid shift in the curves)
+    #@param Velocity a list containing the velocity where the modes are plotted (x axis)
+    #@param Modes a list containing the frequency and the real part of the modes (y axis)
+    #@param Style the style of the curve (matplotlib doc)
+    #@param DampAxis if true,impose the scale of the damping graph
+    #@param DampScale the scale of the damping graph
     def EigenFreqDampingUnsorted(Velocity,Modes,Style=None,DampAxis=False,DampScale=0.01):
         """
         Plot frequencies and Damping of a set of computed modes
@@ -91,6 +92,10 @@ class GebtPlot:
         plt.grid()
         plt.show()
 
+    ## Write a python paraview script using a folder of vtk output files
+    #@param VtkFolder The path of the vtk folder
+    #@param VtkName the name of the simulation used to determine the name of the vtk files
+    #@param AirfoilPath The path of a vtk file describing a 2D airfoil
     def WriteParaviewScript(VtkFolder,VtkName,AirfoilPath="/opt/gebtaero/airfoil/airfoil_default.vtk"):
         file = open('pvscript.py',"w")
         NbVtk = len(os.listdir(VtkFolder))
@@ -122,6 +127,10 @@ class GebtPlot:
         file.write("renderView1.CameraViewUp = [0,0,-1]\n")
         file.write("renderView1.ResetCamera()\n")
         
+    ## Create a paraview script using GebtPlot::WriteParaviewScript and launch it
+    #@param VtkFolder The path of the vtk folder
+    #@param VtkName the name of the simulation used to determine the name of the vtk files
+    #@param AirfoilPath The path of a vtk file describing a 2D airfoil
     def ParaviewOutput(self,VtkFolder,VtkName,AirfoilPath="/opt/gebtaero/airfoil/airfoil_default.vtk"):
         self.WriteParaviewScript(AirfoilPath,VtkFolder,VtkName)
         RunParaviewScript(pvscript.py)

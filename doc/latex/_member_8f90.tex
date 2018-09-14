@@ -1,0 +1,23 @@
+\hypertarget{_member_8f90}{}\section{/home/bertrand/these/logiciels/programme/src/\+Member.f90 File Reference}
+\label{_member_8f90}\index{/home/bertrand/these/logiciels/programme/src/\+Member.\+f90@{/home/bertrand/these/logiciels/programme/src/\+Member.\+f90}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \hyperlink{namespacemember}{member}
+\begin{DoxyCompactList}\small\item\em This module assemles within a member without considering the particular conditions of the end points. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespacemember_ac35a49c8cdb17a8b26f8c4b23d6053be}{member\+::assemblememberrhs} (ndof\+\_\+el, memb\+\_\+info\+\_\+i, v\+\_\+root\+\_\+a, omega\+\_\+a, x\+\_\+memb, rhs\+\_\+memb, aero\+\_\+flag, grav\+\_\+flag, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em Assemble the equations for each member $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemember_ad1206aacf86963bb366e5976c4f605c2}{member\+::assemblememberjacobian} (ndof\+\_\+el, niter, memb\+\_\+info\+\_\+i, v\+\_\+root\+\_\+a, omega\+\_\+a, x\+\_\+memb, nz\+\_\+memb, irn\+\_\+memb, jcn\+\_\+memb, coef\+\_\+memb, aero\+\_\+flag, grav\+\_\+flag)
+\begin{DoxyCompactList}\small\item\em Assemble the Jacobian for each member $\ast$. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemember_a8618a013da87b108e5e91013028fc1a8}{member\+::extractmemberproperties} (memb\+\_\+no, memb\+\_\+info\+\_\+i, member, ncond\+\_\+mb, mb\+\_\+condition, distr\+\_\+fun, error, init\+\_\+cond)
+\begin{DoxyCompactList}\small\item\em Extract member properties $\ast$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, public \hyperlink{namespacemember_a3e6a3b0896edb5c30c113dc22ab7181a}{member\+::ndiv}
+\begin{DoxyCompactList}\small\item\em number of divisions \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespacemember_a20895477b227a3352a4e758b21b01bf8}{member\+::ncol\+\_\+memb}
+\begin{DoxyCompactList}\small\item\em the total number of columns of the member \end{DoxyCompactList}\end{DoxyCompactItemize}

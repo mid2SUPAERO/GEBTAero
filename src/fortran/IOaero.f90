@@ -73,7 +73,7 @@ INTEGER::ndistrfun     !< number of distributed functions
 INTEGER::ncurv         !< number of initial curvatures/twists
 INTEGER::analysis_flag !< 0: static analysis; 1: steady state response; 2: transient analysis; 3: eigenvalue analysis 
 INTEGER::nev           !< number of frequencies and modeshapes.
-INTEGER::aero_flag     !< 0: no aero analasys; 1: stationary aerodynamic, 2: unsteady aerodynamic
+INTEGER::aero_flag     !< 0: no aero analasys; 1: quasi-steady aerodynamic, 3 : quasi-steady aerodynamic with added mass 3: unsteady aerodynamic (Peters)
 INTEGER::grav_flag     !< @param grav_flag 0: without gravity; 1: with gravity
 
 

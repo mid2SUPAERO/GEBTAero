@@ -376,7 +376,7 @@ END SUBROUTINE UpdatePI
 !************************************************************
 !*                                                          *
 !> Calculating the Jacobian due to follower conditions
-!! \f$ J=\diff{C^T.vec}/\diff\theta \f$, return a 3x3 matrix
+!! \f$ J=diff{C^T.vec}/diff\theta \f$, return a 3x3 matrix
 !! with ith column corresponding to the derivative
 !!withe respect to \f$ \theta_i \f$
 !*                                                          *

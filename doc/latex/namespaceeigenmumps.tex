@@ -1,0 +1,171 @@
+\hypertarget{namespaceeigenmumps}{}\section{eigenmumps Module Reference}
+\label{namespaceeigenmumps}\index{eigenmumps@{eigenmumps}}
+
+
+This module contains the main routines needed for eigen value analysis and allow to call Arpack and M\+U\+M\+PS library.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespaceeigenmumps_ae4a95ffe93412104411a9914edccd507}{eigensolvemumps} (ndof\+\_\+el, memb\+\_\+info, v\+\_\+root\+\_\+a, omega\+\_\+a, member, pt\+\_\+condition, niter, error, ncond\+\_\+mb, mb\+\_\+condition, distr\+\_\+fun, dof\+\_\+con, x, nev, eigen\+\_\+val, eigen\+\_\+vec, aero\+\_\+flag, grav\+\_\+flag)
+\begin{DoxyCompactList}\small\item\em this routine solve the eigenproblem by linearising about a steady state x \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespaceeigenmumps_a86ca8fa64997377eaafa9b3b69a86d49}{arpack} (nev, ncv, er, ei, vector, error)
+\begin{DoxyCompactList}\small\item\em this subroutine make the interface with the arpack sparse eigensolver library \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespaceeigenmumps_ac941735ba53914846bfec44d74ad79c6}{aw} (u, nzM, irnM, jcnM, coef\+\_\+mass, w)
+\begin{DoxyCompactList}\small\item\em Solve the linear system K$\ast$V = Z to avoid matrix inversion with solver M\+U\+M\+PS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+type(dmumps\+\_\+struc) \hyperlink{namespaceeigenmumps_a96a8141178a4cd84a24bd63b11685409}{mumps\+\_\+par}
+\begin{DoxyCompactList}\small\item\em an array containing the configuration parameters of M\+U\+M\+PS solver \end{DoxyCompactList}\item 
+integer \hyperlink{namespaceeigenmumps_a0b6d919fe610b180483db0dcba47ba1c}{ierr}
+\begin{DoxyCompactList}\small\item\em error code of the M\+U\+M\+PS solver \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module contains the main routines needed for eigen value analysis and allow to call Arpack and M\+U\+M\+PS library. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespaceeigenmumps_a86ca8fa64997377eaafa9b3b69a86d49}\label{namespaceeigenmumps_a86ca8fa64997377eaafa9b3b69a86d49}} 
+\index{eigenmumps@{eigenmumps}!arpack@{arpack}}
+\index{arpack@{arpack}!eigenmumps@{eigenmumps}}
+\subsubsection{\texorpdfstring{arpack()}{arpack()}}
+{\footnotesize\ttfamily subroutine eigenmumps\+::arpack (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{nev,  }\item[{integer, intent(in)}]{ncv,  }\item[{real(dbl), dimension(\+:), intent(out)}]{er,  }\item[{real(dbl), dimension(\+:), intent(out)}]{ei,  }\item[{real(dbl), dimension(\+:,\+:), intent(out)}]{vector,  }\item[{character($\ast$), intent(out)}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+this subroutine make the interface with the arpack sparse eigensolver library 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em nev} & \hyperlink{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}{ioaero\+::nev}\\
+\hline
+\mbox{\tt in}  & {\em ncv} & size of the subdomain used bye the I\+R\+AM algorithm (doc Arpack)\\
+\hline
+\mbox{\tt out}  & {\em error} & \hyperlink{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}{ioaero\+::error}\\
+\hline
+\mbox{\tt out}  & {\em er} & Real part of the eigenvalue (before problem inversion)\\
+\hline
+\mbox{\tt out}  & {\em ei} & Imaginary part of the eigenvalue (before problem inversion)\\
+\hline
+\mbox{\tt out}  & {\em vector} & eigenvector computed by arpack \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 248 of file Eigen\+Solve\+Mumps.\+f90.
+
+\mbox{\Hypertarget{namespaceeigenmumps_ac941735ba53914846bfec44d74ad79c6}\label{namespaceeigenmumps_ac941735ba53914846bfec44d74ad79c6}} 
+\index{eigenmumps@{eigenmumps}!aw@{aw}}
+\index{aw@{aw}!eigenmumps@{eigenmumps}}
+\subsubsection{\texorpdfstring{aw()}{aw()}}
+{\footnotesize\ttfamily subroutine eigenmumps\+::aw (\begin{DoxyParamCaption}\item[{real(dbl), dimension(nsize), intent(out)}]{u,  }\item[{integer, intent(in)}]{nzM,  }\item[{integer, dimension(\+:), intent(in)}]{irnM,  }\item[{integer, dimension(\+:), intent(in)}]{jcnM,  }\item[{real(dbl), dimension(\+:), intent(in)}]{coef\+\_\+mass,  }\item[{real(dbl), dimension(nsize), intent(in)}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Solve the linear system K$\ast$V = Z to avoid matrix inversion with solver M\+U\+M\+PS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nzm} & number of nonzero coefficient\\
+\hline
+\mbox{\tt in}  & {\em irnm} & line index of nonzero values\\
+\hline
+\mbox{\tt in}  & {\em jcnm} & column index of nonzero values\\
+\hline
+\mbox{\tt in}  & {\em coef\+\_\+mass} & mass matrix sparse coefficient\\
+\hline
+\mbox{\tt in}  & {\em w} & R\+HS vector\\
+\hline
+\mbox{\tt out}  & {\em u} & solution vector V \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 357 of file Eigen\+Solve\+Mumps.\+f90.
+
+\mbox{\Hypertarget{namespaceeigenmumps_ae4a95ffe93412104411a9914edccd507}\label{namespaceeigenmumps_ae4a95ffe93412104411a9914edccd507}} 
+\index{eigenmumps@{eigenmumps}!eigensolvemumps@{eigensolvemumps}}
+\index{eigensolvemumps@{eigensolvemumps}!eigenmumps@{eigenmumps}}
+\subsubsection{\texorpdfstring{eigensolvemumps()}{eigensolvemumps()}}
+{\footnotesize\ttfamily subroutine, public eigenmumps\+::eigensolvemumps (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ndof\+\_\+el,  }\item[{type (memberinf), dimension(\+:), intent(in)}]{memb\+\_\+info,  }\item[{real(dbl), dimension(\+:), intent(in)}]{v\+\_\+root\+\_\+a,  }\item[{real(dbl), dimension(\+:), intent(in)}]{omega\+\_\+a,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{member,  }\item[{type(prescriinf), dimension(\+:), intent(in)}]{pt\+\_\+condition,  }\item[{integer, intent(in)}]{niter,  }\item[{character($\ast$), intent(out)}]{error,  }\item[{integer, intent(in)}]{ncond\+\_\+mb,  }\item[{type(prescriinf), dimension(\+:), intent(in)}]{mb\+\_\+condition,  }\item[{real(dbl), dimension(\+:,\+:), intent(in)}]{distr\+\_\+fun,  }\item[{integer, dimension(\+:)}]{dof\+\_\+con,  }\item[{real(dbl), dimension(\+:), intent(in)}]{x,  }\item[{integer, intent(inout)}]{nev,  }\item[{real(dbl), dimension(\+:,\+:), intent(out)}]{eigen\+\_\+val,  }\item[{real(dbl), dimension(\+:,\+:), intent(out)}]{eigen\+\_\+vec,  }\item[{integer, intent(in)}]{aero\+\_\+flag,  }\item[{integer, intent(in)}]{grav\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+this routine solve the eigenproblem by linearising about a steady state x 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ndof\+\_\+el} & \hyperlink{namespaceioaero_a2b095b5cb5aab1f100d202c8004c9cb5}{ioaero\+::ndof\+\_\+el}\\
+\hline
+\mbox{\tt in}  & {\em aero\+\_\+flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em grav\+\_\+flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag}\\
+\hline
+\mbox{\tt in}  & {\em memb\+\_\+info} & array containing the characteristics of the beam members\\
+\hline
+\mbox{\tt in}  & {\em v\+\_\+root\+\_\+a} & linear velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em omega\+\_\+a} & angular velocity of frame a\\
+\hline
+\mbox{\tt in}  & {\em distr\+\_\+fun} & \hyperlink{namespaceioaero_a1d7c3689e30c2925cd403a84e9176242}{ioaero\+::distr\+\_\+fun}\\
+\hline
+\mbox{\tt in}  & {\em member} & \hyperlink{namespaceioaero_ae040b39fe109c45b001985415e230ec3}{ioaero\+::member}\\
+\hline
+\mbox{\tt in}  & {\em niter} & \hyperlink{namespaceioaero_ac008486fd12e0029a1ef77b3ca5e12c3}{ioaero\+::niter}\\
+\hline
+\mbox{\tt in}  & {\em ncond\+\_\+mb} & \hyperlink{namespaceioaero_ab9193f4ff70a22ae5858118fc653f22b}{ioaero\+::ncond\+\_\+mb}\\
+\hline
+\mbox{\tt in}  & {\em pt\+\_\+condition} & \hyperlink{namespaceioaero_a4344b2018135ae7fe0a09f4265fd2c29}{ioaero\+::pt\+\_\+condition}\\
+\hline
+\mbox{\tt in}  & {\em mb\+\_\+condition} & \hyperlink{namespaceioaero_a2463929ef049b49fe7b49011c66cc806}{ioaero\+::mb\+\_\+condition}\\
+\hline
+ & {\em dof\+\_\+con} & the connecting condition for key point.\\
+\hline
+\mbox{\tt out}  & {\em error} & \hyperlink{namespaceioaero_aebd85ae2a176f49a7213d8ed7b68f887}{ioaero\+::error}\\
+\hline
+\mbox{\tt in}  & {\em x} & the solution vector of the linear system (steady-\/state)\\
+\hline
+\mbox{\tt in,out}  & {\em nev} & \hyperlink{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}{ioaero\+::nev}\\
+\hline
+\mbox{\tt out}  & {\em eigen\+\_\+val} & \hyperlink{namespaceioaero_ae043619051217506f070ece6f24deedf}{ioaero\+::eigen\+\_\+val}\\
+\hline
+\mbox{\tt out}  & {\em eigen\+\_\+vec} & array containing the solution eigenvectors \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 45 of file Eigen\+Solve\+Mumps.\+f90.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceeigenmumps_a0b6d919fe610b180483db0dcba47ba1c}\label{namespaceeigenmumps_a0b6d919fe610b180483db0dcba47ba1c}} 
+\index{eigenmumps@{eigenmumps}!ierr@{ierr}}
+\index{ierr@{ierr}!eigenmumps@{eigenmumps}}
+\subsubsection{\texorpdfstring{ierr}{ierr}}
+{\footnotesize\ttfamily integer eigenmumps\+::ierr}
+
+
+
+error code of the M\+U\+M\+PS solver 
+
+
+
+Definition at line 27 of file Eigen\+Solve\+Mumps.\+f90.
+
+\mbox{\Hypertarget{namespaceeigenmumps_a96a8141178a4cd84a24bd63b11685409}\label{namespaceeigenmumps_a96a8141178a4cd84a24bd63b11685409}} 
+\index{eigenmumps@{eigenmumps}!mumps\+\_\+par@{mumps\+\_\+par}}
+\index{mumps\+\_\+par@{mumps\+\_\+par}!eigenmumps@{eigenmumps}}
+\subsubsection{\texorpdfstring{mumps\+\_\+par}{mumps\_par}}
+{\footnotesize\ttfamily type (dmumps\+\_\+struc) eigenmumps\+::mumps\+\_\+par}
+
+
+
+an array containing the configuration parameters of M\+U\+M\+PS solver 
+
+
+
+Definition at line 26 of file Eigen\+Solve\+Mumps.\+f90.
+

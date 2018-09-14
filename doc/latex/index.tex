@@ -1,0 +1,50 @@
+G\+E\+B\+T\+Aero is an aeroelasticity simulation toolbox with a computation code coded in Fortran and a pre/postprocessor coded in Python. The computation code is derived from G\+E\+BT program developped by Prof. Yu (\href{https://cdmhub.org/resources/gebt}{\tt https\+://cdmhub.\+org/resources/gebt}). The pre/postprocessor uses several open source programs available in most linux distros repositories\+:
+\begin{DoxyItemize}
+\item calculix \+: a Finite Element Method solver (\href{http://www.calculix.de/}{\tt http\+://www.\+calculix.\+de/})
+\item paraview \+: a data analysis and visualization application (\href{https://www.paraview.org/}{\tt https\+://www.\+paraview.\+org/})
+\item Mumps \+: a parallel sparse direct solver (\href{http://mumps.enseeiht.fr/}{\tt http\+://mumps.\+enseeiht.\+fr/})
+\item Arpack \+: a sparse eigenvalue solver (\href{https://www.caam.rice.edu/software/ARPACK/}{\tt https\+://www.\+caam.\+rice.\+edu/software/\+A\+R\+P\+A\+C\+K/})
+\end{DoxyItemize}
+
+\subsection*{Installation}
+
+Two options are available\+:
+
+\subsubsection*{Debian package}
+
+For Ubuntu 18.\+04 and Debian 10, download the .deb file available in the package folder and launch it. It will automatically install all the dependancies. For other linux distributions, you can ask for a .deb or .rpm package creation.
+
+\subsubsection*{Compilation}
+
+Clone the repository use the Make\+File in the bin folder and adapt it to your system.
+
+Install the dependancies. On Ubuntu\+: 
+\begin{DoxyCode}
+sudo apt install paraview calculix-ccx calculix-cgx libmumps-seq-dev libarpack2-dev python3 python3-numpy
+       python3-matplotlib gfortran make
+\end{DoxyCode}
+ Compile gebtaero and unical (mesh format translator from unv to inp)
+
+\subsection*{Testing}
+
+The folder cas\+\_\+test is a set of automated python script designed to test many program functionalities. in a terminal launch\+: 
+\begin{DoxyCode}
+python3 tests.py
+\end{DoxyCode}
+
+
+\subsection*{Usage}
+
+Besides cas\+\_\+test folder, examples folder contains a set of detailled script designed to help you to set your own problems. The pre/postprocessor script must be launch with python3 (not python2). 
+\begin{DoxyCode}
+python3 myscript.py
+\end{DoxyCode}
+ You can also directly use the computation code with .dat file (show examples)\+: 
+\begin{DoxyCode}
+gebtaero example.dat
+\end{DoxyCode}
+
+
+\subsection*{Acknowledgement}
+
+This research work was funded by the French Air Force Academy Research Center in collaboration with I\+S\+A\+E-\/\+Supaero 

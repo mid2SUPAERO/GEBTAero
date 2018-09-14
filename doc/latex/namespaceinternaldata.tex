@@ -1,0 +1,233 @@
+\hypertarget{namespaceinternaldata}{}\section{internaldata Module Reference}
+\label{namespaceinternaldata}\index{internaldata@{internaldata}}
+
+
+This module contains the variables needed internally in the program. Not necessary to be defined in the outside environment.  
+
+
+\subsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+type \hyperlink{structinternaldata_1_1memberinf}{memberinf}
+\begin{DoxyCompactList}\small\item\em structure containing the caracteritics of a finite element. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+logical, parameter \hyperlink{namespaceinternaldata_a0c3051eb2c273aad5bebc55fd79236ea}{debug} =.F\+A\+L\+S\+E.
+\item 
+integer, parameter \hyperlink{namespaceinternaldata_a82858bed9f1804b4d9d545add41703b8}{iout} =30
+\item 
+character(64) \hyperlink{namespaceinternaldata_abe3cfd1606a2a73e5e71421a1abc89dd}{deb\+\_\+name}
+\item 
+integer \hyperlink{namespaceinternaldata_a870ff06e13dc622293c20b2cc20641b9}{nsize}
+\item 
+integer, dimension(\+:,\+:), allocatable \hyperlink{namespaceinternaldata_a64b1e517fcf8a25bce3446ec324a4698}{dof\+\_\+all}
+\item 
+integer, dimension(\+:,\+:), allocatable \hyperlink{namespaceinternaldata_a2037100926e06d16be5b80c12d0c36e9}{follower\+\_\+all}
+\item 
+real(dbl), dimension(\+:,\+:), allocatable \hyperlink{namespaceinternaldata_aeb804e680e34df79573f79272474bd2c}{cond\+\_\+all}
+\item 
+real(dbl), dimension(\+:,\+:), allocatable \hyperlink{namespaceinternaldata_a187a3d4ecc99e732bd15234944dae732}{init\+\_\+memb}
+\item 
+integer \hyperlink{namespaceinternaldata_accc2e120df220e17a9e2b6cc72e42793}{init\+\_\+flag}
+\item 
+real(dbl) \hyperlink{namespaceinternaldata_a6c7ccd03dc69209443b0d6756c26f43a}{two\+\_\+divide\+\_\+dt}
+\begin{DoxyCompactList}\small\item\em 2/dt \end{DoxyCompactList}\item 
+integer \hyperlink{namespaceinternaldata_ae1ae8091a874c45a6efe110578e140bc}{assemble\+\_\+flag} =0
+\begin{DoxyCompactList}\small\item\em for the purpose to share the routines between assembly of stiffness matrix and mass matrix \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable \hyperlink{namespaceinternaldata_af8b2fe1b76c22e0b7ae0cb514d52b04f}{index\+\_\+kp}
+\begin{DoxyCompactList}\small\item\em the starting row and column for each kp \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable \hyperlink{namespaceinternaldata_ac5f95d07b735be7220fcf6814e1ab4a8}{index\+\_\+mb}
+\begin{DoxyCompactList}\small\item\em the starting row and column for each member \end{DoxyCompactList}\item 
+real(dbl), dimension(ndim) \hyperlink{namespaceinternaldata_a9ea25e6f8fbdc09124cc1002446ffcfc}{xyz\+\_\+pt1}
+\begin{DoxyCompactList}\small\item\em the coordinate of the starting point of the first member \end{DoxyCompactList}\item 
+integer, parameter \hyperlink{namespaceinternaldata_ac1eede24bc6cba1bdab331c6ad695fcc}{nzelemmax} =500
+\item 
+integer \hyperlink{namespaceinternaldata_a9f8cf693f79f58344704c979aa5168c4}{nemax}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module contains the variables needed internally in the program. Not necessary to be defined in the outside environment. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceinternaldata_ae1ae8091a874c45a6efe110578e140bc}\label{namespaceinternaldata_ae1ae8091a874c45a6efe110578e140bc}} 
+\index{internaldata@{internaldata}!assemble\+\_\+flag@{assemble\+\_\+flag}}
+\index{assemble\+\_\+flag@{assemble\+\_\+flag}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{assemble\+\_\+flag}{assemble\_flag}}
+{\footnotesize\ttfamily integer internaldata\+::assemble\+\_\+flag =0}
+
+
+
+for the purpose to share the routines between assembly of stiffness matrix and mass matrix 
+
+
+
+Definition at line 47 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_aeb804e680e34df79573f79272474bd2c}\label{namespaceinternaldata_aeb804e680e34df79573f79272474bd2c}} 
+\index{internaldata@{internaldata}!cond\+\_\+all@{cond\+\_\+all}}
+\index{cond\+\_\+all@{cond\+\_\+all}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{cond\+\_\+all}{cond\_all}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:), allocatable internaldata\+::cond\+\_\+all}
+
+
+
+Definition at line 41 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_abe3cfd1606a2a73e5e71421a1abc89dd}\label{namespaceinternaldata_abe3cfd1606a2a73e5e71421a1abc89dd}} 
+\index{internaldata@{internaldata}!deb\+\_\+name@{deb\+\_\+name}}
+\index{deb\+\_\+name@{deb\+\_\+name}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{deb\+\_\+name}{deb\_name}}
+{\footnotesize\ttfamily character(64) internaldata\+::deb\+\_\+name}
+
+
+
+Definition at line 30 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_a0c3051eb2c273aad5bebc55fd79236ea}\label{namespaceinternaldata_a0c3051eb2c273aad5bebc55fd79236ea}} 
+\index{internaldata@{internaldata}!debug@{debug}}
+\index{debug@{debug}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily logical, parameter internaldata\+::debug =.F\+A\+L\+S\+E.}
+
+
+
+Definition at line 25 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_a64b1e517fcf8a25bce3446ec324a4698}\label{namespaceinternaldata_a64b1e517fcf8a25bce3446ec324a4698}} 
+\index{internaldata@{internaldata}!dof\+\_\+all@{dof\+\_\+all}}
+\index{dof\+\_\+all@{dof\+\_\+all}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{dof\+\_\+all}{dof\_all}}
+{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable internaldata\+::dof\+\_\+all}
+
+
+
+Definition at line 39 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_a2037100926e06d16be5b80c12d0c36e9}\label{namespaceinternaldata_a2037100926e06d16be5b80c12d0c36e9}} 
+\index{internaldata@{internaldata}!follower\+\_\+all@{follower\+\_\+all}}
+\index{follower\+\_\+all@{follower\+\_\+all}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{follower\+\_\+all}{follower\_all}}
+{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable internaldata\+::follower\+\_\+all}
+
+
+
+Definition at line 40 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_af8b2fe1b76c22e0b7ae0cb514d52b04f}\label{namespaceinternaldata_af8b2fe1b76c22e0b7ae0cb514d52b04f}} 
+\index{internaldata@{internaldata}!index\+\_\+kp@{index\+\_\+kp}}
+\index{index\+\_\+kp@{index\+\_\+kp}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{index\+\_\+kp}{index\_kp}}
+{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable internaldata\+::index\+\_\+kp}
+
+
+
+the starting row and column for each kp 
+
+
+
+Definition at line 48 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_ac5f95d07b735be7220fcf6814e1ab4a8}\label{namespaceinternaldata_ac5f95d07b735be7220fcf6814e1ab4a8}} 
+\index{internaldata@{internaldata}!index\+\_\+mb@{index\+\_\+mb}}
+\index{index\+\_\+mb@{index\+\_\+mb}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{index\+\_\+mb}{index\_mb}}
+{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable internaldata\+::index\+\_\+mb}
+
+
+
+the starting row and column for each member 
+
+
+
+Definition at line 49 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_accc2e120df220e17a9e2b6cc72e42793}\label{namespaceinternaldata_accc2e120df220e17a9e2b6cc72e42793}} 
+\index{internaldata@{internaldata}!init\+\_\+flag@{init\+\_\+flag}}
+\index{init\+\_\+flag@{init\+\_\+flag}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{init\+\_\+flag}{init\_flag}}
+{\footnotesize\ttfamily integer internaldata\+::init\+\_\+flag}
+
+
+
+Definition at line 45 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_a187a3d4ecc99e732bd15234944dae732}\label{namespaceinternaldata_a187a3d4ecc99e732bd15234944dae732}} 
+\index{internaldata@{internaldata}!init\+\_\+memb@{init\+\_\+memb}}
+\index{init\+\_\+memb@{init\+\_\+memb}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{init\+\_\+memb}{init\_memb}}
+{\footnotesize\ttfamily real(dbl), dimension(\+:,\+:), allocatable internaldata\+::init\+\_\+memb}
+
+
+
+Definition at line 43 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_a82858bed9f1804b4d9d545add41703b8}\label{namespaceinternaldata_a82858bed9f1804b4d9d545add41703b8}} 
+\index{internaldata@{internaldata}!iout@{iout}}
+\index{iout@{iout}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{iout}{iout}}
+{\footnotesize\ttfamily integer, parameter internaldata\+::iout =30}
+
+
+
+Definition at line 29 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_a9f8cf693f79f58344704c979aa5168c4}\label{namespaceinternaldata_a9f8cf693f79f58344704c979aa5168c4}} 
+\index{internaldata@{internaldata}!nemax@{nemax}}
+\index{nemax@{nemax}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{nemax}{nemax}}
+{\footnotesize\ttfamily integer internaldata\+::nemax}
+
+
+
+Definition at line 65 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_a870ff06e13dc622293c20b2cc20641b9}\label{namespaceinternaldata_a870ff06e13dc622293c20b2cc20641b9}} 
+\index{internaldata@{internaldata}!nsize@{nsize}}
+\index{nsize@{nsize}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{nsize}{nsize}}
+{\footnotesize\ttfamily integer internaldata\+::nsize}
+
+
+
+Definition at line 34 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_ac1eede24bc6cba1bdab331c6ad695fcc}\label{namespaceinternaldata_ac1eede24bc6cba1bdab331c6ad695fcc}} 
+\index{internaldata@{internaldata}!nzelemmax@{nzelemmax}}
+\index{nzelemmax@{nzelemmax}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{nzelemmax}{nzelemmax}}
+{\footnotesize\ttfamily integer, parameter internaldata\+::nzelemmax =500}
+
+
+
+Definition at line 63 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_a6c7ccd03dc69209443b0d6756c26f43a}\label{namespaceinternaldata_a6c7ccd03dc69209443b0d6756c26f43a}} 
+\index{internaldata@{internaldata}!two\+\_\+divide\+\_\+dt@{two\+\_\+divide\+\_\+dt}}
+\index{two\+\_\+divide\+\_\+dt@{two\+\_\+divide\+\_\+dt}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{two\+\_\+divide\+\_\+dt}{two\_divide\_dt}}
+{\footnotesize\ttfamily real(dbl) internaldata\+::two\+\_\+divide\+\_\+dt}
+
+
+
+2/dt 
+
+
+
+Definition at line 46 of file Internal\+Data.\+f90.
+
+\mbox{\Hypertarget{namespaceinternaldata_a9ea25e6f8fbdc09124cc1002446ffcfc}\label{namespaceinternaldata_a9ea25e6f8fbdc09124cc1002446ffcfc}} 
+\index{internaldata@{internaldata}!xyz\+\_\+pt1@{xyz\+\_\+pt1}}
+\index{xyz\+\_\+pt1@{xyz\+\_\+pt1}!internaldata@{internaldata}}
+\subsubsection{\texorpdfstring{xyz\+\_\+pt1}{xyz\_pt1}}
+{\footnotesize\ttfamily real(dbl), dimension(ndim) internaldata\+::xyz\+\_\+pt1}
+
+
+
+the coordinate of the starting point of the first member 
+
+
+
+Definition at line 50 of file Internal\+Data.\+f90.
+

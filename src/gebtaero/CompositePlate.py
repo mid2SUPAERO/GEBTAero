@@ -5,20 +5,29 @@ from .utils import *
 from .OrthoMaterial import *
 from .IsoMaterial import *
 
+## Class interfacing the solver with 3D FEM calculix computation to obtain the cross section parameter from a composite plate
 class CompositePlate:
     """
     Class interfacing the solver with 3D FEM calculix computation to obtain stiffness matrix
     from a composite plate
     """        
     def __init__(self,Chord=1,OffsetY=0.,OffsetZ=0.):
-        self.Chord = Chord
+        ## Width of the plate
+        self.Chord = Chord  
+        ## A list containing some CompositePly
         self.Layup = []
+        ## A list containing the differents materials used in the plata (either IsoMaterial or OrthoMaterial)
         self.Materials = []
+        ## A list containing the differents fiber orientations of the CompositePly of the plate
         self.Orientations = []
+        ## The total thickness of the plate
         self.TotThickness = 0.
+        ## Y coordinate of the plate center in the Frame B
         self.OffsetY = OffsetY
+        ## Y coordinate of the plate center in the Frame B
         self.OffsetZ = OffsetZ
         
+    ## Add a CompositePly to the plate    
     def AppendPly(self,Ply):
         self.Layup.append(Ply)
         if(Ply.GetMaterial() not in self.Materials):
@@ -36,6 +45,11 @@ class CompositePlate:
     def GetOffsets(self):
         return [self.OffsetY,self.OffsetZ]    
     
+    ## Create the input file for cgx preprocessor  
+    #@param TypeElem the type of finite element used for the computation. Supported : he20r, he20, he8i, he8, pe15 (see ccx doc)
+    #@param NbElemX the number of finite element across the beam direction (for a constant cross section, 1 element is enough)
+    #@param NBElemY the number of finite element across the width
+    #@param NBElemPly the number of finite element in a composite ply
     def CreateFbdFile(self,TypeElem,NbElemX,NbElemY,NbElemPly):
         NbPly = len(self.GetLayup())
         if (NbPly <1):
@@ -83,6 +97,10 @@ class CompositePlate:
             file.write("SEND ply{0} abq nam\n".format(i+1))   
         file.close
         
+    ## Create the input file for ccx solver
+    #@param Stress True = output the stress tensor for each elementary load case, False = no stress output
+    #@param PlaneSection True = warping of the cross section is not allowed, False = warping of the cross section is allowed
+    #@param Disp  Determine the set of elementary load cases : 0=all the 4 load cases, 1 = traction, 2 = warping, 3 = bending span-wise, 4 = bending chord-wise.        
     def CreateInpFile(self,Stress=False,PlaneSection=False,Disp=0):
         NbPly = len(self.Layup)
         NbMat = len(self.Materials)
@@ -155,6 +173,13 @@ class CompositePlate:
             file.write("*step\n*static\n*cload,OP=NEW\nncurv,3,3.\n*node file,NSET=Nall\nU\n*end step\n\n")
         file.close()
      
+    ## Compute the CrossSection::MassMatrix analytically 
+    #@return Mu Mass per unit length (kg/m)
+    #@return I22 mass moment of inertia around yB (bending span-wise, kg.m) 
+    #@return I33 mass moment of inertia around zB (bending chord-wise, kg.m) 
+    #@return I23 product of inertia in plane (yB,zB)
+    #@return Ycg Y coordinate of the Center of Gravity in frame B
+    #@return Zcg Z coordinate of the Center of Gravity in frame B
     def ComputeMassMatrix(self,OffsetY=0.,OffsetZ=0.):
         Mu = 0.
         I22 = 0.
@@ -182,9 +207,17 @@ class CompositePlate:
         Ycg = -OffsetY
         return [Mu,I22,I33,I23,Ycg,Zcg]
         
+    ##  Interface with the function #utils::CreatePeriodicEq
     def CreatePeriodicEq(self):
         [self.nstrain,self.ncurv,self.x0,self.Lx,self.nodes,self.elements]=CreatePeriodicEq("all.msh")
-        
+
+    ## Launch the cgx postprocessor with a particular elementary load case.
+    #@param TypeElem the type of finite element used for the computation. Supported : he20r, he20, he8i, he8, pe15
+    #@param NbElemX the number of finite element in the beam direction (for a constant cross section, 1 element is enough)
+    #@param NBElemY the number of finite element across the width
+    #@param NBElemPly the number of finite element in a composite ply
+    #@param DefType  Determine the set of elementary load cases : 0=all the 4 load cases, 1 = traction, 2 = warping, 3 = bending span-wise, 4 = bending chord-wise.
+    #@param PlaneSection : True = warping of the cross section is not allowed, False = warping of the cross section is allowed        
     def DisplaySectionDeformation(self,TypeElem,NbElemX,NbElemY,NbElemPly,DefType,PlaneSection=False):
         self.CreateFbdFile(TypeElem,NbElemX,NbElemY,NbElemPly)
         RunFbdFile("Plate.fbd")
