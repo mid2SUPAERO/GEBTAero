@@ -1,4 +1,6 @@
-# coding=UTF-8
+## This example show a number of applications on isotropic wing using data from literature test cases (the example uses the "Patil wing")
+#after the problem setting each pplication is in a if codeblock. To use an application, decomment "if True:" and comment "if False:"
+
 import numpy as np
 import os
 from gebtaero import *

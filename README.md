@@ -46,6 +46,13 @@ You can also directly use the computation code with .dat file (show examples):
 gebtaero example.dat
 ```
 
+You can use an IDE to easily launch the scripts and read the source code. 
+This program has been developed using geany (www.geany.org). Open a pyhton script and press "Maj+F5". Modify "python" in "python3" and press "F5" to launch the script.
+
+## Documentation
+If you have installed the debian package, an application "GEBTAero Doc" is installed on your system. It launches an html page with the whole documentation of the sources (Fortran and Python)
+You can also generate the documentation using doxygen and the file "Doxyfile" in the "doc" folder.
+
 ## Acknowledgement
 This research work was funded by the French Air Force Academy Research Center in collaboration with ISAE-Supaero
 
