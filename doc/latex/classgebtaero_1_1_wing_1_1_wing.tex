@@ -1,5 +1,10 @@
 \hypertarget{classgebtaero_1_1_wing_1_1_wing}{}\section{gebtaero.\+Wing.\+Wing Class Reference}
 \label{classgebtaero_1_1_wing_1_1_wing}\index{gebtaero.\+Wing.\+Wing@{gebtaero.\+Wing.\+Wing}}
+
+
+This class represent the wing and is used by the class \hyperlink{namespacegebtaero_1_1_simulation}{Simulation} to generate the \hyperlink{namespacegebtaero_1_1_input_file}{Input\+File}.  
+
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -22,49 +27,30 @@ def \hyperlink{classgebtaero_1_1_wing_1_1_wing_afe768db8f9a06bd5784143c1168a5acc
 def \hyperlink{classgebtaero_1_1_wing_1_1_wing_a290d5e1d3a18de515339ffbed0f0df35}{Get\+Weight} (self)
 \item 
 def \hyperlink{classgebtaero_1_1_wing_1_1_wing_af0be9af67eb300ebc83262025f6c80af}{Get\+Surface} (self)
+\item 
+def \hyperlink{classgebtaero_1_1_wing_1_1_wing_a3b5df3a1833448d36becf9a5a9f3e951}{Modify\+Section\+Length} (self, index, Section\+Length)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classgebtaero_1_1_wing_1_1_wing_a1c41ea89cf72ec60090134497f1ede15}{Name}
-\item 
+\begin{DoxyCompactList}\small\item\em the name of the wing used to generate the different files \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_wing_1_1_wing_aa0957399544603f1df3cdb3b02eeda4a}{Wing\+Root\+Position}
-\item 
+\begin{DoxyCompactList}\small\item\em the 3D coordinate of the wing root \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_wing_1_1_wing_a87db863f3c208b18c8e7594d75598a1d}{Wing\+Sections}
-\item 
+\begin{DoxyCompactList}\small\item\em a list containing the wing sections \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_wing_1_1_wing_a4d4a29e2bd610166204d416d182b4b14}{Frames}
-\item 
+\begin{DoxyCompactList}\small\item\em a list containing the wing frames \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_wing_1_1_wing_a31876f71184c1f5330aa22b2a51989ea}{Cross\+Sections}
-\item 
+\begin{DoxyCompactList}\small\item\em a list containing the wing cross sections \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_wing_1_1_wing_a85da9f70285dd5be8a0983fa39b70fec}{Kp\+List}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em a list containing the wing keypoints (cf ) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\begin{DoxyVerb}Wing compose by one ore more wing section
-:version: 12/02/18
-:author: Bertrand Kirsch
+This class represent the wing and is used by the class \hyperlink{namespacegebtaero_1_1_simulation}{Simulation} to generate the \hyperlink{namespacegebtaero_1_1_input_file}{Input\+File}. 
 
-ATTRIBUTES
-
-A list containing the wing sections
-WingSections (private) : WingSection[]
-
-A vector containing the wing root position
-WingRootPosition (private) : np.array[3]
-
-A vector containing the direction of the wing at the root
-WingRootAxis (private) : np.array[3]
-
-The wing twist at the root (rad)
-WingRootTwist (private) : float
-
-The wing frame to be input in the solver regarding the wing axis and the wing twist
-WingFrame (private) : np.array[3][3]        
-\end{DoxyVerb}
- 
-
-Definition at line 4 of file Wing.\+py.
+Definition at line 5 of file Wing.\+py.
 
 
 
@@ -77,7 +63,7 @@ Definition at line 4 of file Wing.\+py.
 
 
 
-Definition at line 27 of file Wing.\+py.
+Definition at line 6 of file Wing.\+py.
 
 
 
@@ -92,7 +78,7 @@ Definition at line 27 of file Wing.\+py.
 \end{DoxyVerb}
  
 
-Definition at line 44 of file Wing.\+py.
+Definition at line 28 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a15245b467e6be2a7ace9a917e67661ff}\label{classgebtaero_1_1_wing_1_1_wing_a15245b467e6be2a7ace9a917e67661ff}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Cross\+Sections@{Get\+Cross\+Sections}}
@@ -102,7 +88,7 @@ Definition at line 44 of file Wing.\+py.
 
 
 
-Definition at line 63 of file Wing.\+py.
+Definition at line 47 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a0bd0def91e16cd1a19b10fcdf8c50e41}\label{classgebtaero_1_1_wing_1_1_wing_a0bd0def91e16cd1a19b10fcdf8c50e41}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Frames@{Get\+Frames}}
@@ -112,7 +98,7 @@ Definition at line 63 of file Wing.\+py.
 
 
 
-Definition at line 66 of file Wing.\+py.
+Definition at line 50 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_afe768db8f9a06bd5784143c1168a5acc}\label{classgebtaero_1_1_wing_1_1_wing_afe768db8f9a06bd5784143c1168a5acc}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Kp\+List@{Get\+Kp\+List}}
@@ -122,7 +108,7 @@ Definition at line 66 of file Wing.\+py.
 
 
 
-Definition at line 69 of file Wing.\+py.
+Definition at line 53 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a180f53c7c326569cc0c8e8c78a3a0b2a}\label{classgebtaero_1_1_wing_1_1_wing_a180f53c7c326569cc0c8e8c78a3a0b2a}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Name@{Get\+Name}}
@@ -132,7 +118,7 @@ Definition at line 69 of file Wing.\+py.
 
 
 
-Definition at line 41 of file Wing.\+py.
+Definition at line 25 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_af0be9af67eb300ebc83262025f6c80af}\label{classgebtaero_1_1_wing_1_1_wing_af0be9af67eb300ebc83262025f6c80af}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Surface@{Get\+Surface}}
@@ -142,7 +128,7 @@ Definition at line 41 of file Wing.\+py.
 
 
 
-Definition at line 80 of file Wing.\+py.
+Definition at line 64 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a290d5e1d3a18de515339ffbed0f0df35}\label{classgebtaero_1_1_wing_1_1_wing_a290d5e1d3a18de515339ffbed0f0df35}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Weight@{Get\+Weight}}
@@ -152,7 +138,7 @@ Definition at line 80 of file Wing.\+py.
 
 
 
-Definition at line 72 of file Wing.\+py.
+Definition at line 56 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a6623e4ea917c8a03a3de9bbf7110e754}\label{classgebtaero_1_1_wing_1_1_wing_a6623e4ea917c8a03a3de9bbf7110e754}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Wing\+Root\+Position@{Get\+Wing\+Root\+Position}}
@@ -162,7 +148,7 @@ Definition at line 72 of file Wing.\+py.
 
 
 
-Definition at line 38 of file Wing.\+py.
+Definition at line 22 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a9fbfa35745a94279f37ebf497a36126e}\label{classgebtaero_1_1_wing_1_1_wing_a9fbfa35745a94279f37ebf497a36126e}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Wing\+Sections@{Get\+Wing\+Sections}}
@@ -172,7 +158,17 @@ Definition at line 38 of file Wing.\+py.
 
 
 
-Definition at line 60 of file Wing.\+py.
+Definition at line 44 of file Wing.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a3b5df3a1833448d36becf9a5a9f3e951}\label{classgebtaero_1_1_wing_1_1_wing_a3b5df3a1833448d36becf9a5a9f3e951}} 
+\index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Modify\+Section\+Length@{Modify\+Section\+Length}}
+\index{Modify\+Section\+Length@{Modify\+Section\+Length}!gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}}
+\subsubsection{\texorpdfstring{Modify\+Section\+Length()}{ModifySectionLength()}}
+{\footnotesize\ttfamily def gebtaero.\+Wing.\+Wing.\+Modify\+Section\+Length (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{index,  }\item[{}]{Section\+Length }\end{DoxyParamCaption})}
+
+
+
+Definition at line 71 of file Wing.\+py.
 
 
 
@@ -185,7 +181,11 @@ Definition at line 60 of file Wing.\+py.
 
 
 
-Definition at line 34 of file Wing.\+py.
+a list containing the wing cross sections 
+
+
+
+Definition at line 17 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a4d4a29e2bd610166204d416d182b4b14}\label{classgebtaero_1_1_wing_1_1_wing_a4d4a29e2bd610166204d416d182b4b14}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Frames@{Frames}}
@@ -195,7 +195,11 @@ Definition at line 34 of file Wing.\+py.
 
 
 
-Definition at line 33 of file Wing.\+py.
+a list containing the wing frames 
+
+
+
+Definition at line 15 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a85da9f70285dd5be8a0983fa39b70fec}\label{classgebtaero_1_1_wing_1_1_wing_a85da9f70285dd5be8a0983fa39b70fec}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Kp\+List@{Kp\+List}}
@@ -205,7 +209,11 @@ Definition at line 33 of file Wing.\+py.
 
 
 
-Definition at line 35 of file Wing.\+py.
+a list containing the wing keypoints (cf ) 
+
+
+
+Definition at line 19 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a1c41ea89cf72ec60090134497f1ede15}\label{classgebtaero_1_1_wing_1_1_wing_a1c41ea89cf72ec60090134497f1ede15}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Name@{Name}}
@@ -215,7 +223,11 @@ Definition at line 35 of file Wing.\+py.
 
 
 
-Definition at line 28 of file Wing.\+py.
+the name of the wing used to generate the different files 
+
+
+
+Definition at line 8 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_aa0957399544603f1df3cdb3b02eeda4a}\label{classgebtaero_1_1_wing_1_1_wing_aa0957399544603f1df3cdb3b02eeda4a}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Wing\+Root\+Position@{Wing\+Root\+Position}}
@@ -225,7 +237,11 @@ Definition at line 28 of file Wing.\+py.
 
 
 
-Definition at line 29 of file Wing.\+py.
+the 3D coordinate of the wing root 
+
+
+
+Definition at line 10 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a87db863f3c208b18c8e7594d75598a1d}\label{classgebtaero_1_1_wing_1_1_wing_a87db863f3c208b18c8e7594d75598a1d}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Wing\+Sections@{Wing\+Sections}}
@@ -235,10 +251,14 @@ Definition at line 29 of file Wing.\+py.
 
 
 
-Definition at line 32 of file Wing.\+py.
+a list containing the wing sections 
+
+
+
+Definition at line 13 of file Wing.\+py.
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/bertrand/these/logiciels/programme/interface/src/gebtaero/\hyperlink{_wing_8py}{Wing.\+py}\end{DoxyCompactItemize}
+/home/bertrand/logiciels/gebtaero\+\_\+frama/src/gebtaero/\hyperlink{_wing_8py}{Wing.\+py}\end{DoxyCompactItemize}

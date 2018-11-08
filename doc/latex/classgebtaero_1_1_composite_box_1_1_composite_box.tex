@@ -9,7 +9,7 @@ Class interfacing the solver with 3D F\+EM calculix computation to obtain the cr
 \begin{DoxyCompactItemize}
 \item 
 def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a64c4292dbd036313813fc00a78fb13cb}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a7bfe2dab84e5ae8d8cdba1337b89c309}{Left}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a61cdca93cc1f5ef451192395fc50b67b}{Right}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a4c043150a29d71b986a91f21be6a4e47}{Up}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_ad1559917cabe3fcb6c05bf603d8b0b0c}{Down}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a44593d7302ceb1c46ac637437b5e1061}{Width}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_affc2b38183c3b0ec7534629cf63e4cc5}{Height}, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a26fcf7763030afb28f45f2354125c352}{OffsetY}=0., \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a50e38078e66133a95f34f2d9176329d9}{OffsetZ}=0.)
-\item 
+\begin{DoxyCompactList}\small\item\em Composite box constructor; It contains 4 \hyperlink{namespacegebtaero_1_1_composite_plate}{Composite\+Plate}; modify the chord of left and right wall. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a80477ea79acc12d0d45970d6c0b208d6}{Get\+Offsets} (self)
 \item 
 def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a227089b18b5436fdba7853cbe1071a99}{Get\+Width} (self)
@@ -17,43 +17,38 @@ def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a227089b18b5436
 def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a8ca332752a2b78ca0ba4c65f99ab1b62}{Get\+Height} (self)
 \item 
 def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_af2465d364bb51056af14fde13bd05d4a}{Create\+Fbd\+File} (self, Type\+Elem, Nb\+ElemX, Nb\+Elem\+YZ, Nb\+Elem\+Ply)
-\item 
+\begin{DoxyCompactList}\small\item\em Create the input file for cgx preprocessor. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a005e7c9de0e4307ad9ff7ed4e8f7c8a4}{Create\+Inp\+File} (self, Stress=False, Plane\+Section=False, Disp=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Create the input file for ccx solver. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a6b944eeef7002377d7b83c5dd6ae6550}{Compute\+Mass\+Matrix} (self, \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a26fcf7763030afb28f45f2354125c352}{OffsetY}=0., \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a50e38078e66133a95f34f2d9176329d9}{OffsetZ}=0.)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_ae9be8649853163b2b4dfdaa3584d9f78}{Cross\+Section\+::\+Mass\+Matrix} using the mass matrix of the 4 walls of the box. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a9328777b54ead0767f0075fe599b09d9}{Create\+Periodic\+Eq} (self)
-\item 
-def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a9ea871cc97fc62978a19b3a46526ed07}{Display\+Section\+Deformation} (self, Type\+Elem, Nb\+ElemX, Nb\+ElemY, Nb\+Elem\+Ply, Def\+Type, Plane\+Section=False)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Interface to the utils subroutine \hyperlink{namespacegebtaero_1_1utils_a4f786ecbe66af9f64c802adf4e0a990f}{utils\+::\+Create\+Periodic\+Eq}. \end{DoxyCompactList}\item 
+def \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a024d2118868a02e7e6218300435148e0}{Display\+Section\+Deformation} (self, Type\+Elem, Nb\+ElemX, Nb\+Elem\+YZ, Nb\+Elem\+Ply, Def\+Type, Plane\+Section=False)
+\begin{DoxyCompactList}\small\item\em Launch the cgx postprocessor with a particular elementary load case. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a7bfe2dab84e5ae8d8cdba1337b89c309}{Left}
-\item 
+\begin{DoxyCompactList}\small\item\em Left wall of the box (\hyperlink{namespacegebtaero_1_1_composite_plate}{Composite\+Plate}) \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a61cdca93cc1f5ef451192395fc50b67b}{Right}
-\item 
+\begin{DoxyCompactList}\small\item\em Right wall of the box (\hyperlink{namespacegebtaero_1_1_composite_plate}{Composite\+Plate}) \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a4c043150a29d71b986a91f21be6a4e47}{Up}
-\item 
+\begin{DoxyCompactList}\small\item\em Up wall of the box (\hyperlink{namespacegebtaero_1_1_composite_plate}{Composite\+Plate}) \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_ad1559917cabe3fcb6c05bf603d8b0b0c}{Down}
-\item 
+\begin{DoxyCompactList}\small\item\em Down wall of the box (\hyperlink{namespacegebtaero_1_1_composite_plate}{Composite\+Plate}) \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a44593d7302ceb1c46ac637437b5e1061}{Width}
-\item 
+\begin{DoxyCompactList}\small\item\em Width of the box (m) \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_affc2b38183c3b0ec7534629cf63e4cc5}{Height}
-\item 
+\begin{DoxyCompactList}\small\item\em Height height of the box (m) \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a26fcf7763030afb28f45f2354125c352}{OffsetY}
-\item 
+\begin{DoxyCompactList}\small\item\em Y coordinate of the box center in the \hyperlink{namespacegebtaero_1_1_frame}{Frame} B. \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_composite_box_1_1_composite_box_a50e38078e66133a95f34f2d9176329d9}{OffsetZ}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Z coordinate of the box center in the \hyperlink{namespacegebtaero_1_1_frame}{Frame} B. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Class interfacing the solver with 3D F\+EM calculix computation to obtain the cross section parameter from a composite box. 
-
-\begin{DoxyVerb}Class interfacing the solver with 3D FEM calculix computation to obtain stiffness matrix
-from a composite box
-\end{DoxyVerb}
- 
 
 Definition at line 9 of file Composite\+Box.\+py.
 
@@ -68,7 +63,11 @@ Definition at line 9 of file Composite\+Box.\+py.
 
 
 
-Definition at line 14 of file Composite\+Box.\+py.
+Composite box constructor; It contains 4 \hyperlink{namespacegebtaero_1_1_composite_plate}{Composite\+Plate}; modify the chord of left and right wall. 
+
+
+
+Definition at line 11 of file Composite\+Box.\+py.
 
 
 
@@ -81,7 +80,24 @@ Definition at line 14 of file Composite\+Box.\+py.
 
 
 
-Definition at line 288 of file Composite\+Box.\+py.
+Compute the \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_ae9be8649853163b2b4dfdaa3584d9f78}{Cross\+Section\+::\+Mass\+Matrix} using the mass matrix of the 4 walls of the box. 
+
+\begin{DoxyReturn}{Returns}
+Mu Mass per unit length (kg/m) 
+
+I22 mass moment of inertia around yB (bending span-\/wise, kg.\+m) 
+
+I33 mass moment of inertia around zB (bending chord-\/wise, kg.\+m) 
+
+I23 product of inertia in plane (yB,zB) 
+
+Ycg Y coordinate of the Center of Gravity in frame B 
+
+Zcg Z coordinate of the Center of Gravity in frame B 
+\end{DoxyReturn}
+
+
+Definition at line 311 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_af2465d364bb51056af14fde13bd05d4a}\label{classgebtaero_1_1_composite_box_1_1_composite_box_af2465d364bb51056af14fde13bd05d4a}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Create\+Fbd\+File@{Create\+Fbd\+File}}
@@ -91,7 +107,22 @@ Definition at line 288 of file Composite\+Box.\+py.
 
 
 
-Definition at line 37 of file Composite\+Box.\+py.
+Create the input file for cgx preprocessor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Type\+Elem} & the type of finite element used for the computation. Supported \+: he20r, he20, he8i, he8, pe15 (see ccx doc) \\
+\hline
+{\em Nb\+ElemX} & the number of finite element in the beam direction (for a constant cross section, 1 element is enough) \\
+\hline
+{\em N\+B\+Elem\+YZ} & the number of finite element along the wall directions \\
+\hline
+{\em N\+B\+Elem\+Ply} & the number of finite element in a composite ply \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 47 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a005e7c9de0e4307ad9ff7ed4e8f7c8a4}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a005e7c9de0e4307ad9ff7ed4e8f7c8a4}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Create\+Inp\+File@{Create\+Inp\+File}}
@@ -101,7 +132,20 @@ Definition at line 37 of file Composite\+Box.\+py.
 
 
 
-Definition at line 162 of file Composite\+Box.\+py.
+Create the input file for ccx solver. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stress} & True = output the stress tensor for each elementary load case, False = no stress output \\
+\hline
+{\em Plane\+Section} & True = warping of the cross section is not allowed, False = warping of the cross section is allowed \\
+\hline
+{\em Disp} & Determine the set of elementary load cases \+: 0=all the 4 load cases, 1 = traction, 2 = warping, 3 = bending span-\/wise, 4 = bending chord-\/wise. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 177 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a9328777b54ead0767f0075fe599b09d9}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a9328777b54ead0767f0075fe599b09d9}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Create\+Periodic\+Eq@{Create\+Periodic\+Eq}}
@@ -111,17 +155,40 @@ Definition at line 162 of file Composite\+Box.\+py.
 
 
 
-Definition at line 317 of file Composite\+Box.\+py.
+Interface to the utils subroutine \hyperlink{namespacegebtaero_1_1utils_a4f786ecbe66af9f64c802adf4e0a990f}{utils\+::\+Create\+Periodic\+Eq}. 
 
-\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a9ea871cc97fc62978a19b3a46526ed07}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a9ea871cc97fc62978a19b3a46526ed07}} 
+
+
+Definition at line 341 of file Composite\+Box.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a024d2118868a02e7e6218300435148e0}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a024d2118868a02e7e6218300435148e0}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Display\+Section\+Deformation@{Display\+Section\+Deformation}}
 \index{Display\+Section\+Deformation@{Display\+Section\+Deformation}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
 \subsubsection{\texorpdfstring{Display\+Section\+Deformation()}{DisplaySectionDeformation()}}
-{\footnotesize\ttfamily def gebtaero.\+Composite\+Box.\+Composite\+Box.\+Display\+Section\+Deformation (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Type\+Elem,  }\item[{}]{Nb\+ElemX,  }\item[{}]{Nb\+ElemY,  }\item[{}]{Nb\+Elem\+Ply,  }\item[{}]{Def\+Type,  }\item[{}]{Plane\+Section = {\ttfamily False} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def gebtaero.\+Composite\+Box.\+Composite\+Box.\+Display\+Section\+Deformation (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Type\+Elem,  }\item[{}]{Nb\+ElemX,  }\item[{}]{Nb\+Elem\+YZ,  }\item[{}]{Nb\+Elem\+Ply,  }\item[{}]{Def\+Type,  }\item[{}]{Plane\+Section = {\ttfamily False} }\end{DoxyParamCaption})}
 
 
 
-Definition at line 320 of file Composite\+Box.\+py.
+Launch the cgx postprocessor with a particular elementary load case. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Type\+Elem} & the type of finite element used for the computation. Supported \+: he20r, he20, he8i, he8, pe15 \\
+\hline
+{\em Nb\+ElemX} & the number of finite element in the beam direction (for a constant cross section, 1 element is enough) \\
+\hline
+{\em N\+B\+Elem\+YZ} & the number of finite element along the wall directions \\
+\hline
+{\em N\+B\+Elem\+Ply} & the number of finite element in a composite ply \\
+\hline
+{\em Def\+Type} & Determine the set of elementary load cases \+: 0=all the 4 load cases, 1 = traction, 2 = warping, 3 = bending span-\/wise, 4 = bending chord-\/wise. \\
+\hline
+{\em Plane\+Section} & \+: True = warping of the cross section is not allowed, False = warping of the cross section is allowed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 351 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a8ca332752a2b78ca0ba4c65f99ab1b62}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a8ca332752a2b78ca0ba4c65f99ab1b62}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Get\+Height@{Get\+Height}}
@@ -131,7 +198,7 @@ Definition at line 320 of file Composite\+Box.\+py.
 
 
 
-Definition at line 34 of file Composite\+Box.\+py.
+Definition at line 39 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a80477ea79acc12d0d45970d6c0b208d6}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a80477ea79acc12d0d45970d6c0b208d6}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Get\+Offsets@{Get\+Offsets}}
@@ -141,7 +208,7 @@ Definition at line 34 of file Composite\+Box.\+py.
 
 
 
-Definition at line 28 of file Composite\+Box.\+py.
+Definition at line 33 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a227089b18b5436fdba7853cbe1071a99}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a227089b18b5436fdba7853cbe1071a99}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Get\+Width@{Get\+Width}}
@@ -151,7 +218,7 @@ Definition at line 28 of file Composite\+Box.\+py.
 
 
 
-Definition at line 31 of file Composite\+Box.\+py.
+Definition at line 36 of file Composite\+Box.\+py.
 
 
 
@@ -164,7 +231,11 @@ Definition at line 31 of file Composite\+Box.\+py.
 
 
 
-Definition at line 18 of file Composite\+Box.\+py.
+Down wall of the box (\hyperlink{namespacegebtaero_1_1_composite_plate}{Composite\+Plate}) 
+
+
+
+Definition at line 19 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_affc2b38183c3b0ec7534629cf63e4cc5}\label{classgebtaero_1_1_composite_box_1_1_composite_box_affc2b38183c3b0ec7534629cf63e4cc5}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Height@{Height}}
@@ -174,7 +245,11 @@ Definition at line 18 of file Composite\+Box.\+py.
 
 
 
-Definition at line 20 of file Composite\+Box.\+py.
+Height height of the box (m) 
+
+
+
+Definition at line 23 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a7bfe2dab84e5ae8d8cdba1337b89c309}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a7bfe2dab84e5ae8d8cdba1337b89c309}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Left@{Left}}
@@ -184,7 +259,11 @@ Definition at line 20 of file Composite\+Box.\+py.
 
 
 
-Definition at line 15 of file Composite\+Box.\+py.
+Left wall of the box (\hyperlink{namespacegebtaero_1_1_composite_plate}{Composite\+Plate}) 
+
+
+
+Definition at line 13 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a26fcf7763030afb28f45f2354125c352}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a26fcf7763030afb28f45f2354125c352}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!OffsetY@{OffsetY}}
@@ -194,7 +273,11 @@ Definition at line 15 of file Composite\+Box.\+py.
 
 
 
-Definition at line 21 of file Composite\+Box.\+py.
+Y coordinate of the box center in the \hyperlink{namespacegebtaero_1_1_frame}{Frame} B. 
+
+
+
+Definition at line 25 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a50e38078e66133a95f34f2d9176329d9}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a50e38078e66133a95f34f2d9176329d9}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!OffsetZ@{OffsetZ}}
@@ -204,7 +287,11 @@ Definition at line 21 of file Composite\+Box.\+py.
 
 
 
-Definition at line 22 of file Composite\+Box.\+py.
+Z coordinate of the box center in the \hyperlink{namespacegebtaero_1_1_frame}{Frame} B. 
+
+
+
+Definition at line 27 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a61cdca93cc1f5ef451192395fc50b67b}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a61cdca93cc1f5ef451192395fc50b67b}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Right@{Right}}
@@ -214,13 +301,21 @@ Definition at line 22 of file Composite\+Box.\+py.
 
 
 
-Definition at line 16 of file Composite\+Box.\+py.
+Right wall of the box (\hyperlink{namespacegebtaero_1_1_composite_plate}{Composite\+Plate}) 
+
+
+
+Definition at line 15 of file Composite\+Box.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_composite_box_1_1_composite_box_a4c043150a29d71b986a91f21be6a4e47}\label{classgebtaero_1_1_composite_box_1_1_composite_box_a4c043150a29d71b986a91f21be6a4e47}} 
 \index{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}!Up@{Up}}
 \index{Up@{Up}!gebtaero\+::\+Composite\+Box\+::\+Composite\+Box@{gebtaero\+::\+Composite\+Box\+::\+Composite\+Box}}
 \subsubsection{\texorpdfstring{Up}{Up}}
 {\footnotesize\ttfamily gebtaero.\+Composite\+Box.\+Composite\+Box.\+Up}
+
+
+
+Up wall of the box (\hyperlink{namespacegebtaero_1_1_composite_plate}{Composite\+Plate}) 
 
 
 
@@ -234,10 +329,14 @@ Definition at line 17 of file Composite\+Box.\+py.
 
 
 
-Definition at line 19 of file Composite\+Box.\+py.
+Width of the box (m) 
+
+
+
+Definition at line 21 of file Composite\+Box.\+py.
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/bertrand/these/logiciels/programme/interface/src/gebtaero/\hyperlink{_composite_box_8py}{Composite\+Box.\+py}\end{DoxyCompactItemize}
+/home/bertrand/logiciels/gebtaero\+\_\+frama/src/gebtaero/\hyperlink{_composite_box_8py}{Composite\+Box.\+py}\end{DoxyCompactItemize}

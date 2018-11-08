@@ -1,62 +1,64 @@
 \hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh}{}\section{gebtaero.\+External\+Mesh.\+External\+Mesh Class Reference}
 \label{classgebtaero_1_1_external_mesh_1_1_external_mesh}\index{gebtaero.\+External\+Mesh.\+External\+Mesh@{gebtaero.\+External\+Mesh.\+External\+Mesh}}
+
+
+This class allow to use a mesh created without cgx, the elset name must correspond to the component name.  
+
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad1301073ba0c00d8ad8fe3dc4baa6068}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a53b38c75b026fb6c56b50b2dd9b5270f}{Mesh\+File}, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a87faefe634a474727d516e58eb8bf944}{OffsetY}=0., \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6639038ee73b225cf0d3ea1bd9c52783}{OffsetZ}=0., Unv\+Conv=False, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac9f8fc4f8dd8e81757bc8a5b2b5323d4}{Chord}=1.)
 \item 
 def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_aea59f570ee7b3c010c86c61384472834}{Create\+Periodic\+Eq} (self)
-\item 
+\begin{DoxyCompactList}\small\item\em interface to the \hyperlink{namespacegebtaero_1_1utils_a4f786ecbe66af9f64c802adf4e0a990f}{utils\+::\+Create\+Periodic\+Eq} \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a9ac15ea158d9eeccf982355c551ae334}{Get\+Mesh\+File} (self)
 \item 
 def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad1c3ba8013a6829353d55d9513d49359}{Append\+Component} (self, Name, Material, Orientation=None)
-\item 
+\begin{DoxyCompactList}\small\item\em Link a mesh element group to a material. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a54e9efc572ecf40516e5c28a48be0bae}{Create\+Inp\+File} (self, Stress=False, Plane\+Section=False, Disp=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Create the input file for ccx solver. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad2151661d358ae9a36e05f98a7d29dc8}{Compute\+Element\+Surf\+And\+CG} (self, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_abb7c716a5f2adf2a1f878b1034dcdc57}{nodes}, element, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_acaa3b125cb4f80848007b82426c14ffa}{x0})
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the surface and the center of gravity of the triangular face of a penta element. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_af2195154db17cc393dab153465e33b59}{Compute\+Mass\+Matrix\+From\+Mesh} (self, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_abb7c716a5f2adf2a1f878b1034dcdc57}{nodes}, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_acaa3b125cb4f80848007b82426c14ffa}{x0}, \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a1a044fbcf39f5f8e7d3e3b98d291010d}{elements})
-\item 
+\begin{DoxyCompactList}\small\item\em Approximate the \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_ae9be8649853163b2b4dfdaa3584d9f78}{Cross\+Section\+::\+Mass\+Matrix} using the mesh elements. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6cad952ce309870f33277bb9a89c5ca1}{Display\+Section\+Deformation} (self, Def\+Type)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Launch the cgx postprocessor with a particular elementary load case. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a53b38c75b026fb6c56b50b2dd9b5270f}{Mesh\+File}
-\item 
+\begin{DoxyCompactList}\small\item\em the name of the meshfile \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a592c0deea81b1ba0e686add0943889b4}{Components}
-\item 
+\begin{DoxyCompactList}\small\item\em a list of group of elements (material affectation) \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a60dc1666f258188383bc1a172bb3d219}{Materials}
-\item 
+\begin{DoxyCompactList}\small\item\em a list of materials (either \hyperlink{namespacegebtaero_1_1_iso_material}{Iso\+Material} or \hyperlink{namespacegebtaero_1_1_ortho_material}{Ortho\+Material}) \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a531dc1641becd6ea9cc5225ddfea8752}{Orientations}
-\item 
-\hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6e7c70282c461d0a68a05419bf152973}{Tot\+Thickness}
-\item 
+\begin{DoxyCompactList}\small\item\em a list of fiber orientation \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a87faefe634a474727d516e58eb8bf944}{OffsetY}
-\item 
+\begin{DoxyCompactList}\small\item\em Y coordinate of the mesh center in the \hyperlink{namespacegebtaero_1_1_frame}{Frame} B. \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6639038ee73b225cf0d3ea1bd9c52783}{OffsetZ}
-\item 
+\begin{DoxyCompactList}\small\item\em Z coordinate of the mesh center in the \hyperlink{namespacegebtaero_1_1_frame}{Frame} B. \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac9f8fc4f8dd8e81757bc8a5b2b5323d4}{Chord}
-\item 
+\begin{DoxyCompactList}\small\item\em The chord of the airfoil. \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac8524a9940fbf969271113875fd4da1a}{nstrain}
-\item 
+\begin{DoxyCompactList}\small\item\em index of the nstrain ccx dummy node \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac11f9e6adddf7c9e5ae563d694d4b1b9}{ncurv}
-\item 
+\begin{DoxyCompactList}\small\item\em index of the nstrain ccx dummy node \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a7804df618265ca2d1e76ba4697139f9d}{Lx}
-\item 
+\begin{DoxyCompactList}\small\item\em length of the R\+VE in direction xb \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_abb7c716a5f2adf2a1f878b1034dcdc57}{nodes}
-\item 
+\begin{DoxyCompactList}\small\item\em list of the mesh nodes (inp format) \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_acaa3b125cb4f80848007b82426c14ffa}{x0}
-\item 
+\begin{DoxyCompactList}\small\item\em index of the nodes belonging to the first R\+VE periodic face \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_external_mesh_1_1_external_mesh_a1a044fbcf39f5f8e7d3e3b98d291010d}{elements}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em list of the mesh element (inp format) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\begin{DoxyVerb}This class allow to use a mesh created without cgx, the elset name must correspond to the component name. 
-The input mesh format has to be inp
-\end{DoxyVerb}
- 
+This class allow to use a mesh created without cgx, the elset name must correspond to the component name. 
+
+The input mesh format has to be inp format or unv using the unical format translator 
 
 Definition at line 10 of file External\+Mesh.\+py.
 
@@ -71,7 +73,7 @@ Definition at line 10 of file External\+Mesh.\+py.
 
 
 
-Definition at line 15 of file External\+Mesh.\+py.
+Definition at line 12 of file External\+Mesh.\+py.
 
 
 
@@ -84,7 +86,20 @@ Definition at line 15 of file External\+Mesh.\+py.
 
 
 
-Definition at line 46 of file External\+Mesh.\+py.
+Link a mesh element group to a material. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & the name of the element group as it is set in the meshfile (E\+L\+S\+ET) \\
+\hline
+{\em Material} & material to be set in the element group (either Iso\+Matrial or \hyperlink{namespacegebtaero_1_1_ortho_material}{Ortho\+Material}) \\
+\hline
+{\em the} & fiber orientation in case of \hyperlink{namespacegebtaero_1_1_ortho_material}{Ortho\+Material} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 60 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad2151661d358ae9a36e05f98a7d29dc8}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_ad2151661d358ae9a36e05f98a7d29dc8}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Compute\+Element\+Surf\+And\+CG@{Compute\+Element\+Surf\+And\+CG}}
@@ -94,7 +109,33 @@ Definition at line 46 of file External\+Mesh.\+py.
 
 
 
-Definition at line 126 of file External\+Mesh.\+py.
+Compute the surface and the center of gravity of the triangular face of a penta element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes} & The node list of the Mesh \\
+\hline
+{\em element} & the index of the element computed \\
+\hline
+{\em x0} & the nodes index list of the R\+VE periodic face \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+surface the area of the triangular face belonging to the reference periodic face of the R\+VE (which nodes are in x0) 
+
+ycg the y position of the element CG 
+
+zcg the z position of the element CG 
+
+el\+I22 inertia I22 of the element 
+
+el\+I33 inertia I33 of the element 
+
+el\+I23 inertia I23 of the element 
+\end{DoxyReturn}
+
+
+Definition at line 154 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_af2195154db17cc393dab153465e33b59}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_af2195154db17cc393dab153465e33b59}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Compute\+Mass\+Matrix\+From\+Mesh@{Compute\+Mass\+Matrix\+From\+Mesh}}
@@ -104,7 +145,33 @@ Definition at line 126 of file External\+Mesh.\+py.
 
 
 
-Definition at line 160 of file External\+Mesh.\+py.
+Approximate the \hyperlink{classgebtaero_1_1_cross_section_1_1_cross_section_ae9be8649853163b2b4dfdaa3584d9f78}{Cross\+Section\+::\+Mass\+Matrix} using the mesh elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes} & The node list of the Mesh \\
+\hline
+{\em x0} & the nodes index list of the R\+VE periodic face \\
+\hline
+{\em elements} & list of the mesh elements (inp format) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mu Mass per unit length (kg/m) 
+
+I22 mass moment of inertia around yB (bending span-\/wise, kg.\+m) 
+
+I33 mass moment of inertia around zB (bending chord-\/wise, kg.\+m) 
+
+I23 product of inertia in plane (yB,zB) 
+
+Ycg Y coordinate of the Center of Gravity in frame B 
+
+Zcg Z coordinate of the Center of Gravity in frame B 
+\end{DoxyReturn}
+
+
+Definition at line 198 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a54e9efc572ecf40516e5c28a48be0bae}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a54e9efc572ecf40516e5c28a48be0bae}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Create\+Inp\+File@{Create\+Inp\+File}}
@@ -114,7 +181,20 @@ Definition at line 160 of file External\+Mesh.\+py.
 
 
 
-Definition at line 57 of file External\+Mesh.\+py.
+Create the input file for ccx solver. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stress} & True = output the stress tensor for each elementary load case, False = no stress output \\
+\hline
+{\em Plane\+Section} & True = warping of the cross section is not allowed, False = warping of the cross section is allowed \\
+\hline
+{\em Disp} & Determine the set of elementary load cases \+: 0=all the 4 load cases, 1 = traction, 2 = warping, 3 = bending span-\/wise, 4 = bending chord-\/wise. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 75 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_aea59f570ee7b3c010c86c61384472834}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_aea59f570ee7b3c010c86c61384472834}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Create\+Periodic\+Eq@{Create\+Periodic\+Eq}}
@@ -124,7 +204,11 @@ Definition at line 57 of file External\+Mesh.\+py.
 
 
 
-Definition at line 40 of file External\+Mesh.\+py.
+interface to the \hyperlink{namespacegebtaero_1_1utils_a4f786ecbe66af9f64c802adf4e0a990f}{utils\+::\+Create\+Periodic\+Eq} 
+
+
+
+Definition at line 50 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6cad952ce309870f33277bb9a89c5ca1}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6cad952ce309870f33277bb9a89c5ca1}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Display\+Section\+Deformation@{Display\+Section\+Deformation}}
@@ -134,7 +218,16 @@ Definition at line 40 of file External\+Mesh.\+py.
 
 
 
-Definition at line 198 of file External\+Mesh.\+py.
+Launch the cgx postprocessor with a particular elementary load case. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Def\+Type} & Determine the set of elementary load cases \+: 0=all the 4 load cases, 1 = traction, 2 = warping, 3 = bending span-\/wise, 4 = bending chord-\/wise. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 238 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a9ac15ea158d9eeccf982355c551ae334}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a9ac15ea158d9eeccf982355c551ae334}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Get\+Mesh\+File@{Get\+Mesh\+File}}
@@ -144,7 +237,7 @@ Definition at line 198 of file External\+Mesh.\+py.
 
 
 
-Definition at line 43 of file External\+Mesh.\+py.
+Definition at line 53 of file External\+Mesh.\+py.
 
 
 
@@ -157,7 +250,11 @@ Definition at line 43 of file External\+Mesh.\+py.
 
 
 
-Definition at line 30 of file External\+Mesh.\+py.
+The chord of the airfoil. 
+
+
+
+Definition at line 33 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a592c0deea81b1ba0e686add0943889b4}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a592c0deea81b1ba0e686add0943889b4}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Components@{Components}}
@@ -167,7 +264,11 @@ Definition at line 30 of file External\+Mesh.\+py.
 
 
 
-Definition at line 24 of file External\+Mesh.\+py.
+a list of group of elements (material affectation) 
+
+
+
+Definition at line 23 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a1a044fbcf39f5f8e7d3e3b98d291010d}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a1a044fbcf39f5f8e7d3e3b98d291010d}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!elements@{elements}}
@@ -177,7 +278,11 @@ Definition at line 24 of file External\+Mesh.\+py.
 
 
 
-Definition at line 38 of file External\+Mesh.\+py.
+list of the mesh element (inp format) 
+
+
+
+Definition at line 47 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a7804df618265ca2d1e76ba4697139f9d}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a7804df618265ca2d1e76ba4697139f9d}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Lx@{Lx}}
@@ -187,13 +292,21 @@ Definition at line 38 of file External\+Mesh.\+py.
 
 
 
-Definition at line 35 of file External\+Mesh.\+py.
+length of the R\+VE in direction xb 
+
+
+
+Definition at line 41 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a60dc1666f258188383bc1a172bb3d219}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a60dc1666f258188383bc1a172bb3d219}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Materials@{Materials}}
 \index{Materials@{Materials}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
 \subsubsection{\texorpdfstring{Materials}{Materials}}
 {\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+Materials}
+
+
+
+a list of materials (either \hyperlink{namespacegebtaero_1_1_iso_material}{Iso\+Material} or \hyperlink{namespacegebtaero_1_1_ortho_material}{Ortho\+Material}) 
 
 
 
@@ -207,7 +320,11 @@ Definition at line 25 of file External\+Mesh.\+py.
 
 
 
-Definition at line 21 of file External\+Mesh.\+py.
+the name of the meshfile 
+
+
+
+Definition at line 18 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac11f9e6adddf7c9e5ae563d694d4b1b9}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac11f9e6adddf7c9e5ae563d694d4b1b9}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!ncurv@{ncurv}}
@@ -217,7 +334,11 @@ Definition at line 21 of file External\+Mesh.\+py.
 
 
 
-Definition at line 34 of file External\+Mesh.\+py.
+index of the nstrain ccx dummy node 
+
+
+
+Definition at line 39 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_abb7c716a5f2adf2a1f878b1034dcdc57}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_abb7c716a5f2adf2a1f878b1034dcdc57}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!nodes@{nodes}}
@@ -227,7 +348,11 @@ Definition at line 34 of file External\+Mesh.\+py.
 
 
 
-Definition at line 36 of file External\+Mesh.\+py.
+list of the mesh nodes (inp format) 
+
+
+
+Definition at line 43 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac8524a9940fbf969271113875fd4da1a}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_ac8524a9940fbf969271113875fd4da1a}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!nstrain@{nstrain}}
@@ -237,7 +362,11 @@ Definition at line 36 of file External\+Mesh.\+py.
 
 
 
-Definition at line 33 of file External\+Mesh.\+py.
+index of the nstrain ccx dummy node 
+
+
+
+Definition at line 37 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a87faefe634a474727d516e58eb8bf944}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a87faefe634a474727d516e58eb8bf944}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!OffsetY@{OffsetY}}
@@ -247,7 +376,11 @@ Definition at line 33 of file External\+Mesh.\+py.
 
 
 
-Definition at line 28 of file External\+Mesh.\+py.
+Y coordinate of the mesh center in the \hyperlink{namespacegebtaero_1_1_frame}{Frame} B. 
+
+
+
+Definition at line 29 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6639038ee73b225cf0d3ea1bd9c52783}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6639038ee73b225cf0d3ea1bd9c52783}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!OffsetZ@{OffsetZ}}
@@ -257,7 +390,11 @@ Definition at line 28 of file External\+Mesh.\+py.
 
 
 
-Definition at line 29 of file External\+Mesh.\+py.
+Z coordinate of the mesh center in the \hyperlink{namespacegebtaero_1_1_frame}{Frame} B. 
+
+
+
+Definition at line 31 of file External\+Mesh.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a531dc1641becd6ea9cc5225ddfea8752}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a531dc1641becd6ea9cc5225ddfea8752}} 
 \index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Orientations@{Orientations}}
@@ -267,13 +404,7 @@ Definition at line 29 of file External\+Mesh.\+py.
 
 
 
-Definition at line 26 of file External\+Mesh.\+py.
-
-\mbox{\Hypertarget{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6e7c70282c461d0a68a05419bf152973}\label{classgebtaero_1_1_external_mesh_1_1_external_mesh_a6e7c70282c461d0a68a05419bf152973}} 
-\index{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}!Tot\+Thickness@{Tot\+Thickness}}
-\index{Tot\+Thickness@{Tot\+Thickness}!gebtaero\+::\+External\+Mesh\+::\+External\+Mesh@{gebtaero\+::\+External\+Mesh\+::\+External\+Mesh}}
-\subsubsection{\texorpdfstring{Tot\+Thickness}{TotThickness}}
-{\footnotesize\ttfamily gebtaero.\+External\+Mesh.\+External\+Mesh.\+Tot\+Thickness}
+a list of fiber orientation 
 
 
 
@@ -287,10 +418,14 @@ Definition at line 27 of file External\+Mesh.\+py.
 
 
 
-Definition at line 37 of file External\+Mesh.\+py.
+index of the nodes belonging to the first R\+VE periodic face 
+
+
+
+Definition at line 45 of file External\+Mesh.\+py.
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/bertrand/these/logiciels/programme/interface/src/gebtaero/\hyperlink{_external_mesh_8py}{External\+Mesh.\+py}\end{DoxyCompactItemize}
+/home/bertrand/logiciels/gebtaero\+\_\+frama/src/gebtaero/\hyperlink{_external_mesh_8py}{External\+Mesh.\+py}\end{DoxyCompactItemize}

@@ -53,7 +53,7 @@ class Simulation:
     #@param BetaAC Aicraft yaw angle
     #@param GravFlag ioaero::grav_flag
     #@param verbosity log output parameter
-    #@return Output a numpy array containing the wing root loads
+    #@return Output a numpy array containing the wing root loads and wing tip deflection and rotation
     def StaticLoads(self,Vinf,Rho,AlphaAC,BetaAC,GravFlag=0,verbosity=0):
         Name = self.GetWing().GetName()+"Static"+str(Vinf)+"ms"
         VecNul = np.zeros([3])
@@ -62,7 +62,7 @@ class Simulation:
         FileName = self.Input.GetFileName()
         Command = ["gebtaero","-p",FileName]
         StaticLoads = ReadLoadsFromPipe(Command)
-        Output = np.array(StaticLoads,dtype=float,copy=False).reshape(2,3)
+        Output = np.array(StaticLoads,dtype=float,copy=False).reshape(4,3)
         # ~ RemoveFiles()
         if verbosity == 1:
             print('The static loads in frame a is Fxa=',str(round(Output[0,0],4)),'N ; Fya=',str(round(Output[0,1],4)),'N ; Fza=',str(round(Output[0,2],4)),'N ; Mxa=',str(round(Output[1,0],4)),'N.m ; Mya=',str(round(Output[1,1],4)),'N.m ; Mza=',str(round(Output[1,2],4)),'N.m')
@@ -168,14 +168,14 @@ class Simulation:
     #@return Flutter speed (m/s)
     #@return Flutter frequency (Hz)
     #@return Divegence speed (m/s)
-    def ModalCriticalSpeed(self,Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=0,verbosity=0,mode=0):
+    def ModalCriticalSpeed(self,Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,Nstep=1,GravFlag=0,verbosity=0,mode=0):
         if mode ==3: #looking for both divergence and flutter speed
-            CritVelocity1,CritFreq1 = self.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=GravFlag,verbosity=verbosity,mode=0)
+            CritVelocity1,CritFreq1 = self.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,Nstep=Nstep,GravFlag=GravFlag,verbosity=verbosity,mode=0)
             if CritFreq1 == 0.:# the first instability is a divergence
-                CritVelocity2,CritFreq2 = self.ModalCriticalSpeed(Rho,CritVelocity1,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=GravFlag,verbosity=verbosity,mode=1)                
+                CritVelocity2,CritFreq2 = self.ModalCriticalSpeed(Rho,max(0,CritVelocity1-Vstep),Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,Nstep=Nstep,GravFlag=GravFlag,verbosity=verbosity,mode=1)                
                 return CritVelocity2,CritFreq2,CritVelocity1,CritFreq1 # the flutter is returned first
             else:# the first instability is a flutter
-                CritVelocity2,CritFreq2 = self.ModalCriticalSpeed(Rho,CritVelocity1,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=GravFlag,verbosity=verbosity,mode=2)                
+                CritVelocity2,CritFreq2 = self.ModalCriticalSpeed(Rho,max(0,CritVelocity1-Vstep),Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,Nstep=Nstep,GravFlag=GravFlag,verbosity=verbosity,mode=2)                
                 return CritVelocity1,CritFreq1,CritVelocity2,CritFreq2 # the flutter is returned first
 
         Name = self.GetWing().GetName()+"ModalCritical"
@@ -184,7 +184,7 @@ class Simulation:
         Velocity = Vmin+Vstep
         Vlist = []
         NumberOfModes = 1
-        self.Input = InputFile(Name,3,AeroFlag,GravFlag,1000,1,0,NumberOfModes,VecNul,0,VecNul,0,self.Wing,Velocity,Rho,AlphaAC,BetaAC,0.,0.)       
+        self.Input = InputFile(Name,3,AeroFlag,GravFlag,1000,Nstep,0,NumberOfModes,VecNul,0,VecNul,0,self.Wing,Velocity,Rho,AlphaAC,BetaAC,0.,0.)       
         self.Input.WriteInputFile()
         while (Vstep>DeltaV and Velocity >=Vmin+DeltaV and Velocity <= Vmax):
             if verbosity ==1:
@@ -725,6 +725,7 @@ class Simulation:
                             # ~ Corr[:,CorrMax,:]=0.
                     elif Vstep<2*DeltaV :    
                         IndexNew.append(CorrMax)
+                        print("!!Warning!! : Correlation failure for the mode {0}".format(i))
                     elif (max(norm(EigenVal,axis=1))>2*max(norm(EigenValOld[IndexOld,:],axis=1))):
                         Vstep = 0.5*Vstep
                         Vinf = Vinf - Vstep
@@ -989,7 +990,7 @@ class Simulation:
     #@param FlutterLimit when the maximal rotation of the wing exceed FlutterLimit, the flutter_flag is triggered
     #@param GravFlag ioaero::grav_flag
     #@param verbosity log output parameter
-    def FlutterVtk(self,Rho,Vmin,Vmax,DeltaV,AeroFlag,AlphaAC,BetaAC,NbPeriod,StepByPeriod,CoefPerturb,CoefVinf,Nvtk,FlutterLimit=0.4,GravFlag=0,verbosity=0):  
+    def FlutterVtk(self,Rho,Vmin,Vmax,DeltaV,AeroFlag,AlphaAC,BetaAC,NbPeriod,StepByPeriod,CoefPerturb,CoefVinf,Nvtk,FlutterLimit=1,GravFlag=0,verbosity=0):  
         # Computation of vtk files corresponding to a temporal flutter
         import shutil
         Vstep = 0.1*(Vmax-Vmin)
@@ -1020,11 +1021,17 @@ class Simulation:
         if (Nvtk > 0):
             vtk_folder = Name+".dat_vtk"
             shutil.rmtree(vtk_folder,True)
+        # Init file creation
+        self.Input = InputFile(Name,1,AeroFlag,GravFlag,1000,100,0,0,VecNul,0,VecNul,0,self.Wing,0,Rho,AlphaAC,BetaAC,0.,1.)       
+        self.Input.WriteInputFile()
+        # launch static equilibirum calculation
+        Command = "gebtaero "+self.Input.GetFileName()
+        Output = sp.getoutput(Command)
         # Input file creation
         self.Input = InputFile(Name,2,AeroFlag,GravFlag,1000,Nstep,Nvtk,0,VecNul,1,VecNul,1,self.Wing,Vinf,Rho,AlphaAC,BetaAC,0.,1.)       
         self.Input.AppendTimeFunction(TF)
         self.Input.WriteInputFile()
-        self.Input.WriteInitFile()
+        # ~ self.Input.WriteInitFile()
         # adjustment of the time simulation to catch a flutter sequence
         while (flutter_flag == 1) :
             Nstep = int(Time/DeltaT)
@@ -1034,6 +1041,7 @@ class Simulation:
             Command = "gebtaero -s "+self.Input.GetFileName()+" v="+str(Vinf)+" aero="+str(AeroFlag)+" time="+str(Time)+" vz="+str(Vz)+" nstep="+str(Nstep)+" tfe="+str(PeriodFlutter)+" tfper="+str(PeriodFlutter)+" flutter_limit="+str(FlutterLimit)
             Output = sp.getoutput(Command)
             Output = Output.split()
+            # ~ print(Output)
             if (Output[0] == "#"):
                 step_flutter = float(Output[1])
                 Time = 0.95*Time*step_flutter/Nstep

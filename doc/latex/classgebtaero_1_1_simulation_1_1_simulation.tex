@@ -1,5 +1,10 @@
 \hypertarget{classgebtaero_1_1_simulation_1_1_simulation}{}\section{gebtaero.\+Simulation.\+Simulation Class Reference}
 \label{classgebtaero_1_1_simulation_1_1_simulation}\index{gebtaero.\+Simulation.\+Simulation@{gebtaero.\+Simulation.\+Simulation}}
+
+
+This class is used to defined aeroelastic simulation (static, dynamic or modal) in a particular configuration (AoA, Velocity, air density,...)  
+
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -8,37 +13,33 @@ def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a865b25fd48ff7aded232
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a2d7432b48522221861693e98b03568c4}{Get\+Wing} (self)
 \item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a03a37673e2e1c67de5eaeb261512d122}{Eigenvalues} (self, Vinf, Rho, Alpha\+AC, Beta\+AC, Aero\+Flag, Number\+Of\+Modes, Grav\+Flag=0, verbosity=0, arpack=0, vtk=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute an eigenvalue analysis. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a36da2334a6e743a9ab29bdfe1334ed04}{Static\+Loads} (self, Vinf, Rho, Alpha\+AC, Beta\+AC, Grav\+Flag=0, verbosity=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the wing root static loads. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ab62864a7bf462387f4cbe24b061b803a}{Modal\+Flutter\+Speed} (self, Rho, Vmin, Vmax, Vstep, DeltaV, Aero\+Flag, Freq\+Lim, Alpha\+AC, Beta\+AC, Ksi\+Obj=1e-\/6, Grav\+Flag=0, verbosity=0, arpack=1, Modes\+To\+Compute=20)
-\item 
-def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a62d8fc83c485da26015167268f4b8bb4}{Modal\+Critical\+Speed} (self, Rho, Vmin, Vmax, Vstep, DeltaV, Aero\+Flag, Alpha\+AC, Beta\+AC, Grav\+Flag=0, verbosity=0, mode=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the flutter speed with a set of modal simulation. \end{DoxyCompactList}\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a9e1695e4fd6c14ac4c9ddcf488ba6b77}{Modal\+Critical\+Speed} (self, Rho, Vmin, Vmax, Vstep, DeltaV, Aero\+Flag, Alpha\+AC, Beta\+AC, Nstep=1, Grav\+Flag=0, verbosity=0, mode=0)
+\begin{DoxyCompactList}\small\item\em Compute the critical speed (divergence or/and flutter) \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ac3bea60a9f9d2c552125644a3256df88}{Modal\+Divergence\+Speed} (self, Rho, Vmin, Vmax, Vstep, DeltaV, Aero\+Flag, Alpha\+AC, Beta\+AC, Norm\+Lim=1., Ksi\+Obj=1e-\/6, Grav\+Flag=0, verbosity=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the divergence speed with modal simulation. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ae06bc82e983fb16d7f3e303046a39a2e}{Modal\+Flutter\+Speed\+Sorted} (self, Rho, Vmax, DeltaV, Aero\+Flag, Modes\+To\+Compute, Modes\+To\+Plot, Alpha\+AC, Beta\+AC, Ksi\+Obj=1e-\/6, Corr\+Coef=0.\+9, Grav\+Flag=0, verbosity=0, arpack=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the flutter speed using modal simulation with an algorithm following the aeroelastic modes. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a597d75e677892bd4308a6537a27eedb8}{Modal\+Divergence\+Speed\+Sorted} (self, Rho, Vmax, DeltaV, Aero\+Flag, Modes\+To\+Compute, Modes\+To\+Plot, Alpha\+AC, Beta\+AC, Corr\+Coef=0.\+95, Grav\+Flag=0, verbosity=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the divergence speed using modal simulation with an algorithm following the aeroelastic modes. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ae64bf3c9cef715d9d999acef888a840e}{Eigen\+Tab\+Sorted} (self, Rho, Vmax, DeltaV, Nstep, Aero\+Flag, Modes\+To\+Compute, Modes\+To\+Plot, Alpha\+AC, Beta\+AC, Corr\+Coef=0.\+9, Grav\+Flag=0, verbosity=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the eigenvalues for a set of velocity and correlate the results into aeroelastic modes. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a2907ad4a52664321ef36ca2d05a5ea64}{Eigen\+Tab} (self, Rho, Vmin, Vmax, Nstep, Aero\+Flag, Modes\+To\+Plot, Modes\+To\+Compute, Alpha\+AC, Beta\+AC, Grav\+Flag=0, verbosity=0)
-\item 
-def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a0e2bbc13e4dd2169d7f5a868b7295bd9}{Deformed\+Modal\+Flutter\+Speed} (self, Rho, Vmin, Vmax, DeltaV, Aero\+Flag, Freq\+Lim, Number\+Of\+Modes, Ksitol, Lifttol, Beta\+AC, verbosity=0)
-\item 
-def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a90e05cff1aefd9b6455b6bb1c96d78e4}{Deformed\+Modal\+Flutter\+Speed\+Sorted} (self, Rho, Vmax, DeltaV, Aero\+Flag, Modes\+To\+Compute, Modes\+To\+Plot, Lifttol, Beta\+AC, Ksi\+Obj=1e-\/6, verbosity=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the eigenvalues for a set of velocity without correlation into aeroelastic modes. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a36a121ab1505362902de50041d6c2e5d}{Equilibrium\+AoA} (self, Rho, Vinf, Beta\+AC, tolerance, verbosity=0)
-\item 
-def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a5c540ad628ae1dd51acbe119b317e1ca}{Temporal\+Flutter\+Speed} (self, Rho, Vmin, Vmax, DeltaV, Aero\+Flag, Modes\+To\+Plot, Alpha\+AC, Beta\+AC, Ksitol, Nb\+Period, Step\+By\+Period, Coef\+Perturb, Grav\+Flag=0, verbosity=0)
-\item 
-def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ac4f1096583af146da5e23f4365958f3a}{Flutter\+Vtk} (self, Rho, Vmin, Vmax, DeltaV, Aero\+Flag, Alpha\+AC, Beta\+AC, Nb\+Period, Step\+By\+Period, Coef\+Perturb, Coef\+Vinf, Nvtk, Flutter\+Limit=0.\+4, Grav\+Flag=0, verbosity=0)
-\item 
-def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_afcb65f640228d363296f763b98e68248}{Temporal\+Dynamic} (self, Rho, Vinf, Aero\+Flag, Alpha\+AC, Beta\+AC, Time, Nstep, Freq\+Perturb, Time\+Perturb, Coef\+Perturb, Coef\+Vinf, Nvtk, Grav\+Flag=0, verbosity=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the equilibirum angle of attack of a wing in a particular configuration. \end{DoxyCompactList}\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ac20465bedf1f645c1ac6fab9c45b0802}{Temporal\+Flutter\+Speed} (self, Rho, Vmin, Vmax, DeltaV, Aero\+Flag, Alpha\+AC, Beta\+AC, Nb\+Period, Step\+By\+Period, Coef\+Perturb, Flutter\+Limit=0.\+4, Grav\+Flag=0, verbosity=0)
+\begin{DoxyCompactList}\small\item\em This routine intend to verify the correlation between the modal flutter speed and the temporal dynamic behavior of the wing. \end{DoxyCompactList}\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a5c1dd2c7a88c06a76d854aa7ee1830ad}{Flutter\+Vtk} (self, Rho, Vmin, Vmax, DeltaV, Aero\+Flag, Alpha\+AC, Beta\+AC, Nb\+Period, Step\+By\+Period, Coef\+Perturb, Coef\+Vinf, Nvtk, Flutter\+Limit=1, Grav\+Flag=0, verbosity=0)
+\begin{DoxyCompactList}\small\item\em Perform a temporal simulation at a velocity greater than the flutter speed to generate a paraview visualisation of the phenomenon. \end{DoxyCompactList}\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_abcfba8fd89bc92734326085c272134ae}{Temporal\+Dynamic} (self, Rho, Vinf, Aero\+Flag, Alpha\+AC, Beta\+AC, Time, Nstep, Freq\+Perturb, Time\+Perturb, Coef\+Perturb, Nvtk, Grav\+Flag=0, verbosity=0)
+\begin{DoxyCompactList}\small\item\em Realise a temporal simulation in a specified configuration with an initial harmonic perturbation (vertical speed of frame a in inertial frame) \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ac3dce2054614b2bbcac1bf97ab9e4ace}{Temporal\+Divergence\+Speed} (self, Rho, Vmin, Vmax, Vstep, DeltaV, Aero\+Flag, Beta\+AC, Grav\+Flag=0, verbosity=0)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Compute the divergence speed by monitoring the divergence (swith in the sign) of the internal wing root forces. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -49,10 +50,7 @@ def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ac3dce2054614b2bbcac1
 
 
 \subsection{Detailed Description}
-\begin{DoxyVerb}This class contains the methods design to find eigenvalues, static shape, flutter speed
-(modal or temporal), divergence speed of a Wing in a particular configuration (AoA, Vinf,...)
-\end{DoxyVerb}
- 
+This class is used to defined aeroelastic simulation (static, dynamic or modal) in a particular configuration (AoA, Velocity, air density,...) 
 
 Definition at line 12 of file Simulation.\+py.
 
@@ -67,31 +65,11 @@ Definition at line 12 of file Simulation.\+py.
 
 
 
-Definition at line 17 of file Simulation.\+py.
+Definition at line 14 of file Simulation.\+py.
 
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a0e2bbc13e4dd2169d7f5a868b7295bd9}\label{classgebtaero_1_1_simulation_1_1_simulation_a0e2bbc13e4dd2169d7f5a868b7295bd9}} 
-\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Deformed\+Modal\+Flutter\+Speed@{Deformed\+Modal\+Flutter\+Speed}}
-\index{Deformed\+Modal\+Flutter\+Speed@{Deformed\+Modal\+Flutter\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
-\subsubsection{\texorpdfstring{Deformed\+Modal\+Flutter\+Speed()}{DeformedModalFlutterSpeed()}}
-{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Deformed\+Modal\+Flutter\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Freq\+Lim,  }\item[{}]{Number\+Of\+Modes,  }\item[{}]{Ksitol,  }\item[{}]{Lifttol,  }\item[{}]{Beta\+AC,  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
-
-
-
-Definition at line 717 of file Simulation.\+py.
-
-\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a90e05cff1aefd9b6455b6bb1c96d78e4}\label{classgebtaero_1_1_simulation_1_1_simulation_a90e05cff1aefd9b6455b6bb1c96d78e4}} 
-\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Deformed\+Modal\+Flutter\+Speed\+Sorted@{Deformed\+Modal\+Flutter\+Speed\+Sorted}}
-\index{Deformed\+Modal\+Flutter\+Speed\+Sorted@{Deformed\+Modal\+Flutter\+Speed\+Sorted}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
-\subsubsection{\texorpdfstring{Deformed\+Modal\+Flutter\+Speed\+Sorted()}{DeformedModalFlutterSpeedSorted()}}
-{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Deformed\+Modal\+Flutter\+Speed\+Sorted (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Modes\+To\+Compute,  }\item[{}]{Modes\+To\+Plot,  }\item[{}]{Lifttol,  }\item[{}]{Beta\+AC,  }\item[{}]{Ksi\+Obj = {\ttfamily 1e-\/6},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
-
-
-
-Definition at line 740 of file Simulation.\+py.
-
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a2907ad4a52664321ef36ca2d05a5ea64}\label{classgebtaero_1_1_simulation_1_1_simulation_a2907ad4a52664321ef36ca2d05a5ea64}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Eigen\+Tab@{Eigen\+Tab}}
 \index{Eigen\+Tab@{Eigen\+Tab}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
@@ -100,7 +78,41 @@ Definition at line 740 of file Simulation.\+py.
 
 
 
-Definition at line 673 of file Simulation.\+py.
+Compute the eigenvalues for a set of velocity without correlation into aeroelastic modes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vmin} & the lower bound of the velocity interval \\
+\hline
+{\em Vmax} & the upper bound of the velocity interval \\
+\hline
+{\em Nstep} & the number of velocity step to compute (equitably distributed) \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Modes\+To\+Compute} & \hyperlink{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}{ioaero\+::nev} \\
+\hline
+{\em Modes\+To\+Plot} & Number of aeroelastic modes to follow \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Velocity the list of upstream velocity used at each step (matplotlib output) 
+
+Modes the list of eigenvalues computed at each step (matplotlib output) 
+\end{DoxyReturn}
+
+
+Definition at line 794 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ae64bf3c9cef715d9d999acef888a840e}\label{classgebtaero_1_1_simulation_1_1_simulation_ae64bf3c9cef715d9d999acef888a840e}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Eigen\+Tab\+Sorted@{Eigen\+Tab\+Sorted}}
@@ -110,7 +122,43 @@ Definition at line 673 of file Simulation.\+py.
 
 
 
-Definition at line 542 of file Simulation.\+py.
+Compute the eigenvalues for a set of velocity and correlate the results into aeroelastic modes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vmax} & the upper bound of the velocity interval \\
+\hline
+{\em DeltaV} & the velocity precision of the research \\
+\hline
+{\em Nstep} & the number of velocity step to compute (equitably distributed) \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Modes\+To\+Compute} & \hyperlink{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}{ioaero\+::nev} \\
+\hline
+{\em Modes\+To\+Plot} & Number of aeroelastic modes to follow \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Corr\+Coef} & the minimal correlation coefficient required between two eigenvectors calculated for two different velocity to associated them into the same aeroelastic mode \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Velocity the list of upstream velocity used at each step (matplotlib output) 
+
+Modes the list of eigenvalues computed at each step (matplotlib output) 
+\end{DoxyReturn}
+
+
+Definition at line 648 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a03a37673e2e1c67de5eaeb261512d122}\label{classgebtaero_1_1_simulation_1_1_simulation_a03a37673e2e1c67de5eaeb261512d122}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Eigenvalues@{Eigenvalues}}
@@ -120,7 +168,37 @@ Definition at line 542 of file Simulation.\+py.
 
 
 
-Definition at line 23 of file Simulation.\+py.
+Compute an eigenvalue analysis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vinf} & Upstream velocity \\
+\hline
+{\em Rho} & Air density \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Number\+Of\+Modes} & \hyperlink{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}{ioaero\+::nev} \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+{\em arpack} & \hyperlink{namespaceglobaldatafun_ac1ee1084ba0c21ae53df281847753757}{globaldatafun\+::arpack\+\_\+mod} \\
+\hline
+{\em vtk} & 0\+: no paraview output, 1\+: paraview output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eigen\+Values a numpy array containing eigenvalues 
+\end{DoxyReturn}
+
+
+Definition at line 32 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a36a121ab1505362902de50041d6c2e5d}\label{classgebtaero_1_1_simulation_1_1_simulation_a36a121ab1505362902de50041d6c2e5d}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Equilibrium\+AoA@{Equilibrium\+AoA}}
@@ -130,17 +208,74 @@ Definition at line 23 of file Simulation.\+py.
 
 
 
-Definition at line 763 of file Simulation.\+py.
+Compute the equilibirum angle of attack of a wing in a particular configuration. 
 
-\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ac4f1096583af146da5e23f4365958f3a}\label{classgebtaero_1_1_simulation_1_1_simulation_ac4f1096583af146da5e23f4365958f3a}} 
+
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vinf} & the upstream velocity \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em tolerance} & the AoA accuracy \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the equilibirum angle of attack 
+\end{DoxyReturn}
+
+
+Definition at line 891 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a5c1dd2c7a88c06a76d854aa7ee1830ad}\label{classgebtaero_1_1_simulation_1_1_simulation_a5c1dd2c7a88c06a76d854aa7ee1830ad}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Flutter\+Vtk@{Flutter\+Vtk}}
 \index{Flutter\+Vtk@{Flutter\+Vtk}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
 \subsubsection{\texorpdfstring{Flutter\+Vtk()}{FlutterVtk()}}
-{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Flutter\+Vtk (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Nb\+Period,  }\item[{}]{Step\+By\+Period,  }\item[{}]{Coef\+Perturb,  }\item[{}]{Coef\+Vinf,  }\item[{}]{Nvtk,  }\item[{}]{Flutter\+Limit = {\ttfamily 0.4},  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Flutter\+Vtk (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Nb\+Period,  }\item[{}]{Step\+By\+Period,  }\item[{}]{Coef\+Perturb,  }\item[{}]{Coef\+Vinf,  }\item[{}]{Nvtk,  }\item[{}]{Flutter\+Limit = {\ttfamily 1},  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 
 
-Definition at line 837 of file Simulation.\+py.
+Perform a temporal simulation at a velocity greater than the flutter speed to generate a paraview visualisation of the phenomenon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vmin} & the lower bound of the velocity interval \\
+\hline
+{\em Vmax} & the upper bound of the velocity interval \\
+\hline
+{\em DeltaV} & the modal flutter speed computation accuracy \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Nb\+Period} & the number of flutter period to set the simulation duration \\
+\hline
+{\em Step\+By\+Period} & the number of time step temporal simulation for each flutter period \\
+\hline
+{\em Coef\+Perturb} & the coefficient between the upstream velocity and the perturbation vertical speed. \\
+\hline
+{\em Coef\+Vinf} & the temporal simulation is done at Vinf=Coef\+Vinf$\ast$\+Vflutter \\
+\hline
+{\em Flutter\+Limit} & when the maximal rotation of the wing exceed Flutter\+Limit, the flutter\+\_\+flag is triggered \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 993 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a2d7432b48522221861693e98b03568c4}\label{classgebtaero_1_1_simulation_1_1_simulation_a2d7432b48522221861693e98b03568c4}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Get\+Wing@{Get\+Wing}}
@@ -150,17 +285,53 @@ Definition at line 837 of file Simulation.\+py.
 
 
 
-Definition at line 20 of file Simulation.\+py.
+Definition at line 17 of file Simulation.\+py.
 
-\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a62d8fc83c485da26015167268f4b8bb4}\label{classgebtaero_1_1_simulation_1_1_simulation_a62d8fc83c485da26015167268f4b8bb4}} 
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a9e1695e4fd6c14ac4c9ddcf488ba6b77}\label{classgebtaero_1_1_simulation_1_1_simulation_a9e1695e4fd6c14ac4c9ddcf488ba6b77}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Critical\+Speed@{Modal\+Critical\+Speed}}
 \index{Modal\+Critical\+Speed@{Modal\+Critical\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
 \subsubsection{\texorpdfstring{Modal\+Critical\+Speed()}{ModalCriticalSpeed()}}
-{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Modal\+Critical\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{Vstep,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0},  }\item[{}]{mode = {\ttfamily 0} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Modal\+Critical\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{Vstep,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Nstep = {\ttfamily 1},  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0},  }\item[{}]{mode = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 
 
-Definition at line 124 of file Simulation.\+py.
+Compute the critical speed (divergence or/and flutter) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vmin} & the lower bound of the velocity interval \\
+\hline
+{\em Vmax} & the upper bound of the velocity interval \\
+\hline
+{\em Vstep} & the initial velocity step used in the algorithm \\
+\hline
+{\em DeltaV} & the velocity precision of the research \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+{\em mode} & which critical speed are computed.\+0\+: the first critical speed (either divergence or flutter),1\+: flutter only ,2\+: divergence only, 3\+: divergence and flutter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Flutter speed (m/s) 
+
+Flutter frequency (Hz) 
+
+Divegence speed (m/s) 
+\end{DoxyReturn}
+
+
+Definition at line 171 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ac3bea60a9f9d2c552125644a3256df88}\label{classgebtaero_1_1_simulation_1_1_simulation_ac3bea60a9f9d2c552125644a3256df88}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Divergence\+Speed@{Modal\+Divergence\+Speed}}
@@ -170,7 +341,41 @@ Definition at line 124 of file Simulation.\+py.
 
 
 
-Definition at line 240 of file Simulation.\+py.
+Compute the divergence speed with modal simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vmin} & the lower bound of the velocity interval \\
+\hline
+{\em Vmax} & the upper bound of the velocity interval \\
+\hline
+{\em Vstep} & the initial velocity step used in the algorithm \\
+\hline
+{\em DeltaV} & the velocity precision of the research \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Norm\+Lim} & a parameter set to adjust the number of modes to compute at each step \\
+\hline
+{\em Ksi\+Obj} & the negative reduced damping value corresponding to a flutter \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Velocity the divergence speed 
+\end{DoxyReturn}
+
+
+Definition at line 300 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a597d75e677892bd4308a6537a27eedb8}\label{classgebtaero_1_1_simulation_1_1_simulation_a597d75e677892bd4308a6537a27eedb8}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Divergence\+Speed\+Sorted@{Modal\+Divergence\+Speed\+Sorted}}
@@ -180,7 +385,43 @@ Definition at line 240 of file Simulation.\+py.
 
 
 
-Definition at line 427 of file Simulation.\+py.
+Compute the divergence speed using modal simulation with an algorithm following the aeroelastic modes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vmax} & the upper bound of the velocity interval \\
+\hline
+{\em DeltaV} & the velocity precision of the research \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Modes\+To\+Compute} & \hyperlink{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}{ioaero\+::nev} \\
+\hline
+{\em Modes\+To\+Plot} & Number of aeroelastic modes to follow \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Corr\+Coef} & the minimal correlation coefficient required between two eigenvectors calculated for two different velocity to associated them into the same aeroelastic mode \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vinf the divergence speed (m/s) 
+
+Velocity the list of upstream velocity used at each step (matplotlib output option) 
+
+Modes the list of eigenvalues computed at each step (matplotlib output option) 
+\end{DoxyReturn}
+
+
+Definition at line 518 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ab62864a7bf462387f4cbe24b061b803a}\label{classgebtaero_1_1_simulation_1_1_simulation_ab62864a7bf462387f4cbe24b061b803a}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Flutter\+Speed@{Modal\+Flutter\+Speed}}
@@ -190,7 +431,47 @@ Definition at line 427 of file Simulation.\+py.
 
 
 
-Definition at line 56 of file Simulation.\+py.
+Compute the flutter speed with a set of modal simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vmin} & the lower bound of the velocity interval \\
+\hline
+{\em Vmax} & the upper bound of the velocity interval \\
+\hline
+{\em Vstep} & the initial velocity step used in the algorithm \\
+\hline
+{\em DeltaV} & the velocity precision of the research \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Freq\+Lim} & aeroelastic with frequency higher than Freq\+Lim are not recorded \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Ksi\+Obj} & the negative reduced damping value corresponding to a flutter \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+{\em arpack} & \hyperlink{namespaceglobaldatafun_ac1ee1084ba0c21ae53df281847753757}{globaldatafun\+::arpack\+\_\+mod} \\
+\hline
+{\em Modes\+To\+Compute} & \hyperlink{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}{ioaero\+::nev} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Velocity the flutter speed (m/s) 
+
+Flutter\+Freq the flutter frequency (Hz) 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ae06bc82e983fb16d7f3e303046a39a2e}\label{classgebtaero_1_1_simulation_1_1_simulation_ae06bc82e983fb16d7f3e303046a39a2e}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Flutter\+Speed\+Sorted@{Modal\+Flutter\+Speed\+Sorted}}
@@ -200,7 +481,49 @@ Definition at line 56 of file Simulation.\+py.
 
 
 
-Definition at line 299 of file Simulation.\+py.
+Compute the flutter speed using modal simulation with an algorithm following the aeroelastic modes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vmax} & the upper bound of the velocity interval \\
+\hline
+{\em DeltaV} & the velocity precision of the research \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Modes\+To\+Compute} & \hyperlink{namespaceioaero_a1216c8699aea9eb27e3d795cc9d8d271}{ioaero\+::nev} \\
+\hline
+{\em Modes\+To\+Plot} & Number of aeroelastic modes to follow \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Ksi\+Obj} & the negative reduced damping value corresponding to a flutter \\
+\hline
+{\em Corr\+Coef} & the minimal correlation coefficient required between two eigenvectors calculated for two different velocity to associated them into the same aeroelastic mode \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+{\em arpack} & \hyperlink{namespaceglobaldatafun_ac1ee1084ba0c21ae53df281847753757}{globaldatafun\+::arpack\+\_\+mod} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vinf the flutter speed (m/s) 
+
+Freq the flutter frequency (Hz) 
+
+Velocity the list of upstream velocity used at each step (matplotlib output option) 
+
+Modes the list of eigenvalues computed at each step (matplotlib output option) 
+\end{DoxyReturn}
+
+
+Definition at line 376 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a36da2334a6e743a9ab29bdfe1334ed04}\label{classgebtaero_1_1_simulation_1_1_simulation_a36da2334a6e743a9ab29bdfe1334ed04}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Static\+Loads@{Static\+Loads}}
@@ -210,7 +533,29 @@ Definition at line 299 of file Simulation.\+py.
 
 
 
-Definition at line 40 of file Simulation.\+py.
+Compute the wing root static loads. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vinf} & Upstream velocity \\
+\hline
+{\em Rho} & Air density \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Output a numpy array containing the wing root loads and wing tip deflection and rotation 
+\end{DoxyReturn}
+
+
+Definition at line 57 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ac3dce2054614b2bbcac1bf97ab9e4ace}\label{classgebtaero_1_1_simulation_1_1_simulation_ac3dce2054614b2bbcac1bf97ab9e4ace}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Temporal\+Divergence\+Speed@{Temporal\+Divergence\+Speed}}
@@ -220,27 +565,123 @@ Definition at line 40 of file Simulation.\+py.
 
 
 
-Definition at line 928 of file Simulation.\+py.
+Compute the divergence speed by monitoring the divergence (swith in the sign) of the internal wing root forces. 
 
-\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_afcb65f640228d363296f763b98e68248}\label{classgebtaero_1_1_simulation_1_1_simulation_afcb65f640228d363296f763b98e68248}} 
+
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vmin} & the lower bound of the velocity interval \\
+\hline
+{\em Vmax} & the upper bound of the velocity interval \\
+\hline
+{\em Vstep} & the velocity step of the search algoritm \\
+\hline
+{\em DeltaV} & the divergence speed accuracy \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Divergence speed 
+\end{DoxyReturn}
+
+
+Definition at line 1115 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_abcfba8fd89bc92734326085c272134ae}\label{classgebtaero_1_1_simulation_1_1_simulation_abcfba8fd89bc92734326085c272134ae}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Temporal\+Dynamic@{Temporal\+Dynamic}}
 \index{Temporal\+Dynamic@{Temporal\+Dynamic}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
 \subsubsection{\texorpdfstring{Temporal\+Dynamic()}{TemporalDynamic()}}
-{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Temporal\+Dynamic (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vinf,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Time,  }\item[{}]{Nstep,  }\item[{}]{Freq\+Perturb,  }\item[{}]{Time\+Perturb,  }\item[{}]{Coef\+Perturb,  }\item[{}]{Coef\+Vinf,  }\item[{}]{Nvtk,  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Temporal\+Dynamic (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vinf,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Time,  }\item[{}]{Nstep,  }\item[{}]{Freq\+Perturb,  }\item[{}]{Time\+Perturb,  }\item[{}]{Coef\+Perturb,  }\item[{}]{Nvtk,  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 
 
-Definition at line 896 of file Simulation.\+py.
+Realise a temporal simulation in a specified configuration with an initial harmonic perturbation (vertical speed of frame a in inertial frame) 
 
-\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a5c540ad628ae1dd51acbe119b317e1ca}\label{classgebtaero_1_1_simulation_1_1_simulation_a5c540ad628ae1dd51acbe119b317e1ca}} 
+
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vinf} & the upstream velocity \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Time} & the simulation duration \\
+\hline
+{\em Nstep} & the number of simulation time step \\
+\hline
+{\em Freq\+Perturb} & the frequency of the initial perturbation \\
+\hline
+{\em Time\+Perturb} & the duration of the perturbation \\
+\hline
+{\em Coef\+Perturb} & the coefficient between the upstream velocity and the perturbation vertical speed. \\
+\hline
+{\em Nvk} & the number of output vtk files \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1072 of file Simulation.\+py.
+
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ac20465bedf1f645c1ac6fab9c45b0802}\label{classgebtaero_1_1_simulation_1_1_simulation_ac20465bedf1f645c1ac6fab9c45b0802}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Temporal\+Flutter\+Speed@{Temporal\+Flutter\+Speed}}
 \index{Temporal\+Flutter\+Speed@{Temporal\+Flutter\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
 \subsubsection{\texorpdfstring{Temporal\+Flutter\+Speed()}{TemporalFlutterSpeed()}}
-{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Temporal\+Flutter\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Modes\+To\+Plot,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Ksitol,  }\item[{}]{Nb\+Period,  }\item[{}]{Step\+By\+Period,  }\item[{}]{Coef\+Perturb,  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Temporal\+Flutter\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Nb\+Period,  }\item[{}]{Step\+By\+Period,  }\item[{}]{Coef\+Perturb,  }\item[{}]{Flutter\+Limit = {\ttfamily 0.4},  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 
 
-Definition at line 781 of file Simulation.\+py.
+This routine intend to verify the correlation between the modal flutter speed and the temporal dynamic behavior of the wing. 
+
+after a modal flutter speed determination it performs temporal simulation at several speed to find the lowest speed with a temporal instability (a flutter flag is trigger when the maximal rotation is above the parameter Flutter\+Limit ) 
+\begin{DoxyParams}{Parameters}
+{\em Rho} & Air density \\
+\hline
+{\em Vmin} & the lower bound of the velocity interval \\
+\hline
+{\em Vmax} & the upper bound of the velocity interval \\
+\hline
+{\em DeltaV} & the modal flutter speed computation accuracy \\
+\hline
+{\em Aero\+Flag} & \hyperlink{namespaceioaero_afb280b6ca8de323c9a07076df81a71e1}{ioaero\+::aero\+\_\+flag} \\
+\hline
+{\em Alpha\+AC} & Aicraft angle of attack \\
+\hline
+{\em Beta\+AC} & Aicraft yaw angle \\
+\hline
+{\em Nb\+Period} & the number of flutter period to set the simulation duration \\
+\hline
+{\em Step\+By\+Period} & the number of time step temporal simulation for each flutter period \\
+\hline
+{\em Coef\+Perturb} & the coefficient between the upstream velocity and the perturbation vertical speed. \\
+\hline
+{\em Flutter\+Limit} & when the maximal rotation of the wing exceed Flutter\+Limit, the flutter\+\_\+flag is triggered \\
+\hline
+{\em Grav\+Flag} & \hyperlink{namespaceioaero_a831fe87d45ef05e3e29a8c4c2fc88c8f}{ioaero\+::grav\+\_\+flag} \\
+\hline
+{\em verbosity} & log output parameter \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 922 of file Simulation.\+py.
 
 
 
@@ -253,7 +694,7 @@ Definition at line 781 of file Simulation.\+py.
 
 
 
-Definition at line 26 of file Simulation.\+py.
+Definition at line 35 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a2900b07110293466d8ca5c75ef8e04f8}\label{classgebtaero_1_1_simulation_1_1_simulation_a2900b07110293466d8ca5c75ef8e04f8}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Wing@{Wing}}
@@ -263,10 +704,10 @@ Definition at line 26 of file Simulation.\+py.
 
 
 
-Definition at line 18 of file Simulation.\+py.
+Definition at line 15 of file Simulation.\+py.
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/bertrand/these/logiciels/programme/interface/src/gebtaero/\hyperlink{_simulation_8py}{Simulation.\+py}\end{DoxyCompactItemize}
+/home/bertrand/logiciels/gebtaero\+\_\+frama/src/gebtaero/\hyperlink{_simulation_8py}{Simulation.\+py}\end{DoxyCompactItemize}

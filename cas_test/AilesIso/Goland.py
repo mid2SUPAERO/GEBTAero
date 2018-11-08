@@ -60,7 +60,7 @@ Goland = Wing("Goland",RefPoint)
 Goland.AppendWingSection(GolandSection)
 
 #~ Use of Simu class
-Vmin = 1
+Vmin = 10
 Vmax = 200
 Vstep = 5
 DeltaV= 0.01
@@ -73,7 +73,7 @@ ModesToPlot = 5
 ModesToCompute = 40
 Nev = 20
 AeroFlag = 3
-FreqLim=100.
+FreqLim=100
 
 Simu = Simulation(Goland)
 
@@ -83,11 +83,11 @@ if test1:
     print("test 1 : undeformed wing flutter speed")
     AeroFlag = 1
     Vflutter = Simu.ModalFlutterSpeedSorted(Rho,Vmax,DeltaV,AeroFlag,ModesToPlot,ModesToPlot,AlphaAC,BetaAC,Ksitol,verbosity=verbosity)
-    assert(math.isclose(Vflutter[0],35.26,abs_tol=1e-1)),"Error flutter speed AeroFlag = 1"
-    Vflutter = Simu.ModalFlutterSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,FreqLim,AlphaAC,BetaAC,KsiObj=1e-6,verbosity=verbosity)
-    assert(math.isclose(Vflutter[0],35.26,abs_tol=1e-1)),"Error flutter speed AeroFlag = 1"
+    assert(math.isclose(Vflutter[0],35.26,abs_tol=1e-1)),"Error flutter speed AeroFlag = 1, flutter speed ="+str(Vflutter[0])+" instead of "+str(35.26)
+    Vflutter = Simu.ModalFlutterSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,FreqLim,AlphaAC,BetaAC,KsiObj=1e-6,verbosity=verbosity,arpack=0)
+    assert(math.isclose(Vflutter[0],35.26,abs_tol=1e-1)),"Error flutter speed AeroFlag = 1, flutter speed ="+str(Vflutter[0])+" instead of "+str(35.26)
     Vflutter = Simu.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=0,verbosity=verbosity,mode=1)
-    assert(math.isclose(Vflutter[0],35.26,abs_tol=1e-1)),"Error flutter speed AeroFlag = 1"
+    assert(math.isclose(Vflutter[0],35.2,abs_tol=1e-1)),"Error flutter speed AeroFlag = 1, flutter speed ="+str(Vflutter[0])+" instead of "+str(35.26)
 
 
     AeroFlag = 2
@@ -156,10 +156,6 @@ if test4:
     WingAxis2[0] = -math.sin(Gamma)
     WingAxis2[1] = math.cos(Gamma)*math.cos(Dihedral)
     WingAxis2[2] = -math.sin(Dihedral)
-    # ~ WingAxis2[0] = -math.sin(Gamma)
-    # ~ WingAxis2[1] = math.cos(Gamma)
-    # ~ WingTwist = -0.7854
-    # ~ AlphaAC = -WingTwist
     WingTwist = 0.
 
     Frame2 = Frame(WingAxis2,WingTwist)

@@ -205,7 +205,7 @@ IF (narg>0) THEN
 		CASE ("s","silent")
 			RUNMOD = 2
 		CASE ("version")
-			write(*,*) 'gebtaero version 18.09 developped by French Air Force Academy Research Center'
+			write(*,*) 'gebtaero version 18.11 developped by French Air Force Academy Research Center'
 			RETURN		
 		END SELECT
 		ENDIF

@@ -50,7 +50,7 @@ BetaAC = 0      # Aircraft yaw angle
 Rho = 0.0889     # Air density
 Vinf = 10        # Upstream Velocity
 AeroFlag = 3        # type of aerodynamic model used : 0 = no aero, 1 = quasi-steady, 2= quasi-steady with added mass, 3 = unsteady (Peters)
-GravFlag = 0        # 0 = without gravity forces, 1 = with gravity forces
+GravFlag = 1        # 0 = without gravity forces, 1 = with gravity forces
 
 ###########################
 #---------------------------------------------------------#
@@ -118,7 +118,7 @@ if True:
     CoefPerturb = 0.0001        #a vertical speed to initiate the flutter is applied during one period with a coefficient relative to the upstream velocity
     CoefVinf = 1.2    #the simulation is done a V = ModalFlutterVelocity*CoefVinf
     Nvtk = 1000     #number of vtk output file
-    FlutterLimit = 0.8      #value of the maximal angular deformation (radian) of the wing which will trigger the temporal flutter state
+    FlutterLimit = 0.4      #value of the maximal angular deformation (radian) of the wing which will trigger the temporal flutter state
     # Realisation of temporal simulation and creation a a vtk file folder "PatilTempFlutter.dat_vtk/" in the work directory 
     Simu.FlutterVtk(Rho,Vmin,Vmax,DeltaV,AeroFlag,AlphaAC,BetaAC,NbPeriod,StepByPeriod,CoefPerturb,CoefVinf,Nvtk,FlutterLimit,GravFlag=GravFlag,verbosity=1)
     # write a paraview script with the vtk folder

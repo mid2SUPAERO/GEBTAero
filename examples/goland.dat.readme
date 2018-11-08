@@ -1,0 +1,66 @@
+Here is the description of an input parameter readable by the fortran computation code. 
+For more details, all the parameter are detailled in the GEBTAero documentation application "GEBTAero Doc"
+3 3 0 1 1 1 # analysis_flag; aero_flag; grav_flag; niter; nstep; nvtk
+* analysis_flag : 3 = modal analysis
+* aero_flag : 3 = unsteady aerodynamic
+* grav_flag : 0 = no without gravity forces
+* niter : 1 = only 1 iteration for the non linear Newton-Raphson algorithm (unused in for a modal analysis )
+* nstep : 1 = only one load step for the equilibrium computation 
+* nvtk : 1 = number of vtk file output. For a modal analysis, 0 = no output, >0 = 1 vtk file for each mode
+
+
+0 0 0  # omega_a0 (3 components)
+0 0 0  # omega_a_tf : the time function number associated to each component (0 = no time function)
+0 0 0  # v_root_a0 (3 components)
+0 0 0   # v_root_a_tf : the time function number associated to each component  (0 = no time function)
+4   # nev : the maximum number of modes computed by arpack
+
+2 1 2 1 2 0 0 0 0  # npoint,nmemb,ncond_pt,nmate, nframe, ncond_mb,ndistrfun, ntimefun, ncurv
+* npoint : the number of keypoints
+* nmemb : the number og beam member
+* ncond_pt : the number of keypoints with imposed conditions (ddl or forces)
+* nmate : the number of materials
+* nframe : the number of frame b
+* ncond_mb : the number of beam members with imposed condtions
+* ndistrfun : the number of distribution function (for beam forces or ddl)
+* ntimefunction : the number of time function
+* ncurv : the number of beam curvature
+
+1	0	0	0 # position of keypoint 1 in the frame a
+2	0 6.096 0 # position of keypoint 2 in the frame a
+    
+1 1 2 1 1 1 10 0 # element 1 parameter : element number; keypoint1; keypoint2; material 1; material 2; frame number; number of division; curvature number
+
+1  # keypoint 1 ddl condition
+1 2 3 4 5 6 # ddl 1-3 : position; ddl 4-6 : rodrigues rotation parameters
+0 0 0 0 0 0 # value of the imposed ddl
+0 0 0 0 0 0 # time function associated to the ddl
+0 0 0 0 0 0 # follower quantites (only for forces and moments; 0=not follower, 1=follower)
+
+2   # keypoint 1 ddl condition
+7 8 9 10 11 12  # ddl 7-9 : beam forces, 10-12 : beam moments
+0 0 0 0 0 0 # value of the imposed ddl
+0 0 0 0 0 0 # time function associated to the ddl
+0 0 0 0 0 0 # follower quantites (only for forces and moments; 0=not follower, 1=follower)
+
+1 # section No. 1 (Flexibility Matrix first and Mass Matrix second)
+0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00
+0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00
+0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00
+0.0000E+00	0.0000E+00	0.0000E+00	1.0101E-06	0.0000E+00	0.0000E+00
+0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	1.0235E-07	0.0000E+00
+0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00
+
+3.5710E+01	0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	6.5306E+00
+0.0000E+00	3.5710E+01	0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00
+0.0000E+00	0.0000E+00	3.5710E+01	-6.5306E+00	0.0000E+00	0.0000E+00
+0.0000E+00	0.0000E+00	-6.5306E+00	8.6400E+00	0.0000E+00	0.0000E+00
+0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	8.6400E-04	0.0000E+00
+6.5306E+00	0.0000E+00	0.0000E+00	0.0000E+00	0.0000E+00	8.6400E+00
+100 1.225 1.8288 -0.34  0 0 0 # aerodyn_coef (8 components): Velocity; Air density, Chord, parameterA (distance between mid chord and reference axis), Alpha_AC, Beta_AC, empty
+0 # Xcg, this line must be suppresed if grav_flag = 0
+
+1 # frame b matrix in frame a
+0 1 0
+1 0 0
+0 0 -1

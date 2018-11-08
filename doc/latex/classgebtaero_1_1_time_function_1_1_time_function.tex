@@ -1,5 +1,10 @@
 \hypertarget{classgebtaero_1_1_time_function_1_1_time_function}{}\section{gebtaero.\+Time\+Function.\+Time\+Function Class Reference}
 \label{classgebtaero_1_1_time_function_1_1_time_function}\index{gebtaero.\+Time\+Function.\+Time\+Function@{gebtaero.\+Time\+Function.\+Time\+Function}}
+
+
+This class interface the concept of time function \hyperlink{structtimefunctionmodule_1_1timefunction}{timefunctionmodule\+::timefunction} with the fortran solver.  
+
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -12,9 +17,9 @@ def \hyperlink{classgebtaero_1_1_time_function_1_1_time_function_a0ac4b6ccaaa06b
 def \hyperlink{classgebtaero_1_1_time_function_1_1_time_function_afd4cbf5dab2375296785f178369bd16c}{Get\+Function\+End} (self)
 \item 
 def \hyperlink{classgebtaero_1_1_time_function_1_1_time_function_afa29c862ffe8297dbbea0aabaf8f5a08}{Append\+Function\+Entrie\+Piece\+Wise} (self, time, value)
-\item 
+\begin{DoxyCompactList}\small\item\em Append a function entrie to a piecewise function. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_time_function_1_1_time_function_a8e4d81106458219357606a349486c2e6}{Append\+Function\+Entrie\+Harmonic} (self, amplitude, period, phase)
-\item 
+\begin{DoxyCompactList}\small\item\em Append a function entrie to an harmonic function. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_time_function_1_1_time_function_ad72311bf84c87fe3af022735cdba6b6e}{Get\+Function\+Entrie} (self, index)
 \item 
 def \hyperlink{classgebtaero_1_1_time_function_1_1_time_function_aa37de4ed1aaf0c0f753582c3baee08fe}{Get\+Function\+Entries} (self)
@@ -23,21 +28,19 @@ def \hyperlink{classgebtaero_1_1_time_function_1_1_time_function_aa37de4ed1aaf0c
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classgebtaero_1_1_time_function_1_1_time_function_a71eb6968c49304736305aee5c1e37d51}{Function\+Type}
-\item 
+\begin{DoxyCompactList}\small\item\em link to \hyperlink{structtimefunctionmodule_1_1timefunction_acd580915b25f29aa47c58467c394d2f4}{timefunctionmodule\+::timefunction\+::fun\+\_\+type} \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_time_function_1_1_time_function_acd9020ddfc729ecc704fa0c246c2e903}{Function\+Start}
-\item 
+\begin{DoxyCompactList}\small\item\em link to \hyperlink{structtimefunctionmodule_1_1timefunction_a62e761e489833d17dcd1dbcac5c1dfd6}{timefunctionmodule\+::timefunction\+::ts} \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_time_function_1_1_time_function_a21c1d719341196b82dd2def3400dd832}{Function\+End}
-\item 
+\begin{DoxyCompactList}\small\item\em link to \hyperlink{structtimefunctionmodule_1_1timefunction_a4378638965011462c9fd4a912f6dc8fd}{timefunctionmodule\+::timefunction\+::te} \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_time_function_1_1_time_function_a4c6508caae8928d320b70e8ecd0ce27f}{Function\+Entries}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\begin{DoxyVerb}Time function object as defined in gebt documentation
-\end{DoxyVerb}
- 
+This class interface the concept of time function \hyperlink{structtimefunctionmodule_1_1timefunction}{timefunctionmodule\+::timefunction} with the fortran solver. 
 
-Definition at line 3 of file Time\+Function.\+py.
+Definition at line 4 of file Time\+Function.\+py.
 
 
 
@@ -50,7 +53,7 @@ Definition at line 3 of file Time\+Function.\+py.
 
 
 
-Definition at line 7 of file Time\+Function.\+py.
+Definition at line 5 of file Time\+Function.\+py.
 
 
 
@@ -63,7 +66,20 @@ Definition at line 7 of file Time\+Function.\+py.
 
 
 
-Definition at line 30 of file Time\+Function.\+py.
+Append a function entrie to an harmonic function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em link} & to \hyperlink{structtimefunctionmodule_1_1timefunction_abad80cdb684de5f31a51015b9d88751f}{timefunctionmodule\+::timefunction\+::time\+\_\+val} \\
+\hline
+{\em link} & to \hyperlink{structtimefunctionmodule_1_1timefunction_a7d1b3a0f76df56f38891ba45d161ca9d}{timefunctionmodule\+::timefunction\+::fun\+\_\+val} \\
+\hline
+{\em link} & to \hyperlink{structtimefunctionmodule_1_1timefunction_a0f4fd140ac6990ddc82b4129b23cfa08}{timefunctionmodule\+::timefunction\+::phase\+\_\+val} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 38 of file Time\+Function.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_time_function_1_1_time_function_afa29c862ffe8297dbbea0aabaf8f5a08}\label{classgebtaero_1_1_time_function_1_1_time_function_afa29c862ffe8297dbbea0aabaf8f5a08}} 
 \index{gebtaero\+::\+Time\+Function\+::\+Time\+Function@{gebtaero\+::\+Time\+Function\+::\+Time\+Function}!Append\+Function\+Entrie\+Piece\+Wise@{Append\+Function\+Entrie\+Piece\+Wise}}
@@ -73,7 +89,18 @@ Definition at line 30 of file Time\+Function.\+py.
 
 
 
-Definition at line 24 of file Time\+Function.\+py.
+Append a function entrie to a piecewise function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & link to \hyperlink{structtimefunctionmodule_1_1timefunction_abad80cdb684de5f31a51015b9d88751f}{timefunctionmodule\+::timefunction\+::time\+\_\+val} \\
+\hline
+{\em value} & link to \hyperlink{structtimefunctionmodule_1_1timefunction_a7d1b3a0f76df56f38891ba45d161ca9d}{timefunctionmodule\+::timefunction\+::fun\+\_\+val} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file Time\+Function.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_time_function_1_1_time_function_afd4cbf5dab2375296785f178369bd16c}\label{classgebtaero_1_1_time_function_1_1_time_function_afd4cbf5dab2375296785f178369bd16c}} 
 \index{gebtaero\+::\+Time\+Function\+::\+Time\+Function@{gebtaero\+::\+Time\+Function\+::\+Time\+Function}!Get\+Function\+End@{Get\+Function\+End}}
@@ -83,7 +110,7 @@ Definition at line 24 of file Time\+Function.\+py.
 
 
 
-Definition at line 21 of file Time\+Function.\+py.
+Definition at line 22 of file Time\+Function.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_time_function_1_1_time_function_ad72311bf84c87fe3af022735cdba6b6e}\label{classgebtaero_1_1_time_function_1_1_time_function_ad72311bf84c87fe3af022735cdba6b6e}} 
 \index{gebtaero\+::\+Time\+Function\+::\+Time\+Function@{gebtaero\+::\+Time\+Function\+::\+Time\+Function}!Get\+Function\+Entrie@{Get\+Function\+Entrie}}
@@ -93,7 +120,7 @@ Definition at line 21 of file Time\+Function.\+py.
 
 
 
-Definition at line 36 of file Time\+Function.\+py.
+Definition at line 44 of file Time\+Function.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_time_function_1_1_time_function_aa37de4ed1aaf0c0f753582c3baee08fe}\label{classgebtaero_1_1_time_function_1_1_time_function_aa37de4ed1aaf0c0f753582c3baee08fe}} 
 \index{gebtaero\+::\+Time\+Function\+::\+Time\+Function@{gebtaero\+::\+Time\+Function\+::\+Time\+Function}!Get\+Function\+Entries@{Get\+Function\+Entries}}
@@ -103,7 +130,7 @@ Definition at line 36 of file Time\+Function.\+py.
 
 
 
-Definition at line 39 of file Time\+Function.\+py.
+Definition at line 47 of file Time\+Function.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_time_function_1_1_time_function_a0ac4b6ccaaa06bb59697d195c213a23e}\label{classgebtaero_1_1_time_function_1_1_time_function_a0ac4b6ccaaa06bb59697d195c213a23e}} 
 \index{gebtaero\+::\+Time\+Function\+::\+Time\+Function@{gebtaero\+::\+Time\+Function\+::\+Time\+Function}!Get\+Function\+Start@{Get\+Function\+Start}}
@@ -113,7 +140,7 @@ Definition at line 39 of file Time\+Function.\+py.
 
 
 
-Definition at line 18 of file Time\+Function.\+py.
+Definition at line 19 of file Time\+Function.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_time_function_1_1_time_function_a8dc2ddec757f586a51e250592b35c542}\label{classgebtaero_1_1_time_function_1_1_time_function_a8dc2ddec757f586a51e250592b35c542}} 
 \index{gebtaero\+::\+Time\+Function\+::\+Time\+Function@{gebtaero\+::\+Time\+Function\+::\+Time\+Function}!Get\+Function\+Type@{Get\+Function\+Type}}
@@ -123,7 +150,7 @@ Definition at line 18 of file Time\+Function.\+py.
 
 
 
-Definition at line 15 of file Time\+Function.\+py.
+Definition at line 16 of file Time\+Function.\+py.
 
 
 
@@ -136,7 +163,11 @@ Definition at line 15 of file Time\+Function.\+py.
 
 
 
-Definition at line 10 of file Time\+Function.\+py.
+link to \hyperlink{structtimefunctionmodule_1_1timefunction_a4378638965011462c9fd4a912f6dc8fd}{timefunctionmodule\+::timefunction\+::te} 
+
+
+
+Definition at line 11 of file Time\+Function.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_time_function_1_1_time_function_a4c6508caae8928d320b70e8ecd0ce27f}\label{classgebtaero_1_1_time_function_1_1_time_function_a4c6508caae8928d320b70e8ecd0ce27f}} 
 \index{gebtaero\+::\+Time\+Function\+::\+Time\+Function@{gebtaero\+::\+Time\+Function\+::\+Time\+Function}!Function\+Entries@{Function\+Entries}}
@@ -146,13 +177,17 @@ Definition at line 10 of file Time\+Function.\+py.
 
 
 
-Definition at line 13 of file Time\+Function.\+py.
+Definition at line 14 of file Time\+Function.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_time_function_1_1_time_function_acd9020ddfc729ecc704fa0c246c2e903}\label{classgebtaero_1_1_time_function_1_1_time_function_acd9020ddfc729ecc704fa0c246c2e903}} 
 \index{gebtaero\+::\+Time\+Function\+::\+Time\+Function@{gebtaero\+::\+Time\+Function\+::\+Time\+Function}!Function\+Start@{Function\+Start}}
 \index{Function\+Start@{Function\+Start}!gebtaero\+::\+Time\+Function\+::\+Time\+Function@{gebtaero\+::\+Time\+Function\+::\+Time\+Function}}
 \subsubsection{\texorpdfstring{Function\+Start}{FunctionStart}}
 {\footnotesize\ttfamily gebtaero.\+Time\+Function.\+Time\+Function.\+Function\+Start}
+
+
+
+link to \hyperlink{structtimefunctionmodule_1_1timefunction_a62e761e489833d17dcd1dbcac5c1dfd6}{timefunctionmodule\+::timefunction\+::ts} 
 
 
 
@@ -166,10 +201,14 @@ Definition at line 9 of file Time\+Function.\+py.
 
 
 
-Definition at line 8 of file Time\+Function.\+py.
+link to \hyperlink{structtimefunctionmodule_1_1timefunction_acd580915b25f29aa47c58467c394d2f4}{timefunctionmodule\+::timefunction\+::fun\+\_\+type} 
+
+
+
+Definition at line 7 of file Time\+Function.\+py.
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/bertrand/these/logiciels/programme/interface/src/gebtaero/\hyperlink{_time_function_8py}{Time\+Function.\+py}\end{DoxyCompactItemize}
+/home/bertrand/logiciels/gebtaero\+\_\+frama/src/gebtaero/\hyperlink{_time_function_8py}{Time\+Function.\+py}\end{DoxyCompactItemize}
