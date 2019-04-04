@@ -205,7 +205,7 @@ IF (narg>0) THEN
 		CASE ("s","silent")
 			RUNMOD = 2
 		CASE ("version")
-			write(*,*) 'gebtaero version 18.11 developped by French Air Force Academy Research Center'
+			write(*,*) 'gebtaero version 19.04 developped by French Air Force Academy Research Center'
 			RETURN		
 		END SELECT
 		ENDIF
@@ -748,6 +748,7 @@ ELSEIF (RUNMOD==1) THEN
     IF (analysis_flag ==1) THEN
         WRITE(*,*) "*STATIC"
         WRITE(*,'(1x,6ES25.15)') sol_pt(nstep,1,10:15)
+        WRITE(*,'(1x,6ES25.15)') sol_pt(nstep,2,4:9)
         
     ELSEIF (analysis_flag ==3) THEN
         complex_flag = 0

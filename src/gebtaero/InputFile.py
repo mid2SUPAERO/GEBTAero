@@ -75,45 +75,45 @@ class InputFile:
         ntimefun = len(self.TimeFunctions)
         file = open(self.FileName,"w")
         # first line of the solver
-        file.write(str(self.AnalysisFlag))
-        file.write(" "+str(self.AeroFlag))
-        file.write(" "+str(self.GravFlag))
-        file.write(" "+str(self.Niter))
-        file.write(" "+str(self.Nstep))
-        file.write(" "+str(self.Nvtk)+"\n")
+        file.write(str(int(self.AnalysisFlag)))
+        file.write(" "+str(int(self.AeroFlag)))
+        file.write(" "+str(int(self.GravFlag)))
+        file.write(" "+str(int(self.Niter)))
+        file.write(" "+str(int(self.Nstep)))
+        file.write(" "+str(int(self.Nvtk))+"\n")
         # Omegaa and Va
         for i in range(3):
-            file.write(str(self.ACOmegaa[i])+" ")
+            file.write(str(float(self.ACOmegaa[i]))+" ")
         file.write("\n")
         for i in range(3):
-            file.write(str(self.ACOmegaaTFNumber)+" ")
+            file.write(str(int(self.ACOmegaaTFNumber))+" ")
         file.write("\n")
         for i in range(3):
-            file.write(str(self.ACVa[i])+" ")
+            file.write(str(float(self.ACVa[i]))+" ")
         file.write("\n")
         for i in range(3):
-            file.write(str(self.ACVaTFNumber)+" ")
+            file.write(str(int(self.ACVaTFNumber))+" ")
         file.write("\n")  
             
         # Number of Eigenvalues computed
         if(self.AnalysisFlag ==3):
-            file.write(str(self.Nev)+"\n")
+            file.write(str(int(self.Nev))+"\n")
         file.write("\n")  
         # Wing parameters
         # Number of keypoints
-        file.write(str(nkp)+" ")
+        file.write(str(int(nkp))+" ")
         # Number of members
-        file.write(str(nmemb)+" ")
+        file.write(str(int(nmemb))+" ")
         # Number of condition points
         file.write("2 ")
         # Number of materials
-        file.write(str(nmate)+" ")
+        file.write(str(int(nmate))+" ")
         # Number of frame
-        file.write(str(nframe)+" ")
+        file.write(str(int(nframe))+" ")
         # Unused : number of condition members and number of distribution function
         file.write("0 0 ")
         # Number of timeFunction
-        file.write(str(ntimefun)+" ")
+        file.write(str(int(ntimefun))+" ")
         # Unused : number of curvatures
         file.write("0 \n\n")
         
@@ -121,7 +121,7 @@ class InputFile:
         for i in range(nkp):
             file.write(str(i+1)+" ")
             for j in range(3):
-                file.write(str(self.Wing.GetKpList()[i][j])+" ")
+                file.write(str(float(self.Wing.GetKpList()[i][j]))+" ")
             file.write("\n")     
         file.write("\n")                 
         
@@ -145,13 +145,13 @@ class InputFile:
             # Frame number 
             file.write(str(iframe+1)+" ")
             # Number of divisions
-            file.write(str(self.Wing.GetWingSections()[i].GetNumberOfElements())+" ")
+            file.write(str(int(self.Wing.GetWingSections()[i].GetNumberOfElements()))+" ")
             # Unused : Number of curvatures
             file.write("0\n")
         file.write("\n")    
         # Keypoints conditions
         file.write("1\n1 2 3 4 5 6\n0 0 0 0 0 0\n0 0 0 0 0 0\n0 0 0 0 0 0\n\n")
-        file.write("{0}\n7 8 9 10 11 12\n0 0 0 0 0 0\n0 0 0 0 0 0\n0 0 0 0 0 0\n\n".format(nkp))
+        file.write("{0}\n7 8 9 10 11 12\n0 0 0 0 0 0\n0 0 0 0 0 0\n0 0 0 0 0 0\n\n".format(int(nkp)))
             
         # Cross section parameters
         for i in range(nmate):
@@ -160,33 +160,33 @@ class InputFile:
             FlexMat = self.Wing.GetCrossSections()[i].GetFlexibilityMatrix()
             for j in range(6):
                 for k in range(6):
-                    file.write(str(FlexMat[j][k])+" ")
+                    file.write(str(float(FlexMat[j][k]))+" ")
                 file.write("\n")
             file.write("\n")
             # Mass Matrix 
             MassMat = self.Wing.GetCrossSections()[i].GetMassMatrix()
             for j in range(6):
                 for k in range(6):
-                    file.write(str(MassMat[j][k])+" ")
+                    file.write(str(float(MassMat[j][k]))+" ")
                 file.write("\n")
             # Aero parameters
             if (self.AeroFlag >0):
                 # Vinf
-                file.write(str(round(self.Vinf,8))+" ")
+                file.write(str(round(float(self.Vinf),8))+" ")
                 # Rho
-                file.write(str(self.Rho)+" ")
+                file.write(str(float(self.Rho))+" ")
                 # Chord
-                file.write(str(self.Wing.GetWingSections()[i].GetChord())+" ")
+                file.write(str(float(self.Wing.GetWingSections()[i].GetChord()))+" ")
                 # Parameter a
-                file.write(str(self.Wing.GetWingSections()[i].GetParameterA())+" ")
+                file.write(str(float(self.Wing.GetWingSections()[i].GetParameterA()))+" ")
                 # Alpha aircraft
-                file.write(str(round(self.AlphaAC,8))+" ")
+                file.write(str(round(float(self.AlphaAC),8))+" ")
                 # Beta aircraft
-                file.write(str(round(self.BetaAC,8))+" ")
+                file.write(str(round(float(self.BetaAC),8))+" ")
                 # unused yet
                 file.write("0\n")
                 if self.GravFlag ==1:
-                    file.write(str(round(self.Xcg,8))+"\n")
+                    file.write(str(round(float(self.Xcg),8))+"\n")
                 file.write("\n")
                 
         # Frame 
@@ -195,13 +195,13 @@ class InputFile:
             Frame = self.Wing.GetFrames()[i].GetFrameMatrix()
             for j in range(3):
                 for k in range(3):
-                    file.write(str(Frame[j][k])+" ")
+                    file.write(str(float(Frame[j][k]))+" ")
                 file.write("\n")
             file.write("\n")    
         # Simu Time    
         if(self.AnalysisFlag <3):
-            file.write(str(self.SimuStart)+" ")    
-            file.write(str(self.SimuEnd)+"\n")    
+            file.write(str(float(self.SimuStart))+" ")    
+            file.write(str(float(self.SimuEnd))+"\n")    
             file.write("\n")            
         # TimeFunction
         if (ntimefun>0):
@@ -209,9 +209,9 @@ class InputFile:
                 file.write(str(i+1)+"\n")
                 TF = self.GetTimeFunction(i)
                 nentrie = len(TF.GetFunctionEntries())
-                file.write(str(TF.GetFunctionType())+"\n")
-                file.write(str(TF.GetFunctionStart())+" ")
-                file.write(str(TF.GetFunctionEnd())+"\n")
+                file.write(str(int(TF.GetFunctionType()))+"\n")
+                file.write(str(float(TF.GetFunctionStart()))+" ")
+                file.write(str(float(TF.GetFunctionEnd()))+"\n")
                 file.write(str(nentrie)+"\n")                    
                 for j in range(nentrie):
                     Entrie = TF.GetFunctionEntrie(j)

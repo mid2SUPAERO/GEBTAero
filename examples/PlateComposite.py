@@ -60,13 +60,12 @@ Simu = Simulation(Aile)
 Result = []
 
 # create a list containing the different upper ply orientations
-NbOri = 12  # the number of upper ply orientation (equally distributed between -90 and +90)
+NbOri = 4  # the number of upper ply orientation (equally distributed between -90 and +90)
 OriStep = 180/NbOri
 
 #for each orientation, create a plate, compute flexibility and mass matrix to update the cross section parameters and th
 for i in range(NbOri+1):
     Ori = OriStep*(i)-90
-    
     Plate = CompositePlate(Chord)   #reset the Plate object
     Plate.AppendPly(CompositePly(T300,EpComp,-45))  #append lower ply
     Plate.AppendPly(CompositePly(AIREX,EpAIREX,0))  #append foam core

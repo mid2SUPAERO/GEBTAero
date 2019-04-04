@@ -5,6 +5,15 @@
 This class represent the wing and is used by the class \hyperlink{namespacegebtaero_1_1_simulation}{Simulation} to generate the \hyperlink{namespacegebtaero_1_1_input_file}{Input\+File}.  
 
 
+
+
+Collaboration diagram for gebtaero.\+Wing.\+Wing\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{classgebtaero_1_1_wing_1_1_wing__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -15,7 +24,7 @@ def \hyperlink{classgebtaero_1_1_wing_1_1_wing_a6623e4ea917c8a03a3de9bbf7110e754
 def \hyperlink{classgebtaero_1_1_wing_1_1_wing_a180f53c7c326569cc0c8e8c78a3a0b2a}{Get\+Name} (self)
 \item 
 def \hyperlink{classgebtaero_1_1_wing_1_1_wing_ae2bcf197a55c10900d837bc0d9d6aac7}{Append\+Wing\+Section} (self, \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section}{Wing\+Section})
-\item 
+\begin{DoxyCompactList}\small\item\em Add a wing section to the wing and update internal values. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_wing_1_1_wing_a9fbfa35745a94279f37ebf497a36126e}{Get\+Wing\+Sections} (self)
 \item 
 def \hyperlink{classgebtaero_1_1_wing_1_1_wing_a15245b467e6be2a7ace9a917e67661ff}{Get\+Cross\+Sections} (self)
@@ -25,11 +34,11 @@ def \hyperlink{classgebtaero_1_1_wing_1_1_wing_a0bd0def91e16cd1a19b10fcdf8c50e41
 def \hyperlink{classgebtaero_1_1_wing_1_1_wing_afe768db8f9a06bd5784143c1168a5acc}{Get\+Kp\+List} (self)
 \item 
 def \hyperlink{classgebtaero_1_1_wing_1_1_wing_a290d5e1d3a18de515339ffbed0f0df35}{Get\+Weight} (self)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the weight of the wing using the mass per unit length in the mass mastrix. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_wing_1_1_wing_af0be9af67eb300ebc83262025f6c80af}{Get\+Surface} (self)
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the wing surface using the chord and length of the sections. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_wing_1_1_wing_a3b5df3a1833448d36becf9a5a9f3e951}{Modify\+Section\+Length} (self, index, Section\+Length)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Modify the length of one\+Wing\+Section of the wing and upadte the keypoint list. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -74,11 +83,18 @@ Definition at line 6 of file Wing.\+py.
 \subsubsection{\texorpdfstring{Append\+Wing\+Section()}{AppendWingSection()}}
 {\footnotesize\ttfamily def gebtaero.\+Wing.\+Wing.\+Append\+Wing\+Section (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Wing\+Section }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}Add a section to the current wing, first section is at the wing root, last section at the wing tip.
-\end{DoxyVerb}
- 
 
-Definition at line 28 of file Wing.\+py.
+
+Add a wing section to the wing and update internal values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{namespacegebtaero_1_1_wing_section}{Wing\+Section}} & the \hyperlink{namespacegebtaero_1_1_wing_section}{Wing\+Section} to add \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 30 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a15245b467e6be2a7ace9a917e67661ff}\label{classgebtaero_1_1_wing_1_1_wing_a15245b467e6be2a7ace9a917e67661ff}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Cross\+Sections@{Get\+Cross\+Sections}}
@@ -88,7 +104,7 @@ Definition at line 28 of file Wing.\+py.
 
 
 
-Definition at line 47 of file Wing.\+py.
+Definition at line 46 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a0bd0def91e16cd1a19b10fcdf8c50e41}\label{classgebtaero_1_1_wing_1_1_wing_a0bd0def91e16cd1a19b10fcdf8c50e41}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Frames@{Get\+Frames}}
@@ -98,7 +114,7 @@ Definition at line 47 of file Wing.\+py.
 
 
 
-Definition at line 50 of file Wing.\+py.
+Definition at line 49 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_afe768db8f9a06bd5784143c1168a5acc}\label{classgebtaero_1_1_wing_1_1_wing_afe768db8f9a06bd5784143c1168a5acc}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Kp\+List@{Get\+Kp\+List}}
@@ -108,7 +124,7 @@ Definition at line 50 of file Wing.\+py.
 
 
 
-Definition at line 53 of file Wing.\+py.
+Definition at line 52 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a180f53c7c326569cc0c8e8c78a3a0b2a}\label{classgebtaero_1_1_wing_1_1_wing_a180f53c7c326569cc0c8e8c78a3a0b2a}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Name@{Get\+Name}}
@@ -128,7 +144,14 @@ Definition at line 25 of file Wing.\+py.
 
 
 
-Definition at line 64 of file Wing.\+py.
+Compute the wing surface using the chord and length of the sections. 
+
+\begin{DoxyReturn}{Returns}
+the wing surface 
+\end{DoxyReturn}
+
+
+Definition at line 67 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a290d5e1d3a18de515339ffbed0f0df35}\label{classgebtaero_1_1_wing_1_1_wing_a290d5e1d3a18de515339ffbed0f0df35}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Weight@{Get\+Weight}}
@@ -138,7 +161,14 @@ Definition at line 64 of file Wing.\+py.
 
 
 
-Definition at line 56 of file Wing.\+py.
+Compute the weight of the wing using the mass per unit length in the mass mastrix. 
+
+\begin{DoxyReturn}{Returns}
+the weight of the wing 
+\end{DoxyReturn}
+
+
+Definition at line 57 of file Wing.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a6623e4ea917c8a03a3de9bbf7110e754}\label{classgebtaero_1_1_wing_1_1_wing_a6623e4ea917c8a03a3de9bbf7110e754}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Get\+Wing\+Root\+Position@{Get\+Wing\+Root\+Position}}
@@ -158,8 +188,16 @@ Definition at line 22 of file Wing.\+py.
 
 
 
-Definition at line 44 of file Wing.\+py.
+Definition at line 43 of file Wing.\+py.
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgebtaero_1_1_wing_1_1_wing_a9fbfa35745a94279f37ebf497a36126e_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classgebtaero_1_1_wing_1_1_wing_a3b5df3a1833448d36becf9a5a9f3e951}\label{classgebtaero_1_1_wing_1_1_wing_a3b5df3a1833448d36becf9a5a9f3e951}} 
 \index{gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}!Modify\+Section\+Length@{Modify\+Section\+Length}}
 \index{Modify\+Section\+Length@{Modify\+Section\+Length}!gebtaero\+::\+Wing\+::\+Wing@{gebtaero\+::\+Wing\+::\+Wing}}
@@ -168,7 +206,11 @@ Definition at line 44 of file Wing.\+py.
 
 
 
-Definition at line 71 of file Wing.\+py.
+Modify the length of one\+Wing\+Section of the wing and upadte the keypoint list. 
+
+
+
+Definition at line 75 of file Wing.\+py.
 
 
 

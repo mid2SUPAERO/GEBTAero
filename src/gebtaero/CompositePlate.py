@@ -172,6 +172,36 @@ class CompositePlate:
         elif Disp == 4:
             file.write("*step\n*static\n*cload,OP=NEW\nncurv,3,3.\n*node file,NSET=Nall\nU\n*end step\n\n")
         file.close()
+        
+    def CreateVtkFile(self,ChordScale=False):
+        L = self.Chord
+        h = self.TotThickness
+        p0x = -0.5*L+self.OffsetY
+        p0y = -0.5*h+self.OffsetZ
+        p1x = -0.5*L+self.OffsetY
+        p1y = 0.5*h+self.OffsetZ
+        p2x = 0.5*L+self.OffsetY
+        p2y = 0.5*h+self.OffsetZ
+        p3x = 0.5*L+self.OffsetY
+        p3y = -0.5*h+self.OffsetZ
+        
+        if ChordScale:
+            p0x = p0x/L
+            p0y = p0y/L
+            p1x = p1x/L
+            p1y = p1y/L
+            p2x = p2x/L
+            p2y = p2y/L
+            p3x = p3x/L
+            p3y = p3y/L
+
+        file=open("Plate.vtk","w")
+        file.write("# vtk DataFile Version 4.2\nvtk output\nASCII\nDATASET POLYDATA\nPOINTS 4 float\n")
+        file.write("{0} {1} 0\n".format(p0x,p0y))
+        file.write("{0} {1} 0\n".format(p1x,p1y))
+        file.write("{0} {1} 0\n".format(p2x,p2y))
+        file.write("{0} {1} 0\n".format(p3x,p3y))
+        file.write("\nPOLYGONS 1 5\n4 0 1 2 3\n")
      
     ## Compute the CrossSection::MassMatrix analytically 
     #@return Mu Mass per unit length (kg/m)

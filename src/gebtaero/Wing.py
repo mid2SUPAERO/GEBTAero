@@ -25,10 +25,9 @@ class Wing:
     def GetName(self):
         return self.Name    
         
+    ## Add a wing section to the wing and update internal values        
+    #@param WingSection the WingSection to add
     def AppendWingSection(self,WingSection):
-        """
-        Add a section to the current wing, first section is at the wing root, last section at the wing tip.
-        """
         # add the wing section
         self.WingSections.append(WingSection)
         
@@ -53,6 +52,8 @@ class Wing:
     def GetKpList(self):
         return self.KpList    
         
+    ## Compute the weight of the wing using the mass per unit length in the mass mastrix
+    #@return the weight of the wing    
     def GetWeight(self):
         WS = self.GetWingSections()
         Weight = 0.
@@ -61,6 +62,8 @@ class Wing:
         Weight = Weight*9.81
         return Weight     
         
+    ## Compute the wing surface using the chord and length of the sections    
+    #@return the wing surface
     def GetSurface(self):
         WS = self.GetWingSections()
         Surface = 0.
@@ -68,6 +71,7 @@ class Wing:
             Surface = Surface + Section.GetSectionLength()*Section.GetChord()
         return Surface    
         
+    ## Modify the length of oneWingSection of the wing and upadte the keypoint list
     def ModifySectionLength(self,index,SectionLength):
         if index>len(self.GetWingSections()):
             raise RuntimeError("the index is greater than the number of wing sections")

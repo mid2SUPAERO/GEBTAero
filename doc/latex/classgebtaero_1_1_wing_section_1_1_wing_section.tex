@@ -1,5 +1,19 @@
 \hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section}{}\section{gebtaero.\+Wing\+Section.\+Wing\+Section Class Reference}
 \label{classgebtaero_1_1_wing_section_1_1_wing_section}\index{gebtaero.\+Wing\+Section.\+Wing\+Section@{gebtaero.\+Wing\+Section.\+Wing\+Section}}
+
+
+This class represents a wing section corresponding to a beam element between two keypoints in the fortran solver.  
+
+
+
+
+Collaboration diagram for gebtaero.\+Wing\+Section.\+Wing\+Section\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{classgebtaero_1_1_wing_section_1_1_wing_section__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -31,15 +45,15 @@ def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a8b0b0e7224ca8bd3
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a844f4ac911b02212eb5c8a3d04bc2626}{Chord}
-\item 
+\begin{DoxyCompactList}\small\item\em Chord the wing section chord. \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a0da2330696a15bce08b3ac29b2efaf17}{ParameterA}
-\item 
+\begin{DoxyCompactList}\small\item\em The distance betwwen the elstic center and the midchord (in midchord \%). \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a350cd9770457b51a9fc2d8c5a1171bf0}{Number\+Of\+Elements}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of finite element to generate in the wing section. \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a87909d32978a886e9e329df69f7d918e}{Section\+Length}
-\item 
+\begin{DoxyCompactList}\small\item\em The length of the wing section. \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a6b0d6833d40f1de17a90670b2d93f1d7}{Half\+Chord}
-\item 
+\begin{DoxyCompactList}\small\item\em the \end{DoxyCompactList}\item 
 \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a66c05b18f3b13c9ab00815cb938fed49}{Cross\+Section}
 \item 
 \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a33e1121a1f998bf192ab4bb39d22d76a}{Frame}
@@ -47,32 +61,9 @@ def \hyperlink{classgebtaero_1_1_wing_section_1_1_wing_section_a8b0b0e7224ca8bd3
 
 
 \subsection{Detailed Description}
-\begin{DoxyVerb}Section of a wing. A section is defined for each changing parameter (dihedral,
-flexibility,...)
+This class represents a wing section corresponding to a beam element between two keypoints in the fortran solver. 
 
-:version: 12/02/18
-:author: Bertrand Kirsch
-
-ATTRIBUTES
-
-The loccal chord of the wing section (m)
-Chord  (private) : float
-
-Distance between the moment calculation point and the half chord. For isotropic
-wing the moment calculation point is placed on the elastic center
-ParameterA  (private) : float
-
-Half of the local wing chord used in the aerodynamic model
-HalfChord  (private) : float
-
-Number of FE elements of the wing section
-NumberOfElements  (private) : int
-
-Length of the wing section
-SectionLength (private) : float\end{DoxyVerb}
- 
-
-Definition at line 3 of file Wing\+Section.\+py.
+Definition at line 4 of file Wing\+Section.\+py.
 
 
 
@@ -85,7 +76,7 @@ Definition at line 3 of file Wing\+Section.\+py.
 
 
 
-Definition at line 30 of file Wing\+Section.\+py.
+Definition at line 5 of file Wing\+Section.\+py.
 
 
 
@@ -98,7 +89,7 @@ Definition at line 30 of file Wing\+Section.\+py.
 
 
 
-Definition at line 49 of file Wing\+Section.\+py.
+Definition at line 29 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_aa8304c2d733dc66fba50fcb4b3f4a902}\label{classgebtaero_1_1_wing_section_1_1_wing_section_aa8304c2d733dc66fba50fcb4b3f4a902}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+Cross\+Section@{Get\+Cross\+Section}}
@@ -108,7 +99,7 @@ Definition at line 49 of file Wing\+Section.\+py.
 
 
 
-Definition at line 69 of file Wing\+Section.\+py.
+Definition at line 49 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a8b0b0e7224ca8bd3b39dbb4fb159274e}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a8b0b0e7224ca8bd3b39dbb4fb159274e}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+Frame@{Get\+Frame}}
@@ -118,7 +109,7 @@ Definition at line 69 of file Wing\+Section.\+py.
 
 
 
-Definition at line 72 of file Wing\+Section.\+py.
+Definition at line 52 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a2f91e7d10247a836983ad07c09130788}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a2f91e7d10247a836983ad07c09130788}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+Half\+Chord@{Get\+Half\+Chord}}
@@ -128,7 +119,7 @@ Definition at line 72 of file Wing\+Section.\+py.
 
 
 
-Definition at line 52 of file Wing\+Section.\+py.
+Definition at line 32 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a04c09389662d9c6d3cc34032296dd03e}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a04c09389662d9c6d3cc34032296dd03e}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+Number\+Of\+Elements@{Get\+Number\+Of\+Elements}}
@@ -138,7 +129,7 @@ Definition at line 52 of file Wing\+Section.\+py.
 
 
 
-Definition at line 59 of file Wing\+Section.\+py.
+Definition at line 39 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_adc79518e2f548a3aaee672b9206a83f4}\label{classgebtaero_1_1_wing_section_1_1_wing_section_adc79518e2f548a3aaee672b9206a83f4}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+ParameterA@{Get\+ParameterA}}
@@ -148,7 +139,7 @@ Definition at line 59 of file Wing\+Section.\+py.
 
 
 
-Definition at line 42 of file Wing\+Section.\+py.
+Definition at line 22 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a55b1955062f73aea55c508427f9491bf}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a55b1955062f73aea55c508427f9491bf}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Get\+Section\+Length@{Get\+Section\+Length}}
@@ -158,7 +149,7 @@ Definition at line 42 of file Wing\+Section.\+py.
 
 
 
-Definition at line 66 of file Wing\+Section.\+py.
+Definition at line 46 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a8371272d51d0381a5a39213aee9b1814}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a8371272d51d0381a5a39213aee9b1814}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Set\+Chord@{Set\+Chord}}
@@ -168,7 +159,7 @@ Definition at line 66 of file Wing\+Section.\+py.
 
 
 
-Definition at line 45 of file Wing\+Section.\+py.
+Definition at line 25 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_ad10719c65734570b888b9ab60431bf87}\label{classgebtaero_1_1_wing_section_1_1_wing_section_ad10719c65734570b888b9ab60431bf87}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Set\+Number\+Of\+Elements@{Set\+Number\+Of\+Elements}}
@@ -178,7 +169,7 @@ Definition at line 45 of file Wing\+Section.\+py.
 
 
 
-Definition at line 56 of file Wing\+Section.\+py.
+Definition at line 36 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_acb553aceb237ebac8cc046e4f4a46edf}\label{classgebtaero_1_1_wing_section_1_1_wing_section_acb553aceb237ebac8cc046e4f4a46edf}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Set\+ParameterA@{Set\+ParameterA}}
@@ -188,7 +179,7 @@ Definition at line 56 of file Wing\+Section.\+py.
 
 
 
-Definition at line 39 of file Wing\+Section.\+py.
+Definition at line 19 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_ab34adcbd5dd0ad028a03fa6e3581afef}\label{classgebtaero_1_1_wing_section_1_1_wing_section_ab34adcbd5dd0ad028a03fa6e3581afef}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Set\+Section\+Length@{Set\+Section\+Length}}
@@ -198,7 +189,7 @@ Definition at line 39 of file Wing\+Section.\+py.
 
 
 
-Definition at line 63 of file Wing\+Section.\+py.
+Definition at line 43 of file Wing\+Section.\+py.
 
 
 
@@ -211,7 +202,11 @@ Definition at line 63 of file Wing\+Section.\+py.
 
 
 
-Definition at line 31 of file Wing\+Section.\+py.
+Chord the wing section chord. 
+
+
+
+Definition at line 7 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a66c05b18f3b13c9ab00815cb938fed49}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a66c05b18f3b13c9ab00815cb938fed49}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Cross\+Section@{Cross\+Section}}
@@ -221,7 +216,7 @@ Definition at line 31 of file Wing\+Section.\+py.
 
 
 
-Definition at line 36 of file Wing\+Section.\+py.
+Definition at line 16 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a33e1121a1f998bf192ab4bb39d22d76a}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a33e1121a1f998bf192ab4bb39d22d76a}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Frame@{Frame}}
@@ -231,7 +226,7 @@ Definition at line 36 of file Wing\+Section.\+py.
 
 
 
-Definition at line 37 of file Wing\+Section.\+py.
+Definition at line 17 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a6b0d6833d40f1de17a90670b2d93f1d7}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a6b0d6833d40f1de17a90670b2d93f1d7}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Half\+Chord@{Half\+Chord}}
@@ -241,7 +236,11 @@ Definition at line 37 of file Wing\+Section.\+py.
 
 
 
-Definition at line 35 of file Wing\+Section.\+py.
+the 
+
+
+
+Definition at line 15 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a350cd9770457b51a9fc2d8c5a1171bf0}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a350cd9770457b51a9fc2d8c5a1171bf0}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Number\+Of\+Elements@{Number\+Of\+Elements}}
@@ -251,7 +250,11 @@ Definition at line 35 of file Wing\+Section.\+py.
 
 
 
-Definition at line 33 of file Wing\+Section.\+py.
+Number of finite element to generate in the wing section. 
+
+
+
+Definition at line 11 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a0da2330696a15bce08b3ac29b2efaf17}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a0da2330696a15bce08b3ac29b2efaf17}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!ParameterA@{ParameterA}}
@@ -261,7 +264,11 @@ Definition at line 33 of file Wing\+Section.\+py.
 
 
 
-Definition at line 32 of file Wing\+Section.\+py.
+The distance betwwen the elstic center and the midchord (in midchord \%). 
+
+Positif if the elastic center is on the side of the trailing edge. 
+
+Definition at line 9 of file Wing\+Section.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_wing_section_1_1_wing_section_a87909d32978a886e9e329df69f7d918e}\label{classgebtaero_1_1_wing_section_1_1_wing_section_a87909d32978a886e9e329df69f7d918e}} 
 \index{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section@{gebtaero\+::\+Wing\+Section\+::\+Wing\+Section}!Section\+Length@{Section\+Length}}
@@ -271,7 +278,11 @@ Definition at line 32 of file Wing\+Section.\+py.
 
 
 
-Definition at line 34 of file Wing\+Section.\+py.
+The length of the wing section. 
+
+
+
+Definition at line 13 of file Wing\+Section.\+py.
 
 
 

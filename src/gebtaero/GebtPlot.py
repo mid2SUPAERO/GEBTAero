@@ -13,26 +13,35 @@ class GebtPlot:
     #@param ReducedDamping if true, replace the real part of the mode with the reduced damping (divided by -1/(4*pi*f))
     #@param DampAxis if true,impose the scale of the damping graph
     #@param DampScale the scale of the damping graph
-    def EigenFreqDamping(Velocity,Modes,Style=None,ReducedDamping=True,DampAxis=False,DampScale=0.01):
+    def EigenFreqDamping(Velocity,Modes,Style=None,ReducedDamping=True,DampAxis=False,DampScale=0.01,French=False):
         Nmodes = len(Modes[0,:,0])
         plt.figure(1)
         plt.subplot(211)
-        plt.xticks(fontsize=20)
-        plt.yticks(fontsize=20)
-        plt.ylabel('frequencies (Hz)',fontsize=30)
+        plt.xticks(fontsize=15)
+        plt.yticks(fontsize=15)
+        plt.xlim(min(Velocity),max(Velocity))
+        if French:
+            plt.ylabel('fréquence (Hz)',fontsize=20)
+        else:
+            plt.ylabel('frequencies (Hz)',fontsize=20)
         for i in range(Nmodes):
             if Style is None:
                 plt.plot(Velocity,Modes[:,i,1],linewidth=3)
             else:    
                 plt.plot(Velocity,Modes[:,i,1],Style,linewidth=3)
         plt.grid()		
-
         plt.subplot(212)
-        plt.xticks(fontsize=20)
-        plt.yticks(fontsize=20)
-        plt.xlabel('aerodynamic speed (m/s)',fontsize=30)
+        plt.xticks(fontsize=15)
+        plt.yticks(fontsize=15)
+        if French:
+            plt.xlabel('vitesse aérodynamique (m/s)',fontsize=20)            
+        else:    
+            plt.xlabel('aerodynamic speed (m/s)',fontsize=20)
         if ReducedDamping:
-            plt.ylabel('reduced damping',fontsize=30)
+            if French:
+                plt.ylabel('amortissement réduit',fontsize=20)                
+            else:    
+                plt.ylabel('reduced damping',fontsize=20)
             for i in range(Nmodes):
                 for j in range(len(Modes[:,i,0])):
                     if Modes[j,i,1] is not None:
@@ -45,7 +54,10 @@ class GebtPlot:
                 else:    
                     plt.plot(Velocity,Modes[:,i,0],Style,linewidth=3)
         else :
-            plt.ylabel('real part',fontsize=30)
+            if French:
+                plt.ylabel('partie réelle',fontsize=20)                
+            else:    
+                plt.ylabel('real part',fontsize=20)
             for i in range(Nmodes):
                 if Style is None:
                     plt.plot(Velocity,Modes[:,i,0],linewidth=3)
@@ -63,7 +75,7 @@ class GebtPlot:
     #@param Style the style of the curve (matplotlib doc)
     #@param DampAxis if true,impose the scale of the damping graph
     #@param DampScale the scale of the damping graph
-    def EigenFreqDampingUnsorted(Velocity,Modes,Style=None,DampAxis=False,DampScale=0.01):
+    def EigenFreqDampingUnsorted(Velocity,Modes,Style=None,DampAxis=False,DampScale=0.01,French=False):
         """
         Plot frequencies and Damping of a set of computed modes
         """
@@ -71,7 +83,11 @@ class GebtPlot:
         plt.subplot(211)
         plt.xticks(fontsize=20)
         plt.yticks(fontsize=20)
-        plt.ylabel('frequencies (Hz)',fontsize=30)
+        plt.xlim(min(Velocity),max(Velocity))
+        if French:
+            plt.ylabel('fréquence (Hz)',fontsize=30)
+        else:
+            plt.ylabel('frequencies (Hz)',fontsize=30)
         for i in range(len(Velocity)):
             temp = Modes[i]
             for j in range(len(temp)):
@@ -81,8 +97,12 @@ class GebtPlot:
         plt.subplot(212)
         plt.xticks(fontsize=20)
         plt.yticks(fontsize=20)
-        plt.xlabel('aerodynamic speed (m/s)',fontsize=30)
-        plt.ylabel('reduced damping',fontsize=30)
+        if French:
+            plt.xlabel('vitesse aérodynamique (m/s)',fontsize=30)
+            plt.ylabel('partie réelle',fontsize=30)
+        else:                
+            plt.xlabel('aerodynamic speed (m/s)',fontsize=30)
+            plt.ylabel('real part',fontsize=30)
         for i in range(len(Velocity)):
             temp = Modes[i]
             for j in range(len(temp)):

@@ -23,7 +23,7 @@ WingAxis = np.zeros([3])        #Wing axis
 WingAxis[1] = 1.        # the wing axis is ya (no sweep angle and no dihedral)
 WingTwist = 0.      # no twist angle
 
-#~ Cross Section definition
+# Cross Section definition
 CS = CrossSection()
 CS.SetFlexibilityMatrixByIsotropicValues(EIg2,EIg3,GJ)
 CS.SetMassMatrix(Mu,I22,I33,I23,Nu)
@@ -69,8 +69,8 @@ if False:
 ###########################
 #---------------------------------------------------------#
 # static loads due to gravity at the wing root
-# ~ if True:
-if False:   
+if True:
+# ~ if False:   
     Static = Simu.StaticLoads(Vinf,Rho,AlphaAC,BetaAC,GravFlag=1,verbosity=1)
 
 ###########################
@@ -91,8 +91,8 @@ if False:
 ###########################
 #---------------------------------------------------------#
 # Plotting of the first aeroelastic modes
-# ~ if True:
-if False:   
+if True:
+# ~ if False:   
     Nstep = 50    #Number of frequency values in the interval
     ModesToPlot = 5     #Number of Aeroelastic modes to plot
     Vmin = 0.       # Lower boundary of the plotting interval

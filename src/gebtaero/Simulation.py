@@ -808,7 +808,8 @@ class Simulation:
         while Vinf<=Vmax :
             v = "v="+str(Vinf)
             m = "m="+str(ModesToCompute)
-            Command = ["gebtaero","-p",self.Input.GetFileName(),v,m]
+            e = "eigenoutput=1"
+            Command = ["gebtaero","-p",self.Input.GetFileName(),v,m,e]
             EigenModes = ReadModesFromPipe(Command,output="eigenvalues")
             # ~ if errcode ==106:
                 # ~ ModesToCompute = max(int(1.2*ModesToCompute),ModesToCompute+5)
@@ -835,28 +836,31 @@ class Simulation:
         return [Velocity,Modes]
             
             
-    # ~ def DeformedModalFlutterSpeed(self,Rho,Vmin,Vmax,DeltaV,AeroFlag,FreqLim,NumberOfModes,Ksitol,Lifttol,BetaAC,verbosity=0):
-        # ~ Weight = self.Wing.GetWeight()
-        # ~ Surface = self.Wing.GetSurface()
-        # ~ Vstep = 0.1*(Vmax-Vmin)
-        # ~ # Initialisation with the undeformed flutter speed
-        # ~ VFlutter = self.ModalFlutterSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,FreqLim,0.,BetaAC,Ksitol)[0]
-        # ~ VelocityOld = VFlutter
-        # ~ # Equilibrium AlphaAC 
-        # ~ AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol)
-        # ~ VFlutter = self.ModalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,NumberOfModes,AlphaEq,BetaAC,Ksitol)[0]
-        # ~ counter = 0
-        # ~ while(abs(VFlutter-VelocityOld)>DeltaV):
-            # ~ counter = counter+1
-            # ~ if (counter >100):
-                # ~ raise RuntimeError('the algorithm is unable to converge : more than ',counter,' iterations yet')
-            # ~ VelocityOld = VFlutter
-            # ~ AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol)
-            # ~ Flutter = self.ModalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,NumberOfModes,AlphaEq,BetaAC,Ksitol)
-            # ~ VFlutter = Flutter[0]
-        # ~ if verbosity==1 :
-            # ~ print('Flutter speed = ',str(round(VFlutter,2)),' m/s ; Flutter frequency = ',str(round(Flutter[1],2))+' Hz ; Equilibirum AoA = ',str(round(AlphaEq,4)),' deg')
-        # ~ return Flutter
+    def DeformedModalCriticalSpeed(self,Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,Nstep=1,Lifttol=1e-6,GravFlag=0,verbosity=0):
+        Weight = self.Wing.GetWeight()
+        Surface = self.Wing.GetSurface()
+        Vstep = 0.1*(Vmax-Vmin)
+        # Initialisation with the undeformed flutter speed
+        VFlutter = self.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,0.,BetaAC,Nstep=Nstep,GravFlag=GravFlag,verbosity=0,mode=1)[0]
+        VelocityOld = VFlutter
+        # Equilibrium AlphaAC 
+        AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol,GravFlag=1)
+        VFlutter = self.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaEq,BetaAC,Nstep=Nstep,GravFlag=GravFlag,verbosity=0,mode=1)[0]
+        counter = 0
+        while(abs(VFlutter-VelocityOld)>DeltaV):
+            counter = counter+1
+            if (counter >100):
+                raise RuntimeError('the algorithm is unable to converge : more than ',counter,' iterations yet')
+            VelocityOld = VFlutter
+            AlphaEq = self.EquilibriumAoA(Rho,VFlutter,BetaAC,Lifttol,GravFlag=1)
+            Flutter = self.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaEq,BetaAC,Nstep=Nstep,GravFlag=GravFlag,verbosity=0,mode=1)
+            VFlutter = Flutter[0]
+            if verbosity==1:
+                print('iteration {0}, flutter speed ={1} m/s, flutter frequency ={2} Hz, Equilibrium AoA = {3} N'.format(counter,round(VFlutter,4),round(Flutter[1],4),round(180/np.pi*AlphaEq,4)))
+        if verbosity==1 :
+            Alphadeg = AlphaEq*180/np.pi
+            print('Flutter speed = ',str(round(VFlutter,2)),' m/s ; Flutter frequency = ',str(round(Flutter[1],2))+' Hz ; Equilibirum AoA = ',str(round(Alphadeg,4)),' deg')
+        return Flutter,AlphaEq
             
     # ~ def DeformedModalFlutterSpeedSorted(self,Rho,Vmax,DeltaV,AeroFlag,ModesToCompute,ModesToPlot,Lifttol,BetaAC,KsiObj=1e-6,verbosity=0):
         # ~ Weight = self.Wing.GetWeight()
@@ -888,19 +892,26 @@ class Simulation:
     #@param tolerance the AoA accuracy
     #@param verbosity log output parameter
     #@return the equilibirum angle of attack
-    def EquilibriumAoA(self,Rho,Vinf,BetaAC,tolerance,verbosity=0):
+    def EquilibriumAoA(self,Rho,Vinf,BetaAC,tolerance,verbosity=0,GravFlag=0):
         Weight = self.GetWing().GetWeight()
         Surface = self.GetWing().GetSurface()
         # Initialisation
         if (math.isclose(Vinf,0.)):
             return 0.
-        else:
+        elif GravFlag==0:
             AlphaEq = Weight/(Rho*np.pi*Surface*Vinf**2)
-            Lift = -self.StaticLoads(Vinf,Rho,AlphaEq,BetaAC)[0][2]
+            Lift = -self.StaticLoads(Vinf,Rho,AlphaEq,BetaAC,GravFlag=GravFlag)[0][2]
             
             while((Lift-Weight)/max(Weight,1e-3)>tolerance):
                 AlphaEq = Weight/max(Lift,1e-3)*AlphaEq
-                Lift = -self.StaticLoads(Vinf,Rho,AlphaEq,BetaAC)[0][2]
+                Lift = -self.StaticLoads(Vinf,Rho,AlphaEq,BetaAC,GravFlag=GravFlag)[0][2]
+        else:
+            AlphaEq = Weight/(Rho*np.pi*Surface*Vinf**2)
+            Lift = -self.StaticLoads(Vinf,Rho,AlphaEq,BetaAC,GravFlag=GravFlag)[0][2]
+            
+            while(Lift>tolerance):
+                AlphaEq = AlphaEq-0.5*Lift/(Rho*np.pi*Surface*Vinf**2)
+                Lift = -self.StaticLoads(Vinf,Rho,AlphaEq,BetaAC,GravFlag=GravFlag)[0][2]        
         if verbosity == 1:
             print('Equilibirum Angle of Attack = ',str(round(AlphaEq,4)),' deg for a flow velocity of ',str(round(Vinf,2)),' corresponding to a Lift of ',str(round(Lift,2)))        
         return AlphaEq

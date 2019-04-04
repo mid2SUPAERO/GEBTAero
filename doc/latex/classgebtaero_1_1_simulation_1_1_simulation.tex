@@ -5,6 +5,16 @@
 This class is used to defined aeroelastic simulation (static, dynamic or modal) in a particular configuration (AoA, Velocity, air density,...)  
 
 
+
+
+Collaboration diagram for gebtaero.\+Simulation.\+Simulation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classgebtaero_1_1_simulation_1_1_simulation__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -30,7 +40,9 @@ def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ae64bf3c9cef715d9d999
 \begin{DoxyCompactList}\small\item\em Compute the eigenvalues for a set of velocity and correlate the results into aeroelastic modes. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a2907ad4a52664321ef36ca2d05a5ea64}{Eigen\+Tab} (self, Rho, Vmin, Vmax, Nstep, Aero\+Flag, Modes\+To\+Plot, Modes\+To\+Compute, Alpha\+AC, Beta\+AC, Grav\+Flag=0, verbosity=0)
 \begin{DoxyCompactList}\small\item\em Compute the eigenvalues for a set of velocity without correlation into aeroelastic modes. \end{DoxyCompactList}\item 
-def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a36a121ab1505362902de50041d6c2e5d}{Equilibrium\+AoA} (self, Rho, Vinf, Beta\+AC, tolerance, verbosity=0)
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_a7ed1c2f2548c11f435ed6dbb128c108d}{Deformed\+Modal\+Critical\+Speed} (self, Rho, Vmin, Vmax, Vstep, DeltaV, Aero\+Flag, Alpha\+AC, Beta\+AC, Nstep=1, Lifttol=1e-\/6, Grav\+Flag=0, verbosity=0)
+\item 
+def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_afd6e42af095216b12f40d6e07a71961e}{Equilibrium\+AoA} (self, Rho, Vinf, Beta\+AC, tolerance, verbosity=0, Grav\+Flag=0)
 \begin{DoxyCompactList}\small\item\em Compute the equilibirum angle of attack of a wing in a particular configuration. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_simulation_1_1_simulation_ac20465bedf1f645c1ac6fab9c45b0802}{Temporal\+Flutter\+Speed} (self, Rho, Vmin, Vmax, DeltaV, Aero\+Flag, Alpha\+AC, Beta\+AC, Nb\+Period, Step\+By\+Period, Coef\+Perturb, Flutter\+Limit=0.\+4, Grav\+Flag=0, verbosity=0)
 \begin{DoxyCompactList}\small\item\em This routine intend to verify the correlation between the modal flutter speed and the temporal dynamic behavior of the wing. \end{DoxyCompactList}\item 
@@ -70,6 +82,16 @@ Definition at line 14 of file Simulation.\+py.
 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a7ed1c2f2548c11f435ed6dbb128c108d}\label{classgebtaero_1_1_simulation_1_1_simulation_a7ed1c2f2548c11f435ed6dbb128c108d}} 
+\index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Deformed\+Modal\+Critical\+Speed@{Deformed\+Modal\+Critical\+Speed}}
+\index{Deformed\+Modal\+Critical\+Speed@{Deformed\+Modal\+Critical\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
+\subsubsection{\texorpdfstring{Deformed\+Modal\+Critical\+Speed()}{DeformedModalCriticalSpeed()}}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Deformed\+Modal\+Critical\+Speed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vmin,  }\item[{}]{Vmax,  }\item[{}]{Vstep,  }\item[{}]{DeltaV,  }\item[{}]{Aero\+Flag,  }\item[{}]{Alpha\+AC,  }\item[{}]{Beta\+AC,  }\item[{}]{Nstep = {\ttfamily 1},  }\item[{}]{Lifttol = {\ttfamily 1e-\/6},  }\item[{}]{Grav\+Flag = {\ttfamily 0},  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 839 of file Simulation.\+py.
+
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a2907ad4a52664321ef36ca2d05a5ea64}\label{classgebtaero_1_1_simulation_1_1_simulation_a2907ad4a52664321ef36ca2d05a5ea64}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Eigen\+Tab@{Eigen\+Tab}}
 \index{Eigen\+Tab@{Eigen\+Tab}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
@@ -160,6 +182,14 @@ Modes the list of eigenvalues computed at each step (matplotlib output)
 
 Definition at line 648 of file Simulation.\+py.
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{classgebtaero_1_1_simulation_1_1_simulation_ae64bf3c9cef715d9d999acef888a840e_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a03a37673e2e1c67de5eaeb261512d122}\label{classgebtaero_1_1_simulation_1_1_simulation_a03a37673e2e1c67de5eaeb261512d122}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Eigenvalues@{Eigenvalues}}
 \index{Eigenvalues@{Eigenvalues}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
@@ -200,11 +230,11 @@ Eigen\+Values a numpy array containing eigenvalues
 
 Definition at line 32 of file Simulation.\+py.
 
-\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a36a121ab1505362902de50041d6c2e5d}\label{classgebtaero_1_1_simulation_1_1_simulation_a36a121ab1505362902de50041d6c2e5d}} 
+\mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_afd6e42af095216b12f40d6e07a71961e}\label{classgebtaero_1_1_simulation_1_1_simulation_afd6e42af095216b12f40d6e07a71961e}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Equilibrium\+AoA@{Equilibrium\+AoA}}
 \index{Equilibrium\+AoA@{Equilibrium\+AoA}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
 \subsubsection{\texorpdfstring{Equilibrium\+Ao\+A()}{EquilibriumAoA()}}
-{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Equilibrium\+AoA (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vinf,  }\item[{}]{Beta\+AC,  }\item[{}]{tolerance,  }\item[{}]{verbosity = {\ttfamily 0} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def gebtaero.\+Simulation.\+Simulation.\+Equilibrium\+AoA (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Rho,  }\item[{}]{Vinf,  }\item[{}]{Beta\+AC,  }\item[{}]{tolerance,  }\item[{}]{verbosity = {\ttfamily 0},  }\item[{}]{Grav\+Flag = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 
 
@@ -230,8 +260,16 @@ the equilibirum angle of attack
 \end{DoxyReturn}
 
 
-Definition at line 891 of file Simulation.\+py.
+Definition at line 895 of file Simulation.\+py.
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgebtaero_1_1_simulation_1_1_simulation_afd6e42af095216b12f40d6e07a71961e_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a5c1dd2c7a88c06a76d854aa7ee1830ad}\label{classgebtaero_1_1_simulation_1_1_simulation_a5c1dd2c7a88c06a76d854aa7ee1830ad}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Flutter\+Vtk@{Flutter\+Vtk}}
 \index{Flutter\+Vtk@{Flutter\+Vtk}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
@@ -275,7 +313,7 @@ Perform a temporal simulation at a velocity greater than the flutter speed to ge
 \end{DoxyParams}
 
 
-Definition at line 993 of file Simulation.\+py.
+Definition at line 1004 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a2d7432b48522221861693e98b03568c4}\label{classgebtaero_1_1_simulation_1_1_simulation_a2d7432b48522221861693e98b03568c4}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Get\+Wing@{Get\+Wing}}
@@ -287,6 +325,14 @@ Definition at line 993 of file Simulation.\+py.
 
 Definition at line 17 of file Simulation.\+py.
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgebtaero_1_1_simulation_1_1_simulation_a2d7432b48522221861693e98b03568c4_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a9e1695e4fd6c14ac4c9ddcf488ba6b77}\label{classgebtaero_1_1_simulation_1_1_simulation_a9e1695e4fd6c14ac4c9ddcf488ba6b77}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Critical\+Speed@{Modal\+Critical\+Speed}}
 \index{Modal\+Critical\+Speed@{Modal\+Critical\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
@@ -333,6 +379,14 @@ Divegence speed (m/s)
 
 Definition at line 171 of file Simulation.\+py.
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgebtaero_1_1_simulation_1_1_simulation_a9e1695e4fd6c14ac4c9ddcf488ba6b77_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ac3bea60a9f9d2c552125644a3256df88}\label{classgebtaero_1_1_simulation_1_1_simulation_ac3bea60a9f9d2c552125644a3256df88}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Divergence\+Speed@{Modal\+Divergence\+Speed}}
 \index{Modal\+Divergence\+Speed@{Modal\+Divergence\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
@@ -423,6 +477,14 @@ Modes the list of eigenvalues computed at each step (matplotlib output option)
 
 Definition at line 518 of file Simulation.\+py.
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{classgebtaero_1_1_simulation_1_1_simulation_a597d75e677892bd4308a6537a27eedb8_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ab62864a7bf462387f4cbe24b061b803a}\label{classgebtaero_1_1_simulation_1_1_simulation_ab62864a7bf462387f4cbe24b061b803a}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Modal\+Flutter\+Speed@{Modal\+Flutter\+Speed}}
 \index{Modal\+Flutter\+Speed@{Modal\+Flutter\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
@@ -525,6 +587,14 @@ Modes the list of eigenvalues computed at each step (matplotlib output option)
 
 Definition at line 376 of file Simulation.\+py.
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{classgebtaero_1_1_simulation_1_1_simulation_ae06bc82e983fb16d7f3e303046a39a2e_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_a36da2334a6e743a9ab29bdfe1334ed04}\label{classgebtaero_1_1_simulation_1_1_simulation_a36da2334a6e743a9ab29bdfe1334ed04}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Static\+Loads@{Static\+Loads}}
 \index{Static\+Loads@{Static\+Loads}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
@@ -557,6 +627,14 @@ Output a numpy array containing the wing root loads and wing tip deflection and 
 
 Definition at line 57 of file Simulation.\+py.
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgebtaero_1_1_simulation_1_1_simulation_a36da2334a6e743a9ab29bdfe1334ed04_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ac3dce2054614b2bbcac1bf97ab9e4ace}\label{classgebtaero_1_1_simulation_1_1_simulation_ac3dce2054614b2bbcac1bf97ab9e4ace}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Temporal\+Divergence\+Speed@{Temporal\+Divergence\+Speed}}
 \index{Temporal\+Divergence\+Speed@{Temporal\+Divergence\+Speed}!gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}}
@@ -595,7 +673,7 @@ Divergence speed
 \end{DoxyReturn}
 
 
-Definition at line 1115 of file Simulation.\+py.
+Definition at line 1126 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_abcfba8fd89bc92734326085c272134ae}\label{classgebtaero_1_1_simulation_1_1_simulation_abcfba8fd89bc92734326085c272134ae}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Temporal\+Dynamic@{Temporal\+Dynamic}}
@@ -638,7 +716,7 @@ Realise a temporal simulation in a specified configuration with an initial harmo
 \end{DoxyParams}
 
 
-Definition at line 1072 of file Simulation.\+py.
+Definition at line 1083 of file Simulation.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_simulation_1_1_simulation_ac20465bedf1f645c1ac6fab9c45b0802}\label{classgebtaero_1_1_simulation_1_1_simulation_ac20465bedf1f645c1ac6fab9c45b0802}} 
 \index{gebtaero\+::\+Simulation\+::\+Simulation@{gebtaero\+::\+Simulation\+::\+Simulation}!Temporal\+Flutter\+Speed@{Temporal\+Flutter\+Speed}}
@@ -681,7 +759,7 @@ after a modal flutter speed determination it performs temporal simulation at sev
 \end{DoxyParams}
 
 
-Definition at line 922 of file Simulation.\+py.
+Definition at line 933 of file Simulation.\+py.
 
 
 

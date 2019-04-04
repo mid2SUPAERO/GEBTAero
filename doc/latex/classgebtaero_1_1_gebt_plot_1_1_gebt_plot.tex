@@ -5,13 +5,22 @@
 This class is used to generate output using matplotlib and paraview.  
 
 
+
+
+Collaboration diagram for gebtaero.\+Gebt\+Plot.\+Gebt\+Plot\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{classgebtaero_1_1_gebt_plot_1_1_gebt_plot__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ab23ba97ff26906e6af80bff4e068327a}{Eigen\+Freq\+Damping} (Velocity, Modes, Style=None, Reduced\+Damping=True, Damp\+Axis=False, Damp\+Scale=0.\+01)
+def \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_a487ebf0a378a8417070b0e69f73e1970}{Eigen\+Freq\+Damping} (Velocity, Modes, Style=None, Reduced\+Damping=True, Damp\+Axis=False, Damp\+Scale=0.\+01, French=False)
 \begin{DoxyCompactList}\small\item\em Generate a matplotlib graph describing some aeroelastic modes. \end{DoxyCompactList}\item 
-def \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_a3c71db3cc350d3befddb115ade755867}{Eigen\+Freq\+Damping\+Unsorted} (Velocity, Modes, Style=None, Damp\+Axis=False, Damp\+Scale=0.\+01)
-\begin{DoxyCompactList}\small\item\em a method similar to \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ab23ba97ff26906e6af80bff4e068327a}{Gebt\+Plot\+::\+Eigen\+Freq\+Damping} for unsorted modes (style point to avoid shift in the curves) \end{DoxyCompactList}\item 
+def \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ada6addc1b62b7ee88fa482a6a2c7abd1}{Eigen\+Freq\+Damping\+Unsorted} (Velocity, Modes, Style=None, Damp\+Axis=False, Damp\+Scale=0.\+01, French=False)
+\begin{DoxyCompactList}\small\item\em a method similar to \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_a487ebf0a378a8417070b0e69f73e1970}{Gebt\+Plot\+::\+Eigen\+Freq\+Damping} for unsorted modes (style point to avoid shift in the curves) \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_aada9da700e97eef6c59a4377098954af}{Write\+Paraview\+Script} (Vtk\+Folder, Vtk\+Name, Airfoil\+Path=\char`\"{}/opt/gebtaero/airfoil/airfoil\+\_\+default.\+vtk\char`\"{})
 \begin{DoxyCompactList}\small\item\em Write a python paraview script using a folder of vtk output files. \end{DoxyCompactList}\item 
 def \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ae78de8134989ce474d9a7d32b6f7e7c9}{Paraview\+Output} (self, Vtk\+Folder, Vtk\+Name, Airfoil\+Path=\char`\"{}/opt/gebtaero/airfoil/airfoil\+\_\+default.\+vtk\char`\"{})
@@ -26,11 +35,11 @@ Definition at line 8 of file Gebt\+Plot.\+py.
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ab23ba97ff26906e6af80bff4e068327a}\label{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ab23ba97ff26906e6af80bff4e068327a}} 
+\mbox{\Hypertarget{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_a487ebf0a378a8417070b0e69f73e1970}\label{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_a487ebf0a378a8417070b0e69f73e1970}} 
 \index{gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot@{gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot}!Eigen\+Freq\+Damping@{Eigen\+Freq\+Damping}}
 \index{Eigen\+Freq\+Damping@{Eigen\+Freq\+Damping}!gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot@{gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot}}
 \subsubsection{\texorpdfstring{Eigen\+Freq\+Damping()}{EigenFreqDamping()}}
-{\footnotesize\ttfamily def gebtaero.\+Gebt\+Plot.\+Gebt\+Plot.\+Eigen\+Freq\+Damping (\begin{DoxyParamCaption}\item[{}]{Velocity,  }\item[{}]{Modes,  }\item[{}]{Style = {\ttfamily None},  }\item[{}]{Reduced\+Damping = {\ttfamily True},  }\item[{}]{Damp\+Axis = {\ttfamily False},  }\item[{}]{Damp\+Scale = {\ttfamily 0.01} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def gebtaero.\+Gebt\+Plot.\+Gebt\+Plot.\+Eigen\+Freq\+Damping (\begin{DoxyParamCaption}\item[{}]{Velocity,  }\item[{}]{Modes,  }\item[{}]{Style = {\ttfamily None},  }\item[{}]{Reduced\+Damping = {\ttfamily True},  }\item[{}]{Damp\+Axis = {\ttfamily False},  }\item[{}]{Damp\+Scale = {\ttfamily 0.01},  }\item[{}]{French = {\ttfamily False} }\end{DoxyParamCaption})}
 
 
 
@@ -55,15 +64,15 @@ Generate a matplotlib graph describing some aeroelastic modes.
 
 Definition at line 16 of file Gebt\+Plot.\+py.
 
-\mbox{\Hypertarget{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_a3c71db3cc350d3befddb115ade755867}\label{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_a3c71db3cc350d3befddb115ade755867}} 
+\mbox{\Hypertarget{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ada6addc1b62b7ee88fa482a6a2c7abd1}\label{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ada6addc1b62b7ee88fa482a6a2c7abd1}} 
 \index{gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot@{gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot}!Eigen\+Freq\+Damping\+Unsorted@{Eigen\+Freq\+Damping\+Unsorted}}
 \index{Eigen\+Freq\+Damping\+Unsorted@{Eigen\+Freq\+Damping\+Unsorted}!gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot@{gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot}}
 \subsubsection{\texorpdfstring{Eigen\+Freq\+Damping\+Unsorted()}{EigenFreqDampingUnsorted()}}
-{\footnotesize\ttfamily def gebtaero.\+Gebt\+Plot.\+Gebt\+Plot.\+Eigen\+Freq\+Damping\+Unsorted (\begin{DoxyParamCaption}\item[{}]{Velocity,  }\item[{}]{Modes,  }\item[{}]{Style = {\ttfamily None},  }\item[{}]{Damp\+Axis = {\ttfamily False},  }\item[{}]{Damp\+Scale = {\ttfamily 0.01} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def gebtaero.\+Gebt\+Plot.\+Gebt\+Plot.\+Eigen\+Freq\+Damping\+Unsorted (\begin{DoxyParamCaption}\item[{}]{Velocity,  }\item[{}]{Modes,  }\item[{}]{Style = {\ttfamily None},  }\item[{}]{Damp\+Axis = {\ttfamily False},  }\item[{}]{Damp\+Scale = {\ttfamily 0.01},  }\item[{}]{French = {\ttfamily False} }\end{DoxyParamCaption})}
 
 
 
-a method similar to \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ab23ba97ff26906e6af80bff4e068327a}{Gebt\+Plot\+::\+Eigen\+Freq\+Damping} for unsorted modes (style point to avoid shift in the curves) 
+a method similar to \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_a487ebf0a378a8417070b0e69f73e1970}{Gebt\+Plot\+::\+Eigen\+Freq\+Damping} for unsorted modes (style point to avoid shift in the curves) 
 
 
 \begin{DoxyParams}{Parameters}
@@ -82,7 +91,7 @@ a method similar to \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ab23ba9
 \end{DoxyParams}
 
 
-Definition at line 66 of file Gebt\+Plot.\+py.
+Definition at line 78 of file Gebt\+Plot.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ae78de8134989ce474d9a7d32b6f7e7c9}\label{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_ae78de8134989ce474d9a7d32b6f7e7c9}} 
 \index{gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot@{gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot}!Paraview\+Output@{Paraview\+Output}}
@@ -105,7 +114,7 @@ Create a paraview script using \hyperlink{classgebtaero_1_1_gebt_plot_1_1_gebt_p
 \end{DoxyParams}
 
 
-Definition at line 134 of file Gebt\+Plot.\+py.
+Definition at line 154 of file Gebt\+Plot.\+py.
 
 \mbox{\Hypertarget{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_aada9da700e97eef6c59a4377098954af}\label{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_aada9da700e97eef6c59a4377098954af}} 
 \index{gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot@{gebtaero\+::\+Gebt\+Plot\+::\+Gebt\+Plot}!Write\+Paraview\+Script@{Write\+Paraview\+Script}}
@@ -128,8 +137,15 @@ Write a python paraview script using a folder of vtk output files.
 \end{DoxyParams}
 
 
-Definition at line 99 of file Gebt\+Plot.\+py.
+Definition at line 119 of file Gebt\+Plot.\+py.
 
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classgebtaero_1_1_gebt_plot_1_1_gebt_plot_aada9da700e97eef6c59a4377098954af_icgraph}
+\end{center}
+\end{figure}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

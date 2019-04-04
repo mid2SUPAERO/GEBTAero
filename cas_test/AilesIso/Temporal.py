@@ -72,7 +72,7 @@ if test1:
     CoefPerturb = 1e-6
     DeltaV = 1
     Vmin = 30
-    VFlutterTemp = Simu.TemporalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,AlphaAC,BetaAC,NbPeriod,StepByPeriod,CoefPerturb,GravFlag=0,verbosity=verbosity)
+    VFlutterTemp = Simu.TemporalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,AlphaAC,BetaAC,NbPeriod,StepByPeriod,CoefPerturb,GravFlag=0,FlutterLimit=0.1,verbosity=verbosity)
     assert(math.isclose(VFlutterTemp,137.,rel_tol=0.02)),"Error temporal flutter speed"
     print("#####OK#####")
     
@@ -127,7 +127,7 @@ if test2:
     CoefPerturb = 1e-6
     DeltaV = 0.5
     Nev = 60
-    VFlutterTemp = Simu.TemporalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,ModesToPlot,AlphaAC,BetaAC,Ksiobj,NbPeriod,StepByPeriod,CoefPerturb,verbosity=verbosity)
+    VFlutterTemp = Simu.TemporalFlutterSpeed(Rho,Vmin,Vmax,DeltaV,AeroFlag,AlphaAC,BetaAC,NbPeriod,StepByPeriod,CoefPerturb,FlutterLimit=0.1,verbosity=verbosity)
     assert(math.isclose(VFlutterTemp,32.,abs_tol=1)),"Error temporal flutter speed"
     print("#####OK#####")
     

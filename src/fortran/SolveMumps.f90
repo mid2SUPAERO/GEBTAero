@@ -262,12 +262,12 @@ DO i=1,niter
 	   EXIT
    ENDIF   
 
-! It seems the following test is needed, if it converges on x and the gradient is not equal to zero.  as if rhs=0, then the following test must be true for a real solution
-! if it is not, then, it must converge to a local minimum, one must restart with different nonlinear parameters
-!~    IF(MAXVAL(ABS(x-xold)/MAX(ABS(x),1.0D0))<=TOLF) THEN
-!~ 		check=.FALSE.
-!~ 		RETURN
-!~ 	ENDIF  ! no more corrections found for x	
+!~ ! It seems the following test is needed, if it converges on x and the gradient is not equal to zero.  as if rhs=0, then the following test must be true for a real solution
+!~ ! if it is not, then, it must converge to a local minimum, one must restart with different nonlinear parameters
+   IF(MAXVAL(ABS(x-xold)/MAX(ABS(x),1.0D0))<=TOLF) THEN
+		check=.FALSE.
+		RETURN
+	ENDIF  ! no more corrections found for x	
 
     IF(i==niter) THEN
         error='The solution does not converge after the maximum number of iterations' !The maximum number of iterations reached, the solution is still not converged. 
@@ -279,6 +279,7 @@ IF(check) THEN
     error="The solution converges to a local minimum. Please restart &
 	&  with different number of load steps and number of iterations"
     WRITE(0,*) 'SolveMumps.f90 : ',error
+    WRITE(0,*) MAXVAL(ABS(gradient)*MAX(ABS(x),1.0D0)/MAX(fmin,0.5D0*SIZE(x)))
     ERROR STOP 123
 ENDIF
         

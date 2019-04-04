@@ -1,37 +1,17 @@
 # coding=UTF-8
 
+## This class represents a wing section corresponding to a beam element between two keypoints in the fortran solver
 class WingSection:
-    """
-    Section of a wing. A section is defined for each changing parameter (dihedral,
-    flexibility,...)
-
-    :version: 12/02/18
-    :author: Bertrand Kirsch
-    
-    ATTRIBUTES
-
-    The loccal chord of the wing section (m)
-    Chord  (private) : float
-
-    Distance between the moment calculation point and the half chord. For isotropic
-    wing the moment calculation point is placed on the elastic center
-    ParameterA  (private) : float
-
-    Half of the local wing chord used in the aerodynamic model
-    HalfChord  (private) : float
-
-    Number of FE elements of the wing section
-    NumberOfElements  (private) : int
-
-    Length of the wing section
-    SectionLength (private) : float
-
-    """
     def __init__(self,Chord,ParameterA,NumberOfElements,SectionLength,CrossSection,Frame):
+        ## Chord the wing section chord 
         self.Chord = Chord
+        ## The distance betwwen the elstic center and the midchord (in midchord %). Positif if the elastic center is on the side of the trailing edge.
         self.ParameterA = ParameterA
+        ## Number of finite element to generate in the wing section
         self.NumberOfElements = NumberOfElements
+        ## The length of the wing section
         self.SectionLength = SectionLength
+        ## the 
         self.HalfChord = 0.5*Chord
         self.CrossSection = CrossSection
         self.Frame = Frame
