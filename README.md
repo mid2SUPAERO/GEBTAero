@@ -22,7 +22,7 @@ For other linux distributions, you can ask for a .deb or .rpm package creation.
 Install the dependancies. 
 On Ubuntu:
 ```bash
-sudo apt install paraview calculix-ccx calculix-cgx libmumps-seq-dev libarpack2-dev python3 python3-numpy python3-matplotlib gfortran make git
+sudo apt install paraview calculix-ccx calculix-cgx libmumps-seq-dev libarpack2-dev python3 python3-numpy python3-matplotlib gfortran make git doxygen
 ```
 
 Clone the repository ("/MyFolderPath/" is the path to the folder where the  GEBTAero folder will be copied)
