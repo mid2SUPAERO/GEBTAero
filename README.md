@@ -74,6 +74,14 @@ It will generate a .ech text file summarising the input parameters, a .out text 
 You can use an IDE to easily launch the scripts and read the source code. 
 This program has been developed using geany (www.geany.org). Open a python script and press "Maj+F5". Modify "python" in "python3" and press "F5" to launch the script.
 
+## Using GEBTAero within OpenDMAO framework
+GEBTAero solver is designed to be used within a multidisciplinary optimisation framework like openMDAO (https://openmdao.org/). To illustrate that point, a simple optimisation application is proposed in examples/optimisation/ folder.
+To install openMDAO on Ubuntu or Debian :
+```bash
+sudo apt install python3-pip
+pip3 install openmdao
+```
+
 ## Windows users
 GEBTAero has been developped and tested on linux OS. If you are a Windows user :
 

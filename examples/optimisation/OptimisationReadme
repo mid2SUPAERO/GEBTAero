@@ -1,0 +1,7 @@
+This folder contain a simple test case of openMDAO optimisation
+It consists in a two-ply laminate with various lower and upper ply orientation.
+The Classes folder contains the openMDAO Explicit Component used to :
+- compute the flexibility matrix coefficient (SouplesseMat)
+- compute the aeroelastic critical speed of the laminate (Vflutter)
+
+4 scripts are added to illustrate the optimisation of the flexibility matrix coefficients and the critical speed using COBYLA and SimpleGA (genetic) optimisation algorithms.
