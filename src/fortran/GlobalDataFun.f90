@@ -145,7 +145,7 @@ INTEGER:: ARPACK_MOD=0  !< parameter WHICH of arpack solver (1:LI, 2:LM, 3:LR, 4
 INTEGER:: EIGEN_OUTPUT=0    !< define wich eigenvalue data to output (0: eigenvalues and eigenvectors, 1: eigenvalues only)
 CHARACTER(10) :: SOLVER='MUMPS'       !< linear solver used (HSL : ddep.f, mc19.f + ma28 or MUMPS : linux library)
 INTEGER:: flutter_flag=0        !< used in temporal simulation : 0= deformation are under a "flutter" state; 1= deformation are over a "flutter" state
-REAL(DBL):: FLUTTER_LIMIT       !< the value of maximale angular deformaton use to trigger the flutter flag
+REAL(DBL):: FLUTTER_LIMIT=100       !< the value of maximale angular deformaton use to trigger the flutter flag
 
 
 !=========================================================================================

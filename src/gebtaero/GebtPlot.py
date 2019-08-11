@@ -1,5 +1,6 @@
 # coding=UTF-8
 import matplotlib.pyplot as plt
+from matplotlib.ticker import StrMethodFormatter
 import numpy as np
 import os as os
 from .utils import *
@@ -13,35 +14,40 @@ class GebtPlot:
     #@param ReducedDamping if true, replace the real part of the mode with the reduced damping (divided by -1/(4*pi*f))
     #@param DampAxis if true,impose the scale of the damping graph
     #@param DampScale the scale of the damping graph
-    def EigenFreqDamping(Velocity,Modes,Style=None,ReducedDamping=True,DampAxis=False,DampScale=0.01,French=False):
+    def EigenFreqDamping(Velocity,Modes,Style=None,ReducedDamping=True,DampAxis=False,DampScale=0.01,French=False,LegendList=None):
         Nmodes = len(Modes[0,:,0])
-        plt.figure(1)
+        plt.figure(1,figsize=(18,9))
         plt.subplot(211)
         plt.xticks(fontsize=15)
         plt.yticks(fontsize=15)
         plt.xlim(min(Velocity),max(Velocity))
         if French:
-            plt.ylabel('fréquence (Hz)',fontsize=20)
+            plt.ylabel('Fréquence (Hz)',fontsize=20)
         else:
-            plt.ylabel('frequencies (Hz)',fontsize=20)
+            plt.ylabel('Frequencies (Hz)',fontsize=20)
         for i in range(Nmodes):
             if Style is None:
                 plt.plot(Velocity,Modes[:,i,1],linewidth=3)
+                # ~ plt.plot(Velocity,Modes[:,i,1],linewidth=3,marker="o")
             else:    
                 plt.plot(Velocity,Modes[:,i,1],Style,linewidth=3)
         plt.grid()		
+        if LegendList is not None:
+            plt.legend(LegendList,prop={'size': 15})
+            # ~ plt.legend(LegendList,prop={'size': 15},bbox_to_anchor=(0., 1.02, 1., .102), loc=3,ncol=Nmodes, mode="expand", borderaxespad=0.1)
         plt.subplot(212)
         plt.xticks(fontsize=15)
         plt.yticks(fontsize=15)
+        plt.gca().yaxis.set_major_formatter(StrMethodFormatter('{x:,.1e}')) # No decimal places
         if French:
-            plt.xlabel('vitesse aérodynamique (m/s)',fontsize=20)            
+            plt.xlabel('Vitesse aérodynamique (m/s)',fontsize=20)            
         else:    
-            plt.xlabel('aerodynamic speed (m/s)',fontsize=20)
+            plt.xlabel('Aerodynamic speed (m/s)',fontsize=20)
         if ReducedDamping:
             if French:
-                plt.ylabel('amortissement réduit',fontsize=20)                
+                plt.ylabel('Amortissement réduit',fontsize=20)                
             else:    
-                plt.ylabel('reduced damping',fontsize=20)
+                plt.ylabel('Reduced damping',fontsize=20)
             for i in range(Nmodes):
                 for j in range(len(Modes[:,i,0])):
                     if Modes[j,i,1] is not None:
@@ -51,13 +57,14 @@ class GebtPlot:
                             Modes[j,i,0] = Modes[j,i,0] /(-4*np.pi*Modes[j,i,1])
                 if Style is None:
                     plt.plot(Velocity,Modes[:,i,0],linewidth=3)
+                    # ~ plt.plot(Velocity,Modes[:,i,0],linewidth=3,marker="o")
                 else:    
                     plt.plot(Velocity,Modes[:,i,0],Style,linewidth=3)
         else :
             if French:
-                plt.ylabel('partie réelle',fontsize=20)                
+                plt.ylabel('Partie réelle',fontsize=20)                
             else:    
-                plt.ylabel('real part',fontsize=20)
+                plt.ylabel('Real part',fontsize=20)
             for i in range(Nmodes):
                 if Style is None:
                     plt.plot(Velocity,Modes[:,i,0],linewidth=3)
@@ -65,7 +72,8 @@ class GebtPlot:
                     plt.plot(Velocity,Modes[:,i,0],Style,linewidth=3)            
         if DampAxis:    
             plt.axis([min(Velocity),max(Velocity),-DampScale,DampScale])    
-        plt.hlines(0.0, min(Velocity),max(Velocity), colors='r', linestyles='dashdot', label='', hold=None, data=None,linewidth=3)
+        # ~ plt.hlines(0.0, min(Velocity),max(Velocity), colors='r', linestyles='dashdot', label='', hold=None, data=None,linewidth=3)
+        plt.tight_layout()
         plt.grid()
         plt.show()
         

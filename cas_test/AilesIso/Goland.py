@@ -133,11 +133,11 @@ if test3:
     Vmax = 300
     Rho = 1.225
     ModesToPlot = 5
-    AeroFlag = 2
+    AeroFlag = 1
     DivSpeed = Simu.ModalDivergenceSpeedSorted(Rho,Vmax,DeltaV,AeroFlag,ModesToPlot,ModesToPlot,AlphaAC,BetaAC,CorrCoef=0.9,GravFlag=0,verbosity=verbosity)[0]
-    assert(math.isclose(DivSpeed,253,abs_tol=1)),"Error modal divergence speed"
+    assert(math.isclose(DivSpeed,253,abs_tol=2)),"Error modal divergence speed"
     DivSpeed = Simu.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=0,verbosity=verbosity,mode=2)
-    assert(math.isclose(DivSpeed[0],253,abs_tol=1)),"Error modal divergence speed"
+    assert(math.isclose(DivSpeed[0],253,abs_tol=2)),"Error modal divergence speed"
     print("#####OK#####")
     
 if test4:

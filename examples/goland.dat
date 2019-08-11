@@ -1,14 +1,4 @@
-Here is the description of an input parameter readable by the fortran computation code. 
-For more details, all the parameter are detailled in the GEBTAero documentation application "GEBTAero Doc"
 3 3 1 1 1 1 # analysis_flag; aero_flag; grav_flag; niter; nstep; nvtk
-* analysis_flag : 3 = modal analysis
-* aero_flag : 3 = unsteady aerodynamic
-* grav_flag : 1 = with gravity forces
-* niter : 1 = only 1 iteration for the non linear Newton-Raphson algorithm (unused in for a modal analysis )
-* nstep : 1 = only one load step for the equilibrium computation 
-* nvtk : 1 = number of vtk file output. For a modal analysis, 0 = no output, >0 = 1 vtk file for each mode
-
-
 0 0 0  # omega_a0 (3 components)
 0 0 0  # omega_a_tf : the time function number associated to each component (0 = no time function)
 0 0 0  # v_root_a0 (3 components)
@@ -16,15 +6,6 @@ For more details, all the parameter are detailled in the GEBTAero documentation 
 4   # nev : the maximum number of modes computed by arpack
 
 2 1 2 1 1 0 0 0 0  # npoint,nmemb,ncond_pt,nmate, nframe, ncond_mb,ndistrfun, ntimefun, ncurv
-* npoint : the number of keypoints
-* nmemb : the number og beam member
-* ncond_pt : the number of keypoints with imposed conditions (ddl or forces)
-* nmate : the number of materials
-* nframe : the number of frame b
-* ncond_mb : the number of beam members with imposed condtions
-* ndistrfun : the number of distribution function (for beam forces or ddl)
-* ntimefunction : the number of time function
-* ncurv : the number of beam curvature
 
 1	0	0	0 # position of keypoint 1 in the frame a
 2	0 6.096 0 # position of keypoint 2 in the frame a

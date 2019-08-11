@@ -63,7 +63,7 @@ class Simulation:
         Command = ["gebtaero","-p",FileName]
         StaticLoads = ReadLoadsFromPipe(Command)
         Output = np.array(StaticLoads,dtype=float,copy=False).reshape(4,3)
-        # ~ RemoveFiles()
+        RemoveFiles()
         if verbosity == 1:
             print('The static loads in frame a is Fxa=',str(round(Output[0,0],4)),'N ; Fya=',str(round(Output[0,1],4)),'N ; Fza=',str(round(Output[0,2],4)),'N ; Mxa=',str(round(Output[1,0],4)),'N.m ; Mya=',str(round(Output[1,1],4)),'N.m ; Mza=',str(round(Output[1,2],4)),'N.m')
         self.Input.RemoveInputFile()
@@ -224,6 +224,15 @@ class Simulation:
                         else:    
                             Velocity = Velocity + Vstep   
             elif (mode ==2): # looking for the first divergence mode
+                # suppression of unstable periodic modes
+                i = 0
+                while i<n:
+                    if (EigenVal[i,0] > 0. and EigenVal[i,1]>0.):
+                        EigenVal = np.delete(EigenVal,i,axis=0)
+                        n = n-1
+                    else :
+                        i = i+1
+                n = len(EigenVal)
                 if n ==0 :
                     NumberOfModes = max(int(1.5*NumberOfModes), NumberOfModes + 4)
                 else:    

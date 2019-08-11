@@ -155,34 +155,34 @@ if test3:
     AeroFlag = 1
     Rho = 0.0889
     DivSpeed = Simu.TemporalDivergenceSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,BetaAC,verbosity=verbosity)
-    assert(math.isclose(DivSpeed,37.25,abs_tol=1e-1)),"Error temporal flutter speed"
+    assert(math.isclose(DivSpeed,37.25,abs_tol=2e-1)),"Error temporal flutter speed"
     DivSpeed = Simu.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=0,verbosity=verbosity,mode=2)[0]
-    assert(math.isclose(DivSpeed,37.25,abs_tol=1e-1)),"Error temporal flutter speed"
+    assert(math.isclose(DivSpeed,37.25,abs_tol=2e-1)),"Error temporal flutter speed"
     Rho = 1.225
     DivSpeed = Simu.TemporalDivergenceSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,BetaAC,verbosity=verbosity)
-    assert(math.isclose(DivSpeed,10.01,abs_tol=1e-1)),"Error temporal flutter speed"
+    assert(math.isclose(DivSpeed,10.01,abs_tol=2e-1)),"Error temporal flutter speed"
     DivSpeed = Simu.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=0,verbosity=verbosity,mode=2)[0]    
-    assert(math.isclose(DivSpeed,10.01,abs_tol=1e-1)),"Error temporal flutter speed"
+    assert(math.isclose(DivSpeed,10.01,abs_tol=2e-1)),"Error temporal flutter speed"
     AeroFlag = 2
     Rho = 0.0889
     DivSpeed = Simu.TemporalDivergenceSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,BetaAC,verbosity=verbosity)
-    assert(math.isclose(DivSpeed,37.25,abs_tol=1e-1)),"Error temporal flutter speed"
+    assert(math.isclose(DivSpeed,37.25,abs_tol=2e-1)),"Error temporal flutter speed"
     DivSpeed = Simu.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=0,verbosity=verbosity,mode=2)[0]    
-    assert(math.isclose(DivSpeed,37.25,abs_tol=1e-1)),"Error temporal flutter speed"
+    assert(math.isclose(DivSpeed,37.25,abs_tol=2e-1)),"Error temporal flutter speed"
     Rho = 1.225
     DivSpeed = Simu.TemporalDivergenceSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,BetaAC,verbosity=verbosity)
-    assert(math.isclose(DivSpeed,10.01,abs_tol=1e-1)),"Error temporal flutter speed"
+    assert(math.isclose(DivSpeed,10.01,abs_tol=2e-1)),"Error temporal flutter speed"
     AeroFlag = 3
     Rho = 0.0889
     DivSpeed = Simu.TemporalDivergenceSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,BetaAC,verbosity=verbosity)
-    assert(math.isclose(DivSpeed,37.25,abs_tol=1e-1)),"Error temporal flutter speed"
+    assert(math.isclose(DivSpeed,37.25,abs_tol=2e-1)),"Error temporal flutter speed"
     DivSpeed = Simu.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=0,verbosity=verbosity,mode=2)[0]    
-    assert(math.isclose(DivSpeed,37.25,abs_tol=1e-1)),"Error temporal flutter speed"
+    assert(math.isclose(DivSpeed,37.25,abs_tol=2e-1)),"Error temporal flutter speed"
     Rho = 1.225
     DivSpeed = Simu.TemporalDivergenceSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,BetaAC,verbosity=verbosity)
-    assert(math.isclose(DivSpeed,10.01,abs_tol=1e-1)),"Error temporal flutter speed"
+    assert(math.isclose(DivSpeed,10.01,abs_tol=2e-1)),"Error temporal flutter speed"
     DivSpeed = Simu.ModalCriticalSpeed(Rho,Vmin,Vmax,Vstep,DeltaV,AeroFlag,AlphaAC,BetaAC,GravFlag=0,verbosity=verbosity,mode=2)[0]    
-    assert(math.isclose(DivSpeed,10.01,abs_tol=1e-1)),"Error temporal flutter speed"
+    assert(math.isclose(DivSpeed,10.01,abs_tol=2e-1)),"Error temporal flutter speed"
     print("#####OK#####")
     
 if test4:
